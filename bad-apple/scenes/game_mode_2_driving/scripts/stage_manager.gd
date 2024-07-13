@@ -7,7 +7,7 @@ var rng = RandomNumberGenerator.new()
 var offset = 0
 # VARIABLE  CONST MODULE SIZE & SPAWNING TIME 
 const BASE_MODULE_SIZE : int = 12
-const BASE_DELETE_BUFFER : int  = 12
+const BASE_DELETE_BUFFER : int  = 24
 # VARIABLE IS GAME RUNNING
 var is_gamemode_running = false
 # VARIABLE SET STAGE MOTHER
@@ -17,9 +17,16 @@ var stage_object_holder  = null
 var current_stage_difficult : DrivingStage = null
 # VARIABLE CURRENT SNAKESPEED
 var current_snake_speed : float  = 1
+# VARIABLE CURRENT CHECKPOINTS
+var current_checkpoints = 0
+
+# VARIABLE HEALTH
+var current_health  = 3
+
 ################################################## SIGNALS ##################################
 signal next_chunk
 signal driving_gamemode_start(stage : Node3D, difficult : DrivingStage)
+signal player_hit
 
 func _ready():
 	next_chunk.connect(on_next_chunk)
@@ -41,11 +48,19 @@ func spawn_modules():
 		spawn_queue.pop_front()
 
 	offset += 1
-
+### SIGNAL CREATE PLAYER DAMAGE
+func on_player_get_hit():
+	current_health -= 1
+	if current_health <= 0:
+		print ("GAME OVER")
+	player_hit.emit()
 ### SIGNAL CREATE NEW CHUNK
 func on_next_chunk():
 	if !is_gamemode_running:
 		return
+	current_checkpoints += 1
+	if current_checkpoints >= current_stage_difficult.win_condition_obstacles_cleared:
+		print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
 	spawn_modules()
 
 func on_gamemode_start(stage, difficult):

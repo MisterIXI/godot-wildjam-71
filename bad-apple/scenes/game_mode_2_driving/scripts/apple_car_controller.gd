@@ -25,8 +25,8 @@ var move_direction: Vector2 = Vector2.ZERO
 var friction_slip : Vector2 = Vector2(0.02, 0.845)
 
 # VARIABLE MOTOR
-const ENGINE_POWER : float = 5000
-const BRAKE_POWER : float = 5000
+const ENGINE_POWER : float = 1000
+const BRAKE_POWER : float = 1000
 const HANDBRAKE_POWER : float = 700
 
 # EXPORT WHEELS
@@ -95,7 +95,6 @@ func handle_steering():
 
 func handle_jumping():
 	if is_jumping && linear_velocity.x < 0.3 && linear_velocity.y < 0.3 && rotation.z != 0:
-		print("flipped")
 		rotation.z = 0
 
 	elif(is_jumping and current_jumps < MAX_JUMPS):

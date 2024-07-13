@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3dxb20lo83uj"]
+[gd_scene load_steps=3 format=3 uid="uid://c3dxb20lo83uj"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/game_camera_mode2.gd" id="1_fyw78"]
+[ext_resource type="Environment" uid="uid://bx7osi0qhtbwq" path="res://resources/driving_materials/driving_environment.tres" id="1_grsci"]
 
 [node name="Camera" type="Camera3D"]
+environment = ExtResource("1_grsci")
 script = ExtResource("1_fyw78")
