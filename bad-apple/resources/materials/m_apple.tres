@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://di3yjb611daya"]
+
+[ext_resource type="Texture2D" uid="uid://b7mr56snnbefm" path="res://assets/images/bad_apple.png" id="1_eaeuv"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_eaeuv")

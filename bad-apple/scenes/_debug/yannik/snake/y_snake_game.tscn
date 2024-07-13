@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://cabu8cd38fjpj"]
+
+[ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_ohkib"]
+[ext_resource type="Script" path="res://components/snake/snake_grid_manager.gd" id="2_nytcp"]
+[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake_settings.tres" id="3_aht7h"]
+[ext_resource type="Script" path="res://components/snake/snake_spawner.gd" id="3_rxman"]
+[ext_resource type="PackedScene" uid="uid://cqbt3m4m4fbn7" path="res://components/snake/snake_part.tscn" id="4_gso3v"]
+[ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="6_hgxca"]
+[ext_resource type="Script" path="res://scenes/snake/apple_spawner.gd" id="6_lmpkt"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nca5f"]
+size = Vector2(16, 16)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xjmxd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0lhge"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_c1isn"]
+plane = Plane(-1, 0, 0, -8)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_heght"]
+plane = Plane(1, 0, 0, -8)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8sqlf"]
+plane = Plane(0, 0, 1, -8)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vdm80"]
+plane = Plane(0, 0, -1, -8)
+
+[node name="SnakeGame" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.403785, 0.914854, 0, -0.914854, 0.403785, 0, 14.805, 7.80794)
+fov = 50.0
+
+[node name="GridRoot" type="Node3D" parent="."]
+
+[node name="PlaceholderGround" type="Node3D" parent="GridRoot"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridRoot/PlaceholderGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+material_override = ExtResource("1_ohkib")
+mesh = SubResource("PlaneMesh_nca5f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_xjmxd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround"]
+transform = Transform3D(0.880866, 0, -0.473366, 0, 1, 0, 0.473366, 0, 0.880866, 0.506135, 0.560279, 0.44813)
+visible = false
+mesh = SubResource("BoxMesh_0lhge")
+
+[node name="Walls" type="Area3D" parent="GridRoot" groups=["DeathWall"]]
+
+[node name="right" type="CollisionShape3D" parent="GridRoot/Walls"]
+shape = SubResource("WorldBoundaryShape3D_c1isn")
+
+[node name="left" type="CollisionShape3D" parent="GridRoot/Walls"]
+shape = SubResource("WorldBoundaryShape3D_heght")
+
+[node name="top" type="CollisionShape3D" parent="GridRoot/Walls"]
+shape = SubResource("WorldBoundaryShape3D_8sqlf")
+
+[node name="bottom" type="CollisionShape3D" parent="GridRoot/Walls"]
+shape = SubResource("WorldBoundaryShape3D_vdm80")
+
+[node name="SnakeSpawner" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_rxman")
+snake_part_model = ExtResource("4_gso3v")
+
+[node name="SnakeGridManager" type="Node" parent="." node_paths=PackedStringArray("grid_root")]
+unique_name_in_owner = true
+script = ExtResource("2_nytcp")
+grid_root = NodePath("../GridRoot")
+settings = ExtResource("3_aht7h")
+
+[node name="SnakeAppleSpawner" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_lmpkt")
+apple_model = ExtResource("6_hgxca")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.576746, 0.67675, -0.457574, 0, 0.560119, 0.828412, 0.816923, -0.477784, 0.323046, 0, 7.79272, 0)
+shadow_enabled = true
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+layout_mode = 1
+offset_right = 110.0
+offset_bottom = 96.0
+
+[node name="ScoreLabel" type="Label" parent="HUD/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "1"
