@@ -1,0 +1,12 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bk2irodcggxa8"]
+
+[ext_resource type="FontFile" uid="uid://cl1aof26374xu" path="res://assets/fonts/metal-mania/MetalMania-Regular.ttf" id="1_pcirg"]
+
+[resource]
+font = ExtResource("1_pcirg")
+font_size = 30
+font_color = Color(0.910944, 0.8238, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.572549)
