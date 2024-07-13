@@ -19,6 +19,8 @@ var direction_buffer: Array[Vector2i] = []
 
 var parts_to_spawn: int = 0
 
+var apples_eaten: int = 0
+
 @onready var grid: SnakeGridManager = get_node("../%SnakeGridManager")
 # var grid: SnakeGridManager = null
 func is_head() -> bool: return front_part == null
@@ -166,6 +168,8 @@ func _on_area_entered(area:Area3D):
 		grow_parts(1)
 		area.queue_free()
 		get_node("../%SnakeAppleSpawner").spawn_apple()
+		apples_eaten += 1
+		print("apples eaten: ", apples_eaten)
 
 func _exit_tree():
 	var spawn_manager:SnakeSpawner = get_node("../%SnakeSpawner")
