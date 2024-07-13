@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://csh330pwm8ntw"]
+
+[sub_resource type="Gradient" id="Gradient_0n64p"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0.51118, 0.772846, 0.294118)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_24bx4"]
+gradient = SubResource("Gradient_0n64p")
+width = 1280
+height = 820
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="ArmorHealEffect" type="TextureRect"]
+visible = false
+offset_right = 1280.0
+offset_bottom = 820.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_24bx4")

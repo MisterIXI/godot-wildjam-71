@@ -1,0 +1,426 @@
+[gd_scene load_steps=19 format=3 uid="uid://c3a8ulxx0j6sy"]
+
+[ext_resource type="Texture2D" uid="uid://ht358scd52px" path="res://assets/images/fps/fps_hud.png" id="1_iwxiq"]
+[ext_resource type="PackedScene" uid="uid://cef5pbbagysxt" path="res://scenes/fps/hud/effects/damage_effect.tscn" id="1_jslm2"]
+[ext_resource type="LabelSettings" uid="uid://bk2irodcggxa8" path="res://resources/fps/fps_arms_active.tres" id="2_arb7m"]
+[ext_resource type="Script" path="res://components/fps/fps_change_resource_label.gd" id="3_430uw"]
+[ext_resource type="LabelSettings" uid="uid://q86xmymo8tk6" path="res://resources/fps/fps_arms_inactive.tres" id="4_a3n3q"]
+[ext_resource type="PackedScene" uid="uid://drr38biqllyqe" path="res://scenes/fps/hud/effects/armor_damage_effect.tscn" id="4_dpddx"]
+[ext_resource type="LabelSettings" uid="uid://cwc5q3642qmqo" path="res://resources/fps/fps_hud_numbers.tres" id="5_d15f2"]
+[ext_resource type="PackedScene" uid="uid://d4lk6fixc1wv6" path="res://scenes/fps/hud/effects/heal_effect.tscn" id="5_g66am"]
+[ext_resource type="PackedScene" uid="uid://csh330pwm8ntw" path="res://scenes/fps/hud/effects/armor_heal_effect.tscn" id="6_ar878"]
+[ext_resource type="Script" path="res://scenes/fps/fps_restart_menu.gd" id="6_gqpak"]
+[ext_resource type="Script" path="res://components/general/hide_node_on_visible.gd" id="7_8udej"]
+[ext_resource type="Script" path="res://components/general/pause_on_visible.gd" id="8_f0dpd"]
+[ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="9_drjrd"]
+[ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="10_ai8kp"]
+[ext_resource type="Script" path="res://components/fps/fps_show_node_on_resource.gd" id="12_0m2rb"]
+[ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="13_plsmq"]
+
+[sub_resource type="Gradient" id="Gradient_0n64p"]
+colors = PackedColorArray(0, 0, 0, 0, 1.97336e-06, 0.586754, 0.0408179, 0.294118)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_24bx4"]
+gradient = SubResource("Gradient_0n64p")
+width = 1280
+height = 820
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="FpsHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Effects" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DamageEffect" parent="Effects" instance=ExtResource("1_jslm2")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1280.0
+offset_bottom = 820.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ModulateOnVisible" type="Node" parent="Effects/DamageEffect"]
+script = ExtResource("9_drjrd")
+animation_duration = 0.2
+hide_when_finished = true
+
+[node name="FpsShowNodeOnResource" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
+script = ExtResource("12_0m2rb")
+node = NodePath("../DamageEffect")
+on_health_damage = true
+
+[node name="ArmorDamageEffect" parent="Effects" instance=ExtResource("4_dpddx")]
+layout_mode = 0
+
+[node name="ModulateOnVisible" type="Node" parent="Effects/ArmorDamageEffect"]
+script = ExtResource("9_drjrd")
+animation_duration = 0.2
+hide_when_finished = true
+
+[node name="FpsShowNodeOnResource4" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
+script = ExtResource("12_0m2rb")
+node = NodePath("../ArmorDamageEffect")
+on_armor_damage = true
+
+[node name="HealEffect" parent="Effects" instance=ExtResource("5_g66am")]
+layout_mode = 0
+texture = SubResource("GradientTexture2D_24bx4")
+
+[node name="ModulateOnVisible" type="Node" parent="Effects/HealEffect"]
+script = ExtResource("9_drjrd")
+animation_duration = 0.3
+hide_when_finished = true
+
+[node name="FpsShowNodeOnResource2" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
+script = ExtResource("12_0m2rb")
+node = NodePath("../HealEffect")
+on_health_heal = true
+
+[node name="ArmorHealEffect" parent="Effects" instance=ExtResource("6_ar878")]
+layout_mode = 0
+
+[node name="ModulateOnVisible" type="Node" parent="Effects/ArmorHealEffect"]
+script = ExtResource("9_drjrd")
+animation_duration = 0.3
+hide_when_finished = true
+
+[node name="FpsShowNodeOnResource3" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
+script = ExtResource("12_0m2rb")
+node = NodePath("../ArmorHealEffect")
+on_armor_heal = true
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -140.0
+offset_right = 640.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("1_iwxiq")
+
+[node name="ShotgunLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -637.0
+offset_top = -141.0
+offset_right = -469.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Shotgun"
+label_settings = ExtResource("2_arb7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="ShotgunLabel"]
+script = ExtResource("3_430uw")
+is_shotgun = true
+active_theme = ExtResource("2_arb7m")
+inactive_theme = ExtResource("4_a3n3q")
+
+[node name="KnifeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -638.0
+offset_top = -107.0
+offset_right = -468.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Knife"
+label_settings = ExtResource("4_a3n3q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="KnifeLabel"]
+script = ExtResource("3_430uw")
+is_knife = true
+active_theme = ExtResource("2_arb7m")
+inactive_theme = ExtResource("4_a3n3q")
+
+[node name="AmmoLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -464.0
+offset_top = -139.0
+offset_right = -288.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "50"
+label_settings = ExtResource("5_d15f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="AmmoLabel"]
+script = ExtResource("3_430uw")
+is_ammo = true
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -283.0
+offset_top = -139.0
+offset_right = -61.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "100%"
+label_settings = ExtResource("5_d15f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="HealthLabel"]
+script = ExtResource("3_430uw")
+is_health = true
+text_suffix = "%"
+
+[node name="ArmorLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = -139.0
+offset_right = 283.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "100%"
+label_settings = ExtResource("5_d15f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="ArmorLabel"]
+script = ExtResource("3_430uw")
+is_armor = true
+text_suffix = "%"
+
+[node name="Crossair" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -90.0
+offset_right = 20.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VerticalBg" type="ColorRect" parent="Crossair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -11.0
+offset_right = 3.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HorizontalBg" type="ColorRect" parent="Crossair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Vertical" type="ColorRect" parent="Crossair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -10.0
+offset_right = 2.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.901961, 0, 0.113725, 1)
+
+[node name="Horizontal" type="ColorRect" parent="Crossair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -2.0
+offset_right = 10.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.901961, 0, 0.113725, 1)
+
+[node name="RestartMenu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_gqpak")
+
+[node name="Labels" type="Control" parent="RestartMenu"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DamageEffect" parent="RestartMenu/Labels" instance=ExtResource("1_jslm2")]
+process_mode = 3
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -620.0
+offset_top = -460.0
+offset_right = 620.0
+offset_bottom = 320.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Text" type="Control" parent="RestartMenu/Labels"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="HeadingLabel" type="Label" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -107.5
+offset_right = 324.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Have Died"
+label_settings = ExtResource("5_d15f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryLabel" type="Label" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -44.5
+offset_right = 197.0
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"R\" to Retry"
+label_settings = ExtResource("2_arb7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResizeOnVisible" type="Node" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+script = ExtResource("10_ai8kp")
+
+[node name="HideNodeOnVisible" type="Node" parent="RestartMenu/Labels" node_paths=PackedStringArray("node")]
+process_mode = 3
+script = ExtResource("7_8udej")
+node = NodePath("../../../Crossair")
+
+[node name="PauseOnVisible" type="Node" parent="RestartMenu/Labels"]
+script = ExtResource("8_f0dpd")
+
+[node name="ModulateOnVisible" type="Node" parent="RestartMenu/Labels"]
+script = ExtResource("9_drjrd")
+animation_duration = 0.3
+
+[node name="ResetOnVisible" type="Node" parent="." node_paths=PackedStringArray("windows_to_close", "windows_to_open")]
+script = ExtResource("13_plsmq")
+reset_windows = true
+windows_to_close = [NodePath("../Effects/DamageEffect"), NodePath("../RestartMenu/Labels"), NodePath("../Effects/HealEffect"), NodePath("../Effects/ArmorDamageEffect"), NodePath("../Effects/ArmorHealEffect")]
+windows_to_open = [NodePath("../Crossair")]
