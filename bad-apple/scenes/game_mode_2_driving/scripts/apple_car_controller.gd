@@ -25,8 +25,8 @@ var move_direction: Vector2 = Vector2.ZERO
 var friction_slip : Vector2 = Vector2(0.02, 0.845)
 
 # VARIABLE MOTOR
-const ENGINE_POWER : float = 1000
-const BRAKE_POWER : float = 1000
+const ENGINE_POWER : float = 5000
+const BRAKE_POWER : float = 5000
 const HANDBRAKE_POWER : float = 700
 
 # EXPORT WHEELS
