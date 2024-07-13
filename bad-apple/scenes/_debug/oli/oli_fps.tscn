@@ -230,7 +230,7 @@ mesh = SubResource("BoxMesh_85iib")
 shape = SubResource("BoxShape3D_5q4wa")
 
 [node name="Slope" type="StaticBody3D" parent="TestMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8496, 0.010033, 8.71044)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8496, 0.0021666, 8.71044)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/Slope"]
 transform = Transform3D(4.335, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.34548, -0.0281691, 0.10386)
@@ -261,15 +261,15 @@ shape = SubResource("BoxShape3D_84l4o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0423183, 0.0217433, -0.0238113)
 floor_constant_speed = true
 floor_block_on_wall = false
-floor_max_angle = 1.22173
+floor_max_angle = 1.39626
 platform_on_leave = 2
-safe_margin = 0.05
 script = ExtResource("1_ljvmp")
 
 [node name="Camera3D" type="Camera3D" parent="FpsCharacter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="apple" parent="FpsCharacter" instance=ExtResource("1_jf4nt")]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FpsCharacter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
