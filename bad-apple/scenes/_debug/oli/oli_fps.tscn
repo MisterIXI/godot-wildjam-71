@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxryxu0ghogbv"]
+[gd_scene load_steps=11 format=3 uid="uid://dxryxu0ghogbv"]
 
-[ext_resource type="PackedScene" uid="uid://d6ubx2ya0g72" path="res://assets/models/apple.glb" id="1_jf4nt"]
-[ext_resource type="Script" path="res://scenes/fps/character/fps_controller.gd" id="1_ljvmp"]
+[ext_resource type="PackedScene" uid="uid://5rw8e76sa14y" path="res://scenes/fps/character/fps_character.tscn" id="1_yoab8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvw6y"]
 size = Vector3(50, 1, 50)
@@ -31,14 +30,6 @@ size = Vector3(4, 0.5, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_84l4o"]
 size = Vector3(1, 1, 0.5)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_d8jo4"]
-height = 1.7
-radius = 0.45
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_xrcv2"]
-height = 1.7
-radius = 0.4
 
 [node name="OliFps" type="Node3D"]
 
@@ -257,26 +248,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8463, 1.46565, 14.569)
 transform = Transform3D(4.335, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.34548, -0.0188436, 0.10386)
 shape = SubResource("BoxShape3D_84l4o")
 
-[node name="FpsCharacter" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0423183, 0.0217433, -0.0238113)
-floor_constant_speed = true
-floor_block_on_wall = false
-floor_max_angle = 1.39626
-platform_on_leave = 2
-script = ExtResource("1_ljvmp")
+[node name="FpsCharacter" parent="." instance=ExtResource("1_yoab8")]
 
-[node name="Camera3D" type="Camera3D" parent="FpsCharacter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
-[node name="apple" parent="FpsCharacter" instance=ExtResource("1_jf4nt")]
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FpsCharacter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-shape = SubResource("CylinderShape3D_d8jo4")
-
-[node name="Area3D" type="Area3D" parent="FpsCharacter"]
-
-[node name="Hitbox" type="CollisionShape3D" parent="FpsCharacter/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-shape = SubResource("CylinderShape3D_xrcv2")
+[node name="FpsHud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
