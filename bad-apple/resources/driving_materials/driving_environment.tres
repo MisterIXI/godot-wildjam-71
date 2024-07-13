@@ -1,0 +1,10 @@
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://bx7osi0qhtbwq"]
+
+[ext_resource type="Sky" uid="uid://uwu3r1da3sm3" path="res://resources/driving_materials/driving_sky.tres" id="1_l10sv"]
+
+[resource]
+background_mode = 2
+sky = ExtResource("1_l10sv")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(0.815686, 1, 1, 1)

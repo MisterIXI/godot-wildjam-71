@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx81tnynlr1d2"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_gnhcf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8uyr"]
+albedo_color = Color(0.313726, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_aoh5m"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.34888, 0, 0, 0, 2.06143, 0, 0, 0, 1.35473, 0, 3.60764, 0)
+mesh = SubResource("PrismMesh_gnhcf")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_m8uyr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.66873, 0, 0, 0, 1, 0, 1.34756, 0)
+mesh = SubResource("BoxMesh_aoh5m")
