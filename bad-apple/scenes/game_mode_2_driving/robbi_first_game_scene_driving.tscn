@@ -1,15 +1,18 @@
 [gd_scene load_steps=8 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
+[ext_resource type="Resource" uid="uid://ctfulgtls581h" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
 [ext_resource type="Environment" uid="uid://bx7osi0qhtbwq" path="res://resources/driving_materials/driving_environment.tres" id="3_mics7"]
 [ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="3_rmupy"]
-[ext_resource type="PackedScene" uid="uid://bdax7v06sg23g" path="res://scenes/game_mode_2_driving/stage_manager.tscn" id="3_wkjbo"]
 [ext_resource type="PackedScene" uid="uid://br64u28r0ciq8" path="res://scenes/game_mode_2_driving/modules/driving_module_01.tscn" id="4_i2xpw"]
-[ext_resource type="PackedScene" uid="uid://ddu5tcfkxvw3u" path="res://scenes/game_mode_2_driving/driving_game_manager.tscn" id="5_7c1ku"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_y6pu4"]
 
-[node name="Driving_scene_import" type="Node3D"]
+[node name="Driving_scene_import" type="Node3D" node_paths=PackedStringArray("stage_object")]
+script = ExtResource("1_vgcbq")
+stage_object = NodePath("Stage")
+difficult = ExtResource("2_64env")
 
 [node name="Obstacles" type="Node3D" parent="."]
 
@@ -34,15 +37,13 @@ car = NodePath("../player_car")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.723678, 0.690138, 0, -0.690138, 0.723678, 0, 0, 0)
 
-[node name="Stage_Manager" parent="." instance=ExtResource("3_wkjbo")]
+[node name="Stage" type="Node3D" parent="."]
 
-[node name="Driving_Module_01" parent="Stage_Manager" instance=ExtResource("4_i2xpw")]
+[node name="Driving_Module_01" parent="Stage" instance=ExtResource("4_i2xpw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.0972662, 0)
 
-[node name="Driving_Module_02" parent="Stage_Manager" instance=ExtResource("4_i2xpw")]
+[node name="Driving_Module_02" parent="Stage" instance=ExtResource("4_i2xpw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.0972662, 0)
 
-[node name="Driving_Module_03" parent="Stage_Manager" instance=ExtResource("4_i2xpw")]
+[node name="Driving_Module_03" parent="Stage" instance=ExtResource("4_i2xpw")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 0.0972662, 0)
-
-[node name="Driving_game_manager" parent="." instance=ExtResource("5_7c1ku")]

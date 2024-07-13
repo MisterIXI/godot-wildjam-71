@@ -1,12 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://br64u28r0ciq8"]
+[gd_scene load_steps=9 format=3 uid="uid://br64u28r0ciq8"]
 
 [ext_resource type="Material" uid="uid://b3h8kw6s7gc78" path="res://resources/driving_materials/road_mat.tres" id="1_ic3jh"]
 [ext_resource type="PackedScene" uid="uid://dc31yc835s78j" path="res://scenes/game_mode_2_driving/objects/house_01.tscn" id="2_rgasd"]
 [ext_resource type="PackedScene" uid="uid://cx81tnynlr1d2" path="res://scenes/game_mode_2_driving/objects/house_02.tscn" id="3_bcwun"]
 [ext_resource type="PackedScene" uid="uid://dr6kimitgwwtw" path="res://scenes/game_mode_2_driving/objects/house_03.tscn" id="4_xoc5w"]
 [ext_resource type="PackedScene" uid="uid://w2os1uitncyn" path="res://scenes/game_mode_2_driving/objects/obstacle_01.tscn" id="5_yimkb"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/next_chunk_area.gd" id="6_xh8ji"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mioha"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_otyd4"]
+size = Vector3(25, 4.499, 0.512207)
 
 [node name="Driving_Module_01" type="Node3D"]
 
@@ -86,3 +90,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
 
 [node name="Obstacle_02" parent="." instance=ExtResource("5_yimkb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000447989, 0.5, -1.82977)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.98242)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_xh8ji")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74939, 0.243896)
+shape = SubResource("BoxShape3D_otyd4")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
