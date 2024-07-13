@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 @export_group("Movement")
-@export_range(1,15) var movement_speed :float = 8.0
-@export_range(1,15) var movement_runon : float = 3
+@export_range(1,15) var movement_speed :float = 9.0
+@export_range(1,15) var movement_runon : float = 4.5
 @export_range(1,15) var movement_falloff : float = 0.3
 @export_range(1,15) var jump_velocity : float = 5
 @export_range(1,50) var gravity : float = 15.0
