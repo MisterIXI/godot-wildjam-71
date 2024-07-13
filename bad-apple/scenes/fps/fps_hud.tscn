@@ -1,0 +1,228 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3a8ulxx0j6sy"]
+
+[ext_resource type="Texture2D" uid="uid://ht358scd52px" path="res://assets/images/fps/fps_hud.png" id="1_iwxiq"]
+[ext_resource type="LabelSettings" uid="uid://bk2irodcggxa8" path="res://resources/fps/fps_arms_active.tres" id="2_arb7m"]
+[ext_resource type="Script" path="res://components/fps/fps_change_resource_label.gd" id="3_430uw"]
+[ext_resource type="LabelSettings" uid="uid://q86xmymo8tk6" path="res://resources/fps/fps_arms_inactive.tres" id="4_a3n3q"]
+[ext_resource type="LabelSettings" uid="uid://cwc5q3642qmqo" path="res://resources/fps/fps_hud_numbers.tres" id="5_d15f2"]
+
+[node name="FpsHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -140.0
+offset_right = 640.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("1_iwxiq")
+
+[node name="ShotgunLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -637.0
+offset_top = -141.0
+offset_right = -469.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Shotgun"
+label_settings = ExtResource("2_arb7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="ShotgunLabel"]
+script = ExtResource("3_430uw")
+is_shotgun = true
+active_theme = ExtResource("2_arb7m")
+inactive_theme = ExtResource("4_a3n3q")
+
+[node name="KnifeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -638.0
+offset_top = -107.0
+offset_right = -468.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Knife"
+label_settings = ExtResource("4_a3n3q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="KnifeLabel"]
+script = ExtResource("3_430uw")
+is_knife = true
+active_theme = ExtResource("2_arb7m")
+inactive_theme = ExtResource("4_a3n3q")
+
+[node name="AmmoLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -464.0
+offset_top = -139.0
+offset_right = -288.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "50"
+label_settings = ExtResource("5_d15f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="AmmoLabel"]
+script = ExtResource("3_430uw")
+is_ammo = true
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -283.0
+offset_top = -139.0
+offset_right = -61.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "100%"
+label_settings = ExtResource("5_d15f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="HealthLabel"]
+script = ExtResource("3_430uw")
+is_health = true
+text_suffix = "%"
+
+[node name="ArmorLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = -139.0
+offset_right = 283.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "100%"
+label_settings = ExtResource("5_d15f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="ArmorLabel"]
+script = ExtResource("3_430uw")
+is_armor = true
+text_suffix = "%"
+
+[node name="Crossair" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VerticalBg" type="ColorRect" parent="Crossair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -11.0
+offset_right = 3.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HorizontalBg" type="ColorRect" parent="Crossair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -3.0
+offset_right = 11.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Vertical" type="ColorRect" parent="Crossair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -10.0
+offset_right = 2.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.901961, 0, 0.113725, 1)
+
+[node name="Horizontal" type="ColorRect" parent="Crossair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -2.0
+offset_right = 10.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.901961, 0, 0.113725, 1)
