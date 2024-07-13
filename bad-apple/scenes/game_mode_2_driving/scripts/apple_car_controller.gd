@@ -95,11 +95,11 @@ func handle_jumping():
 		is_current_jumping = true
 		current_jumps += 1
 		linear_velocity += Vector3.UP * JUMPOWER
-		print ("jumping")
-	if linear_velocity.y < 1 :
+		
+	if linear_velocity.y < 0.3 :
 		current_jumps = 0
 		is_current_jumping = false
-		print ("grounded")
+		
 
 
 func handle_flying():

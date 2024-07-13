@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://br64u28r0ciq8"]
+
+[ext_resource type="Material" uid="uid://b3h8kw6s7gc78" path="res://resources/driving_materials/road_mat.tres" id="1_ic3jh"]
+[ext_resource type="PackedScene" uid="uid://dc31yc835s78j" path="res://scenes/game_mode_2_driving/objects/house_01.tscn" id="2_rgasd"]
+[ext_resource type="PackedScene" uid="uid://cx81tnynlr1d2" path="res://scenes/game_mode_2_driving/objects/house_02.tscn" id="3_bcwun"]
+[ext_resource type="PackedScene" uid="uid://dr6kimitgwwtw" path="res://scenes/game_mode_2_driving/objects/house_03.tscn" id="4_xoc5w"]
+[ext_resource type="PackedScene" uid="uid://w2os1uitncyn" path="res://scenes/game_mode_2_driving/objects/obstacle_01.tscn" id="5_yimkb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mioha"]
+
+[node name="Driving_Module_01" type="Node3D"]
+
+[node name="Road_Part01" type="Node3D" parent="."]
+
+[node name="Road_Left" type="MeshInstance3D" parent="Road_Part01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Road_Mid" type="MeshInstance3D" parent="Road_Part01"]
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Road_Right" type="MeshInstance3D" parent="Road_Part01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Road_Part02" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Road_Left" type="MeshInstance3D" parent="Road_Part02"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Road_Mid" type="MeshInstance3D" parent="Road_Part02"]
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Road_Right" type="MeshInstance3D" parent="Road_Part02"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Road_Part03" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Road_Left" type="MeshInstance3D" parent="Road_Part03"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Road_Mid" type="MeshInstance3D" parent="Road_Part03"]
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Road_Right" type="MeshInstance3D" parent="Road_Part03"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+mesh = SubResource("PlaneMesh_mioha")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_ic3jh")
+
+[node name="Node3D" parent="." instance=ExtResource("2_rgasd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18042, 0.412787, -0.304389)
+
+[node name="Node3D2" parent="." instance=ExtResource("2_rgasd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.18042, 0.412787, -2.0198)
+
+[node name="Node3D3" parent="." instance=ExtResource("3_bcwun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02463, 0, -3.92575)
+
+[node name="Node3D4" parent="." instance=ExtResource("4_xoc5w")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.94439, 0, -1.78284)
+
+[node name="Obstacle_01" parent="." instance=ExtResource("5_yimkb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
+
+[node name="Obstacle_02" parent="." instance=ExtResource("5_yimkb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000447989, 0.5, -1.82977)
