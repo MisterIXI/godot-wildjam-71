@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxryxu0ghogbv"]
+[gd_scene load_steps=14 format=3 uid="uid://dxryxu0ghogbv"]
 
 [ext_resource type="PackedScene" uid="uid://5rw8e76sa14y" path="res://scenes/fps/character/fps_character.tscn" id="1_yoab8"]
+[ext_resource type="Script" path="res://scenes/_debug/oli/fps_test_keybinds.gd" id="4_5jj5w"]
 [ext_resource type="PackedScene" uid="uid://c3a8ulxx0j6sy" path="res://scenes/fps/fps_hud.tscn" id="4_gtln0"]
 [ext_resource type="Script" path="res://components/fps/fps_weapon_changer.gd" id="7_slocy"]
 
@@ -256,3 +257,6 @@ shape = SubResource("BoxShape3D_84l4o")
 script = ExtResource("7_slocy")
 
 [node name="FpsHud" parent="." instance=ExtResource("4_gtln0")]
+
+[node name="FpsTestKeybinds" type="Node" parent="."]
+script = ExtResource("4_5jj5w")

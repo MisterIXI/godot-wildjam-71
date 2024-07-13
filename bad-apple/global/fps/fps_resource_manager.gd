@@ -31,8 +31,31 @@ enum WEAPOND_TYPE {SHOTGUN, KNIFE}
 		armor = value
 		armor_changed.emit(armor)
 
+@onready var _start_weapon : WEAPOND_TYPE = weapon
+@onready var _start_ammo : int = ammo
+@onready var _start_health : int = health
+@onready var _start_armor : int = armor
+
 
 signal weapon_changed(weapon : WEAPOND_TYPE)
 signal ammo_changed(ammo : int)
 signal health_changed(health : int)
 signal armor_changed(armor : int)
+
+func change_resource(resource : String, delta : int) -> void:
+	match resource:
+		"ammo":
+			set("ammo", ammo + delta)
+		"health":
+			set("health", health + delta)
+		"armor":
+			set("armor", armor + delta)
+		_:
+			print("Resource not found: " + resource)
+
+
+func reset() -> void:
+	weapon = _start_weapon
+	ammo = _start_ammo
+	health = _start_health
+	armor = _start_armor

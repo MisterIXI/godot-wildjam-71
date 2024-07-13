@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3a8ulxx0j6sy"]
+[gd_scene load_steps=11 format=3 uid="uid://c3a8ulxx0j6sy"]
 
 [ext_resource type="Texture2D" uid="uid://ht358scd52px" path="res://assets/images/fps/fps_hud.png" id="1_iwxiq"]
 [ext_resource type="LabelSettings" uid="uid://bk2irodcggxa8" path="res://resources/fps/fps_arms_active.tres" id="2_arb7m"]
 [ext_resource type="Script" path="res://components/fps/fps_change_resource_label.gd" id="3_430uw"]
 [ext_resource type="LabelSettings" uid="uid://q86xmymo8tk6" path="res://resources/fps/fps_arms_inactive.tres" id="4_a3n3q"]
 [ext_resource type="LabelSettings" uid="uid://cwc5q3642qmqo" path="res://resources/fps/fps_hud_numbers.tres" id="5_d15f2"]
+[ext_resource type="Script" path="res://scenes/fps/fps_restart_menu.gd" id="6_gqpak"]
+[ext_resource type="Script" path="res://components/general/hide_node_on_visible.gd" id="7_8udej"]
+[ext_resource type="Script" path="res://components/general/pause_on_visible.gd" id="8_f0dpd"]
+[ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="9_drjrd"]
+[ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="10_ai8kp"]
 
 [node name="FpsHud" type="Control"]
 layout_mode = 3
@@ -226,3 +231,84 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.901961, 0, 0.113725, 1)
+
+[node name="RestartMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_gqpak")
+
+[node name="Labels" type="Control" parent="RestartMenu"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HeadingLabel" type="Label" parent="RestartMenu/Labels"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -107.5
+offset_right = 324.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Have Died"
+label_settings = ExtResource("5_d15f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryLabel" type="Label" parent="RestartMenu/Labels"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -44.5
+offset_right = 197.0
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"R\" to Retry"
+label_settings = ExtResource("2_arb7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HideNodeOnVisible" type="Node" parent="RestartMenu/Labels" node_paths=PackedStringArray("node")]
+process_mode = 3
+script = ExtResource("7_8udej")
+node = NodePath("../../../Crossair")
+
+[node name="ResizeOnVisible" type="Node" parent="RestartMenu/Labels"]
+process_mode = 3
+script = ExtResource("10_ai8kp")
+
+[node name="PauseOnVisible" type="Node" parent="RestartMenu/Labels"]
+script = ExtResource("8_f0dpd")
+
+[node name="ModulateOnVisible" type="Node" parent="RestartMenu/Labels"]
+script = ExtResource("9_drjrd")
+animation_duration = 0.5
