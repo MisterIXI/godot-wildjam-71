@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="DrivingStage" load_steps=4 format=3 uid="uid://ctfulgtls581h"]
+[gd_resource type="Resource" script_class="DrivingStage" load_steps=5 format=3 uid="uid://ctfulgtls581h"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/driving_stage.gd" id="1_db47q"]
 [ext_resource type="PackedScene" uid="uid://w2os1uitncyn" path="res://scenes/game_mode_2_driving/objects/obstacle_01.tscn" id="1_rhubo"]
 [ext_resource type="PackedScene" uid="uid://br64u28r0ciq8" path="res://scenes/game_mode_2_driving/modules/driving_module_01.tscn" id="2_mpo4w"]
+[ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="3_onqbb"]
 
 [resource]
 script = ExtResource("1_db47q")
-modules_array = Array[PackedScene]([ExtResource("2_mpo4w")])
+modules_array = Array[PackedScene]([ExtResource("2_mpo4w"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb")])
 obstacle_array = Array[PackedScene]([ExtResource("1_rhubo")])
 collectable_array = Array[PackedScene]([ExtResource("1_rhubo")])
 snakeSpeed = 1.0
-win_condition_obstacles_cleared = 0
+win_condition_obstacles_cleared = 50

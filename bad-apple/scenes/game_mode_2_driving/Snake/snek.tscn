@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://csnru4jxnvc4u"]
+
+[ext_resource type="PackedScene" uid="uid://scmjo7od7k5y" path="res://assets/models/snek.glb" id="1_7ny2e"]
+[ext_resource type="Texture2D" uid="uid://dre6iynkpku5q" path="res://assets/images/snekeye1.png" id="2_31irv"]
+[ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="3_s1wss"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb3tt"]
+albedo_texture = ExtResource("2_31irv")
+
+[node name="snek" instance=ExtResource("1_7ny2e")]
+
+[node name="Body" parent="." index="0"]
+visible = false
+material_override = SubResource("StandardMaterial3D_hb3tt")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(0.388466, 0.0310276, 0.0733241, 0.918017)
+bones/1/rotation = Quaternion(0.260801, 0.938251, -0.192215, 0.121329)
+bones/3/rotation = Quaternion(-0.260801, 0.938251, -0.192215, -0.121329)
+bones/5/rotation = Quaternion(-3.61793e-07, 0.549783, 0.835307, -2.38125e-07)
+bones/6/rotation = Quaternion(0.255199, -1.15264e-06, -8.31588e-08, 0.966889)
+bones/7/rotation = Quaternion(-0.0264343, 8.7411e-08, 3.7815e-08, 0.999651)
+
+[node name="eyes" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(-0.355068, 0.543303, 0.760755, 0.535012, 0.785433, -0.31122, -0.766608, 0.296509, -0.569556, 0.537037, 1.29114, 0.34034)
+
+[node name="eyes" parent="Armature/Skeleton3D/eyes" index="0"]
+material_override = ExtResource("3_s1wss")
+
+[node name="eyes_001" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.900447, 0.420416, 0.111563, -0.392897, 0.896194, -0.206081, -0.186621, 0.141732, 0.972155, -0.907735, 1.07121, 0.328948)
+
+[node name="eyes_001" parent="Armature/Skeleton3D/eyes_001" index="0"]
+material_override = ExtResource("3_s1wss")
+
+[node name="snakehead" parent="Armature/Skeleton3D" index="2"]
+material_override = ExtResource("3_s1wss")

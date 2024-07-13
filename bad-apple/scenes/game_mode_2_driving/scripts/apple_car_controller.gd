@@ -95,7 +95,6 @@ func handle_steering():
 
 func handle_jumping():
 	if is_jumping && linear_velocity.x < 0.3 && linear_velocity.y < 0.3 && rotation.z != 0:
-		print("flipped")
 		rotation.z = 0
 
 	elif(is_jumping and current_jumps < MAX_JUMPS):

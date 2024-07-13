@@ -6,5 +6,4 @@
 background_mode = 2
 sky = ExtResource("1_l10sv")
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.03
-volumetric_fog_albedo = Color(0.815686, 1, 1, 1)
+volumetric_fog_density = 0.0355
