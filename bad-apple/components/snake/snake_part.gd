@@ -33,8 +33,7 @@ func head_set_new_tile() -> void:
 	else:
 		curr_tile += prev_dir
 
-func grow_parts(count: int) -> void:
-	
+func grow_parts(_count: int) -> void:
 	pass
 
 func _process(_delta):
