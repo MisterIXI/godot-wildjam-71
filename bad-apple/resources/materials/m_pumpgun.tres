@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://pue23mepdx67"]
+
+[ext_resource type="Texture2D" uid="uid://bu6ggscygoqst" path="res://assets/images/pumpgun.png" id="1_4cnqb"]
+
+[resource]
+albedo_texture = ExtResource("1_4cnqb")

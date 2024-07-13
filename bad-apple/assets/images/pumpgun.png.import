@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7mr56snnbefm"
-path="res://.godot/imported/bad_apple.png-816202edc2b5624da3e1e6bfca721b03.ctex"
+uid="uid://bu6ggscygoqst"
+path="res://.godot/imported/pumpgun.png-cf3db7c3a499a29388dd8da5a0a904e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/bad_apple.png"
-dest_files=["res://.godot/imported/bad_apple.png-816202edc2b5624da3e1e6bfca721b03.ctex"]
+source_file="res://assets/images/pumpgun.png"
+dest_files=["res://.godot/imported/pumpgun.png-cf3db7c3a499a29388dd8da5a0a904e6.ctex"]
 
 [params]
 
