@@ -1,31 +1,62 @@
 extends CharacterBody3D
 
+@export_group("Movement")
+@export_range(1,15) var movement_speed :float = 8.0
+@export_range(1,15) var movement_runon : float = 3
+@export_range(1,15) var movement_falloff : float = 0.3
+@export_range(1,15) var jump_velocity : float = 4
+@export_range(1,50) var gravity : float = 10.0
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+@export_group("Direction")
+@export_range(1,100) var mouse_sensitivity : float = 50
+@export var clamp_angle : Vector2 = Vector2(-45, 45)
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var _camera : Camera3D
 
+func _ready():
+	for child in get_children():
+		if child is Camera3D:
+			_camera = child
+			break
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
-	# Add the gravity.
+	_handle_movement(delta)
+
+
+func _handle_movement(delta : float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("space") and is_on_floor():
+		velocity.y = jump_velocity
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	
+
+	var max_speed = movement_speed
+	if Input.is_action_pressed("shift"):
+		max_speed /= 2
+
+	if direction.x:
+		velocity.x = move_toward(velocity.x, direction.x * max_speed, movement_runon)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, movement_falloff)
+	
+	if direction.z:
+		velocity.z = move_toward(velocity.z, direction.z * max_speed, movement_runon)
+	else:
+		velocity.z = move_toward(velocity.z, 0, movement_falloff)
 
 	move_and_slide()
+
+
+func _unhandled_input(event) -> void:
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		var mouse_delta = event.relative * -1
+
+		rotate_y(mouse_delta.x * (mouse_sensitivity / 10000))
+		_camera.rotate_x(mouse_delta.y * (mouse_sensitivity / 10000))
+		_camera.rotation.x = clamp(_camera.rotation.x, deg_to_rad(clamp_angle.x), deg_to_rad(clamp_angle.y))
