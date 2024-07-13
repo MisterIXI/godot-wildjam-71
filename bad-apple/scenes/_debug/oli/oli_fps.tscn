@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxryxu0ghogbv"]
+[gd_scene load_steps=18 format=3 uid="uid://dxryxu0ghogbv"]
 
 [ext_resource type="PackedScene" uid="uid://5rw8e76sa14y" path="res://scenes/fps/character/fps_character.tscn" id="1_yoab8"]
 [ext_resource type="Texture2D" uid="uid://ht358scd52px" path="res://assets/images/fps/fps_hud.png" id="2_mnucw"]
 [ext_resource type="LabelSettings" uid="uid://cwc5q3642qmqo" path="res://resources/fps/fps_hud_numbers.tres" id="3_0c4ru"]
 [ext_resource type="LabelSettings" uid="uid://bk2irodcggxa8" path="res://resources/fps/fps_arms_active.tres" id="4_214vx"]
+[ext_resource type="Script" path="res://components/fps/fps_change_resource_label.gd" id="4_tk4re"]
 [ext_resource type="LabelSettings" uid="uid://q86xmymo8tk6" path="res://resources/fps/fps_arms_inactive.tres" id="5_xw0b7"]
+[ext_resource type="Script" path="res://scenes/fps/character/fps_resource_manager.gd" id="6_ni3hr"]
+[ext_resource type="Script" path="res://components/fps/fps_weapon_changer.gd" id="7_slocy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvw6y"]
 size = Vector3(50, 1, 50)
@@ -265,7 +268,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="FpsHud"]
+[node name="Background" type="TextureRect" parent="FpsHud"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -280,41 +283,53 @@ grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("2_mnucw")
 
-[node name="ArmorLabel" type="Label" parent="FpsHud"]
+[node name="ShotgunLabel" type="Label" parent="FpsHud"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = -139.0
-offset_right = 283.0
-offset_bottom = -31.0
+offset_left = -637.0
+offset_top = -141.0
+offset_right = -469.0
+offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "100%"
-label_settings = ExtResource("3_0c4ru")
+text = "Shotgun"
+label_settings = ExtResource("4_214vx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HealthLabel" type="Label" parent="FpsHud"]
+[node name="FpsChangeResourceLabel" type="Node" parent="FpsHud/ShotgunLabel"]
+script = ExtResource("4_tk4re")
+is_shotgun = true
+active_theme = ExtResource("4_214vx")
+inactive_theme = ExtResource("5_xw0b7")
+
+[node name="KnifeLabel" type="Label" parent="FpsHud"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -283.0
-offset_top = -139.0
-offset_right = -61.0
-offset_bottom = -31.0
+offset_left = -638.0
+offset_top = -107.0
+offset_right = -468.0
+offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "100%"
-label_settings = ExtResource("3_0c4ru")
+text = "Knife"
+label_settings = ExtResource("5_xw0b7")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="FpsHud/KnifeLabel"]
+script = ExtResource("4_tk4re")
+is_knife = true
+active_theme = ExtResource("4_214vx")
+inactive_theme = ExtResource("5_xw0b7")
 
 [node name="AmmoLabel" type="Label" parent="FpsHud"]
 layout_mode = 1
@@ -334,41 +349,55 @@ label_settings = ExtResource("3_0c4ru")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShotgunLabel" type="Label" parent="FpsHud"]
+[node name="FpsChangeResourceLabel" type="Node" parent="FpsHud/AmmoLabel"]
+script = ExtResource("4_tk4re")
+is_ammo = true
+
+[node name="HealthLabel" type="Label" parent="FpsHud"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -623.0
+offset_left = -283.0
 offset_top = -139.0
-offset_right = -475.0
-offset_bottom = -84.0
+offset_right = -61.0
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Shotgun"
-label_settings = ExtResource("4_214vx")
+text = "100%"
+label_settings = ExtResource("3_0c4ru")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="KnifeLabel" type="Label" parent="FpsHud"]
+[node name="FpsChangeResourceLabel" type="Node" parent="FpsHud/HealthLabel"]
+script = ExtResource("4_tk4re")
+is_health = true
+text_suffix = "%"
+
+[node name="ArmorLabel" type="Label" parent="FpsHud"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -623.0
-offset_top = -98.0
-offset_right = -475.0
-offset_bottom = -43.0
+offset_left = 61.0
+offset_top = -139.0
+offset_right = 283.0
+offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Knife"
-label_settings = ExtResource("5_xw0b7")
+text = "100%"
+label_settings = ExtResource("3_0c4ru")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FpsChangeResourceLabel" type="Node" parent="FpsHud/ArmorLabel"]
+script = ExtResource("4_tk4re")
+is_armor = true
+text_suffix = "%"
 
 [node name="Crossair" type="Control" parent="FpsHud"]
 layout_mode = 1
@@ -448,3 +477,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.901961, 0, 0.113725, 1)
+
+[node name="FpsResourceManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_ni3hr")
+
+[node name="FpsWeaponChanger" type="Node" parent="."]
+script = ExtResource("7_slocy")
