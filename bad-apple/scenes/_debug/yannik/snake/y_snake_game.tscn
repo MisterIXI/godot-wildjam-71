@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cabu8cd38fjpj"]
+[gd_scene load_steps=9 format=3 uid="uid://cabu8cd38fjpj"]
 
 [ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_ohkib"]
 [ext_resource type="Script" path="res://components/snake/snake_grid_manager.gd" id="2_nytcp"]
+[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake_settings.tres" id="3_aht7h"]
+[ext_resource type="Script" path="res://components/snake/snake_spawner.gd" id="3_rxman"]
+[ext_resource type="PackedScene" uid="uid://cqbt3m4m4fbn7" path="res://components/snake/snake_part.tscn" id="4_gso3v"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nca5f"]
 size = Vector2(16, 16)
@@ -13,7 +16,7 @@ size = Vector2(16, 16)
 [node name="SnakeGame" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 11.9362, 0)
 
 [node name="GridRoot" type="Node3D" parent="."]
 
@@ -30,8 +33,19 @@ shape = SubResource("WorldBoundaryShape3D_xjmxd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround"]
 transform = Transform3D(0.880866, 0, -0.473366, 0, 1, 0, 0.473366, 0, 0.880866, 0.506135, 0.560279, 0.44813)
+visible = false
 mesh = SubResource("BoxMesh_0lhge")
 
-[node name="SnakeGridManager" type="Node" parent="."]
+[node name="SnakeSpawner" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_rxman")
+snake_part_model = ExtResource("4_gso3v")
+
+[node name="SnakeGridManager" type="Node" parent="." node_paths=PackedStringArray("grid_root")]
 unique_name_in_owner = true
 script = ExtResource("2_nytcp")
+grid_root = NodePath("../GridRoot")
+settings = ExtResource("3_aht7h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.576746, 0.67675, -0.457574, 0, 0.560119, 0.828412, 0.816923, -0.477784, 0.323046, 0, 7.79272, 0)
