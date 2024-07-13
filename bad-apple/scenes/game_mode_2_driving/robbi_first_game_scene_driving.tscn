@@ -1,4 +1,13 @@
-[gd_scene format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=5 format=3 uid="uid://nx5xk6dj6en0"]
+
+[ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
+[ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="3_rmupy"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1byj6"]
+size = Vector2(50, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1sxbc"]
+albedo_color = Color(0.281187, 0.281187, 0.281187, 1)
 
 [node name="Driving_scene_import" type="Node3D"]
 
@@ -6,4 +15,18 @@
 
 [node name="Road" type="Node3D" parent="."]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Road"]
+mesh = SubResource("PlaneMesh_1byj6")
+surface_material_override/0 = SubResource("StandardMaterial3D_1sxbc")
+
 [node name="Entities" type="Node3D" parent="."]
+
+[node name="player_car" parent="Entities" instance=ExtResource("1_g6064")]
+
+[node name="Camera" parent="Entities" node_paths=PackedStringArray("car") instance=ExtResource("3_rmupy")]
+transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 0, -4.37114e-08, -2.52211, 1.86468, 0)
+current = true
+car = NodePath("")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.723678, 0.690138, 0, -0.690138, 0.723678, 0, 0, 0)

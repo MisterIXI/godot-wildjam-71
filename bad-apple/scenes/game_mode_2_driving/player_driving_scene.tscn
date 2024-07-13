@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://crc8o5qv45q8r"]
 
-[ext_resource type="PackedScene" uid="uid://d6ubx2ya0g72" path="res://assets/models/apple.glb" id="1_7wat8"]
+[ext_resource type="PackedScene" uid="uid://dthade8y78j41" path="res://scenes/game_mode_2_driving/apple_car_driver.tscn" id="2_5kg0q"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/apple_car_controller.gd" id="2_w3u6n"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_c1fnt"]
@@ -13,9 +13,6 @@ size = Vector3(1, 0.511597, 2.02954)
 
 [node name="car" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_c1fnt")
-
-[node name="apple" parent="." instance=ExtResource("1_7wat8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.331, 0.0737597)
 
 [node name="apple_car" type="VehicleBody3D" parent="."]
 script = ExtResource("2_w3u6n")
@@ -35,3 +32,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.650233, 0, -0.759701)
 
 [node name="VehicleWheel_rear_right" type="VehicleWheel3D" parent="apple_car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0, -0.76)
+
+[node name="apple" parent="." instance=ExtResource("2_5kg0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.216558, 0)
