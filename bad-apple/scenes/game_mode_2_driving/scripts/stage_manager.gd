@@ -6,7 +6,8 @@ var rng = RandomNumberGenerator.new()
 # VARIABLE OFFSET  = CURRENT LENGTH
 var offset = 0
 # VARIABLE  CONST MODULE SIZE & SPAWNING TIME 
-const BASE_MODULE_SIZE : int = 6
+const BASE_MODULE_SIZE : int = 12
+const BASE_DELETE_BUFFER : int  = 12
 # VARIABLE IS GAME RUNNING
 var is_gamemode_running = false
 # VARIABLE SET STAGE MOTHER
@@ -30,22 +31,14 @@ func spawn_modules():
 		return
 	rng.randomize()
 	
-	var instance_Mother = current_stage_difficult.modules_array[get_rnd_weighted_object(0)].instantiate()
+	var instance_Mother = current_stage_difficult.modules_array[rng.randi_range(0, current_stage_difficult.modules_array.size()-1)].instantiate()
 	instance_Mother.position.x  =BASE_MODULE_SIZE * offset
 	stage_object_holder.add_child(instance_Mother)
-	
-	##### ADD OBSTACLES
-	var instance_obstacles = current_stage_difficult.modules_array[get_rnd_weighted_object(1)].instantiate()
-	instance_obstacles.local_position  =Vector3.ZERO
-	instance_Mother.add_child(instance_obstacles)
-	##### ADD COLLECTABLE
-	var instance_collectable = current_stage_difficult.modules_array[get_rnd_weighted_object(2)].instantiate()
-	instance_collectable.local_position  =Vector3.ZERO
-	instance_Mother.add_child(instance_collectable)
-	#add to queue
 	spawn_queue.push_back(instance_Mother)
 	#delete oldest
-	spawn_queue.pop_front()
+	if spawn_queue.size() > BASE_DELETE_BUFFER:
+		spawn_queue[0].queue_free()
+		spawn_queue.pop_front()
 
 	offset += 1
 
@@ -56,6 +49,7 @@ func on_next_chunk():
 	spawn_modules()
 
 func on_gamemode_start(stage, difficult):
+	print ("game started")
 	# DEFINE NEW STAGE OBJECT HOLDER AND START GAMEMODE
 	stage_object_holder = stage
 	current_stage_difficult = difficult
@@ -78,10 +72,11 @@ func get_rnd_weighted_object(type: int):
 			return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
 		1:
 		#obstacles
-			return rng.randi_range(0, current_stage_difficult.obstacle_weights.size()-1)
+			return rng.randi_range(0, current_stage_difficult.obstacle_array.size()-1)
 		2:
 		#collectable
 			return rng.randi_range(0, current_stage_difficult.collectable_array.size()-1)
 
 		_: #default
+			print("default")
 			return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)

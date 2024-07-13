@@ -26,7 +26,7 @@ var friction_slip : Vector2 = Vector2(0.02, 0.845)
 
 # VARIABLE MOTOR
 const ENGINE_POWER : float = 5000
-const BRAKE_POWER : float = 6000
+const BRAKE_POWER : float = 5000
 const HANDBRAKE_POWER : float = 700
 
 # EXPORT WHEELS
@@ -37,6 +37,9 @@ const HANDBRAKE_POWER : float = 700
 @export var light_brake_left : OmniLight3D
 @export var light_brake_right : OmniLight3D
 
+# EXPORT STREET DIRT
+@export var particles_left : CPUParticles2D
+@export var particles_right: CPUParticles2D
 
 ######################################  INPUT ############################
 func _input(_event):
@@ -91,12 +94,16 @@ func handle_steering():
 	steering = deg_to_rad(move_direction.x * current_steering)
 
 func handle_jumping():
-	if(is_jumping and current_jumps < MAX_JUMPS):
+	if is_jumping && linear_velocity.x < 0.3 && linear_velocity.y < 0.3 && rotation.z != 0:
+		print("flipped")
+		rotation.z = 0
+
+	elif(is_jumping and current_jumps < MAX_JUMPS):
 		is_current_jumping = true
 		current_jumps += 1
 		linear_velocity += Vector3.UP * JUMPOWER
 		
-	if linear_velocity.y < 0.3 :
+	elif linear_velocity.y < 0.3 :
 		current_jumps = 0
 		is_current_jumping = false
 		

@@ -26,7 +26,8 @@ shape = SubResource("WorldBoundaryShape3D_y6pu4")
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="player_car" parent="Entities" instance=ExtResource("1_g6064")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.58029, 0.38137, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -70.2132, 0.38137, 1.70338)
+collision_mask = 25
 
 [node name="Camera" parent="Entities" node_paths=PackedStringArray("car") instance=ExtResource("3_rmupy")]
 transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 0, -4.37114e-08, -2.52211, 1.86468, 0)
@@ -40,10 +41,19 @@ transform = Transform3D(1, 0, 0, 0, 0.723678, 0.690138, 0, -0.690138, 0.723678, 
 [node name="Stage" type="Node3D" parent="."]
 
 [node name="Driving_Module_01" parent="Stage" instance=ExtResource("4_i2xpw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.0972662, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -34, 0.097, 0)
 
 [node name="Driving_Module_02" parent="Stage" instance=ExtResource("4_i2xpw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0.0972662, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -22, 0.097, 0)
 
 [node name="Driving_Module_03" parent="Stage" instance=ExtResource("4_i2xpw")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12, 0.0972662, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -10, 0.0972662, 0)
+
+[node name="Driving_Module_04" parent="Stage" instance=ExtResource("4_i2xpw")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -70, 0.097, 0)
+
+[node name="Driving_Module_05" parent="Stage" instance=ExtResource("4_i2xpw")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -58, 0.097, 0)
+
+[node name="Driving_Module_06" parent="Stage" instance=ExtResource("4_i2xpw")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -46, 0.0972662, 0)
