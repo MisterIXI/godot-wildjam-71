@@ -4,6 +4,7 @@ class_name SnakeAppleSpawner
 @export var apple_model: PackedScene
 @onready var grid: SnakeGridManager = %SnakeGridManager
 @onready var spawner: SnakeSpawner = %SnakeSpawner
+@export var apple_label: Label
 
 func spawn_apple():
 	var positions: Array[Vector2i] = []

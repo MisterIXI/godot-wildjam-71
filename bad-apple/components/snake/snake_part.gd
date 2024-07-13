@@ -20,6 +20,7 @@ var direction_buffer: Array[Vector2i] = []
 var parts_to_spawn: int = 0
 
 var apples_eaten: int = 0
+var is_alive = true
 
 @onready var grid: SnakeGridManager = get_node("../%SnakeGridManager")
 # var grid: SnakeGridManager = null
@@ -59,12 +60,15 @@ func _process(_delta):
 			grow_parts(1)
 			print("manually growing")
 		if Input.is_action_just_pressed("r"):
-			var part_to_kill = back_part.back_part.back_part
-			var front = part_to_kill.front_part
-			var back = part_to_kill.back_part
-			part_to_kill.queue_free()
-			front.back_part = back
-			back.front_part = front
+			# var part_to_kill = back_part.back_part.back_part
+			# var front = part_to_kill.front_part
+			# var back = part_to_kill.back_part
+			# part_to_kill.queue_free()
+			# front.back_part = back
+			# back.front_part = front
+			if !is_alive:
+				get_tree().paused = false
+				get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("up"):
 		input = Vector2i(0, -1)
 	elif Input.is_action_just_pressed("down"):
@@ -77,7 +81,7 @@ func _process(_delta):
 		direction_buffer.append(input)
 
 func _physics_process(delta):
-	if is_head():
+	if is_head() and is_alive:
 		var curr_part = self
 		while curr_part != null:
 			curr_part._process_movement(curr_part, delta)
@@ -144,7 +148,7 @@ func update_model():
 		tween.tween_property(body, "rotation_degrees", tween_angle, 0.5)
 		tween.tween_property(body, "rotation_degrees", -tween_angle, 0.5)
 		tween.pause()
-		var timer: SceneTreeTimer = get_tree().create_timer(randf())
+		var timer: SceneTreeTimer = get_tree().create_timer(randf()+0.01)
 		timer.timeout.connect(tween.play)
 
 
@@ -152,9 +156,13 @@ func update_model():
 func die():
 	print("died")
 	animation_player.play("hurt")
-	
+	is_alive = false
 	# Engine.time_scale = 0
 	get_tree().paused = true
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	var animator = get_tree().root.get_child(-1).get_node("%HUD")
+	animator.died_effect.visible = true
+	animator.died_label.visible = true
 
 func _on_area_entered(area:Area3D):
 	if not is_head():
@@ -167,9 +175,12 @@ func _on_area_entered(area:Area3D):
 	if area.is_in_group("Apple"):
 		grow_parts(1)
 		area.queue_free()
-		get_node("../%SnakeAppleSpawner").spawn_apple()
+		var apple_spawner = get_node("../%SnakeAppleSpawner")
+		apple_spawner.spawn_apple()
 		apples_eaten += 1
+		apple_spawner.apple_label.text = str(apples_eaten)
 		print("apples eaten: ", apples_eaten)
+		
 
 func _exit_tree():
 	var spawn_manager:SnakeSpawner = get_node("../%SnakeSpawner")

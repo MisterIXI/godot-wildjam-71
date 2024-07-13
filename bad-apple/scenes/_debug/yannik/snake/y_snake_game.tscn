@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cabu8cd38fjpj"]
+[gd_scene load_steps=23 format=3 uid="uid://cabu8cd38fjpj"]
 
 [ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_ohkib"]
 [ext_resource type="Script" path="res://components/snake/snake_grid_manager.gd" id="2_nytcp"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cqbt3m4m4fbn7" path="res://components/snake/snake_part.tscn" id="4_gso3v"]
 [ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="6_hgxca"]
 [ext_resource type="Script" path="res://scenes/snake/apple_spawner.gd" id="6_lmpkt"]
+[ext_resource type="Script" path="res://components/snake/snake_hud_animator.gd" id="8_fqtai"]
+[ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="8_j2iwg"]
+[ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="9_gbjld"]
+[ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="11_hdpto"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nca5f"]
 size = Vector2(16, 16)
@@ -27,6 +31,29 @@ plane = Plane(0, 0, 1, -8)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vdm80"]
 plane = Plane(0, 0, -1, -8)
 
+[sub_resource type="LabelSettings" id="LabelSettings_h6tgr"]
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.584314)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Gradient" id="Gradient_0n64p"]
+colors = PackedColorArray(0, 0, 0, 0, 0.196078, 0, 0, 0.294118)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gt6ud"]
+gradient = SubResource("Gradient_0n64p")
+width = 1280
+height = 820
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fyod8"]
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [node name="SnakeGame" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -41,11 +68,13 @@ fov = 50.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+layers = 2
 material_override = ExtResource("1_ohkib")
 mesh = SubResource("PlaneMesh_nca5f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_xjmxd")
+disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround"]
 transform = Transform3D(0.880866, 0, -0.473366, 0, 1, 0, 0.473366, 0, 0.880866, 0.506135, 0.560279, 0.44813)
@@ -77,29 +106,111 @@ script = ExtResource("2_nytcp")
 grid_root = NodePath("../GridRoot")
 settings = ExtResource("3_aht7h")
 
-[node name="SnakeAppleSpawner" type="Node" parent="."]
+[node name="SnakeAppleSpawner" type="Node" parent="." node_paths=PackedStringArray("apple_label")]
 unique_name_in_owner = true
 script = ExtResource("6_lmpkt")
 apple_model = ExtResource("6_hgxca")
+apple_label = NodePath("../HUD/GridContainer/ScoreLabel")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.576746, 0.67675, -0.457574, 0, 0.560119, 0.828412, 0.816923, -0.477784, 0.323046, 0, 7.79272, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.79272, 0)
+layers = 3
+light_cull_mask = 4294967294
 shadow_enabled = true
+shadow_opacity = 0.62
+shadow_blur = 2.923
 
-[node name="HUD" type="Control" parent="."]
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.858593, 0.34601, -0.378279, 0, 0.737879, 0.674933, 0.512657, -0.579493, 0.633538, 0, 7.79272, 4.14236)
+light_cull_mask = 4294967293
+shadow_enabled = true
+shadow_opacity = 0.62
+shadow_blur = 2.923
+
+[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("score_label", "died_label", "died_effect")]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("8_fqtai")
+score_label = NodePath("GridContainer/ScoreLabel")
+died_label = NodePath("Control")
+died_effect = NodePath("DamageEffect")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
-layout_mode = 1
-offset_right = 110.0
-offset_bottom = 96.0
+[node name="GridContainer" type="GridContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 178.0
+offset_bottom = 146.0
+theme_override_constants/h_separation = 25
+columns = 2
 
-[node name="ScoreLabel" type="Label" parent="HUD/HBoxContainer"]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="HUD/GridContainer"]
 layout_mode = 2
-text = "1"
+texture = ExtResource("8_j2iwg")
+expand_mode = 3
+
+[node name="ScoreLabel" type="Label" parent="HUD/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 70
+text = "0"
+label_settings = SubResource("LabelSettings_h6tgr")
+vertical_alignment = 1
+
+[node name="DamageEffect" type="TextureRect" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_gt6ud")
+
+[node name="ModulateOnVisible" type="Node" parent="HUD/DamageEffect"]
+script = ExtResource("9_gbjld")
+animation_duration = 0.3
+
+[node name="Control" type="Control" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -70.5
+offset_right = 260.0
+offset_bottom = 70.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU DIED
+PRESS R TO RESPAWN"
+label_settings = SubResource("LabelSettings_fyod8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResizeOnVisible" type="Node" parent="HUD/Control"]
+process_mode = 3
+script = ExtResource("11_hdpto")
