@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cabu8cd38fjpj"]
+
+[ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_ohkib"]
+[ext_resource type="Script" path="res://components/snake/snake_grid_manager.gd" id="2_nytcp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nca5f"]
+size = Vector2(16, 16)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xjmxd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0lhge"]
+
+[node name="SnakeGame" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+
+[node name="GridRoot" type="Node3D" parent="."]
+
+[node name="PlaceholderGround" type="Node3D" parent="GridRoot"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridRoot/PlaceholderGround"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+material_override = ExtResource("1_ohkib")
+mesh = SubResource("PlaneMesh_nca5f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_xjmxd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround"]
+transform = Transform3D(0.880866, 0, -0.473366, 0, 1, 0, 0.473366, 0, 0.880866, 0.506135, 0.560279, 0.44813)
+mesh = SubResource("BoxMesh_0lhge")
+
+[node name="SnakeGridManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_nytcp")
