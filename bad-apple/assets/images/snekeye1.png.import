@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7mr56snnbefm"
-path="res://.godot/imported/bad_apple.png-816202edc2b5624da3e1e6bfca721b03.ctex"
+uid="uid://dre6iynkpku5q"
+path="res://.godot/imported/snekeye1.png-2b6834732e0d58eef46835564426ffd5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/bad_apple.png"
-dest_files=["res://.godot/imported/bad_apple.png-816202edc2b5624da3e1e6bfca721b03.ctex"]
+source_file="res://assets/images/snekeye1.png"
+dest_files=["res://.godot/imported/snekeye1.png-2b6834732e0d58eef46835564426ffd5.ctex"]
 
 [params]
 

@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpgd32j54ifbi"]
+
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/apple_car_controller.gd" id="1_ntpbr"]
+[ext_resource type="PackedScene" uid="uid://dthade8y78j41" path="res://scenes/game_mode_2_driving/apple_car_driver.tscn" id="2_f668w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_c1fnt"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ppsj"]
+size = Vector3(1, 0.511597, 2.02954)
+
+[node name="player_car" type="VehicleBody3D" node_paths=PackedStringArray("wheel_rear_left", "wheel_rear_right", "light_brake_left", "light_brake_right")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mass = 1000.0
+script = ExtResource("1_ntpbr")
+wheel_rear_left = NodePath("VehicleWheel_rear_left")
+wheel_rear_right = NodePath("VehicleWheel_rear_right")
+light_brake_left = NodePath("OmniLight_Left")
+light_brake_right = NodePath("OmniLight_Right")
+
+[node name="car" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_c1fnt")
+
+[node name="apple" parent="." instance=ExtResource("2_f668w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.253995, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0136108, 0.00549316)
+shape = SubResource("BoxShape3D_7ppsj")
+
+[node name="VehicleWheel_front_left" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.650233, 0, 0.686264)
+engine_force = 2.0
+brake = 1.0
+use_as_traction = true
+use_as_steering = true
+wheel_radius = 0.3
+wheel_friction_slip = 0.845
+suspension_travel = 0.3
+suspension_stiffness = 80.0
+suspension_max_force = 12000.0
+
+[node name="VehicleWheel_front_right" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0, 0.686)
+engine_force = 2.0
+brake = 1.0
+use_as_traction = true
+use_as_steering = true
+wheel_radius = 0.3
+wheel_friction_slip = 0.845
+suspension_travel = 0.3
+suspension_stiffness = 80.0
+suspension_max_force = 12000.0
+
+[node name="VehicleWheel_rear_left" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.650233, 0, -0.759701)
+engine_force = 2.0
+brake = 1.0
+use_as_traction = true
+wheel_radius = 0.3
+wheel_friction_slip = 0.845
+suspension_travel = 0.3
+suspension_stiffness = 80.0
+suspension_max_force = 12000.0
+
+[node name="VehicleWheel_rear_right" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0, -0.76)
+engine_force = 2.0
+brake = 1.0
+use_as_traction = true
+wheel_radius = 0.3
+wheel_friction_slip = 0.845
+suspension_travel = 0.3
+suspension_stiffness = 80.0
+suspension_max_force = 12000.0
+
+[node name="OmniLight_Left" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.346803, 0.128645, -1.05069)
+light_color = Color(0.392157, 0, 0, 1)
+light_energy = 0.0
+omni_range = 0.5
+
+[node name="OmniLight_Right" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.332283, 0.128645, -1.05069)
+light_color = Color(0.392157, 0, 0, 1)
+light_energy = 0.0
+omni_range = 0.5
