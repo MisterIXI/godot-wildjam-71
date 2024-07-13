@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_ohkib"]
 [ext_resource type="Script" path="res://components/snake/snake_grid_manager.gd" id="2_nytcp"]
-[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake_settings.tres" id="3_aht7h"]
+[ext_resource type="Resource" path="res://resources/snake_settings.tres" id="3_aht7h"]
 [ext_resource type="Script" path="res://components/snake/snake_spawner.gd" id="3_rxman"]
 [ext_resource type="PackedScene" uid="uid://cqbt3m4m4fbn7" path="res://components/snake/snake_part.tscn" id="4_gso3v"]
 [ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="6_hgxca"]
