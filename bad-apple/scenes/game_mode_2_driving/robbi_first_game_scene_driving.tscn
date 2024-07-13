@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://nx5xk6dj6en0"]
+
+[node name="Driving_scene_import" type="Node3D"]
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="Road" type="Node3D" parent="."]
+
+[node name="Entities" type="Node3D" parent="."]
