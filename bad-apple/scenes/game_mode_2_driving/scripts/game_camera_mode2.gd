@@ -16,6 +16,8 @@ func _ready():
 	follow_target = car
 	last_lookat = follow_target.global_transform.origin
 
+func _physics_process(_delta):
+	followTargetPos(_delta)
 
 func followTargetPos(_delta):
 	var delta_v = global_transform.origin - follow_target.global_transform.origin
@@ -33,6 +35,6 @@ func followTargetPos(_delta):
 	
 	# SET NEW POSITION
 	global_transform.origin = global_transform.origin.lerp(target_new_position, _delta * camera_lerp_speed)
-	last_lookat = last_lookat.lerp(follow_target.global_transform.orgin, _delta * camera_lerp_speed)
+	last_lookat = last_lookat.lerp(follow_target.global_transform.origin, _delta * camera_lerp_speed)
 
 	look_at(last_lookat, Vector3(0.0,1,0))

@@ -15,7 +15,7 @@ var current_health : float  = 1
 const MAX_HEALTH : float = 1
 
 # VARIABLE DISABLE
-var current_driving : bool = false
+var current_driving : bool = true
 
 # VARIABLE STEERINGS
 const MAX_STEERING : float = 25.0
@@ -42,7 +42,7 @@ const HANDBRAKE_POWER : float = 700
 func _input(_event):
 	# GET INPUT AXIS TO VECTOR2D
 	move_direction = Input.get_vector("right","left","down","up")
-
+	
 	# SET JUMPING
 	if _event.is_action_pressed("space"):
 		is_jumping = true
@@ -66,7 +66,7 @@ func _input(_event):
 func _physics_process(_delta):
 
 	# DIABLE VEHICLE CONTROL CHECK
-	if current_driving:
+	if !current_driving:
 		return
 	handle_acceleration()
 	handle_steering()
@@ -95,9 +95,11 @@ func handle_jumping():
 		is_current_jumping = true
 		current_jumps += 1
 		linear_velocity += Vector3.UP * JUMPOWER
+		print ("jumping")
 	if linear_velocity.y < 1 :
 		current_jumps = 0
 		is_current_jumping = false
+		print ("grounded")
 
 
 func handle_flying():
