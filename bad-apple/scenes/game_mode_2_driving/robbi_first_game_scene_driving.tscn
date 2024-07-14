@@ -1,28 +1,18 @@
-[gd_scene load_steps=21 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=19 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
 [ext_resource type="Resource" uid="uid://ctfulgtls581h" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
 [ext_resource type="PackedScene" uid="uid://4hvmqt8tkqqv" path="res://scenes/game_mode_2_driving/enviroment/ground_grass.tscn" id="3_dx7fc"]
+[ext_resource type="PackedScene" uid="uid://3of4ckdab1tv" path="res://scenes/game_mode_2_driving/enviroment/driving_skybox.tscn" id="3_j4rw2"]
 [ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="3_rmupy"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/MirrorCamera.gd" id="4_dghpx"]
-[ext_resource type="Sky" uid="uid://uwu3r1da3sm3" path="res://resources/driving_materials/driving_sky.tres" id="4_ir7ks"]
 [ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="5_023yl"]
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="6_0f2w5"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_y6pu4"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5eiuj"]
-
-[sub_resource type="Environment" id="Environment_iqu0v"]
-background_mode = 2
-sky = ExtResource("4_ir7ks")
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_nhgno"]
-dof_blur_far_enabled = true
-dof_blur_far_distance = 87.49
-dof_blur_far_transition = 0.85
-dof_blur_amount = 0.06
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgj32"]
 resource_name = "Mirror"
@@ -116,19 +106,17 @@ difficult = ExtResource("2_64env")
 shape = SubResource("WorldBoundaryShape3D_y6pu4")
 
 [node name="world_collision_right" type="CollisionShape3D" parent="StartEnviroment/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 6)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 5.81007)
 shape = SubResource("WorldBoundaryShape3D_5eiuj")
 
 [node name="world_collision_left" type="CollisionShape3D" parent="StartEnviroment/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -6)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5.79362)
 shape = SubResource("WorldBoundaryShape3D_5eiuj")
+
+[node name="skybox" parent="StartEnviroment/StaticBody3D" instance=ExtResource("3_j4rw2")]
 
 [node name="Ground_Grass" parent="StartEnviroment" node_paths=PackedStringArray("player_object") instance=ExtResource("3_dx7fc")]
 player_object = NodePath("../../Entities/player_car")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="StartEnviroment"]
-environment = SubResource("Environment_iqu0v")
-camera_attributes = SubResource("CameraAttributesPractical_nhgno")
 
 [node name="Entities" type="Node3D" parent="."]
 

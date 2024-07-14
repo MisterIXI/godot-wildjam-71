@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://3of4ckdab1tv"]
+
+[ext_resource type="PackedScene" uid="uid://cg7gewt5ce1l" path="res://assets/models/driving/skybox.glb" id="1_3yeci"]
+[ext_resource type="Material" uid="uid://ixnm1m3xq1gn" path="res://scenes/game_mode_2_driving/enviroment/skybox_sky.tres" id="2_fbuq3"]
+[ext_resource type="Material" uid="uid://dbr26dpryw20j" path="res://scenes/game_mode_2_driving/enviroment/skybox_ground.tres" id="3_jjkdv"]
+
+[node name="skybox" instance=ExtResource("1_3yeci")]
+
+[node name="Sphere" parent="." index="0"]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
+top_level = true
+cast_shadow = 0
+gi_mode = 0
+surface_material_override/0 = ExtResource("2_fbuq3")
+surface_material_override/1 = ExtResource("3_jjkdv")
