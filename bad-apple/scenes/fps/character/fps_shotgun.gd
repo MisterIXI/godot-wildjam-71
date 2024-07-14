@@ -43,7 +43,7 @@ func _unhandled_input(_event) -> void:
 
 func _shoot() -> void:
 	if _anim != null:
-		_anim.play("shoot")
+		_anim.play("attack")
 	
 	var tween = _light.create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
