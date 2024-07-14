@@ -21,24 +21,26 @@ enum WEAPOND_TYPE {SHOTGUN, KNIFE}
 	get:
 		return health
 	set(value):
-		if value < health:
-			health_damaged.emit()
-		elif value > health:
-			health_healed.emit()
+		var _health = health
 		health = value
 		health = clamp(health, 0, 100)
+		if value < _health:
+			health_damaged.emit()
+		elif value > _health:
+			health_healed.emit()
 		health_changed.emit(health)
 
 @export var armor : int = 100:
 	get:
 		return armor
 	set(value):
-		if value < armor:
-			armor_damaged.emit()
-		elif value > armor:
-			armor_healed.emit()
+		var _armor = armor
 		armor = value
-		health = clamp(health, 0, 100)
+		armor = clamp(armor, 0, 100)
+		if value < _armor:
+			armor_damaged.emit()
+		elif value > _armor:
+			armor_healed.emit()
 		armor_changed.emit(armor)
 
 @export var has_key : bool = false:
@@ -51,6 +53,8 @@ enum WEAPOND_TYPE {SHOTGUN, KNIFE}
 
 @export var medkit_value : int = 20
 @export var ammo_value : int = 10
+@export var armor_heal_delay : float = 10.0
+@export var armor_heal_time : float = 0.04
 
 @onready var _start_weapon : WEAPOND_TYPE = weapon
 @onready var _start_ammo : int = ammo
@@ -76,8 +80,8 @@ func change_resource(resource : String, delta : int) -> void:
 		"health":
 			set("health", health + delta)
 		"armor":
-			if armor - delta < 0:
-				set("health", health + armor - delta)
+			if armor + delta < 0:
+				set("health", health + armor + delta)
 				set("armor", 0)
 			else:
 				set("armor", armor + delta)
