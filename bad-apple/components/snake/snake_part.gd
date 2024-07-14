@@ -128,7 +128,7 @@ func update_model():
 		snake_head.visible = true
 		snake_body.visible = false
 		snake_tail.visible = false
-		animation_player.play("idle",-1,1.5)
+		animation_player.play("idle", -1, 1.5)
 	elif is_tail():
 		snake_head.visible = false
 		snake_body.visible = false
@@ -142,16 +142,23 @@ func update_model():
 	if not is_head():
 		var body = snake_body if not is_tail() else snake_tail
 		tween = body.create_tween()
-		var tween_angle = Vector3(0, 5, 0)
-		body.rotation_degrees = (randf() * 2 - 1) * tween_angle
+		var tween_angle = 5
+		var start_angle = randf() * tween_angle * 2
+		var time_from_start = 0.5 * (start_angle / (tween_angle * 2))
+		start_angle = start_angle - tween_angle
+		print("Start_angle", start_angle, " tfs: ", time_from_start)
 		tween.set_loops()
-		tween.tween_property(body, "rotation_degrees", tween_angle, 0.5)
-		tween.tween_property(body, "rotation_degrees", -tween_angle, 0.5)
-		tween.pause()
-		var timer: SceneTreeTimer = get_tree().create_timer(randf()+0.01)
-		timer.timeout.connect(tween.play)
-
-
+		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.set_trans(Tween.TRANS_LINEAR)
+		if randf() > 0.5:
+			# start to right
+			tween.tween_property(body, "rotation_degrees:y", tween_angle, 0.5 - time_from_start).from(start_angle)
+			tween.tween_property(body, "rotation_degrees:y", -tween_angle, 0.5)
+			tween.tween_property(body, "rotation_degrees:y", start_angle, time_from_start)
+		else:
+			tween.tween_property(body, "rotation_degrees:y", -tween_angle, time_from_start).from(start_angle)
+			tween.tween_property(body, "rotation_degrees:y", tween_angle, 0.5)
+			tween.tween_property(body, "rotation_degrees:y", start_angle, 0.5 - time_from_start)
 
 func die():
 	print("died")
@@ -160,11 +167,11 @@ func die():
 	# Engine.time_scale = 0
 	get_tree().paused = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	var animator = get_tree().root.get_child(-1).get_node("%HUD")
+	var animator = get_tree().root.get_child( - 1).get_node("%HUD")
 	animator.died_effect.visible = true
 	animator.died_label.visible = true
 
-func _on_area_entered(area:Area3D):
+func _on_area_entered(area: Area3D):
 	if not is_head():
 		return
 	if area.is_in_group("DeathWall"):
@@ -183,6 +190,6 @@ func _on_area_entered(area:Area3D):
 		
 
 func _exit_tree():
-	var spawn_manager:SnakeSpawner = get_node("../%SnakeSpawner")
+	var spawn_manager: SnakeSpawner = get_node("../%SnakeSpawner")
 	if spawn_manager != null and spawn_manager.spawned_snakes.has(self):
 		spawn_manager.spawned_snakes.erase(self)
