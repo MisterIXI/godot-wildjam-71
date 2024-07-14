@@ -1,24 +1,37 @@
-[gd_scene load_steps=18 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=25 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
 [ext_resource type="Resource" uid="uid://ctfulgtls581h" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
+[ext_resource type="Environment" uid="uid://bw0c1xbiy5pxb" path="res://resources/driving_materials/driving_environment_webGL.tres" id="3_5pabi"]
 [ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="3_rmupy"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/ground_follow.gd" id="4_50ffv"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/MirrorCamera.gd" id="4_dghpx"]
+[ext_resource type="Texture2D" uid="uid://c1oac24juddkn" path="res://resources/driving_materials/car_mirror_viewport_texture.tres" id="5_5jef8"]
 [ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="5_023yl"]
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="6_0f2w5"]
+[ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="6_lup2t"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vhwtj"]
+friction = 0.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_y6pu4"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5eiuj"]
 
-[sub_resource type="Environment" id="Environment_jaof6"]
-background_mode = 1
-background_color = Color(0.552941, 1, 1, 1)
-ambient_light_color = Color(0, 0.568627, 1, 1)
-fog_density = 0.0188
-volumetric_fog_density = 0.0058
-volumetric_fog_emission = Color(0.303079, 0.602044, 0.797231, 1)
+[sub_resource type="Gradient" id="Gradient_83iro"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ieq5f"]
+gradient = SubResource("Gradient_83iro")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wf40"]
+albedo_color = Color(0.184596, 0.424994, 0.0421159, 1)
+roughness = 0.0
+rim_enabled = true
+rim_texture = SubResource("GradientTexture1D_ieq5f")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cujyj"]
+size = Vector2(1000, 1000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgj32"]
 resource_name = "Mirror"
@@ -86,13 +99,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ocfgr")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_d00qb"]
-resource_name = "Mirror_camera"
-viewport_path = NodePath("Entities/Camera/mirror/Mirror/SubViewport")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qic6x"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_d00qb")
+albedo_texture = ExtResource("5_5jef8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo1pm"]
 albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
@@ -106,21 +115,19 @@ difficult = ExtResource("2_64env")
 
 [node name="StartEnviroment" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="StartEnviroment"]
+[node name="World_bounds" type="StaticBody3D" parent="StartEnviroment"]
+physics_material_override = SubResource("PhysicsMaterial_vhwtj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StartEnviroment/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StartEnviroment/World_bounds"]
 shape = SubResource("WorldBoundaryShape3D_y6pu4")
 
-[node name="world_collision_right" type="CollisionShape3D" parent="StartEnviroment/StaticBody3D"]
+[node name="world_collision_right" type="CollisionShape3D" parent="StartEnviroment/World_bounds"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 5.81007)
 shape = SubResource("WorldBoundaryShape3D_5eiuj")
 
-[node name="world_collision_left" type="CollisionShape3D" parent="StartEnviroment/StaticBody3D"]
+[node name="world_collision_left" type="CollisionShape3D" parent="StartEnviroment/World_bounds"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5.79362)
 shape = SubResource("WorldBoundaryShape3D_5eiuj")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="StartEnviroment/StaticBody3D"]
-environment = SubResource("Environment_jaof6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="StartEnviroment"]
 transform = Transform3D(0.965926, -1.13133e-08, 0.258819, -0.258819, -4.2222e-08, 0.965926, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -129,6 +136,16 @@ sky_mode = 1
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="StartEnviroment"]
 transform = Transform3D(1, 0, 0, 0, 0.723678, 0.690138, 0, -0.690138, 0.723678, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="StartEnviroment"]
+environment = ExtResource("3_5pabi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StartEnviroment" node_paths=PackedStringArray("player_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51745, 0)
+material_override = SubResource("StandardMaterial3D_6wf40")
+mesh = SubResource("PlaneMesh_cujyj")
+script = ExtResource("4_50ffv")
+player_node = NodePath("../../Entities/player_car")
 
 [node name="Entities" type="Node3D" parent="."]
 
@@ -162,11 +179,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qic6x")
 surface_material_override/1 = SubResource("StandardMaterial3D_uo1pm")
 
 [node name="player_car" parent="Entities" instance=ExtResource("1_g6064")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -184.574, 0.381, -4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -176.574, 0.381, 0)
 collision_mask = 25
+car_settings = ExtResource("6_lup2t")
 
 [node name="BigSnake" parent="Entities" instance=ExtResource("5_023yl")]
 transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, -218.829, 0, 0)
+visible = false
 
 [node name="Stage" type="Node3D" parent="."]
 
