@@ -30,6 +30,11 @@ func _on_visibility_changed() -> void:
 	if visible and _anim != null:
 		_anim.play("select")
 
+#Phils test funktion
+func _unhandled_input(_event) -> void:
+	if visible and Input.is_action_just_pressed("lmb"):
+		attack()
+
 
 func attack() -> void:
 	if _anim != null:
