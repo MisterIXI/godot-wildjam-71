@@ -156,6 +156,14 @@ mmb={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Terrain"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Objects"
+3d_physics/layer_4="Collectables"
+3d_physics/layer_5="Obstacles"
+
 [rendering]
 
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=5
