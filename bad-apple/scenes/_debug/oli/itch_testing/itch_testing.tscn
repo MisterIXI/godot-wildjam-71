@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy4d0adf51yjw"]
+[gd_scene load_steps=7 format=3 uid="uid://dy4d0adf51yjw"]
 
 [ext_resource type="Script" path="res://scenes/_debug/oli/itch_testing/itch_scene_switch.gd" id="1_6l7q0"]
 [ext_resource type="PackedScene" uid="uid://cabu8cd38fjpj" path="res://scenes/_debug/yannik/snake/y_snake_game.tscn" id="2_le33r"]
 [ext_resource type="PackedScene" uid="uid://nx5xk6dj6en0" path="res://scenes/game_mode_2_driving/robbi_first_game_scene_driving.tscn" id="3_42mut"]
 [ext_resource type="PackedScene" uid="uid://dxryxu0ghogbv" path="res://scenes/_debug/oli/oli_fps.tscn" id="4_bnomg"]
+[ext_resource type="LabelSettings" uid="uid://cwc5q3642qmqo" path="res://resources/fps/fps_hud_numbers.tres" id="5_2qbh1"]
+[ext_resource type="LabelSettings" uid="uid://bk2irodcggxa8" path="res://resources/fps/fps_arms_active.tres" id="5_mbg6b"]
 
 [node name="ItchTesting" type="Control"]
 layout_mode = 3
@@ -50,3 +52,25 @@ text = "Fps"
 [node name="ItchSceneSwitch" type="Node" parent="HBoxContainer/Button3"]
 script = ExtResource("1_6l7q0")
 new_scene = ExtResource("4_bnomg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 946.0
+offset_top = 890.0
+offset_right = 1246.0
+offset_bottom = 928.0
+text = "Version 0.2 (end of day 2)"
+label_settings = ExtResource("5_mbg6b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 14.0
+offset_right = 878.0
+offset_bottom = 143.0
+text = "Bad Apple"
+label_settings = ExtResource("5_2qbh1")
+horizontal_alignment = 1
+vertical_alignment = 1
