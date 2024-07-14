@@ -6,7 +6,7 @@ var rng = RandomNumberGenerator.new()
 # VARIABLE OFFSET  = CURRENT LENGTH
 var offset = 0
 # VARIABLE  CONST MODULE SIZE & SPAWNING TIME 
-const BASE_MODULE_SIZE : int = 12
+const BASE_MODULE_SIZE : int = 36
 const BASE_DELETE_BUFFER : int  = 24
 # VARIABLE IS GAME RUNNING
 var is_gamemode_running = false
@@ -59,6 +59,7 @@ func on_next_chunk():
 	if !is_gamemode_running:
 		return
 	current_checkpoints += 1
+	print(current_checkpoints)
 	if current_checkpoints >= current_stage_difficult.win_condition_obstacles_cleared:
 		print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
 	spawn_modules()

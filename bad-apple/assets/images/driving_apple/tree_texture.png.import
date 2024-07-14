@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fxylyyxqux2e"
-path="res://.godot/imported/sky_top.png-10039be682a40dc94ca8ca4805573386.ctex"
+uid="uid://dbu24xahslaqx"
+path="res://.godot/imported/tree_texture.png-3f5a372c5a7e572716d2b0ed15724bfe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/driving/sky_top.png"
-dest_files=["res://.godot/imported/sky_top.png-10039be682a40dc94ca8ca4805573386.ctex"]
+source_file="res://assets/images/driving_apple/tree_texture.png"
+dest_files=["res://.godot/imported/tree_texture.png-3f5a372c5a7e572716d2b0ed15724bfe.ctex"]
 
 [params]
 

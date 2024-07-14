@@ -33,14 +33,19 @@ var current_steering : float = 20.0
 @export var light_brake_right : OmniLight3D
 
 # EXPORT STREET DIRT
-@export var particles_left : CPUParticles2D
-@export var particles_right: CPUParticles2D
+@export var particles_left : CPUParticles3D
+@export var particles_right: CPUParticles3D
 
 ######################################  INPUT ############################
 func _input(_event):
 	# GET INPUT AXIS TO VECTOR2D
 	move_direction = Input.get_vector("right","left","down","up")
-	
+	if move_direction.y > 0:
+		particles_left.lifetime = 0.12
+		particles_right.lifetime = 0.12
+	else:
+		particles_left.lifetime = 0.01
+		particles_right.lifetime = 0.01
 	# SET JUMPING
 	if _event.is_action_pressed("space"):
 		is_jumping = true
@@ -77,14 +82,15 @@ func _physics_process(_delta):
 func handle_acceleration():
 	# ENGINE FORCE
 	engine_force = move_direction.y * car_settings.cs_engine_force
+	
 	# BRAKE FORCE
 	brake = move_direction.y * car_settings.cs_brake_force
-	if brake > 5:
-		light_brake_left.light_energy = brake /2
-		light_brake_right.light_energy = brake /2
-	if brake < 5:
-		light_brake_left.light_energy = 0.5
-		light_brake_right.light_energy = 0.5
+	if move_direction.y < 0:
+		light_brake_left.light_energy = 0.7
+		light_brake_right.light_energy = 0.7
+	else:
+		light_brake_left.light_energy = 0
+		light_brake_right.light_energy = 0
 func handle_steering():
 	steering = deg_to_rad(move_direction.x * current_steering)
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bipt16majnpyw"]
+
+[ext_resource type="PackedScene" uid="uid://8gkwua3jybi8" path="res://assets/models/driving/tree_02.glb" id="1_fiqdk"]
+[ext_resource type="Material" uid="uid://2lvlx7ciass6" path="res://scenes/game_mode_2_driving/objects/tree_mat_01.tres" id="2_iabcb"]
+[ext_resource type="Material" uid="uid://ccro0rkh8xrd6" path="res://scenes/game_mode_2_driving/objects/tree_mat_02.tres" id="3_yqsbl"]
+
+[node name="tree_02" instance=ExtResource("1_fiqdk")]
+
+[node name="Tree_01" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_iabcb")
+surface_material_override/1 = ExtResource("3_yqsbl")
