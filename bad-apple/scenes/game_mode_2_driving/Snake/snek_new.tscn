@@ -298,7 +298,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ynbjr"]
-size = Vector3(5.88196, 1.59082, 1.46323)
+size = Vector3(13.5238, 5.40295, 20.1876)
 
 [node name="BigSnake" type="Node3D"]
 transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, 0, 0, 0)
@@ -374,7 +374,7 @@ bones/7/rotation = Quaternion(-0.0938028, 8.71089e-08, 1.35251e-07, 0.995591)
 bones/7/scale = Vector3(1, 1, 1)
 
 [node name="eyes" type="BoneAttachment3D" parent="snek/Armature/Skeleton3D"]
-transform = Transform3D(-0.201502, 0.704975, 0.680005, 0.93312, 0.349239, -0.0855578, -0.297801, 0.617286, -0.728199, 0.816315, 0.7305, 0.933418)
+transform = Transform3D(-0.201502, 0.704975, 0.680005, 0.93312, 0.349239, -0.0855572, -0.2978, 0.617286, -0.728199, 0.816315, 0.730499, 0.933418)
 bone_name = "eyes"
 bone_idx = 2
 
@@ -384,7 +384,7 @@ mesh = SubResource("ArrayMesh_ryrwo")
 skeleton = NodePath("")
 
 [node name="eyes_001" type="BoneAttachment3D" parent="snek/Armature/Skeleton3D"]
-transform = Transform3D(0.787522, 0.615175, 0.0370126, -0.395395, 0.55041, -0.735331, -0.472729, 0.564454, 0.676697, -0.63908, 0.859526, 0.965649)
+transform = Transform3D(0.787522, 0.615175, 0.0370127, -0.395394, 0.55041, -0.735331, -0.472729, 0.564455, 0.676696, -0.63908, 0.859526, 0.96565)
 bone_name = "eyes.001"
 bone_idx = 4
 
@@ -413,7 +413,7 @@ collision_mask = 2
 script = ExtResource("4_st5uq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0.0210572, 0.29541, -0.823563)
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0.0903471, 2.20148, -10.1857)
 shape = SubResource("BoxShape3D_ynbjr")
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

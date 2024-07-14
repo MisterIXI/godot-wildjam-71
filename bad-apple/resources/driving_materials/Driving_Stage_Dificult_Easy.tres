@@ -12,3 +12,4 @@ obstacle_array = Array[PackedScene]([ExtResource("1_rhubo")])
 collectable_array = Array[PackedScene]([ExtResource("1_rhubo")])
 snakeSpeed = 1.0
 win_condition_obstacles_cleared = 50
+difficult_string = "EASY MODE"

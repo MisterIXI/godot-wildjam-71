@@ -1,0 +1,5 @@
+[gd_resource type="ViewportTexture" format=3 uid="uid://cp1o8ql500c3i"]
+
+[resource]
+resource_name = "NewCamera"
+viewport_path = NodePath("Entities/car_mirror/Mirror/SubViewport")
