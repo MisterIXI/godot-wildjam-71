@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy4d0adf51yjw"]
+
+[ext_resource type="Script" path="res://scenes/_debug/oli/itch_testing/itch_scene_switch.gd" id="1_6l7q0"]
+[ext_resource type="PackedScene" uid="uid://cabu8cd38fjpj" path="res://scenes/_debug/yannik/snake/y_snake_game.tscn" id="2_le33r"]
+[ext_resource type="PackedScene" uid="uid://nx5xk6dj6en0" path="res://scenes/game_mode_2_driving/robbi_first_game_scene_driving.tscn" id="3_42mut"]
+[ext_resource type="PackedScene" uid="uid://dxryxu0ghogbv" path="res://scenes/_debug/oli/oli_fps.tscn" id="4_bnomg"]
+
+[node name="ItchTesting" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 183.0
+offset_right = 1179.0
+offset_bottom = 722.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Snake"
+
+[node name="ItchSceneSwitch" type="Node" parent="HBoxContainer/Button"]
+script = ExtResource("1_6l7q0")
+new_scene = ExtResource("2_le33r")
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(38.05, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Driving"
+
+[node name="ItchSceneSwitch" type="Node" parent="HBoxContainer/Button2"]
+script = ExtResource("1_6l7q0")
+new_scene = ExtResource("3_42mut")
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(38.05, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fps"
+
+[node name="ItchSceneSwitch" type="Node" parent="HBoxContainer/Button3"]
+script = ExtResource("1_6l7q0")
+new_scene = ExtResource("4_bnomg")
