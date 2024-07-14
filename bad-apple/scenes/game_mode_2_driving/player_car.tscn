@@ -30,6 +30,9 @@ wheel_rear_right = NodePath("VehicleWheel_rear_right")
 light_brake_left = NodePath("OmniLight_Left")
 light_brake_right = NodePath("OmniLight_Right")
 
+[node name="Ground" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.299407, 0)
+
 [node name="car" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_c1fnt")
 

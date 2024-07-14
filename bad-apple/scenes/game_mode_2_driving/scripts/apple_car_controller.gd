@@ -1,7 +1,8 @@
 extends VehicleBody3D
 
 # CAR CONTROLLER , FUNCTIONS JUMP, STEER LEFT AND RIGHT, DISABLE
-
+# VARIABLE GROUND ON READY
+@onready var ground_object : Node3D = $Ground
 # VARIABLES JUMPING
 var is_jumping :bool = false
 var current_jumps = 0
@@ -111,3 +112,6 @@ func handle_jumping():
 func handle_flying():
 	add_constant_torque(Vector3.RIGHT * 8 * move_direction.y)
 	angular_velocity *= ANGULAR_VELOCITY_DECAY
+
+func is_grounded():
+	return ground_object.y == 0
