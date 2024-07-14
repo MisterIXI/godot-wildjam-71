@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dxryxu0ghogbv"]
+[gd_scene load_steps=21 format=3 uid="uid://dxryxu0ghogbv"]
 
 [ext_resource type="PackedScene" uid="uid://5rw8e76sa14y" path="res://scenes/fps/character/fps_character.tscn" id="1_yoab8"]
 [ext_resource type="Script" path="res://scenes/_debug/oli/fps_test_keybinds.gd" id="4_5jj5w"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="5_b0m4i"]
 [ext_resource type="PackedScene" uid="uid://cjj316da0d04p" path="res://scenes/fps/consumables/medkit.tscn" id="6_dk4cu"]
 [ext_resource type="PackedScene" uid="uid://6j0oi5goapoo" path="res://scenes/fps/consumables/ammo.tscn" id="7_u0jp2"]
+[ext_resource type="PackedScene" uid="uid://d2d4sopt04lpe" path="res://scenes/fps/map/fps_animation_box.tscn" id="8_ck4lu"]
 [ext_resource type="PackedScene" uid="uid://dgsqmrmd5laof" path="res://scenes/fps/consumables/key.tscn" id="8_x2mes"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvw6y"]
@@ -36,6 +37,43 @@ size = Vector3(4, 0.5, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_84l4o"]
 size = Vector3(1, 1, 0.5)
+
+[sub_resource type="Animation" id="Animation_0og5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform7:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.30416, 0.308395, 12.8806)]
+}
+
+[sub_resource type="Animation" id="Animation_cltj2"]
+resource_name = "move up"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform7:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-4.30416, 0.308395, 12.8806), Vector3(-4.304, 6.858, 12.881)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5atx4"]
+_data = {
+"RESET": SubResource("Animation_0og5a"),
+"move up": SubResource("Animation_cltj2")
+}
 
 [node name="OliFps" type="Node3D"]
 
@@ -263,7 +301,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7114, 0.375708, 6.993)
 [node name="Key" parent="TestMap" instance=ExtResource("8_x2mes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.22725, 0.375708, -3.55213)
 
+[node name="Aufzug" type="Node3D" parent="TestMap"]
+
+[node name="Platform7" type="StaticBody3D" parent="TestMap/Aufzug"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.30416, 0.308395, 12.8806)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMap/Aufzug/Platform7"]
+mesh = SubResource("BoxMesh_85iib")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/Aufzug/Platform7"]
+shape = SubResource("BoxShape3D_5q4wa")
+
 [node name="FpsCharacter" parent="." instance=ExtResource("1_yoab8")]
+
+[node name="FpsAnimationBox" parent="." instance=ExtResource("8_ck4lu")]
+transform = Transform3D(4, 0, 0, 0, 13.64, 0, 0, 0, 4, -4.64155, 0.362288, 12.8161)
+need_key = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FpsAnimationBox"]
+root_node = NodePath("../../TestMap/Aufzug")
+libraries = {
+"": SubResource("AnimationLibrary_5atx4")
+}
 
 [node name="FpsHud" parent="." instance=ExtResource("4_gtln0")]
 
