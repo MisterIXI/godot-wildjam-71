@@ -8,6 +8,7 @@ extends Node
 @export var on_health_heal : bool = false
 @export var on_armor_damage : bool = false
 @export var on_armor_heal : bool = false
+@export var on_key_found : bool = false
 
 
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 	FpsResourceManagerInstance.health_healed.connect(_on_health_healed)
 	FpsResourceManagerInstance.armor_damaged.connect(_on_armor_damaged)
 	FpsResourceManagerInstance.armor_healed.connect(_on_armor_healed)
+	FpsResourceManagerInstance.key_found.connect(_on_key_found)
 
 
 func _on_health_damaged():
@@ -31,4 +33,8 @@ func _on_armor_damaged():
 
 func _on_armor_healed():
 	if on_armor_heal:
+		node.show()
+
+func _on_key_found():
+	if on_key_found:
 		node.show()

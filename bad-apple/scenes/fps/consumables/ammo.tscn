@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://6j0oi5goapoo"]
+
+[ext_resource type="PackedScene" uid="uid://doylasqgsacsm" path="res://assets/models/fps/fps_ammo.tscn" id="1_gtqwi"]
+[ext_resource type="Script" path="res://components/general/hover_node.gd" id="2_5wwxj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ius0s"]
+size = Vector3(1.255, 2.61, 1.395)
+
+[node name="Ammo" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375708, 5)
+
+[node name="fps_ammo" parent="." instance=ExtResource("1_gtqwi")]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, -0.2701, 0)
+
+[node name="HoverNode" type="Node" parent="fps_ammo"]
+script = ExtResource("2_5wwxj")
+bobbing_height = 0.08
+
+[node name="Area3D" type="Area3D" parent="." groups=["Ammo"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.537957, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ius0s")

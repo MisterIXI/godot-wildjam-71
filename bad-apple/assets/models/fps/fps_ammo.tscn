@@ -43,9 +43,15 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_52gqe")
 
 [node name="fps_ammo" type="Node3D"]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
 
 [node name="Shotgun Shell" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.362461, 0)
 material_override = SubResource("StandardMaterial3D_pbifo")
 mesh = SubResource("ArrayMesh_78i2l")
 skeleton = NodePath("")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5321, 0)
+light_color = Color(1, 0.387518, 0.323537, 1)
+omni_range = 1.0

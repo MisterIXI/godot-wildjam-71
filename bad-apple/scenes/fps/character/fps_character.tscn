@@ -1,8 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://5rw8e76sa14y"]
+[gd_scene load_steps=14 format=3 uid="uid://5rw8e76sa14y"]
 
 [ext_resource type="Script" path="res://scenes/fps/character/fps_controller.gd" id="1_gfmvs"]
 [ext_resource type="PackedScene" uid="uid://d6ubx2ya0g72" path="res://assets/models/apple.glb" id="2_o7g7g"]
-[ext_resource type="PackedScene" uid="uid://50hqfacrpiyh" path="res://assets/models/pumpgun.tscn" id="3_3s1gv"]
+[ext_resource type="PackedScene" uid="uid://coxc4js4x2d1c" path="res://scenes/fps/character/fps_shotgun.tscn" id="2_te26y"]
+[ext_resource type="Script" path="res://scenes/fps/character/fps_knife.gd" id="3_bvpk2"]
+[ext_resource type="Script" path="res://scenes/fps/character/fps_hitbox.gd" id="4_uegvb"]
+[ext_resource type="Script" path="res://components/fps/fps_armor_healer.gd" id="5_r4a3q"]
+[ext_resource type="Script" path="res://components/fps/fps_weapon_changer.gd" id="6_gcdmx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yihme"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_co8ru"]
+material = SubResource("StandardMaterial3D_yihme")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v86fg"]
+size = Vector3(0.045, 0.02, 0.34)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8dtcg"]
+size = Vector3(1.77637, 1, 1.0403)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_d8jo4"]
 height = 1.7
@@ -12,7 +29,7 @@ radius = 0.45
 height = 1.7
 radius = 0.4
 
-[node name="FpsCharacter" type="CharacterBody3D"]
+[node name="FpsCharacter" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0423183, 0.0217433, -0.0238113)
 floor_constant_speed = true
 floor_block_on_wall = false
@@ -23,18 +40,66 @@ script = ExtResource("1_gfmvs")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="pumpgun" parent="Camera3D" instance=ExtResource("3_3s1gv")]
-transform = Transform3D(0.568358, 0.0617166, 0.0615203, -0.0532261, 0.567281, -0.0773589, -0.0689976, 0.0707706, 0.566441, 0.111159, -0.085554, -0.168843)
+[node name="Targets" type="Node3D" parent="Camera3D"]
+transform = Transform3D(0.574999, 0, 0, 0, 0.575, 0, 0, 0, 0.574999, 0, 0, 0)
+visible = false
+
+[node name="Center" type="MeshInstance3D" parent="Camera3D/Targets"]
+transform = Transform3D(0.774763, 0, 0, 0, 0.735161, 0, 0, 0, 1, 0.00146351, 1.92, -17.3913)
+mesh = SubResource("BoxMesh_co8ru")
+
+[node name="TopLeft" type="MeshInstance3D" parent="Camera3D/Targets"]
+transform = Transform3D(0.774763, 0, 0, 0, 0.735159, 0, 0, 0, 0.999998, -0.766824, 2.66178, -17.3913)
+mesh = SubResource("BoxMesh_co8ru")
+
+[node name="TopRight" type="MeshInstance3D" parent="Camera3D/Targets"]
+transform = Transform3D(0.774763, 0, 0, 0, 0.735159, 0, 0, 0, 0.999998, 0.79252, 2.6485, -17.3913)
+mesh = SubResource("BoxMesh_co8ru")
+
+[node name="BotLeft" type="MeshInstance3D" parent="Camera3D/Targets"]
+transform = Transform3D(0.774763, 0, 0, 0, 0.735159, 0, 0, 0, 0.999998, -0.775934, 1.19017, -17.3913)
+mesh = SubResource("BoxMesh_co8ru")
+
+[node name="BotRight" type="MeshInstance3D" parent="Camera3D/Targets"]
+transform = Transform3D(0.774763, 0, 0, 0, 0.735158, 0, 0, 0, 0.999997, 0.781263, 1.19017, -17.3916)
+mesh = SubResource("BoxMesh_co8ru")
+
+[node name="FpsShotgun" parent="Camera3D" node_paths=PackedStringArray("camera", "targets") instance=ExtResource("2_te26y")]
+camera = NodePath("..")
+targets = NodePath("../Targets")
+
+[node name="FpsKnife" type="Node3D" parent="Camera3D"]
+script = ExtResource("3_bvpk2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D/FpsKnife" groups=["Player"]]
+transform = Transform3D(0.981357, 0, 0.192197, 0.100814, 0.851388, -0.514757, -0.163634, 0.524536, 0.835515, 0.0601515, -0.0657315, -0.215966)
+mesh = SubResource("BoxMesh_v86fg")
+
+[node name="Attackbox" type="Area3D" parent="Camera3D/FpsKnife"]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/FpsKnife/Attackbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.629463)
+shape = SubResource("BoxShape3D_8dtcg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CylinderShape3D_d8jo4")
 
 [node name="apple" parent="." instance=ExtResource("2_o7g7g")]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
-shape = SubResource("CylinderShape3D_d8jo4")
+[node name="AreaHitbox" type="Area3D" parent="." groups=["PlayerHitbox"]]
+script = ExtResource("4_uegvb")
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="Hitbox" type="CollisionShape3D" parent="Area3D"]
+[node name="Hitbox" type="CollisionShape3D" parent="AreaHitbox" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CylinderShape3D_xrcv2")
+
+[node name="FpsArmorHealer" type="Node" parent="."]
+script = ExtResource("5_r4a3q")
+
+[node name="FpsWeaponChanger" type="Node" parent="." node_paths=PackedStringArray("shotgun_node", "knife_node")]
+script = ExtResource("6_gcdmx")
+shotgun_node = NodePath("../Camera3D/FpsShotgun")
+knife_node = NodePath("../Camera3D/FpsKnife")

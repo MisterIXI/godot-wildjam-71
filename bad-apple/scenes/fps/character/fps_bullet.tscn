@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://j3koh7kvyrcs"]
+
+[ext_resource type="Script" path="res://scenes/fps/character/fps_bullet.gd" id="1_ugdoq"]
+[ext_resource type="Material" uid="uid://87iyjuo0hg4a" path="res://resources/fps/fps_gunshot_material.tres" id="2_qmple"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jg8vw"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_v3bdy"]
+material = ExtResource("2_qmple")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_0wnfd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.390756, 0.984694), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="FpsBullet" type="Node3D" groups=["PlayerBullet"]]
+script = ExtResource("1_ugdoq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_jg8vw")
+skeleton = NodePath("")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("QuadMesh_v3bdy")
+emission_shape = 2
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, 1)
+spread = 180.0
+gravity = Vector3(0, -4, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+scale_amount_min = 0.7
+scale_amount_max = 1.3
+scale_amount_curve = SubResource("Curve_0wnfd")
+hue_variation_max = 0.41
