@@ -1,6 +1,8 @@
 extends Area3D
 class_name SnakePart
 
+@export var is_controlled_externally: bool = false
+
 @export var snake_head: Node3D
 @export var snake_body: Node3D
 @export var snake_tail: Node3D
@@ -81,6 +83,8 @@ func _process(_delta):
 		direction_buffer.append(input)
 
 func _physics_process(delta):
+	if is_controlled_externally:
+		return
 	if is_head() and is_alive:
 		var curr_part = self
 		while curr_part != null:
@@ -174,11 +178,6 @@ func die():
 func _on_area_entered(area: Area3D):
 	if not is_head():
 		return
-	if area.is_in_group("DeathWall"):
-		die()
-	if area.is_in_group("SnakePart"):
-		if back_part != area and (back_part != null and back_part.back_part != area):
-			die()
 	if area.is_in_group("Apple"):
 		grow_parts(1)
 		area.queue_free()
@@ -187,7 +186,14 @@ func _on_area_entered(area: Area3D):
 		apples_eaten += 1
 		apple_spawner.apple_label.text = str(apples_eaten)
 		print("apples eaten: ", apples_eaten)
-		
+	### only in actual play mode below this
+	if is_controlled_externally:
+		return
+	if area.is_in_group("DeathWall"):
+		die()
+	if area.is_in_group("SnakePart"):
+		if back_part != area and (back_part != null and back_part.back_part != area):
+			die()
 
 func _exit_tree():
 	var spawn_manager: SnakeSpawner = get_node("../%SnakeSpawner")
