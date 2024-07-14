@@ -73,12 +73,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_liah5")
 
-[node name="FpsShotgun" type="Node3D" node_paths=PackedStringArray("camera", "targets")]
+[node name="FpsShotgun" type="Node3D"]
 transform = Transform3D(0.568358, 0.0617166, 0.0615203, -0.0532261, 0.567281, -0.0773589, -0.0689976, 0.0707706, 0.566441, 0.111159, -0.085554, -0.168843)
 script = ExtResource("1_lg2fp")
 bullet = ExtResource("2_ggacl")
-camera = NodePath("")
-targets = NodePath("")
 
 [node name="PumpGun" type="MeshInstance3D" parent="." groups=["Player"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

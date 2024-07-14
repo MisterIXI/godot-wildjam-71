@@ -30,8 +30,8 @@ func _ready():
 	visibility_changed.connect(_on_visibility_changed)
 
 
-func _on_visibility_changed(_visible: bool) -> void:
-	if _visible and _anim != null:
+func _on_visibility_changed() -> void:
+	if visible and _anim != null:
 		_anim.play("select")
 
 

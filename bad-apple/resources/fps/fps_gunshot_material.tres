@@ -12,4 +12,8 @@ fill_to = Vector2(0, 0)
 [resource]
 shading_mode = 0
 albedo_texture = SubResource("GradientTexture2D_yupr6")
-billboard_mode = 1
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
