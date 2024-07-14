@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgsqmrmd5laof"]
+
+[ext_resource type="PackedScene" uid="uid://byjesmg3g1fto" path="res://assets/models/fps/fps_key.tscn" id="1_0xu82"]
+[ext_resource type="Script" path="res://components/general/hover_node.gd" id="2_cwbht"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ius0s"]
+size = Vector3(1.255, 2.61, 1.395)
+
+[node name="Key" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375708, 7.70526)
+
+[node name="fps_key" parent="." instance=ExtResource("1_0xu82")]
+
+[node name="HoverNode" type="Node" parent="fps_key"]
+script = ExtResource("2_cwbht")
+boobing_time = 3.0
+is_rotating = false
+
+[node name="Area3D" type="Area3D" parent="." groups=["Key"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.537957, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.374628, 0)
+shape = SubResource("BoxShape3D_ius0s")

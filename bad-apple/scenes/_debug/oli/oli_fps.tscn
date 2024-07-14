@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxryxu0ghogbv"]
+[gd_scene load_steps=18 format=3 uid="uid://dxryxu0ghogbv"]
 
 [ext_resource type="PackedScene" uid="uid://5rw8e76sa14y" path="res://scenes/fps/character/fps_character.tscn" id="1_yoab8"]
 [ext_resource type="Script" path="res://scenes/_debug/oli/fps_test_keybinds.gd" id="4_5jj5w"]
 [ext_resource type="PackedScene" uid="uid://c3a8ulxx0j6sy" path="res://scenes/fps/hud/fps_hud.tscn" id="4_gtln0"]
 [ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="5_b0m4i"]
+[ext_resource type="PackedScene" uid="uid://cjj316da0d04p" path="res://scenes/fps/consumables/medkit.tscn" id="6_dk4cu"]
 [ext_resource type="Script" path="res://components/fps/fps_weapon_changer.gd" id="7_slocy"]
+[ext_resource type="PackedScene" uid="uid://6j0oi5goapoo" path="res://scenes/fps/consumables/ammo.tscn" id="7_u0jp2"]
+[ext_resource type="PackedScene" uid="uid://dgsqmrmd5laof" path="res://scenes/fps/consumables/key.tscn" id="8_x2mes"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvw6y"]
 size = Vector3(50, 1, 50)
@@ -251,6 +254,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8463, 1.46565, 14.569)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestMap/Slope4"]
 transform = Transform3D(4.335, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1.34548, -0.0188436, 0.10386)
 shape = SubResource("BoxShape3D_84l4o")
+
+[node name="Medkit" parent="TestMap" instance=ExtResource("6_dk4cu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16949, 0.375708, 16)
+
+[node name="Ammo" parent="TestMap" instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7114, 0.375708, 6.993)
+
+[node name="Key" parent="TestMap" instance=ExtResource("8_x2mes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.22725, 0.375708, -3.55213)
 
 [node name="FpsCharacter" parent="." instance=ExtResource("1_yoab8")]
 

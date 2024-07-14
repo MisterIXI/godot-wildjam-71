@@ -41,10 +41,22 @@ enum WEAPOND_TYPE {SHOTGUN, KNIFE}
 		health = clamp(health, 0, 100)
 		armor_changed.emit(armor)
 
+@export var has_key : bool = false:
+	get:
+		return has_key
+	set(value):
+		has_key = value
+		if has_key:
+			key_found.emit()
+
+@export var medkit_value : int = 20
+@export var ammo_value : int = 10
+
 @onready var _start_weapon : WEAPOND_TYPE = weapon
 @onready var _start_ammo : int = ammo
 @onready var _start_health : int = health
 @onready var _start_armor : int = armor
+@onready var _start_has_key : bool = has_key
 
 
 signal weapon_changed(weapon : WEAPOND_TYPE)
@@ -55,6 +67,7 @@ signal health_healed()
 signal armor_changed(armor : int)
 signal armor_damaged()
 signal armor_healed()
+signal key_found()
 
 func change_resource(resource : String, delta : int) -> void:
 	match resource:
@@ -68,6 +81,9 @@ func change_resource(resource : String, delta : int) -> void:
 				set("armor", 0)
 			else:
 				set("armor", armor + delta)
+		"key":
+			has_key = true
+			key_found.emit()
 		_:
 			print("Resource not found: " + resource)
 
@@ -77,3 +93,4 @@ func reset() -> void:
 	ammo = _start_ammo
 	health = _start_health
 	armor = _start_armor
+	has_key = _start_has_key

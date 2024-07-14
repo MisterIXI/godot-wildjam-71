@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3a8ulxx0j6sy"]
+[gd_scene load_steps=20 format=3 uid="uid://c3a8ulxx0j6sy"]
 
 [ext_resource type="Texture2D" uid="uid://ht358scd52px" path="res://assets/images/fps/fps_hud.png" id="1_iwxiq"]
 [ext_resource type="PackedScene" uid="uid://cef5pbbagysxt" path="res://scenes/fps/hud/effects/damage_effect.tscn" id="1_jslm2"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="10_ai8kp"]
 [ext_resource type="Script" path="res://components/fps/fps_show_node_on_resource.gd" id="12_0m2rb"]
 [ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="13_plsmq"]
+[ext_resource type="Texture2D" uid="uid://dqueujuv7t3ut" path="res://assets/images/fps/keyIcon.png" id="17_jcynt"]
 
 [sub_resource type="Gradient" id="Gradient_0n64p"]
 colors = PackedColorArray(0, 0, 0, 0, 1.97336e-06, 0.586754, 0.0408179, 0.294118)
@@ -63,7 +64,7 @@ script = ExtResource("9_drjrd")
 animation_duration = 0.2
 hide_when_finished = true
 
-[node name="FpsShowNodeOnResource" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
+[node name="ShowDamage" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
 script = ExtResource("12_0m2rb")
 node = NodePath("../DamageEffect")
 on_health_damage = true
@@ -76,7 +77,7 @@ script = ExtResource("9_drjrd")
 animation_duration = 0.2
 hide_when_finished = true
 
-[node name="FpsShowNodeOnResource4" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
+[node name="ShowArmor" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
 script = ExtResource("12_0m2rb")
 node = NodePath("../ArmorDamageEffect")
 on_armor_damage = true
@@ -90,7 +91,7 @@ script = ExtResource("9_drjrd")
 animation_duration = 0.3
 hide_when_finished = true
 
-[node name="FpsShowNodeOnResource2" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
+[node name="ShowHeal" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
 script = ExtResource("12_0m2rb")
 node = NodePath("../HealEffect")
 on_health_heal = true
@@ -103,7 +104,7 @@ script = ExtResource("9_drjrd")
 animation_duration = 0.3
 hide_when_finished = true
 
-[node name="FpsShowNodeOnResource3" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
+[node name="ShowArmorHeal" type="Node" parent="Effects" node_paths=PackedStringArray("node")]
 script = ExtResource("12_0m2rb")
 node = NodePath("../ArmorHealEffect")
 on_armor_heal = true
@@ -422,5 +423,25 @@ animation_duration = 0.3
 [node name="ResetOnVisible" type="Node" parent="." node_paths=PackedStringArray("windows_to_close", "windows_to_open")]
 script = ExtResource("13_plsmq")
 reset_windows = true
-windows_to_close = [NodePath("../Effects/DamageEffect"), NodePath("../RestartMenu/Labels"), NodePath("../Effects/HealEffect"), NodePath("../Effects/ArmorDamageEffect"), NodePath("../Effects/ArmorHealEffect")]
+windows_to_close = [NodePath("../Effects/DamageEffect"), NodePath("../RestartMenu/Labels"), NodePath("../Effects/HealEffect"), NodePath("../Effects/ArmorDamageEffect"), NodePath("../Effects/ArmorHealEffect"), NodePath("../Key")]
 windows_to_open = [NodePath("../Crossair")]
+
+[node name="Key" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1214.0
+offset_top = 829.0
+offset_right = 1272.0
+offset_bottom = 951.0
+texture = ExtResource("17_jcynt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ModulateOnVisible" type="Node" parent="Key"]
+script = ExtResource("9_drjrd")
+animation_duration = 0.3
+
+[node name="ShowKey" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("12_0m2rb")
+node = NodePath("../Key")
+on_key_found = true
