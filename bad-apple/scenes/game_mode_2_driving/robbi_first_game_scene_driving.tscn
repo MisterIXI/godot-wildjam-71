@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=30 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/MirrorCamera.gd" id="4_dghpx"]
 [ext_resource type="Texture2D" uid="uid://c1oac24juddkn" path="res://resources/driving_materials/car_mirror_viewport_texture.tres" id="5_5jef8"]
 [ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="5_023yl"]
+[ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="5_k11nj"]
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="6_0f2w5"]
 [ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="6_lup2t"]
 
@@ -32,6 +33,21 @@ rim_texture = SubResource("GradientTexture1D_ieq5f")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cujyj"]
 size = Vector2(1000, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fh2o1"]
+transparency = 1
+albedo_texture = ExtResource("5_k11nj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fgd7k"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_fh2o1")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_v141y"]
+_data = [Vector2(0.00761421, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.000972748), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_jgdgo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgj32"]
 resource_name = "Mirror"
@@ -146,6 +162,23 @@ material_override = SubResource("StandardMaterial3D_6wf40")
 mesh = SubResource("PlaneMesh_cujyj")
 script = ExtResource("4_50ffv")
 player_node = NodePath("../../Entities/player_car")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="StartEnviroment/MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 4.46874, 0)
+transparency = 0.5
+cast_shadow = 0
+amount = 100
+lifetime = 10.0
+randomness = 1.0
+mesh = SubResource("PlaneMesh_fgd7k")
+emission_shape = 1
+emission_sphere_radius = 6.52
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, -0.1, 0)
+damping_min = 0.01
+damping_max = 0.02
+scale_amount_curve = SubResource("Curve_v141y")
+color_ramp = SubResource("Gradient_jgdgo")
 
 [node name="Entities" type="Node3D" parent="."]
 
