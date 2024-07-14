@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dxge8fbqp1nqm"]
+
+[ext_resource type="Shader" path="res://resources/shaders/toon.gdshader" id="1_ccrbw"]
+[ext_resource type="Texture2D" uid="uid://prycq2bktrra" path="res://resources/shaders/toon_gradient.tres" id="2_664n3"]
+[ext_resource type="Texture2D" uid="uid://danpius83og6k" path="res://resources/shaders/fresnel_gradient.tres" id="3_h1dgh"]
+[ext_resource type="Texture2D" uid="uid://bu6ggscygoqst" path="res://assets/images/pumpgun.png" id="4_77f05"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ccrbw")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/fresnel_strength = 1.0
+shader_parameter/texture_albedo = ExtResource("4_77f05")
+shader_parameter/color_gradient = ExtResource("2_664n3")
+shader_parameter/fresnel_gradient = ExtResource("3_h1dgh")
