@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CarSettings" load_steps=2 format=3 uid="uid://d1g5fc2sy4pb7"]
+
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/car_settings.gd" id="1_4elnw"]
+
+[resource]
+script = ExtResource("1_4elnw")
+cs_max_steering = 30.0
+cs_max_steering_handbrake = 35.0
+cs_friction_slip = Vector2(0.2, 0.845)
+cs_engine_force = 2200.0
+cs_brake_force = 1600.0
+cs_handbrake_power = 1500.0

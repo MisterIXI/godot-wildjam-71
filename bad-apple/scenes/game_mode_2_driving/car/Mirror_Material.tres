@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cvjs1hot2wo8f"]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "mirror_car"

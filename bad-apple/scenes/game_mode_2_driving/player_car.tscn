@@ -23,12 +23,15 @@ height = 0.1
 [node name="player_car" type="VehicleBody3D" node_paths=PackedStringArray("wheel_rear_left", "wheel_rear_right", "light_brake_left", "light_brake_right")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 collision_layer = 2
-mass = 1000.0
+mass = 2000.0
 script = ExtResource("1_ntpbr")
 wheel_rear_left = NodePath("VehicleWheel_rear_left")
 wheel_rear_right = NodePath("VehicleWheel_rear_right")
 light_brake_left = NodePath("OmniLight_Left")
 light_brake_right = NodePath("OmniLight_Right")
+
+[node name="Ground" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478816, 0)
 
 [node name="car" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_c1fnt")
@@ -42,7 +45,6 @@ shape = SubResource("BoxShape3D_7ppsj")
 
 [node name="VehicleWheel_front_left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.650233, 0, 0.686264)
-engine_force = 2.0
 brake = 1.0
 use_as_traction = true
 use_as_steering = true
@@ -58,7 +60,6 @@ mesh = SubResource("CylinderMesh_ubxs1")
 
 [node name="VehicleWheel_front_right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0, 0.686)
-engine_force = 2.0
 brake = 1.0
 use_as_traction = true
 use_as_steering = true
@@ -75,7 +76,6 @@ skeleton = NodePath("../../VehicleWheel_front_left")
 
 [node name="VehicleWheel_rear_left" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.650233, 0, -0.759701)
-engine_force = 2.0
 brake = 1.0
 use_as_traction = true
 wheel_radius = 0.3
@@ -91,7 +91,6 @@ skeleton = NodePath("../../VehicleWheel_front_left")
 
 [node name="VehicleWheel_rear_right" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0, -0.76)
-engine_force = 2.0
 brake = 1.0
 use_as_traction = true
 wheel_radius = 0.3
