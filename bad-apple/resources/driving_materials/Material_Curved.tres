@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://his7qkjykkef"]
+
+[ext_resource type="Shader" path="res://resources/driving_materials/Material_Curved.gdshader" id="1_wg6sn"]
+[ext_resource type="Texture2D" uid="uid://cr6hqga4uweff" path="res://assets/images/driving_apple/debug_highway.jpg" id="2_6nmpk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wg6sn")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 25.0
+shader_parameter/BASE_TEX = ExtResource("2_6nmpk")

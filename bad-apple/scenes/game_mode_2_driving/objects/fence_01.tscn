@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch7dtk8jw4b7x"]
+
+[ext_resource type="PackedScene" uid="uid://c11r5mk5easay" path="res://assets/models/driving/fence_01.glb" id="1_q8vab"]
+[ext_resource type="Material" uid="uid://bxbsrmmkl1x6s" path="res://scenes/game_mode_2_driving/objects/fence_mat_01.tres" id="2_je87t"]
+
+[node name="fence_01" instance=ExtResource("1_q8vab")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_je87t")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=31 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="5_k11nj"]
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="6_0f2w5"]
 [ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="6_lup2t"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/viewport_hotfix.gd" id="9_1lhy2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vhwtj"]
 friction = 0.0
@@ -117,7 +118,6 @@ shadow_mesh = SubResource("ArrayMesh_ocfgr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qic6x"]
 resource_local_to_scene = true
-albedo_texture = ExtResource("5_5jef8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo1pm"]
 albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
@@ -210,6 +210,8 @@ mesh = SubResource("ArrayMesh_xgi06")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_qic6x")
 surface_material_override/1 = SubResource("StandardMaterial3D_uo1pm")
+script = ExtResource("9_1lhy2")
+viewport_texture = ExtResource("5_5jef8")
 
 [node name="player_car" parent="Entities" instance=ExtResource("1_g6064")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -176.574, 0.381, 0)
@@ -217,61 +219,32 @@ collision_mask = 25
 car_settings = ExtResource("6_lup2t")
 
 [node name="BigSnake" parent="Entities" instance=ExtResource("5_023yl")]
-transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, -218.829, 0, 0)
-visible = false
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, -249.829, 0, 0)
 
 [node name="Stage" type="Node3D" parent="."]
 
 [node name="Driving_Module_01" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -12, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -36, 0, 0)
 
 [node name="Driving_Module_02" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -22, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -72, 0, 0)
 
 [node name="Driving_Module_03" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -34, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -108, 0, 0)
 
 [node name="Driving_Module_04" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -46, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -144, 0, 0)
 
 [node name="Driving_Module_05" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -58, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -180, 0, 0)
 
 [node name="Driving_Module_06" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -70, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -216, 0, 0)
 
 [node name="Driving_Module_07" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -82, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -252, 0, 0)
 
 [node name="Driving_Module_08" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -94, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -288, 0, 0)
 
-[node name="Driving_Module_09" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -106, 0, 0)
-
-[node name="Driving_Module_10" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -118, 0, 0)
-
-[node name="Driving_Module_11" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -130, 0, 0)
-
-[node name="Driving_Module_12" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -142, 0, 0)
-
-[node name="Driving_Module_13" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -153.935, 0, 0)
-
-[node name="Driving_Module_14" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -163.935, 0, 0)
-
-[node name="Driving_Module_15" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -175.935, 0, 0)
-
-[node name="Driving_Module_16" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -187.935, 0, 0)
-
-[node name="Driving_Module_17" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -199.935, 0, 0)
-
-[node name="Driving_Module_18" parent="Stage" instance=ExtResource("6_0f2w5")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -211.935, 0, 0)
+[node name="Node3D" type="Node3D" parent="."]
