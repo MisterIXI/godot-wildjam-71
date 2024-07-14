@@ -3,6 +3,7 @@ extends Node3D
 
 @export var need_key: bool = false
 
+var key_text : Label
 var _anim: AnimationPlayer
 var _name: String
 
@@ -12,6 +13,11 @@ func _ready():
 		if child is AnimationPlayer:
 			_anim = child
 			break
+	
+	key_text = get_tree().root.get_child(-1).get_node("FpsHud").get_node("%NeedKey")
+
+	if not key_text:
+		assert(false, "FpsHud needs to be in the scene and has to have a child named %NeedKey. Path: " + str(get_path()))
 	
 	if _anim == null:
 		assert(false, str(name) + " has to have an AnimationPlayer attachted to it. Path: " + str(get_path()))
@@ -27,6 +33,7 @@ func _ready():
 
 func play() -> void:
 	if need_key and !FpsResourceManagerInstance.has_key:
+		key_text.show()
 		return
 
 	if _anim.is_playing():

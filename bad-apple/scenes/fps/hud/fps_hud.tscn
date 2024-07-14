@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3a8ulxx0j6sy"]
+[gd_scene load_steps=22 format=3 uid="uid://c3a8ulxx0j6sy"]
 
 [ext_resource type="Texture2D" uid="uid://ht358scd52px" path="res://assets/images/fps/fps_hud.png" id="1_iwxiq"]
 [ext_resource type="PackedScene" uid="uid://cef5pbbagysxt" path="res://scenes/fps/hud/effects/damage_effect.tscn" id="1_jslm2"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://components/fps/fps_show_node_on_resource.gd" id="12_0m2rb"]
 [ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="13_plsmq"]
 [ext_resource type="Texture2D" uid="uid://dqueujuv7t3ut" path="res://assets/images/fps/keyIcon.png" id="17_jcynt"]
+[ext_resource type="FontFile" uid="uid://cl1aof26374xu" path="res://assets/fonts/metal-mania/MetalMania-Regular.ttf" id="18_ylyjh"]
 
 [sub_resource type="Gradient" id="Gradient_0n64p"]
 colors = PackedColorArray(0, 0, 0, 0, 1.97336e-06, 0.586754, 0.0408179, 0.294118)
@@ -27,6 +28,15 @@ width = 1280
 height = 820
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g7nmw"]
+font = ExtResource("18_ylyjh")
+font_size = 41
+font_color = Color(0.935189, 0.933778, 0.933172, 1)
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.572549)
 
 [node name="FpsHud" type="Control"]
 layout_mode = 3
@@ -413,6 +423,11 @@ process_mode = 3
 script = ExtResource("7_8udej")
 node = NodePath("../../../Crossair")
 
+[node name="HideNodeOnVisible2" type="Node" parent="RestartMenu/Labels" node_paths=PackedStringArray("node")]
+process_mode = 3
+script = ExtResource("7_8udej")
+node = NodePath("../../../NeedKey")
+
 [node name="PauseOnVisible" type="Node" parent="RestartMenu/Labels"]
 script = ExtResource("8_f0dpd")
 
@@ -423,7 +438,7 @@ animation_duration = 0.3
 [node name="ResetOnVisible" type="Node" parent="." node_paths=PackedStringArray("windows_to_close", "windows_to_open")]
 script = ExtResource("13_plsmq")
 reset_windows = true
-windows_to_close = [NodePath("../Effects/DamageEffect"), NodePath("../RestartMenu/Labels"), NodePath("../Effects/HealEffect"), NodePath("../Effects/ArmorDamageEffect"), NodePath("../Effects/ArmorHealEffect"), NodePath("../Key")]
+windows_to_close = [NodePath("../Effects/DamageEffect"), NodePath("../RestartMenu/Labels"), NodePath("../Effects/HealEffect"), NodePath("../Effects/ArmorDamageEffect"), NodePath("../Effects/ArmorHealEffect"), NodePath("../Key"), NodePath("../NeedKey")]
 windows_to_open = [NodePath("../Crossair")]
 
 [node name="Key" type="TextureRect" parent="."]
@@ -445,3 +460,25 @@ animation_duration = 0.3
 script = ExtResource("12_0m2rb")
 node = NodePath("../Key")
 on_key_found = true
+
+[node name="NeedKey" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -434.0
+offset_top = 41.0
+offset_right = 434.0
+offset_bottom = 106.0
+grow_horizontal = 2
+text = "You need a golden key to enter!"
+label_settings = SubResource("LabelSettings_g7nmw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ModulateOnVisible" type="Node" parent="NeedKey"]
+script = ExtResource("9_drjrd")
+animation_duration = 1.0
+hide_when_finished = true
