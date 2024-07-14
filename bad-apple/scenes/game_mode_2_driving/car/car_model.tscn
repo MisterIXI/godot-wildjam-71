@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://8631tao0se0h"]
+
+[ext_resource type="PackedScene" uid="uid://dcoca6tsxq56s" path="res://assets/models/car.glb" id="1_jwalh"]
+[ext_resource type="Material" uid="uid://cwbcg6yxxe46l" path="res://scenes/game_mode_2_driving/car/char_01_mat.tres" id="2_18kgd"]
+[ext_resource type="Material" uid="uid://b4cbsevnqv8hm" path="res://scenes/game_mode_2_driving/car/car_02_mat_steering.tres" id="3_5ntmo"]
+[ext_resource type="Material" uid="uid://cdqt1ctwobktp" path="res://scenes/game_mode_2_driving/car/car_03_wheels.tres" id="4_y6380"]
+[ext_resource type="Material" uid="uid://b1ofdqwp2bslf" path="res://scenes/game_mode_2_driving/car/car_04_windshield_mat.tres" id="5_m5flq"]
+
+[node name="car" instance=ExtResource("1_jwalh")]
+
+[node name="Car" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_18kgd")
+
+[node name="Steering" parent="Car" index="1"]
+surface_material_override/0 = ExtResource("3_5ntmo")
+
+[node name="wheel1" parent="Car" index="2"]
+surface_material_override/0 = ExtResource("4_y6380")
+
+[node name="wheel2" parent="Car" index="3"]
+surface_material_override/0 = ExtResource("4_y6380")
+
+[node name="wheel3" parent="Car" index="4"]
+surface_material_override/0 = ExtResource("4_y6380")
+
+[node name="wheel4" parent="Car" index="5"]
+surface_material_override/0 = ExtResource("4_y6380")
+
+[node name="Windshield" parent="Car" index="6"]
+transparency = 0.17
+surface_material_override/0 = ExtResource("5_m5flq")
