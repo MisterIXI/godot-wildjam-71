@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ixnm1m3xq1gn"]
-
-[ext_resource type="Texture2D" uid="uid://fxylyyxqux2e" path="res://assets/models/driving/sky_top.png" id="1_xyu0m"]
-
-[resource]
-albedo_texture = ExtResource("1_xyu0m")
-rim_enabled = true
-rim = 0.37

@@ -1,10 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=18 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
 [ext_resource type="Resource" uid="uid://ctfulgtls581h" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
-[ext_resource type="PackedScene" uid="uid://4hvmqt8tkqqv" path="res://scenes/game_mode_2_driving/enviroment/ground_grass.tscn" id="3_dx7fc"]
-[ext_resource type="PackedScene" uid="uid://3of4ckdab1tv" path="res://scenes/game_mode_2_driving/enviroment/driving_skybox.tscn" id="3_j4rw2"]
 [ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="3_rmupy"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/MirrorCamera.gd" id="4_dghpx"]
 [ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="5_023yl"]
@@ -13,6 +11,14 @@
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_y6pu4"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5eiuj"]
+
+[sub_resource type="Environment" id="Environment_jaof6"]
+background_mode = 1
+background_color = Color(0.552941, 1, 1, 1)
+ambient_light_color = Color(0, 0.568627, 1, 1)
+fog_density = 0.0188
+volumetric_fog_density = 0.0058
+volumetric_fog_emission = Color(0.303079, 0.602044, 0.797231, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgj32"]
 resource_name = "Mirror"
@@ -113,10 +119,16 @@ shape = SubResource("WorldBoundaryShape3D_5eiuj")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5.79362)
 shape = SubResource("WorldBoundaryShape3D_5eiuj")
 
-[node name="skybox" parent="StartEnviroment/StaticBody3D" instance=ExtResource("3_j4rw2")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="StartEnviroment/StaticBody3D"]
+environment = SubResource("Environment_jaof6")
 
-[node name="Ground_Grass" parent="StartEnviroment" node_paths=PackedStringArray("player_object") instance=ExtResource("3_dx7fc")]
-player_object = NodePath("../../Entities/player_car")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="StartEnviroment"]
+transform = Transform3D(0.965926, -1.13133e-08, 0.258819, -0.258819, -4.2222e-08, 0.965926, 0, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(1, 1, 0.792157, 1)
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="StartEnviroment"]
+transform = Transform3D(1, 0, 0, 0, 0.723678, 0.690138, 0, -0.690138, 0.723678, 0, 0, 0)
 
 [node name="Entities" type="Node3D" parent="."]
 
@@ -150,14 +162,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qic6x")
 surface_material_override/1 = SubResource("StandardMaterial3D_uo1pm")
 
 [node name="player_car" parent="Entities" instance=ExtResource("1_g6064")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -192.993, 0.38137, -0.114279)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -184.574, 0.381, -4)
 collision_mask = 25
 
 [node name="BigSnake" parent="Entities" instance=ExtResource("5_023yl")]
 transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, -218.829, 0, 0)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.723678, 0.690138, 0, -0.690138, 0.723678, 0, 0, 0)
 
 [node name="Stage" type="Node3D" parent="."]
 
