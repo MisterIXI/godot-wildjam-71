@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://c620wqe3a8g5"]
+
+[ext_resource type="Texture2D" uid="uid://cyi5d1nvl14uw" path="res://assets/images/driving_apple/snake_angry_texture.png" id="1_4qojy"]
+
+[sub_resource type="Gradient" id="Gradient_crrk2"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u2cej"]
+gradient = SubResource("Gradient_crrk2")
+
+[resource]
+albedo_texture = ExtResource("1_4qojy")
+rim_texture = SubResource("GradientTexture1D_u2cej")

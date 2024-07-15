@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=31 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
 [ext_resource type="Resource" uid="uid://ctfulgtls581h" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
+[ext_resource type="Environment" uid="uid://bw0c1xbiy5pxb" path="res://resources/driving_materials/driving_environment_webGL.tres" id="3_dnire"]
 [ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="3_rmupy"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/ground_follow.gd" id="4_50ffv"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/MirrorCamera.gd" id="4_dghpx"]
@@ -137,22 +138,23 @@ physics_material_override = SubResource("PhysicsMaterial_vhwtj")
 shape = SubResource("WorldBoundaryShape3D_y6pu4")
 
 [node name="world_collision_right" type="CollisionShape3D" parent="StartEnviroment/World_bounds"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 5.81007)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 6.23944)
 shape = SubResource("WorldBoundaryShape3D_5eiuj")
 
 [node name="world_collision_left" type="CollisionShape3D" parent="StartEnviroment/World_bounds"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -5.79362)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -6.22809)
 shape = SubResource("WorldBoundaryShape3D_5eiuj")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="StartEnviroment"]
-transform = Transform3D(0.965926, -1.13133e-08, 0.258819, -0.258819, -4.2222e-08, 0.965926, 0, -1, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(0.866025, -2.18557e-08, 0.5, -0.5, -3.78552e-08, 0.866025, -1.40785e-15, -1, -4.37114e-08, 0, 0, 0)
 light_color = Color(1, 1, 0.792157, 1)
 sky_mode = 1
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="StartEnviroment"]
-transform = Transform3D(1, 0, 0, 0, 0.723678, 0.690138, 0, -0.690138, 0.723678, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="StartEnviroment"]
+environment = ExtResource("3_dnire")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StartEnviroment" node_paths=PackedStringArray("player_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51745, 0)
@@ -181,7 +183,7 @@ color_ramp = SubResource("Gradient_jgdgo")
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Camera" parent="Entities" node_paths=PackedStringArray("car") instance=ExtResource("3_rmupy")]
-transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -117.945, 1.86468, 0)
+transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -181.899, 1.86468, 0)
 current = true
 car = NodePath("../player_car")
 
@@ -195,7 +197,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.0
 size = Vector2i(1920, 1080)
 
 [node name="MirrorCamera" type="Camera3D" parent="Entities/Camera/mirror/Mirror/SubViewport" node_paths=PackedStringArray("epic_player")]
-transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, -121.143, 1.85108, 0)
+transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, -181.412, 1.85108, 0)
 current = true
 script = ExtResource("4_dghpx")
 epic_player = NodePath("../../../..")
@@ -211,13 +213,15 @@ surface_material_override/1 = SubResource("StandardMaterial3D_uo1pm")
 script = ExtResource("9_1lhy2")
 viewport_texture = ExtResource("5_5jef8")
 
-[node name="player_car" parent="Entities" instance=ExtResource("1_g6064")]
+[node name="player_car" parent="Entities" node_paths=PackedStringArray("hud_kmh_text") instance=ExtResource("1_g6064")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -176.574, 0.381, 0)
 collision_mask = 25
 car_settings = ExtResource("6_lup2t")
+hud_kmh_text = NodePath("../../UI/HUD/kmh_label")
 
-[node name="BigSnake" parent="Entities" instance=ExtResource("5_023yl")]
+[node name="BigSnake" parent="Entities" node_paths=PackedStringArray("player_node") instance=ExtResource("5_023yl")]
 transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, -249.829, 0, 0)
+player_node = NodePath("../player_car")
 
 [node name="Stage" type="Node3D" parent="."]
 
@@ -246,3 +250,30 @@ transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -252, 
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -288, 0, 0)
 
 [node name="Node3D" type="Node3D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="kmh_label" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 28.4
+anchor_top = 21.3
+anchor_right = 32.05
+anchor_bottom = 23.9
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 68
+text = "40 Km/h"
+horizontal_alignment = 2
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true

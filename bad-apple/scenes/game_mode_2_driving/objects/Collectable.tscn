@@ -1,21 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://w2os1uitncyn"]
+[gd_scene load_steps=11 format=3 uid="uid://bsdycoqjw8xqo"]
 
-[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/objects/obstacle_01.gd" id="1_qnsd4"]
+[ext_resource type="Material" uid="uid://0utl87tp654j" path="res://scenes/game_mode_2_driving/objects/Collectable_mat.tres" id="1_qjewm"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/objects/Collectable.gd" id="1_xfy7x"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xe6am"]
-friction = 0.76
-
-[sub_resource type="BoxMesh" id="BoxMesh_omyqh"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbuda"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ndew5"]
-size = Vector3(1.7533, 2, 1.8183)
+[sub_resource type="TorusMesh" id="TorusMesh_2a5kc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cxajj"]
-size = Vector3(2, 2, 2)
+size = Vector3(0.967072, 2, 0.737305)
 
 [sub_resource type="Animation" id="Animation_tacqx"]
 length = 0.001
@@ -198,27 +189,20 @@ _data = {
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.791878, 0.868132), -1.64613, -1.64613, 0, 0, Vector2(0.994924, 0.0136187), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Obstacle_01" type="RigidBody3D"]
-collision_layer = 17
-mass = 20.0
-physics_material_override = SubResource("PhysicsMaterial_xe6am")
-script = ExtResource("1_qnsd4")
+[node name="Collectable" type="Node3D"]
+script = ExtResource("1_xfy7x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0, 1, 0, 0.95, 0)
-mesh = SubResource("BoxMesh_omyqh")
-surface_material_override/0 = SubResource("StandardMaterial3D_mbuda")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00897217, 1, -0.0284119)
-shape = SubResource("BoxShape3D_ndew5")
+mesh = SubResource("TorusMesh_2a5kc")
+surface_material_override/0 = ExtResource("1_qjewm")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00431824, 1, -0.00830078)
 shape = SubResource("BoxShape3D_cxajj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

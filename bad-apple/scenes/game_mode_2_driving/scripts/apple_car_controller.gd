@@ -23,7 +23,10 @@ var current_driving : bool = true
 # VARIABLE STEERINGS
 var move_direction: Vector2 = Vector2.ZERO
 var current_steering : float = 20.0
-
+var last_pos : Vector3  = Vector3.ZERO
+var current_speed_mps : float = 0.0
+var start_rotation : Vector3  = Vector3.ZERO
+var is_handbrake : bool = false
 # EXPORT WHEELS
 @export var wheel_rear_left : VehicleWheel3D
 @export var wheel_rear_right : VehicleWheel3D
@@ -35,6 +38,9 @@ var current_steering : float = 20.0
 # EXPORT STREET DIRT
 @export var particles_left : CPUParticles3D
 @export var particles_right: CPUParticles3D
+
+# EXPORT HUD_KMH
+@export var hud_kmh_text : Label  = null
 
 ######################################  INPUT ############################
 func _input(_event):
@@ -54,35 +60,47 @@ func _input(_event):
 
 
 	if _event.is_action_pressed("shift"):
-		current_steering = car_settings.cs_max_steering_handbrake
-		wheel_rear_left.wheel_friction_slip = car_settings.cs_friction_slip.y
-		wheel_rear_right.wheel_friction_slip = car_settings.cs_friction_slip.y
-
-		wheel_rear_left.engine_force = car_settings.cs_handbrake_power * move_direction.x
-		wheel_rear_right.engine_force = car_settings.cs_handbrake_power * move_direction.x
+		print("handbrake")
+		is_handbrake = true
 
 	if _event.is_action_released("shift"):
-		current_steering = car_settings.cs_max_steering
-		wheel_rear_left.wheel_friction_slip = car_settings.cs_friction_slip.y
-		wheel_rear_right.wheel_friction_slip = car_settings.cs_friction_slip.y
+		is_handbrake = false
+
+
+
+################################ START
+func _ready():
+	start_rotation = global_rotation
+func get_speed_kph():
+	return current_speed_mps * 3600.0 /1000.0
+
+func _process(_delta : float):
+	var speed = get_speed_kph()
+	var info = "%.0f km/h" % speed
+	hud_kmh_text.text  = info
 
 func _physics_process(_delta):
-
+	current_speed_mps = (global_position- last_pos).length() / _delta
 	# DIABLE VEHICLE CONTROL CHECK
 	if !current_driving:
 		return
 	handle_acceleration()
 	handle_steering()
 	handle_jumping()
+	last_pos = global_position
 
-	# IF ALLREADY FLYING
-	# if is_current_jumping:
-	# 	handle_flying()
 
 func handle_acceleration():
 	# ENGINE FORCE
 	engine_force = move_direction.y * car_settings.cs_engine_force
-	
+	if is_handbrake:
+		
+		wheel_rear_left.engine_force = car_settings.cs_handbrake_power * move_direction.y
+		wheel_rear_right.engine_force = car_settings.cs_handbrake_power * move_direction.y
+	if !is_handbrake:
+		wheel_rear_left.engine_force = car_settings.cs_engine_force * move_direction.y 
+		wheel_rear_right.engine_force = car_settings.cs_engine_force * move_direction.y
+
 	# BRAKE FORCE
 	brake = move_direction.y * car_settings.cs_brake_force
 	if move_direction.y < 0:
@@ -91,7 +109,22 @@ func handle_acceleration():
 	else:
 		light_brake_left.light_energy = 0
 		light_brake_right.light_energy = 0
+
+func get_hit_speed():
+	apply_impulse(Vector3.RIGHT * 10000, Vector3.ZERO)
+	
+
+
 func handle_steering():
+	if is_handbrake:
+		current_steering = car_settings.cs_max_steering_handbrake
+		wheel_rear_left.wheel_friction_slip = car_settings.cs_friction_slip.x
+		wheel_rear_right.wheel_friction_slip = car_settings.cs_friction_slip.x
+	if !is_handbrake:
+		current_steering = car_settings.cs_max_steering
+		wheel_rear_left.wheel_friction_slip = car_settings.cs_friction_slip.y
+		wheel_rear_right.wheel_friction_slip = car_settings.cs_friction_slip.y
+
 	steering = deg_to_rad(move_direction.x * current_steering)
 
 func handle_jumping():

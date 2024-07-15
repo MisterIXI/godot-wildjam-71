@@ -1,12 +1,118 @@
-[gd_scene load_steps=20 format=3 uid="uid://cqv4cjpg25i0w"]
+[gd_scene load_steps=26 format=3 uid="uid://cqv4cjpg25i0w"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/Snake_enemy_controller.gd" id="1_51rwk"]
-[ext_resource type="Texture2D" uid="uid://dre6iynkpku5q" path="res://assets/images/snekeye1.png" id="1_ith3u"]
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="2_g26te"]
+[ext_resource type="Material" uid="uid://c620wqe3a8g5" path="res://resources/driving_materials/snek_enemy_angry_material.tres" id="2_s0a88"]
+[ext_resource type="Texture2D" uid="uid://b3y1rb35pg21x" path="res://assets/images/driving_apple/angry_particles.png" id="4_civcl"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/snake_enemy_hitbox.gd" id="4_st5uq"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb3tt"]
-albedo_texture = ExtResource("1_ith3u")
+[sub_resource type="Animation" id="Animation_ss4b6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("snek/Armature/Skeleton3D/eyes/eyes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.49012e-08, -1.49012e-08)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("snek/Armature/Skeleton3D/eyes_001/eyes_001:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("snek/CPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("snek/Armature/Skeleton3D/snakehead:material_override")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_g26te")]
+}
+
+[sub_resource type="Animation" id="Animation_44a2q"]
+resource_name = "set_fokus"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("snek/Armature/Skeleton3D/eyes/eyes:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.49012e-08, -1.49012e-08), Vector3(-0.485816, -0.202655, 0.0696042), Vector3(-0.715657, -0.332334, 0.413522), Vector3(-0.715657, -0.332334, 0.413522), Vector3(0, 1.49012e-08, -1.49012e-08)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("snek/Armature/Skeleton3D/eyes_001/eyes_001:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.127444, 0.488095, -0.64137), Vector3(0.195472, 0.836557, -0.37354), Vector3(0.195472, 0.836557, -0.37354), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("snek/CPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("snek/Armature/Skeleton3D/snakehead:material_override")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1.86607, 1),
+"update": 1,
+"values": [ExtResource("2_g26te"), ExtResource("2_s0a88"), ExtResource("2_g26te")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cb5ua"]
+_data = {
+"RESET": SubResource("Animation_ss4b6"),
+"set_fokus": SubResource("Animation_44a2q")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mawvo"]
 resource_name = "Material.001"
@@ -297,18 +403,34 @@ _data = {
 "idle": SubResource("Animation_kb3en")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vohmg"]
+transparency = 1
+albedo_texture = ExtResource("4_civcl")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a5tsn"]
+material = SubResource("StandardMaterial3D_vohmg")
+
+[sub_resource type="Curve" id="Curve_a2v3e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.791878, 0.868132), -1.64613, -1.64613, 0, 0, Vector2(0.994924, 0.0136187), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ynbjr"]
-size = Vector3(13.5238, 5.40295, 20.1876)
+size = Vector3(13.5238, 5.40295, 6.89275)
 
 [node name="BigSnake" type="Node3D"]
 transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, 0, 0, 0)
 script = ExtResource("1_51rwk")
 
+[node name="AngryPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cb5ua")
+}
+
 [node name="snek" type="Node3D" parent="."]
 
 [node name="Body" type="MeshInstance3D" parent="snek"]
 visible = false
-material_override = SubResource("StandardMaterial3D_hb3tt")
+material_override = ExtResource("2_g26te")
 mesh = SubResource("ArrayMesh_shub3")
 skeleton = NodePath("")
 
@@ -321,7 +443,7 @@ bones/0/parent = -1
 bones/0/rest = Transform3D(1, -1.39222e-17, 6.95757e-17, 6.95757e-17, 0.384795, -0.923002, -1.39222e-17, 0.923002, 0.384795, 0, 0, -1.19209e-07)
 bones/0/enabled = true
 bones/0/position = Vector3(0, 0, -1.19209e-07)
-bones/0/rotation = Quaternion(0.64362, -0.0157229, -0.0371562, 0.764281)
+bones/0/rotation = Quaternion(0.388466, 0.0310276, 0.073324, 0.918017)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "EYE.L"
 bones/1/parent = 0
@@ -356,35 +478,36 @@ bones/5/parent = -1
 bones/5/rest = Transform3D(-1, -1.98952e-13, -8.6625e-07, -7.99739e-07, -0.384275, 0.923217, -3.32879e-07, 0.923218, 0.384274, 0, 0, -1.19209e-07)
 bones/5/enabled = true
 bones/5/position = Vector3(0, 0, -1.19209e-07)
-bones/5/rotation = Quaternion(-3.67962e-07, 0.571262, 0.820768, -2.28736e-07)
+bones/5/rotation = Quaternion(-3.61793e-07, 0.549783, 0.835307, -2.38125e-07)
 bones/5/scale = Vector3(1, 1, 0.999998)
 bones/6/name = "TONGUE_1"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, -2.61779e-07, -2.34372e-06, -4.58727e-07, 0.953245, -0.302198, 2.31325e-06, 0.302198, 0.953245, -7.52383e-08, 0.32738, 0.0868552)
 bones/6/enabled = true
 bones/6/position = Vector3(-7.52383e-08, 0.32738, 0.0868552)
-bones/6/rotation = Quaternion(0.158317, -1.15406e-06, -2.00328e-07, 0.987388)
+bones/6/rotation = Quaternion(0.255199, -1.15264e-06, -8.31587e-08, 0.966889)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "TONGUE_2"
 bones/7/parent = 6
 bones/7/rest = Transform3D(1, -1.50869e-07, 1.67367e-07, 1.33488e-07, 0.995048, 0.0993891, -1.81533e-07, -0.0993891, 0.995049, -2.17998e-14, 0.821006, -1.30385e-08)
 bones/7/enabled = true
 bones/7/position = Vector3(-2.17998e-14, 0.821006, -1.30385e-08)
-bones/7/rotation = Quaternion(-0.0938028, 8.71089e-08, 1.35251e-07, 0.995591)
+bones/7/rotation = Quaternion(-0.0264343, 8.7411e-08, 3.7815e-08, 0.999651)
 bones/7/scale = Vector3(1, 1, 1)
 
 [node name="eyes" type="BoneAttachment3D" parent="snek/Armature/Skeleton3D"]
-transform = Transform3D(-0.201502, 0.704975, 0.680005, 0.93312, 0.349239, -0.0855572, -0.2978, 0.617286, -0.728199, 0.816315, 0.730499, 0.933418)
+transform = Transform3D(-0.355067, 0.543303, 0.760756, 0.535012, 0.785432, -0.31122, -0.766609, 0.296509, -0.569555, 0.537037, 1.29114, 0.340338)
 bone_name = "eyes"
 bone_idx = 2
 
 [node name="eyes" type="MeshInstance3D" parent="snek/Armature/Skeleton3D/eyes"]
+transform = Transform3D(0.999999, 1.49012e-08, 1.49012e-08, -1.49012e-08, 1, 0, -1.49012e-08, -2.22046e-16, 0.999999, 0, 0, 0)
 material_override = ExtResource("2_g26te")
 mesh = SubResource("ArrayMesh_ryrwo")
 skeleton = NodePath("")
 
 [node name="eyes_001" type="BoneAttachment3D" parent="snek/Armature/Skeleton3D"]
-transform = Transform3D(0.787522, 0.615175, 0.0370127, -0.395394, 0.55041, -0.735331, -0.472729, 0.564455, 0.676696, -0.63908, 0.859526, 0.96565)
+transform = Transform3D(0.900447, 0.420416, 0.111562, -0.392897, 0.896193, -0.206081, -0.186621, 0.141733, 0.972155, -0.907735, 1.07121, 0.328946)
 bone_name = "eyes.001"
 bone_idx = 4
 
@@ -404,8 +527,33 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="snek"]
+transform = Transform3D(1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 0, 0.768393, 0)
+transparency = 0.2
+cast_shadow = 0
+emitting = false
+amount = 25
+lifetime = 0.4
 one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("PlaneMesh_a5tsn")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 10, 0)
+gravity = Vector3(0, 80, 0)
+angle_max = 143.2
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_a2v3e")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 17
@@ -413,7 +561,7 @@ collision_mask = 2
 script = ExtResource("4_st5uq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0.0903471, 2.20148, -10.1857)
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0.0903471, 2.20148, -3.53828)
 shape = SubResource("BoxShape3D_ynbjr")
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

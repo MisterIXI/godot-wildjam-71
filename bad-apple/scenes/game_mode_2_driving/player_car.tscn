@@ -249,14 +249,14 @@ size = Vector2(0.1, 0.1)
 [node name="player_car" type="VehicleBody3D" node_paths=PackedStringArray("wheel_rear_left", "wheel_rear_right", "light_brake_left", "light_brake_right", "particles_left", "particles_right")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 collision_layer = 2
-mass = 2000.0
+mass = 2500.0
 script = ExtResource("1_ntpbr")
 wheel_rear_left = NodePath("VehicleWheel_rear_left")
 wheel_rear_right = NodePath("VehicleWheel_rear_right")
 light_brake_left = NodePath("OmniLight_Left")
 light_brake_right = NodePath("OmniLight_Right")
-particles_left = NodePath("particle_boelkstoff2")
-particles_right = NodePath("particle_boelkstoff")
+particles_left = NodePath("particle_boelkstoff")
+particles_right = NodePath("particle_boelkstoff2")
 
 [node name="Ground" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478816, 0)
@@ -405,3 +405,9 @@ linear_accel_min = 5.0
 linear_accel_max = 55.0
 scale_amount_min = 0.1
 scale_amount_max = 2.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
