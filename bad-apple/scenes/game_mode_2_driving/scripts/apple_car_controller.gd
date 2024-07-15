@@ -10,7 +10,7 @@ var is_jumping :bool = false
 var current_jumps = 0
 var is_current_jumping : bool = false
 const MAX_JUMPS : int =1 
-const JUMPOWER : float = 6.0
+const JUMPOWER : float = 2.5
 const ANGULAR_VELOCITY_DECAY : float = 0.96
 
 # VARIABLE HEALTH
@@ -54,7 +54,11 @@ func _input(_event):
 		particles_right.lifetime = 0.01
 	# SET JUMPING
 	if _event.is_action_pressed("space"):
-		is_jumping = true
+		if !is_grounded() && global_position.y < 1.6:
+			global_rotation = start_rotation
+			return
+		if is_grounded():
+			is_jumping = true
 	if _event.is_action_released("space"):
 		is_jumping = false
 
@@ -129,11 +133,7 @@ func handle_steering():
 
 func handle_jumping():
 	## FLIP CAR 
-	if is_jumping && !is_grounded():
-		rotation.z = 0
-
-
-	elif(is_jumping and current_jumps < MAX_JUMPS):
+	if(is_jumping and current_jumps < MAX_JUMPS):
 		is_current_jumping = true
 		current_jumps += 1
 		linear_velocity += Vector3.UP * JUMPOWER
