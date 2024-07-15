@@ -183,7 +183,7 @@ color_ramp = SubResource("Gradient_jgdgo")
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Camera" parent="Entities" node_paths=PackedStringArray("car") instance=ExtResource("3_rmupy")]
-transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -117.945, 1.86468, 0)
+transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -181.899, 1.86468, 0)
 current = true
 car = NodePath("../player_car")
 
@@ -197,7 +197,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.0
 size = Vector2i(1920, 1080)
 
 [node name="MirrorCamera" type="Camera3D" parent="Entities/Camera/mirror/Mirror/SubViewport" node_paths=PackedStringArray("epic_player")]
-transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, -121.143, 1.85108, 0)
+transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, -181.412, 1.85108, 0)
 current = true
 script = ExtResource("4_dghpx")
 epic_player = NodePath("../../../..")

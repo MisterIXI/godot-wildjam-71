@@ -38,12 +38,12 @@ func spawn_obstacle ( _i : Node3D):
 	var _instance = defined_obstacle.instantiate()
 	_i.add_child(_instance)
 	_instance.global_position = _i.global_position
-	print("obstacle spawned")
+	
 	county_obstacles += 1
 
 func spawn_collectable(_i: Node3D):
 	var _instance = collectable.instantiate()
 	_i.add_child(_instance)
 	_instance.global_position = _i.global_position
-	print ("collectable spawned")
+	
 	county_collectable += 1

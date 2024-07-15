@@ -33,15 +33,19 @@ func on_timer_timeout():
 	print ("timeout and speed")
 	snake_speed = default_speed
 	animate.play("idle")
+	is_active = true
+
 # ON SPEED TIMER TIMEOUT GET NEW PLAYER SPEED
 func on_speedTimer_timeout():
-	snake_speed = maxf(default_speed, player_node.global_position.distance_to(global_position)/2)
-	angry_animator.play("set_fokus")
-	print ("snake speed: %d" % snake_speed)
+	if is_active:
+		snake_speed = maxf(default_speed, player_node.global_position.distance_to(global_position)/2)
+		angry_animator.play("set_fokus")
+		print ("snake speed: %d" % snake_speed)
+
 # ON PLAYER HIT SNAKE WILL STOP WALKING
 func on_player_hit():
-	animate.play("hurt",-1, 1)
-
+	animate.play("hurt")
+	is_active = false
 	snake_speed = 0
 	timer.start()
 

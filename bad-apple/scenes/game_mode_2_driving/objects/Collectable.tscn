@@ -6,7 +6,7 @@
 [sub_resource type="TorusMesh" id="TorusMesh_2a5kc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cxajj"]
-size = Vector3(1.1427, 2, 0.737305)
+size = Vector3(0.967072, 2, 0.737305)
 
 [sub_resource type="Animation" id="Animation_tacqx"]
 length = 0.001
@@ -202,7 +202,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000915527, 1, -0.00830078)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00431824, 1, -0.00830078)
 shape = SubResource("BoxShape3D_cxajj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

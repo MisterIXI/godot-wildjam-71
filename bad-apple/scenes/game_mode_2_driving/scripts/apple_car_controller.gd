@@ -98,8 +98,8 @@ func handle_acceleration():
 		wheel_rear_left.engine_force = car_settings.cs_handbrake_power * move_direction.y
 		wheel_rear_right.engine_force = car_settings.cs_handbrake_power * move_direction.y
 	if !is_handbrake:
-		wheel_rear_left.engine_force = car_settings.cs_handbrake_power * move_direction.y 
-		wheel_rear_right.engine_force = car_settings.cs_handbrake_power * move_direction.y
+		wheel_rear_left.engine_force = car_settings.cs_engine_force * move_direction.y 
+		wheel_rear_right.engine_force = car_settings.cs_engine_force * move_direction.y
 
 	# BRAKE FORCE
 	brake = move_direction.y * car_settings.cs_brake_force
@@ -111,8 +111,7 @@ func handle_acceleration():
 		light_brake_right.light_energy = 0
 
 func get_hit_speed():
-	global_position += Vector3.RIGHT* 15
-	global_rotation = start_rotation
+	apply_impulse(Vector3.RIGHT * 10000, Vector3.ZERO)
 	
 
 
