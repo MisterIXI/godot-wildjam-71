@@ -58,6 +58,7 @@ func _unhandled_input(event) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var mouse_delta = event.relative * -1
 
+		await get_tree().physics_frame
 		rotate_y(mouse_delta.x * (mouse_sensitivity / 10000))
 		_camera.rotate_x(mouse_delta.y * (mouse_sensitivity / 10000))
 		_camera.rotation.x = clamp(_camera.rotation.x, deg_to_rad(clamp_angle.x), deg_to_rad(clamp_angle.y))

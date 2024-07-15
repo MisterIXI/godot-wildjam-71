@@ -50,7 +50,7 @@ data = PackedVector3Array(-18, 0, -53, -25, 0, -54, -18, 0, -54, -18, 0, -53, -2
 
 [node name="OmniLight3D" type="OmniLight3D" parent="FpsCharacter"]
 light_energy = 7.67
-omni_range = 209.055
+omni_range = 31.289
 
 [node name="FpsHud" parent="." instance=ExtResource("4_gtln0")]
 
