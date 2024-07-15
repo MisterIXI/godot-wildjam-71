@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxryxu0ghogbv"]
+[gd_scene load_steps=11 format=3 uid="uid://dxryxu0ghogbv"]
 
 [ext_resource type="PackedScene" uid="uid://5rw8e76sa14y" path="res://scenes/fps/character/fps_character.tscn" id="1_yoab8"]
 [ext_resource type="Script" path="res://scenes/_debug/oli/fps_test_keybinds.gd" id="4_5jj5w"]
 [ext_resource type="PackedScene" uid="uid://c3a8ulxx0j6sy" path="res://scenes/fps/hud/fps_hud.tscn" id="4_gtln0"]
 [ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="5_b0m4i"]
+[ext_resource type="PackedScene" uid="uid://6j0oi5goapoo" path="res://scenes/fps/consumables/ammo.tscn" id="7_u0jp2"]
+[ext_resource type="PackedScene" uid="uid://dgsqmrmd5laof" path="res://scenes/fps/consumables/key.tscn" id="8_x2mes"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfcgt"]
 resource_name = "Material.001"
@@ -74,3 +76,36 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="map2/Square Ground/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_sqotg")
+
+[node name="Key" parent="." instance=ExtResource("8_x2mes")]
+transform = Transform3D(0.783585, 0, -0.621285, 0, 1, 0, 0.621285, 0, 0.783585, 7.34257, 6.37901, -39.8653)
+
+[node name="Ammo" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9209, 0.375708, 5)
+
+[node name="Ammo2" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9209, 0.375708, 3.35667)
+
+[node name="Ammo3" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9209, 0.375708, -2.27047)
+
+[node name="Ammo4" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9209, 0.375708, -0.289206)
+
+[node name="Ammo5" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9209, 0.375708, 1.61651)
+
+[node name="Ammo6" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6404, 0.375708, 3.32265)
+
+[node name="Ammo7" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6404, 0.375708, 1.51487)
+
+[node name="Ammo8" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6404, 0.375708, -0.227798)
+
+[node name="Ammo9" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6404, 0.375708, -2.18704)
+
+[node name="Ammo10" parent="." instance=ExtResource("7_u0jp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6404, 0.375708, 4.81815)

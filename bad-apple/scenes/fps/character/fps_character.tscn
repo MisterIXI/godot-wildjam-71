@@ -39,23 +39,23 @@ transform = Transform3D(0.574999, 0, 0, 0, 0.575, 0, 0, 0, 0.574999, 0, 0, 0)
 visible = false
 
 [node name="Center" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.774763, 0, 0, 0, 0.735161, 0, 0, 0, 1, 0.00146351, 1.92, -17.3913)
+transform = Transform3D(0.801144, 0, 0, 0, 0.75926, 0, 0, 0, 1, 0.00129219, 1.91993, -28.3564)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="TopLeft" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.774763, 0, 0, 0, 0.735159, 0, 0, 0, 0.999998, -0.766824, 2.66178, -17.3913)
+transform = Transform3D(0.801144, 0, 0, 0, 0.759258, 0, 0, 0, 0.999998, -0.793156, 2.68603, -28.3564)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="TopRight" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.774763, 0, 0, 0, 0.735159, 0, 0, 0, 0.999998, 0.79252, 2.6485, -17.3913)
+transform = Transform3D(0.801144, 0, 0, 0, 0.759258, 0, 0, 0, 0.999998, 0.819286, 2.67231, -28.3564)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="BotLeft" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.774763, 0, 0, 0, 0.735159, 0, 0, 0, 0.999998, -0.775934, 1.19017, -17.3913)
+transform = Transform3D(0.801144, 0, 0, 0, 0.759258, 0, 0, 0, 0.999998, -0.802576, 1.16618, -28.3564)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="BotRight" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.774763, 0, 0, 0, 0.735158, 0, 0, 0, 0.999997, 0.781263, 1.19017, -17.3916)
+transform = Transform3D(0.801144, 0, 0, 0, 0.759256, 0, 0, 0, 0.999997, 0.807645, 1.16618, -28.3567)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="FpsShotgun" parent="Camera3D" node_paths=PackedStringArray("camera", "targets") instance=ExtResource("2_te26y")]
