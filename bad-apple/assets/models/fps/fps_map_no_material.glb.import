@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cv5uf5pu113l6"
-path="res://.godot/imported/map2.glb-f39d3c90553b3998067a3c9a10fc5a59.scn"
+uid="uid://cuv1jt2go54yw"
+path="res://.godot/imported/fps_map_no_material.glb-67c58c3a0c18bd73b1a4dcd766723b3f.scn"
 
 [deps]
 
-source_file="res://scenes/fps/map/map2.glb"
-dest_files=["res://.godot/imported/map2.glb-f39d3c90553b3998067a3c9a10fc5a59.scn"]
+source_file="res://assets/models/fps/fps_map_no_material.glb"
+dest_files=["res://.godot/imported/fps_map_no_material.glb-67c58c3a0c18bd73b1a4dcd766723b3f.scn"]
 
 [params]
 

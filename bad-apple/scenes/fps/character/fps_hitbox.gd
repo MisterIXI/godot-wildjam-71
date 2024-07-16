@@ -17,10 +17,10 @@ func _on_area_entered(area):
 	elif area.is_in_group("Key"):
 		FpsResourceManagerInstance.change_resource("key", 1)
 		area.get_parent().free()
-	elif area.is_in_group("Animation"):
-		area.get_parent().play()
+	elif area.is_in_group("Door"):
+		area.play()
 
 
 func _on_area_exited(area):
-	if area.is_in_group("Animation"):
-		area.get_parent().reverse(0.5)
+	if area.is_in_group("Door"):
+		area.reverse(0.5)

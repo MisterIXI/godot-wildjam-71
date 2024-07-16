@@ -32,7 +32,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="LabelSettings" id="LabelSettings_g7nmw"]
 font = ExtResource("18_ylyjh")
 font_size = 41
-font_color = Color(0.935189, 0.933778, 0.933172, 1)
+font_color = Color(0.909804, 0.823529, 0, 1)
 outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 4
