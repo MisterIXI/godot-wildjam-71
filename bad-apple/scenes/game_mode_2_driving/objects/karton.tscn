@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmtx8663nw0bf"]
+
+[ext_resource type="PackedScene" uid="uid://cqybkj1mgxyrl" path="res://assets/models/driving/karton.glb" id="1_q7kvi"]
+[ext_resource type="Material" uid="uid://itwu7ivcdu3l" path="res://scenes/game_mode_2_driving/objects/karton.tres" id="2_eod3k"]
+
+[node name="karton" instance=ExtResource("1_q7kvi")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_eod3k")
