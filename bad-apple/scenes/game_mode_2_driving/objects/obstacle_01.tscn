@@ -1,15 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://w2os1uitncyn"]
+[gd_scene load_steps=12 format=3 uid="uid://w2os1uitncyn"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/objects/obstacle_01.gd" id="1_qnsd4"]
+[ext_resource type="PackedScene" uid="uid://bmtx8663nw0bf" path="res://scenes/game_mode_2_driving/objects/karton.tscn" id="2_togj2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xe6am"]
-friction = 0.76
-
-[sub_resource type="BoxMesh" id="BoxMesh_omyqh"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbuda"]
-albedo_color = Color(1, 1, 0, 1)
+friction = 0.41
+bounce = 1.0
+absorbent = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ndew5"]
 size = Vector3(2, 2, 2)
@@ -206,8 +203,9 @@ script = ExtResource("1_qnsd4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0, 1, 0, 0.95, 0)
-mesh = SubResource("BoxMesh_omyqh")
-surface_material_override/0 = SubResource("StandardMaterial3D_mbuda")
+
+[node name="karton" parent="MeshInstance3D" instance=ExtResource("2_togj2")]
+transform = Transform3D(-3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0, 0, 1, -0.95, 3.43899e-06, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.00897217, 1, -0.0284119)

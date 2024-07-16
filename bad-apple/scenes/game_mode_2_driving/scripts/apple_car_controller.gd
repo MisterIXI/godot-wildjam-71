@@ -3,6 +3,7 @@ extends VehicleBody3D
 # CAR CONTROLLER , FUNCTIONS JUMP, STEER LEFT AND RIGHT, DISABLE
 # IMPORT CARSETTINGS
 @export var car_settings : CarSettings
+@export var ui_controller: UI_Controller
 @onready var grounded_object : Node3D = $Ground
 
 # VARIABLES JUMPING
@@ -80,8 +81,8 @@ func get_speed_kph():
 
 func _process(_delta : float):
 	var speed = get_speed_kph()
-	var info = "%.0f km/h" % speed
-	hud_kmh_text.text  = info
+	
+	ui_controller.set_tacho(speed)
 
 func _physics_process(_delta):
 	current_speed_mps = (global_position- last_pos).length() / _delta
@@ -115,7 +116,7 @@ func handle_acceleration():
 		light_brake_right.light_energy = 0
 
 func get_hit_speed():
-	apply_impulse(Vector3.RIGHT * 10000, Vector3.ZERO)
+	apply_impulse(Vector3.RIGHT * 20000, Vector3.ZERO)
 	
 
 

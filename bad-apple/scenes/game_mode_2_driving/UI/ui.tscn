@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://0xckiqqspste"]
+
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/UI/ui.gd" id="1_rygih"]
+[ext_resource type="Texture2D" uid="uid://cliwayvnqlm8k" path="res://assets/images/driving_apple/tacho.png" id="1_yt3r0"]
+[ext_resource type="Texture2D" uid="uid://8bw6h6w3a0hb" path="res://assets/images/driving_apple/tacho_needle.png" id="2_e5kt7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l81tc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gf7ig"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_rygih")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+clip_contents = true
+custom_minimum_size = Vector2(350, 350)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -324.0
+offset_top = -322.0
+offset_right = 700.0
+offset_bottom = 702.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.285, 0.285)
+
+[node name="tacho_bg" type="TextureRect" parent="HUD/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_yt3r0")
+expand_mode = 2
+
+[node name="Panel" type="Panel" parent="HUD/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l81tc")
+
+[node name="kmh_label" type="Label" parent="HUD/MarginContainer/Panel"]
+layout_mode = 2
+anchor_top = 0.333984
+anchor_bottom = 0.333984
+offset_top = 465.0
+offset_right = 1024.0
+offset_bottom = 558.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 14
+theme_override_constants/shadow_outline_size = 22
+theme_override_font_sizes/font_size = 100
+text = "40 Km/h"
+horizontal_alignment = 1
+vertical_alignment = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Panel" parent="HUD/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gf7ig")
+
+[node name="tacho_needle" type="TextureRect" parent="HUD/MarginContainer/Panel2"]
+layout_mode = 2
+offset_right = 1024.0
+offset_bottom = 1024.0
+rotation = 1.93906
+pivot_offset = Vector2(512, 512)
+texture = ExtResource("2_e5kt7")
