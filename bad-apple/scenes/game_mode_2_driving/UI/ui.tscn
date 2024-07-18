@@ -118,9 +118,29 @@ theme_override_font_sizes/font_size = 33
 text = "x 3"
 horizontal_alignment = 2
 
-[node name="Condition_Container" type="MarginContainer" parent="HUD"]
+[node name="Player_coin_progress" type="MarginContainer" parent="HUD"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_left = 1002.0
+offset_top = 34.0
+offset_right = 1066.0
+offset_bottom = 98.0
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 55
+
+[node name="coin_value" type="Panel" parent="HUD/Player_coin_progress"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dbpoq")
+
+[node name="Label" type="Label" parent="HUD/Player_coin_progress/coin_value"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 7.0
-offset_right = 145.0
-offset_bottom = 47.0
+offset_left = 52.0
+offset_top = -28.0
+offset_right = 128.0
+offset_bottom = 18.0
+theme_override_font_sizes/font_size = 33
+text = "x 5555"
+horizontal_alignment = 2
+vertical_alignment = 1

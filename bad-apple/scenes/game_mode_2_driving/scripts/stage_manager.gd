@@ -9,6 +9,7 @@ var offset = 0
 # VARIABLE  CONST MODULE SIZE & SPAWNING TIME 
 const BASE_MODULE_SIZE : int = 36
 const BASE_DELETE_BUFFER : int  = 24
+const BASE_SPAWNING_RAD : int  =36
 # VARIABLE IS GAME RUNNING
 var is_gamemode_running = false
 # VARIABLE SET STAGE MOTHER
@@ -24,7 +25,9 @@ var current_checkpoints = 0
 # VARIABLE HEALTH
 var current_health  = 3
 var player_node : Node3D = null
-var player_node_offset : float =  0
+var player_node_offset : float =  -176.574
+# VARIABLE UI_CONTROLLER
+var ui_controller : UI_Controller  =null
 ################################################## SIGNALS ##################################
 signal next_chunk
 signal driving_gamemode_start(stage : Node3D, difficult : DrivingStage)
@@ -33,16 +36,18 @@ signal player_hit
 func _ready():
 	next_chunk.connect(on_next_chunk)
 	driving_gamemode_start.connect(on_gamemode_start)
+	# ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
 
 ################### MAIN LOOP ####################
 func _process(_delta):
 
-	if player_node.global_position.x  > player_node_offset + BASE_MODULE_SIZE:
+	if player_node.global_position.x  > player_node_offset + BASE_SPAWNING_RAD:
+		player_node_offset = player_node.global_position.x
 		on_next_chunk()
 
-func set_player(_self: Node3D):
+func set_player(_self: Node3D, _ui_c : UI_Controller):
 	player_node = _self
-
+	ui_controller =_ui_c
 func spawn_modules():
 	if !is_gamemode_running:
 		return
@@ -105,7 +110,9 @@ func get_rnd_weighted_object(type: int):
 			return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
 
 func add_coin_to_wallet():
-	current_checkpoints += 1
-	print(current_checkpoints)
+	current_checkpoints -= 1
+	## ADD coins
+	ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables - current_checkpoints))
+	
 	if current_checkpoints >= current_stage_difficult.win_condition_obstacles_cleared:
 		print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
