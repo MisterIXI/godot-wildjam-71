@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6qe3ynt4kfem"]
+
+[ext_resource type="PackedScene" uid="uid://c3w0fgdf2shlt" path="res://assets/models/driving/collectable.glb" id="1_so0uq"]
+
+[node name="collectable" instance=ExtResource("1_so0uq")]

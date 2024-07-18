@@ -5,8 +5,8 @@ extends Node3D
 var allready_done : bool = false
 
 func _on_area_3d_body_entered(_body:Node3D):
-	print(_body)
 	if _body != null && !allready_done:
-		anim.play("hit")
+		anim.play("died")
 		#### ADD COIN TO MANAGER
 		allready_done = true
+		Driving_Stage_Manager.add_coin_to_wallet()

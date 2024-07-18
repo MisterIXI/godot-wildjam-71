@@ -5,8 +5,8 @@ class_name UI_Controller
 const MIN_ROTATION : float = -111
 const MAX_ROTATION : float = 111
 
-@onready var tacho_label : Label = $HUD/MarginContainer/Panel/kmh_label
-@onready var tacho_needle : TextureRect = $HUD/MarginContainer/Panel2/tacho_needle
+@onready var tacho_label : Label = $HUD/Tacho_MarginCon/Panel/kmh_label
+@onready var tacho_needle : TextureRect = $HUD/Tacho_MarginCon/Panel2/tacho_needle
 func set_tacho (x : float):
 
 	set_tacho_needle(x)

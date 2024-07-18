@@ -1,4 +1,5 @@
 extends Node
+
 # variable queue for better performance
 var spawn_queue = []
 # Random 
@@ -22,7 +23,8 @@ var current_checkpoints = 0
 
 # VARIABLE HEALTH
 var current_health  = 3
-
+var player_node : Node3D = null
+var player_node_offset : float =  0
 ################################################## SIGNALS ##################################
 signal next_chunk
 signal driving_gamemode_start(stage : Node3D, difficult : DrivingStage)
@@ -31,7 +33,15 @@ signal player_hit
 func _ready():
 	next_chunk.connect(on_next_chunk)
 	driving_gamemode_start.connect(on_gamemode_start)
-	
+
+################### MAIN LOOP ####################
+func _process(_delta):
+
+	if player_node.global_position.x  > player_node_offset + BASE_MODULE_SIZE:
+		on_next_chunk()
+
+func set_player(_self: Node3D):
+	player_node = _self
 
 func spawn_modules():
 	if !is_gamemode_running:
@@ -58,10 +68,7 @@ func on_player_get_hit():
 func on_next_chunk():
 	if !is_gamemode_running:
 		return
-	current_checkpoints += 1
-	print(current_checkpoints)
-	if current_checkpoints >= current_stage_difficult.win_condition_obstacles_cleared:
-		print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
+
 	spawn_modules()
 
 func on_gamemode_start(stage, difficult):
@@ -96,3 +103,9 @@ func get_rnd_weighted_object(type: int):
 		_: #default
 			print("default")
 			return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
+
+func add_coin_to_wallet():
+	current_checkpoints += 1
+	print(current_checkpoints)
+	if current_checkpoints >= current_stage_difficult.win_condition_obstacles_cleared:
+		print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)

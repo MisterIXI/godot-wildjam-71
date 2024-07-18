@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://0xckiqqspste"]
+[gd_scene load_steps=9 format=3 uid="uid://0xckiqqspste"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/UI/ui.gd" id="1_rygih"]
 [ext_resource type="Texture2D" uid="uid://cliwayvnqlm8k" path="res://assets/images/driving_apple/tacho.png" id="1_yt3r0"]
 [ext_resource type="Texture2D" uid="uid://8bw6h6w3a0hb" path="res://assets/images/driving_apple/tacho_needle.png" id="2_e5kt7"]
+[ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="4_3no2s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l81tc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gf7ig"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78v02"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbpoq"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_rygih")
@@ -19,7 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+[node name="Tacho_MarginCon" type="MarginContainer" parent="HUD"]
 clip_contents = true
 custom_minimum_size = Vector2(350, 350)
 layout_mode = 1
@@ -36,16 +41,16 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.285, 0.285)
 
-[node name="tacho_bg" type="TextureRect" parent="HUD/MarginContainer"]
+[node name="tacho_bg" type="TextureRect" parent="HUD/Tacho_MarginCon"]
 layout_mode = 2
 texture = ExtResource("1_yt3r0")
 expand_mode = 2
 
-[node name="Panel" type="Panel" parent="HUD/MarginContainer"]
+[node name="Panel" type="Panel" parent="HUD/Tacho_MarginCon"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_l81tc")
 
-[node name="kmh_label" type="Label" parent="HUD/MarginContainer/Panel"]
+[node name="kmh_label" type="Label" parent="HUD/Tacho_MarginCon/Panel"]
 layout_mode = 2
 anchor_top = 0.333984
 anchor_bottom = 0.333984
@@ -66,14 +71,56 @@ horizontal_alignment = 1
 vertical_alignment = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel2" type="Panel" parent="HUD/MarginContainer"]
+[node name="Panel2" type="Panel" parent="HUD/Tacho_MarginCon"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gf7ig")
 
-[node name="tacho_needle" type="TextureRect" parent="HUD/MarginContainer/Panel2"]
+[node name="tacho_needle" type="TextureRect" parent="HUD/Tacho_MarginCon/Panel2"]
 layout_mode = 2
 offset_right = 1024.0
 offset_bottom = 1024.0
 rotation = 1.93906
 pivot_offset = Vector2(512, 512)
 texture = ExtResource("2_e5kt7")
+
+[node name="Player_Container" type="MarginContainer" parent="HUD"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 55
+
+[node name="life_icon" type="Panel" parent="HUD/Player_Container"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_78v02")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("4_3no2s")
+expand_mode = 2
+
+[node name="life_value" type="Panel" parent="HUD/Player_Container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dbpoq")
+
+[node name="Label" type="Label" parent="HUD/Player_Container/life_value"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 6.0
+offset_right = 123.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 33
+text = "x 3"
+horizontal_alignment = 2
+
+[node name="Condition_Container" type="MarginContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 7.0
+offset_right = 145.0
+offset_bottom = 47.0
