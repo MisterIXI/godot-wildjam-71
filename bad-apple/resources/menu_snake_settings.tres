@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SnakeSettings" load_steps=2 format=3 uid="uid://nswarqmkt6a1"]
+
+[ext_resource type="Script" path="res://components/snake/snake_settings.gd" id="1_yia1q"]
+
+[resource]
+script = ExtResource("1_yia1q")
+base_speed = 3.755
+turn_speed = 8.143
+grid_dims = Vector2i(16, 16)
+grid_tile_size = 1.0
