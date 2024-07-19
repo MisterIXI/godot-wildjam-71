@@ -9,6 +9,7 @@ const MAX_ROTATION : float = 111
 @onready var tacho_needle : TextureRect = $HUD/Tacho_MarginCon/Panel2/tacho_needle
 # collectable value
 @onready var collectable_value : Label = $HUD/Player_coin_progress/coin_value/Label
+@export var life_array : Array[TextureRect]  = []
 
 func set_tacho (x : float):
 
@@ -23,3 +24,11 @@ func set_tacho_needle (speed : float):
 
 func update_collectable(_text : String):
 	collectable_value.text = _text
+
+func update_life(value : int):
+	print ("get damage value:", value)
+	for x in range(0,5):
+		if value -1>= x:
+			life_array[x].visible = true
+		else:
+			life_array[x].visible = false

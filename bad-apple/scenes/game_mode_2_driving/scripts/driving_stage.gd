@@ -13,4 +13,5 @@ class_name DrivingStage
 # VARIABLE SNAKE SPEED - higher is harder
 @export var snakeSpeed :float = 1
 @export var win_condition_collectables : int = 50
+@export var max_health : int = 5
 @export var difficult_string = "EASY MODE"

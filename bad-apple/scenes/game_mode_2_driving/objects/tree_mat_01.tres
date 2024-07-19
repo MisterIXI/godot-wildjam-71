@@ -4,3 +4,4 @@
 
 [resource]
 albedo_texture = ExtResource("1_seewg")
+backlight = Color(0.94902, 0, 0, 1)

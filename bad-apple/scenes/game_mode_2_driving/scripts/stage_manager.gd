@@ -23,7 +23,7 @@ var current_snake_speed : float  = 1
 var current_checkpoints = 0
 
 # VARIABLE HEALTH
-var current_health  = 3
+var current_health  = 5
 var player_node : Node3D = null
 var player_node_offset : float =  -176.574
 # VARIABLE UI_CONTROLLER
@@ -36,11 +36,12 @@ signal player_hit
 func _ready():
 	next_chunk.connect(on_next_chunk)
 	driving_gamemode_start.connect(on_gamemode_start)
-	# ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
+
 
 ################### MAIN LOOP ####################
 func _process(_delta):
-
+	if !is_gamemode_running :
+		return
 	if player_node.global_position.x  > player_node_offset + BASE_SPAWNING_RAD:
 		player_node_offset = player_node.global_position.x
 		on_next_chunk()
@@ -48,6 +49,7 @@ func _process(_delta):
 func set_player(_self: Node3D, _ui_c : UI_Controller):
 	player_node = _self
 	ui_controller =_ui_c
+	ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
 func spawn_modules():
 	if !is_gamemode_running:
 		return
@@ -66,6 +68,8 @@ func spawn_modules():
 ### SIGNAL CREATE PLAYER DAMAGE
 func on_player_get_hit():
 	current_health -= 1
+	### SET UI 
+	ui_controller.update_life(current_health)
 	if current_health <= 0:
 		print ("GAME OVER")
 	player_hit.emit()
@@ -87,6 +91,8 @@ func on_gamemode_start(stage, difficult):
 func on_restart():
 	# RESET ALL VARIABLES AND POSITIONS
 	offset = 0
+	current_health = current_stage_difficult.max_health
+	current_checkpoints = 0
 	# PlayerPosition reset 0
 	
 	for x in spawn_queue:
@@ -110,9 +116,9 @@ func get_rnd_weighted_object(type: int):
 			return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
 
 func add_coin_to_wallet():
-	current_checkpoints -= 1
+	current_checkpoints += 1
 	## ADD coins
 	ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables - current_checkpoints))
 	
-	if current_checkpoints >= current_stage_difficult.win_condition_obstacles_cleared:
+	if current_checkpoints >= current_stage_difficult.win_condition_collectables:
 		print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
