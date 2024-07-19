@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cabu8cd38fjpj"]
+[gd_scene load_steps=23 format=3 uid="uid://cabu8cd38fjpj"]
 
 [ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_ohkib"]
 [ext_resource type="Script" path="res://components/snake/snake_grid_manager.gd" id="2_nytcp"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="8_j2iwg"]
 [ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="9_gbjld"]
 [ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="11_hdpto"]
-[ext_resource type="Script" path="res://scenes/_debug/yannik/snake/snake_charmer.gd" id="12_4ahd3"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nca5f"]
 size = Vector2(16, 16)
@@ -54,13 +53,6 @@ fill_from = Vector2(0.5, 0.5)
 font_size = 50
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Curve3D" id="Curve3D_mqvfg"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.687, 0, -1.794, 0, 0, 0, 0, 0, 0, 4.442, 0, -0.612, 1.44, 0, 0, 0, 0, 0, 1.883, 0, 2.224, 2.325, 0, -2.565, -3.105, 0, 0.605, -2.141, 0, 2.637, 2.305, 0, 0, -2.625, 0, 0, -2.268, 0, 0.725, 2.135, 0, 0, 0, 0, 0, -5.012, 0, 1.718, 0, 0, 0, 0, 0, 0, -4.423, 0, -1.748, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 9
 
 [node name="SnakeGame" type="Node3D"]
 
@@ -222,10 +214,3 @@ vertical_alignment = 1
 [node name="ResizeOnVisible" type="Node" parent="HUD/Control"]
 process_mode = 3
 script = ExtResource("11_hdpto")
-
-[node name="Path3D" type="Path3D" parent="."]
-curve = SubResource("Curve3D_mqvfg")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.493473, 0, -0.869754, 0, 1, 0, 0.869754, 0, -0.493473, -0.827, 0, -2.653)
-script = ExtResource("12_4ahd3")
