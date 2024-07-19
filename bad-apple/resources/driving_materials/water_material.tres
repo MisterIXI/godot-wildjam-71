@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cwpxwvmy0d8bt"]
+
+[ext_resource type="Shader" path="res://resources/shaders/water.gdshader" id="1_pwo23"]
+
+[resource]
+shader = ExtResource("1_pwo23")
+shader_parameter/motion = Vector2(0, 0)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)

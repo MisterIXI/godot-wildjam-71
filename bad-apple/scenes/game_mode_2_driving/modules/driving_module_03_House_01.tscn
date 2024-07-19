@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://caj8kwp55vmku"]
+[gd_scene load_steps=9 format=3 uid="uid://caj8kwp55vmku"]
 
 [ext_resource type="Material" uid="uid://b3h8kw6s7gc78" path="res://resources/driving_materials/road_mat.tres" id="2_tnlrw"]
-[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/next_chunk_area.gd" id="3_wlmsf"]
 [ext_resource type="PackedScene" uid="uid://bipt16majnpyw" path="res://scenes/game_mode_2_driving/objects/tree_02.tscn" id="4_byd5y"]
 [ext_resource type="PackedScene" uid="uid://ch7dtk8jw4b7x" path="res://scenes/game_mode_2_driving/objects/fence_01.tscn" id="5_m165g"]
 [ext_resource type="PackedScene" uid="uid://cyspb3fq8fyn2" path="res://scenes/game_mode_2_driving/objects/tree_04.tscn" id="6_730se"]
@@ -12,9 +11,6 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_mioha"]
 lightmap_size_hint = Vector2i(32, 32)
 size = Vector2(6, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_otyd4"]
-size = Vector3(25, 4.499, 0.512207)
 
 [node name="Driving_Module_02" type="Node3D"]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
@@ -33,16 +29,6 @@ surface_material_override/0 = ExtResource("2_tnlrw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.68248e-07, 0, -15)
 mesh = SubResource("PlaneMesh_mioha")
 surface_material_override/0 = ExtResource("2_tnlrw")
-
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.46393e-07, 0, -17.4824)
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("3_wlmsf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74939, 0.243896)
-shape = SubResource("BoxShape3D_otyd4")
 
 [node name="Node" type="Node" parent="."]
 
@@ -204,5 +190,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.64745, 0, -9.76215)
 
 [node name="tree_22" parent="side_right" instance=ExtResource("7_4t3tu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0783, 0, -10.6606)
-
-[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8kqj1wd8gp20"]
+
+[ext_resource type="Material" uid="uid://2yp4wrpyh377" path="res://resources/materials/water_material.tres" id="1_vhqhh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_at0n0"]
+size = Vector2(18, 18)
+
+[sub_resource type="Animation" id="Animation_qa6re"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:surface_material_override/0:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gvp4l"]
+resource_name = "test_floating"
+length = 10.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:surface_material_override/0:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dvwa3"]
+_data = {
+"RESET": SubResource("Animation_qa6re"),
+"test_floating": SubResource("Animation_gvp4l")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_am63r"]
+
+[sub_resource type="Curve" id="Curve_ga0c4"]
+_data = [Vector2(0, 1), 0.0, -0.10601, 0, 0, Vector2(0.997462, 0.00729573), -3.44942, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ihsjf"]
+
+[node name="Water_left" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0912, 0, -9.3162)
+mesh = SubResource("PlaneMesh_at0n0")
+surface_material_override/0 = ExtResource("1_vhqhh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dvwa3")
+}
+autoplay = "test_floating"
+speed_scale = 0.1
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6739, 0, 1.43187)
+transparency = 0.7
+explosiveness = 0.89
+randomness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("SphereMesh_am63r")
+emission_shape = 6
+emission_colors = PackedColorArray(1.34766e-06, 0.952283, 0.952283, 1, 0.968627, 0.752941, 0.752941, 1, 0.823031, 0.816503, 0, 1, 2.02149e-06, 0.453206, 0.692002, 1, 0.392103, 0.582538, 1, 1)
+emission_ring_axis = Vector3(1, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 15.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 5, 0)
+initial_velocity_max = 6.0
+linear_accel_max = 3.0
+damping_min = 2.415
+damping_max = 2.415
+angle_max = 720.0
+scale_amount_min = 0.7
+scale_amount_curve = SubResource("Curve_ga0c4")
+color = Color(0.552941, 1, 1, 1)
+color_ramp = SubResource("Gradient_ihsjf")

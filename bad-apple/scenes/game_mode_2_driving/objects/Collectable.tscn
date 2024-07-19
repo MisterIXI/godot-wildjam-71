@@ -1,154 +1,154 @@
 [gd_scene load_steps=11 format=3 uid="uid://bsdycoqjw8xqo"]
 
-[ext_resource type="Material" uid="uid://0utl87tp654j" path="res://scenes/game_mode_2_driving/objects/Collectable_mat.tres" id="1_qjewm"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/objects/Collectable.gd" id="1_xfy7x"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_2a5kc"]
+[ext_resource type="PackedScene" uid="uid://c6qe3ynt4kfem" path="res://scenes/game_mode_2_driving/objects/Collectable_base.tscn" id="2_n1oj4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cxajj"]
 size = Vector3(0.967072, 2, 0.737305)
 
-[sub_resource type="Animation" id="Animation_tacqx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q784o"]
+albedo_color = Color(1, 0.788235, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kmsn2"]
+material = SubResource("StandardMaterial3D_q784o")
+
+[sub_resource type="Curve" id="Curve_cg70y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.548223, 0.318681), -1.64613, -1.64613, 0, 0, Vector2(0.994924, 0.0136187), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_bcbb7"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/path = NodePath("collectable:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.185, 0)]
+"values": [Vector3(0, 0.00706023, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("collectable:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("collectable:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.145, 0.145, 0.145)]
 }
 
-[sub_resource type="Animation" id="Animation_vpws7"]
-resource_name = "default"
-length = 4.0
+[sub_resource type="Animation" id="Animation_v1x14"]
+resource_name = "collectable_anim"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("collectable:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 1.5708), Vector3(0, 3.14159, 1.5708), Vector3(0, 6.28319, 1.5708)]
+"values": [Vector3(0, 0.00706023, 0), Vector3(0, 0.082, 0), Vector3(0, 0.00706023, 0), Vector3(0, 0.00706023, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/path = NodePath("collectable:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 4),
-"transitions": PackedFloat32Array(1, 2.46229, 1),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0.252183, 0), Vector3(0, 0.932, 0), Vector3(0, 0.252183, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_osyyn"]
-resource_name = "hit"
+[sub_resource type="Animation" id="Animation_kylru"]
+resource_name = "died"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:scale")
-tracks/0/interp = 2
+tracks/0/path = NodePath("CPUParticles3D:emitting")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.25, 0.25, 0.25), Vector3(0, 0, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 2
+tracks/1/path = NodePath("collectable:rotation")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 2),
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 1.5708), Vector3(0.802851, 1.96873, 2.86234)]
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
+tracks/2/path = NodePath("collectable:scale")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.145, 0.145, 0.145), Vector3(0.075, 0.075, 0.075), Vector3(0, 0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MeshInstance3D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0.185, 0), Vector3(0, 0.26, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CPUParticles3D:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:collision_layer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rbrrs"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qtrqr"]
 _data = {
-"RESET": SubResource("Animation_tacqx"),
-"default": SubResource("Animation_vpws7"),
-"hit": SubResource("Animation_osyyn")
+"RESET": SubResource("Animation_bcbb7"),
+"collectable_anim": SubResource("Animation_v1x14"),
+"died": SubResource("Animation_kylru")
 }
-
-[sub_resource type="SphereMesh" id="SphereMesh_32v0q"]
-
-[sub_resource type="Curve" id="Curve_cg70y"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.791878, 0.868132), -1.64613, -1.64613, 0, 0, Vector2(0.994924, 0.0136187), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [node name="Collectable" type="Node3D"]
 script = ExtResource("1_xfy7x")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-9.04998e-07, -0.25, 0, 0.25, -9.04998e-07, 0, 0, 0, 0.25, 0, 0.185, 0)
-mesh = SubResource("TorusMesh_2a5kc")
-surface_material_override/0 = ExtResource("1_qjewm")
+[node name="collectable" parent="." instance=ExtResource("2_n1oj4")]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 0, 0.00706023, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 0
@@ -158,30 +158,31 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00431824, 1, -0.00830078)
 shape = SubResource("BoxShape3D_cxajj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_rbrrs")
-}
-autoplay = "default"
-
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 0, 0.768393, 0)
-transparency = 0.2
+transform = Transform3D(0.145, -6.33815e-09, 2.77049e-16, 0, -6.33815e-09, -0.145, 6.33815e-09, 0.145, -6.33815e-09, 0, 0.768393, 0)
 cast_shadow = 0
 emitting = false
-amount = 50
-lifetime = 0.4
+amount = 10
+lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 lifetime_randomness = 1.0
-mesh = SubResource("SphereMesh_32v0q")
+mesh = SubResource("SphereMesh_kmsn2")
 emission_shape = 1
 emission_sphere_radius = 1.0
-direction = Vector3(0, 10, 0)
-gravity = Vector3(0, 80, 0)
-angle_max = 143.2
-scale_amount_min = 0.2
+direction = Vector3(0, 5, 0)
+spread = 180.0
+gravity = Vector3(0, 25, 0)
+angle_max = 302.6
+scale_amount_min = 0.05
+scale_amount_max = 0.2
 scale_amount_curve = SubResource("Curve_cg70y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qtrqr")
+}
+autoplay = "collectable_anim"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

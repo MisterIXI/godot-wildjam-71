@@ -38,7 +38,7 @@ func on_timer_timeout():
 # ON SPEED TIMER TIMEOUT GET NEW PLAYER SPEED
 func on_speedTimer_timeout():
 	if is_active:
-		snake_speed = maxf(default_speed, player_node.global_position.distance_to(global_position)/2)
+		snake_speed = maxf(default_speed, player_node.global_position.distance_to(global_position)/3)
 		angry_animator.play("set_fokus")
 		print ("snake speed: %d" % snake_speed)
 

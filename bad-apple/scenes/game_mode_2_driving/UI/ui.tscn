@@ -1,15 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://0xckiqqspste"]
+[gd_scene load_steps=8 format=3 uid="uid://0xckiqqspste"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/UI/ui.gd" id="1_rygih"]
 [ext_resource type="Texture2D" uid="uid://cliwayvnqlm8k" path="res://assets/images/driving_apple/tacho.png" id="1_yt3r0"]
 [ext_resource type="Texture2D" uid="uid://8bw6h6w3a0hb" path="res://assets/images/driving_apple/tacho_needle.png" id="2_e5kt7"]
+[ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="4_3no2s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l81tc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gf7ig"]
 
-[node name="UI" type="CanvasLayer"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbpoq"]
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("life_array")]
 script = ExtResource("1_rygih")
+life_array = [NodePath("HUD/Player_Container/life_icon_01/TextureRect"), NodePath("HUD/Player_Container/life_icon_02/TextureRect"), NodePath("HUD/Player_Container/life_icon_03/TextureRect"), NodePath("HUD/Player_Container/life_icon_04/TextureRect"), NodePath("HUD/Player_Container/life_icon_05/TextureRect")]
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -19,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+[node name="Tacho_MarginCon" type="MarginContainer" parent="HUD"]
 clip_contents = true
 custom_minimum_size = Vector2(350, 350)
 layout_mode = 1
@@ -36,16 +40,16 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.285, 0.285)
 
-[node name="tacho_bg" type="TextureRect" parent="HUD/MarginContainer"]
+[node name="tacho_bg" type="TextureRect" parent="HUD/Tacho_MarginCon"]
 layout_mode = 2
 texture = ExtResource("1_yt3r0")
 expand_mode = 2
 
-[node name="Panel" type="Panel" parent="HUD/MarginContainer"]
+[node name="Panel" type="Panel" parent="HUD/Tacho_MarginCon"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_l81tc")
 
-[node name="kmh_label" type="Label" parent="HUD/MarginContainer/Panel"]
+[node name="kmh_label" type="Label" parent="HUD/Tacho_MarginCon/Panel"]
 layout_mode = 2
 anchor_top = 0.333984
 anchor_bottom = 0.333984
@@ -66,14 +70,122 @@ horizontal_alignment = 1
 vertical_alignment = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel2" type="Panel" parent="HUD/MarginContainer"]
+[node name="Panel2" type="Panel" parent="HUD/Tacho_MarginCon"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gf7ig")
 
-[node name="tacho_needle" type="TextureRect" parent="HUD/MarginContainer/Panel2"]
+[node name="tacho_needle" type="TextureRect" parent="HUD/Tacho_MarginCon/Panel2"]
 layout_mode = 2
 offset_right = 1024.0
 offset_bottom = 1024.0
 rotation = 1.93906
 pivot_offset = Vector2(512, 512)
 texture = ExtResource("2_e5kt7")
+
+[node name="Player_Container" type="MarginContainer" parent="HUD"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 55
+
+[node name="life_icon_01" type="Panel" parent="HUD/Player_Container"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_01"]
+top_level = true
+layout_mode = 0
+offset_left = 67.0
+offset_top = 59.0
+offset_right = 131.0
+offset_bottom = 123.0
+texture = ExtResource("4_3no2s")
+expand_mode = 1
+
+[node name="life_icon_02" type="Panel" parent="HUD/Player_Container"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_02"]
+top_level = true
+layout_mode = 0
+offset_left = 131.0
+offset_top = 59.0
+offset_right = 195.0
+offset_bottom = 123.0
+texture = ExtResource("4_3no2s")
+expand_mode = 1
+
+[node name="life_icon_03" type="Panel" parent="HUD/Player_Container"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_03"]
+top_level = true
+layout_mode = 0
+offset_left = 195.0
+offset_top = 59.0
+offset_right = 259.0
+offset_bottom = 123.0
+texture = ExtResource("4_3no2s")
+expand_mode = 1
+
+[node name="life_icon_04" type="Panel" parent="HUD/Player_Container"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_04"]
+top_level = true
+layout_mode = 0
+offset_left = 259.0
+offset_top = 59.0
+offset_right = 323.0
+offset_bottom = 123.0
+texture = ExtResource("4_3no2s")
+expand_mode = 1
+
+[node name="life_icon_05" type="Panel" parent="HUD/Player_Container"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_05"]
+top_level = true
+layout_mode = 0
+offset_left = 323.0
+offset_top = 59.0
+offset_right = 387.0
+offset_bottom = 123.0
+texture = ExtResource("4_3no2s")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="HUD"]
+custom_minimum_size = Vector2(350, 80)
+layout_mode = 2
+offset_left = 55.0
+offset_top = 55.0
+offset_right = 405.0
+offset_bottom = 135.0
+
+[node name="Player_coin_progress" type="MarginContainer" parent="HUD"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_left = 1002.0
+offset_top = 34.0
+offset_right = 1066.0
+offset_bottom = 98.0
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 55
+
+[node name="coin_value" type="Panel" parent="HUD/Player_coin_progress"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dbpoq")
+
+[node name="Label" type="Label" parent="HUD/Player_coin_progress/coin_value"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = -28.0
+offset_right = 128.0
+offset_bottom = 18.0
+theme_override_font_sizes/font_size = 33
+text = "x 5555"
+horizontal_alignment = 2
+vertical_alignment = 1

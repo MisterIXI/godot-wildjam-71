@@ -1,16 +1,22 @@
-[gd_resource type="Resource" script_class="DrivingStage" load_steps=6 format=3 uid="uid://ctfulgtls581h"]
+[gd_resource type="Resource" script_class="DrivingStage" load_steps=11 format=3 uid="uid://ctfulgtls581h"]
 
+[ext_resource type="PackedScene" uid="uid://bsdycoqjw8xqo" path="res://scenes/game_mode_2_driving/objects/Collectable.tscn" id="1_aioty"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/driving_stage.gd" id="1_db47q"]
 [ext_resource type="PackedScene" uid="uid://w2os1uitncyn" path="res://scenes/game_mode_2_driving/objects/obstacle_01.tscn" id="1_rhubo"]
 [ext_resource type="PackedScene" uid="uid://br64u28r0ciq8" path="res://scenes/game_mode_2_driving/modules/driving_module_01.tscn" id="2_mpo4w"]
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="3_onqbb"]
 [ext_resource type="PackedScene" uid="uid://caj8kwp55vmku" path="res://scenes/game_mode_2_driving/modules/driving_module_03_House_01.tscn" id="4_u6h76"]
+[ext_resource type="PackedScene" uid="uid://cjtocbx3u7518" path="res://scenes/game_mode_2_driving/modules/driving_module_04_House_Max.tscn" id="5_fijj8"]
+[ext_resource type="PackedScene" uid="uid://771ywelnuxwq" path="res://scenes/game_mode_2_driving/modules/driving_module_05_House_1Side.tscn" id="6_4wucu"]
+[ext_resource type="PackedScene" uid="uid://j5qiy7lb2ifo" path="res://scenes/game_mode_2_driving/modules/driving_module_05_House_1SideR.tscn" id="7_05xep"]
+[ext_resource type="PackedScene" uid="uid://cep5jlh66351w" path="res://scenes/game_mode_2_driving/modules/driving_module_07_water.tscn" id="8_5uuh5"]
 
 [resource]
 script = ExtResource("1_db47q")
-modules_array = Array[PackedScene]([ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("4_u6h76")])
-obstacle_array = Array[PackedScene]([ExtResource("1_rhubo")])
-collectable_array = Array[PackedScene]([ExtResource("1_rhubo")])
+modules_array = Array[PackedScene]([ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("4_u6h76"), ExtResource("5_fijj8"), ExtResource("5_fijj8"), ExtResource("5_fijj8"), ExtResource("6_4wucu"), ExtResource("7_05xep"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5")])
+obstacle = ExtResource("1_rhubo")
+collectable = ExtResource("1_aioty")
 snakeSpeed = 1.0
-win_condition_obstacles_cleared = 50
+win_condition_collectables = 50
+max_health = 5
 difficult_string = "EASY MODE"

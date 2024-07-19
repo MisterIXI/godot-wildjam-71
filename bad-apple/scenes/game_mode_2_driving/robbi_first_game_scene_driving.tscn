@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=36 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="6_0f2w5"]
 [ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="6_lup2t"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/viewport_hotfix.gd" id="9_1lhy2"]
+[ext_resource type="PackedScene" uid="uid://c6qe3ynt4kfem" path="res://scenes/game_mode_2_driving/objects/Collectable_base.tscn" id="10_62doa"]
 [ext_resource type="PackedScene" uid="uid://0xckiqqspste" path="res://scenes/game_mode_2_driving/UI/ui.tscn" id="14_3dijy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vhwtj"]
@@ -123,6 +124,43 @@ resource_local_to_scene = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo1pm"]
 albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
 
+[sub_resource type="Animation" id="Animation_uyq36"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("collectable:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oajo2"]
+resource_name = "ui_idle_rot"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("collectable:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5y8s7"]
+_data = {
+"RESET": SubResource("Animation_uyq36"),
+"ui_idle_rot": SubResource("Animation_oajo2")
+}
+
 [node name="Driving_scene_import" type="Node3D" node_paths=PackedStringArray("stage_object")]
 script = ExtResource("1_vgcbq")
 stage_object = NodePath("Stage")
@@ -213,6 +251,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qic6x")
 surface_material_override/1 = SubResource("StandardMaterial3D_uo1pm")
 script = ExtResource("9_1lhy2")
 viewport_texture = ExtResource("5_5jef8")
+
+[node name="collectable" parent="Entities/Camera/mirror/Mirror/mirror" instance=ExtResource("10_62doa")]
+transform = Transform3D(0.135, 0, 0, 0, 0.135, 0, 0, 0, 0.135, 0, 1.10201, -3.31294)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Entities/Camera/mirror/Mirror/mirror"]
+libraries = {
+"": SubResource("AnimationLibrary_5y8s7")
+}
+autoplay = "ui_idle_rot"
+speed_scale = 0.2
 
 [node name="player_car" parent="Entities" node_paths=PackedStringArray("ui_controller") instance=ExtResource("1_g6064")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -176.574, 0.381, 0)

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dthq5lik3xnct"]
+
+[ext_resource type="Texture2D" uid="uid://3s07rhut1nxg" path="res://assets/images/driving_apple/water_texture_02_L.png" id="2_xjxr8"]
+[ext_resource type="Texture2D" uid="uid://cbtwh8cd02oiw" path="res://assets/images/driving_apple/water_texture.png" id="3_1y44s"]
+
+[resource]
+detail_mask = ExtResource("3_1y44s")
+detail_albedo = ExtResource("2_xjxr8")
