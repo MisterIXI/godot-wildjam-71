@@ -19,6 +19,9 @@ func _on_area_entered(area):
 		area.get_parent().free()
 	elif area.is_in_group("Door"):
 		area.play()
+	elif area.is_in_group("BananaBullet"):
+		FpsResourceManagerInstance.change_resource("armor", -FpsResourceManagerInstance.banana_damage)
+		area.kill()
 
 
 func _on_area_exited(area):

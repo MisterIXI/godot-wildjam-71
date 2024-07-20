@@ -15,10 +15,13 @@ enum BANANA_STATE {
 @export var anim_player : AnimationPlayer = null
 @export var particles : CPUParticles3D = null
 @export var model : Node3D = null
+@export var bullet : PackedScene = null
+@export var barrel: Node3D = null
 
 var player : Node3D = null
 var state : BANANA_STATE = BANANA_STATE.IDLE
 var goal_pos : Vector3 = Vector3.ZERO
+var dummy_node: Node3D = null
 
 var player_is_in_shoot_area : bool = false
 var player_ray : RayCast3D = null
@@ -48,6 +51,8 @@ func _ready() -> void:
 		ray.name = "walk_ray_" + str(i * 360.0 / walk_directions)
 		ray.enabled = true
 		walk_rays.append(ray)
+	dummy_node = Node3D.new()
+	add_child(dummy_node)
 
 
 func _physics_process(delta):
@@ -158,11 +163,11 @@ func start_reposition() -> void:
 	walk_rays.shuffle()
 
 	for ray in walk_rays:
-		print(ray.name)
 		if ray.get_collider() == null:
-			print("-------------")
-			ray.global_rotation = Vector3.ZERO
-			goal_pos = ray.global_position + ray.target_position - Vector3(0.5,0,0.5)
+			dummy_node.get_parent().remove_child(dummy_node)
+			ray.add_child(dummy_node)
+			dummy_node.position = ray.target_position
+			goal_pos = dummy_node.global_position - Vector3(0.5,0,0.5)
 			state = BANANA_STATE.REPOSITION
 			return
 	await get_tree().create_timer(1, false).timeout
@@ -172,3 +177,10 @@ func start_reposition() -> void:
 		state = BANANA_STATE.WALK
 	else:
 		state = BANANA_STATE.IDLE
+
+
+func shoot() -> void:
+	var _bullet = bullet.instantiate() as FpsBananaBullet
+	_bullet.set_deferred("global_position", barrel.global_position)
+	_bullet.set_deferred("player", player)
+	get_parent().add_child(_bullet)
