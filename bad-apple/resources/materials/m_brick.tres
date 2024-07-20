@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://by3sjx1dc2t3w"]
+
+[ext_resource type="Texture2D" uid="uid://b3g6masjnj338" path="res://assets/images/fps/level/brickwall_normal.png" id="1_5mr5k"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vmfbt"]
+load_path = "res://.godot/imported/brickwall_albedo.png-2a48ef6cb5f3996bb5adbfb642e6e238.ctex"
+
+[resource]
+albedo_texture = SubResource("CompressedTexture2D_vmfbt")
+roughness = 0.8
+normal_enabled = true
+normal_texture = ExtResource("1_5mr5k")
