@@ -41,7 +41,7 @@ func _handle_movement(delta : float) -> void:
 
 	var max_speed = movement_speed
 	if Input.is_action_pressed("shift"):
-		max_speed /= 2
+		max_speed /= 2	
 
 	if input.x:
 		vel_x = move_toward(vel_x, input.x * max_speed, movement_runon)
