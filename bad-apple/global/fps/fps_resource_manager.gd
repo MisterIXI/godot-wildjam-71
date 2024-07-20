@@ -57,7 +57,9 @@ enum WEAPOND_TYPE {SHOTGUN, KNIFE}
 @export var armor_heal_time : float = 0.04
 
 @export var shotgut_cooldown : float = 1
-@export var bullet_damage : int = 20
+@export var bullet_damage : int = 10
+
+@export var banana_damage : int = 20
 
 @onready var _start_weapon : WEAPOND_TYPE = weapon
 @onready var _start_ammo : int = ammo

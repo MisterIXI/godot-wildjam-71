@@ -1,6 +1,8 @@
 class_name FpsBullet
 extends Node3D
 
+@export var damage_material : Material = null
+
 var object : Node3D = null:
 	get:
 		return object
@@ -8,16 +10,6 @@ var object : Node3D = null:
 		object = value
 		hit(object)
 
-var start_position : Vector3 = Vector3(0, 0, 0):
-	get:
-		return start_position
-	set(value):
-		start_position = value
-		_distance = global_position.distance_to(start_position)
-		# _scale = ((_distance / FpsResourceManagerInstance.bullet_range) * FpsResourceManagerInstance.bullet_spread) +1
-
-var _distance = 0.0
-# var _scale = 1.0
 var _particles : CPUParticles3D
 
 func _ready():
@@ -30,7 +22,15 @@ func _ready():
 
 
 func hit(_object : Node3D) -> void:
+	if _object.is_in_group("Enemy"):
+		var _parent = _object
+		for i in range(6):
+			_parent = _parent.get_parent()
+			if _parent is FpsBanana:
+				_parent.damage()
+				_particles.material_override = damage_material
+				break
+	
 	_particles.emitting = true
-
 	await _particles.finished
 	queue_free()
