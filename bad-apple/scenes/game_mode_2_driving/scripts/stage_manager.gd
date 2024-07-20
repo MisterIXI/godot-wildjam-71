@@ -49,7 +49,9 @@ func _process(_delta):
 func set_player(_self: Node3D, _ui_c : UI_Controller):
 	player_node = _self
 	ui_controller =_ui_c
-	ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
+	#ROOOOBERT
+	if (current_stage_difficult):
+		ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
 func spawn_modules():
 	if !is_gamemode_running:
 		return
