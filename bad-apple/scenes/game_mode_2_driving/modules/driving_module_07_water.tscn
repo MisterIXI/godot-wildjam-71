@@ -29,10 +29,10 @@ surface_material_override/0 = ExtResource("1_daydt")
 [node name="Node3D_Water" type="Node3D" parent="."]
 
 [node name="Water_left" parent="Node3D_Water" instance=ExtResource("2_ihnr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3462, -0.0332713, -9.3162)
+transform = Transform3D(3.46, 0, 0, 0, 3.46, 0, 0, 0, 3.46, -16.1365, -0.0332713, -12.8799)
 
 [node name="Water_left2" parent="Node3D_Water" instance=ExtResource("2_ihnr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2902, 0.102393, -9.3162)
+transform = Transform3D(-1.51241e-07, 0, -3.46, 0, 3.46, 0, 3.46, 0, -1.51241e-07, 15.5043, 0.102393, -12.4762)
 
 [node name="side_left" type="Node3D" parent="."]
 

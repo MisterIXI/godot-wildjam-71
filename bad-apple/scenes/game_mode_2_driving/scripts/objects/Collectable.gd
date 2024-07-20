@@ -9,4 +9,4 @@ func _on_area_3d_body_entered(_body:Node3D):
 		anim.play("died")
 		#### ADD COIN TO MANAGER
 		allready_done = true
-		Driving_Stage_Manager.add_coin_to_wallet()
+		Stage_Manager.instance.get_collectable.emit()

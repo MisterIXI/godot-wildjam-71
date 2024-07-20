@@ -76,7 +76,6 @@ func _input(_event):
 ################################ START
 func _ready():
 	start_rotation = global_rotation
-	Driving_Stage_Manager.set_player(self,ui_controller)
 
 func get_speed_kph():
 	return current_speed_mps * 3600.0 /1000.0
