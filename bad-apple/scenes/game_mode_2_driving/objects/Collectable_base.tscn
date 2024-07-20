@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6qe3ynt4kfem"]
+[gd_scene load_steps=3 format=3 uid="uid://c6qe3ynt4kfem"]
 
 [ext_resource type="PackedScene" uid="uid://c3w0fgdf2shlt" path="res://assets/models/driving/collectable.glb" id="1_so0uq"]
+[ext_resource type="Material" uid="uid://0utl87tp654j" path="res://scenes/game_mode_2_driving/objects/Collectable_mat.tres" id="2_r87nd"]
 
 [node name="collectable" instance=ExtResource("1_so0uq")]
+
+[node name="Torus" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_r87nd")
