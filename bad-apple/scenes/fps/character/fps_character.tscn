@@ -36,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Targets" type="Node3D" parent="Camera3D"]
 transform = Transform3D(0.574999, 0, 0, 0, 0.575, 0, 0, 0, 0.574999, 0, 0, 0)
+visible = false
 
 [node name="TopCenter" type="MeshInstance3D" parent="Camera3D/Targets"]
 transform = Transform3D(0.801144, 0, 0, 0, 0.568572, 0, 0, 0, 1, 0.001, 2.49457, -28.356)

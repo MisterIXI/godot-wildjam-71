@@ -2179,7 +2179,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.623168, 0.912492, -0.050588
 shape = SubResource("BoxShape3D_5bjvs")
 
 [node name="FpsBanana" type="CharacterBody3D" parent="." node_paths=PackedStringArray("shoot_area", "walk_area")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20813, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20813, 0, -14.743)
 script = ExtResource("8_nb4ug")
 shoot_area = NodePath("ShootArea")
 walk_area = NodePath("WalkArea")
