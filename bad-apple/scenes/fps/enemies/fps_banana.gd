@@ -77,6 +77,8 @@ func _physics_process(delta):
 			velocity = Vector3.ZERO
 		BANANA_STATE.WALK:
 			if can_see_player():
+				if player_is_in_shoot_area:
+					state = BANANA_STATE.SHOOT
 				if anim_player:
 					anim_player.play("walk")
 				look_at(player.global_position, Vector3.UP)
