@@ -36,98 +36,94 @@ signal player_hit
 signal get_collectable
 
 func _ready():
-	next_chunk.connect(on_next_chunk)
-	# driving_gamemode_start.connect(on_gamemode_start)
-	ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
-	is_gamemode_running = true
-	current_snake_speed = current_stage_difficult.snakeSpeed
-	get_collectable.connect(on_collected_coin)
-	if instance == null:
-		instance = self
-	else:
-		return
+    next_chunk.connect(on_next_chunk)
+    # driving_gamemode_start.connect(on_gamemode_start)
+    ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
+    is_gamemode_running = true
+    current_snake_speed = current_stage_difficult.snakeSpeed
+    get_collectable.connect(on_collected_coin)
+    if instance == null:
+        instance = self
+    else:
+        return
 
 
 ################### MAIN LOOP ####################
 func _process(_delta):
-	if !is_gamemode_running :
-		return
-	if player_node.global_position.x  > player_node_offset + BASE_SPAWNING_RAD:
-		player_node_offset = player_node.global_position.x
-		on_next_chunk()
+    if !is_gamemode_running :
+        return
+    if player_node.global_position.x  > player_node_offset + BASE_SPAWNING_RAD:
+        player_node_offset = player_node.global_position.x
+        on_next_chunk()
 
-func set_player(_self: Node3D, _ui_c : UI_Controller):
-	player_node = _self
-	ui_controller =_ui_c
-	ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
 func spawn_modules():
-	if !is_gamemode_running:
-		return
-	rng.randomize()	
-	var instance_Mother = current_stage_difficult.modules_array[rng.randi_range(0, current_stage_difficult.modules_array.size()-1)].instantiate()
-	instance_Mother.position.x  = BASE_MODULE_SIZE * offset
-	stage_object_holder.add_child(instance_Mother)
-	spawn_queue.push_back(instance_Mother)
-	#delete oldest
-	if spawn_queue.size() > BASE_DELETE_BUFFER:
-		spawn_queue[0].queue_free()
-		spawn_queue.pop_front()
+    if !is_gamemode_running:
+        return
+    rng.randomize()    
+    var instance_Mother = current_stage_difficult.modules_array[rng.randi_range(0, current_stage_difficult.modules_array.size()-1)].instantiate()
+    instance_Mother.position.x  = BASE_MODULE_SIZE * offset
+    stage_object_holder.add_child(instance_Mother)
+    spawn_queue.push_back(instance_Mother)
+    #delete oldest
+    if spawn_queue.size() > BASE_DELETE_BUFFER:
+        spawn_queue[0].queue_free()
+        spawn_queue.pop_front()
 
-	offset += 1
+    offset += 1
 ### SIGNAL CREATE PLAYER DAMAGE
 func on_player_get_hit():
-	current_health -= 1
-	### SET UI 
-	ui_controller.update_life(current_health)
-	if current_health <= 0:
-		print ("GAME OVER")
-	player_hit.emit()
+    current_health -= 1
+    ### SET UI 
+    ui_controller.update_life(current_health)
+    if current_health <= 0:
+        print ("GAME OVER")
+    player_hit.emit()
 ### SIGNAL CREATE NEW CHUNK
 func on_next_chunk():
-	if !is_gamemode_running:
-		return
+    if !is_gamemode_running:
+        return
 
-	spawn_modules()
+    spawn_modules()
 
 # func on_gamemode_start(stage, difficult):
-# 	print ("game started")
-# 	# DEFINE NEW STAGE OBJECT HOLDER AND START GAMEMODE
-# 	stage_object_holder = stage
-# 	current_stage_difficult = difficult
-# 	current_snake_speed = current_stage_difficult.snakeSpeed
-# 	is_gamemode_running = true
-	
+#     print ("game started")
+#     # DEFINE NEW STAGE OBJECT HOLDER AND START GAMEMODE
+#     stage_object_holder = stage
+#     current_stage_difficult = difficult
+#     current_snake_speed = current_stage_difficult.snakeSpeed
+#     is_gamemode_running = true
+    
 func on_restart():
-	# RESET ALL VARIABLES AND POSITIONS
-	offset = 0
-	current_health = current_stage_difficult.max_health
-	current_checkpoints = 0
-	# PlayerPosition reset 0
-	
-	for x in spawn_queue:
-		x.queue_free()
+    # RESET ALL VARIABLES AND POSITIONS
+    offset = 0
+    current_health = current_stage_difficult.max_health
+    current_checkpoints = 0
+    # PlayerPosition reset 0
+    
+    for x in spawn_queue:
+        x.queue_free()
 
 func get_rnd_weighted_object(type: int):
-	rng.randomize()
+    rng.randomize()
 
-	match type:
-		0:#modules
-			return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
-		1:
-		#obstacles
-			return rng.randi_range(0, current_stage_difficult.obstacle_array.size()-1)
-		2:
-		#collectable
-			return rng.randi_range(0, current_stage_difficult.collectable_array.size()-1)
+    match type:
+        0:#modules
+            return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
+        1:
+        #obstacles
+            return rng.randi_range(0, current_stage_difficult.obstacle_array.size()-1)
+        2:
+        #collectable
+            return rng.randi_range(0, current_stage_difficult.collectable_array.size()-1)
 
-		_: #default
-			print("default")
-			return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
+        _: #default
+            print("default")
+            return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
 
 func on_collected_coin():
-	current_checkpoints += 1
-	## ADD coins
-	ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables - current_checkpoints))
-	
-	if current_checkpoints >= current_stage_difficult.win_condition_collectables:
-		print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
+    current_checkpoints += 1
+    ## ADD coins
+    ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables - current_checkpoints))
+    
+    if current_checkpoints >= current_stage_difficult.win_condition_collectables:
+        print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
