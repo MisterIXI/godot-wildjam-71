@@ -61,9 +61,11 @@ func _physics_process(delta):
 		BANANA_STATE.SHOOT:
 			if can_see_player():
 				look_at(player.global_position, Vector3.UP)
-				if anim_player:
+				if anim_player and anim_player.current_animation != "shoot":
 					anim_player.play("shoot")
 					await anim_player.animation_finished
+				else:
+					return
 				if player_is_in_shoot_area:
 					start_reposition()
 				elif player_is_in_walk_area:
@@ -162,7 +164,6 @@ func _on_walk_area_exited(area : Area3D) -> void:
 
 func start_reposition() -> void:
 	walk_rays.shuffle()
-
 	for ray in walk_rays:
 		if ray.get_collider() == null:
 			dummy_node.get_parent().remove_child(dummy_node)
@@ -171,13 +172,6 @@ func start_reposition() -> void:
 			goal_pos = dummy_node.global_position + (ray.global_position - dummy_node.global_position).normalized() * 0.5
 			state = BANANA_STATE.REPOSITION
 			return
-	await get_tree().create_timer(1, false).timeout
-	if player_is_in_shoot_area:
-		state = BANANA_STATE.SHOOT
-	elif player_is_in_walk_area:
-		state = BANANA_STATE.WALK
-	else:
-		state = BANANA_STATE.IDLE
 
 
 func shoot() -> void:
