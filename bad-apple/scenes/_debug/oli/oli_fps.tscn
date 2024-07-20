@@ -2128,3 +2128,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.623168, 0.912492, -0.050588
 shape = SubResource("BoxShape3D_5bjvs")
 
 [node name="FpsBanana" parent="." instance=ExtResource("8_emfju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5796, 0, -16.4125)
