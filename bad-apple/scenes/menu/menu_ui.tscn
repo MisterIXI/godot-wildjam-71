@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://d32d7obf2eilp"]
+
+[ext_resource type="Script" path="res://scenes/menu/menu_manager.gd" id="1_v4tkr"]
+[ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
+[ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="2_w8b4v"]
+
+[node name="Menu_UI" type="Control" node_paths=PackedStringArray("MainMenu", "PauseMenu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v4tkr")
+MainMenu = NodePath("MainMenu")
+PauseMenu = NodePath("PauseMenu")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_w8b4v")
+
+[node name="MenuButtons" type="Control" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -300.0
+offset_right = 450.0
+offset_bottom = 300.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/MenuButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MenuButtons/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="BTNStartGame" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_c0msn")
+theme_override_font_sizes/font_size = 51
+text = "Start Game"
+alignment = 0
+
+[node name="BTNOptions" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_c0msn")
+text = "Options"
+alignment = 0
+
+[node name="BTNCredits" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_c0msn")
+text = "Credits"
+alignment = 0
+
+[node name="BTNQuit" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_c0msn")
+text = "Quit Game"
+alignment = 0
+
+[node name="PauseMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Credits" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseEffect" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNStartGame" to="MainMenu" method="_on_btn_start_game_pressed"]
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNOptions" to="MainMenu" method="_on_btn_options_pressed"]
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNCredits" to="MainMenu" method="_on_btn_credits_pressed"]
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNQuit" to="MainMenu" method="_on_btn_quit_pressed"]
