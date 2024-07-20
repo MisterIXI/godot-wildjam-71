@@ -26,6 +26,9 @@ func _ready():
 func _physics_process(delta):
 	_handle_movement(delta)
 
+	if position.y < -20:
+		FpsResourceManagerInstance.health -= 100
+
 
 func _handle_movement(delta : float) -> void:
 	if not is_on_floor():

@@ -22,14 +22,9 @@ func _ready():
 
 
 func hit(_object : Node3D) -> void:
-	if _object.is_in_group("Enemy"):
-		var _parent = _object
-		for i in range(6):
-			_parent = _parent.get_parent()
-			if _parent is FpsBanana:
-				_parent.damage()
-				_particles.material_override = damage_material
-				break
+	if _object is FpsBanana:
+		_object.damage()
+		_particles.material_override = damage_material
 	
 	_particles.emitting = true
 	await _particles.finished
