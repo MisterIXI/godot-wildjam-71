@@ -13,7 +13,7 @@
 
 [resource]
 script = ExtResource("1_db47q")
-modules_array = Array[PackedScene]([ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("4_u6h76"), ExtResource("5_fijj8"), ExtResource("5_fijj8"), ExtResource("5_fijj8"), ExtResource("6_4wucu"), ExtResource("7_05xep"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5"), ExtResource("8_5uuh5")])
+modules_array = Array[PackedScene]([ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("2_mpo4w"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("3_onqbb"), ExtResource("4_u6h76"), ExtResource("5_fijj8"), ExtResource("5_fijj8"), ExtResource("5_fijj8"), ExtResource("6_4wucu"), ExtResource("7_05xep"), ExtResource("8_5uuh5"), ExtResource("6_4wucu"), ExtResource("6_4wucu"), ExtResource("4_u6h76")])
 obstacle = ExtResource("1_rhubo")
 collectable = ExtResource("1_aioty")
 snakeSpeed = 1.0

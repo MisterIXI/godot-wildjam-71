@@ -19,7 +19,8 @@ func _ready():
 	#snake_speed = Driving_Stage_Manager.current_stage_difficult.snakeSpeed
 	timer.timeout.connect(on_timer_timeout)
 	speed_timer.timeout.connect(on_speedTimer_timeout)
-	Driving_Stage_Manager.player_hit.connect(on_player_hit)
+
+	Stage_Manager.instance.player_hit.connect(on_player_hit)
 
 
 func _process(_delta):

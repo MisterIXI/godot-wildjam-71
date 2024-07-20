@@ -8,3 +8,4 @@ albedo_texture = ExtResource("1_gffdl")
 rim_enabled = true
 detail_enabled = true
 detail_mask = ExtResource("2_s55wq")
+texture_filter = 0

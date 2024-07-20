@@ -12,7 +12,7 @@
 lightmap_size_hint = Vector2i(32, 32)
 size = Vector2(6, 6)
 
-[node name="Driving_Module_02" type="Node3D"]
+[node name="Driving_Module_03" type="Node3D"]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
 
 [node name="Road_Mid" type="MeshInstance3D" parent="."]

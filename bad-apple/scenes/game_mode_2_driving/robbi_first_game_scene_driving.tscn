@@ -1,9 +1,9 @@
 [gd_scene load_steps=36 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
-[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/robbi_first_game_scene_driving.gd" id="1_vgcbq"]
 [ext_resource type="Resource" uid="uid://ctfulgtls581h" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
 [ext_resource type="Environment" uid="uid://bw0c1xbiy5pxb" path="res://resources/driving_materials/driving_environment_webGL.tres" id="3_dnire"]
+[ext_resource type="PackedScene" uid="uid://bdax7v06sg23g" path="res://scenes/game_mode_2_driving/stage_manager.tscn" id="3_eat8x"]
 [ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="3_rmupy"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/ground_follow.gd" id="4_50ffv"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/MirrorCamera.gd" id="4_dghpx"]
@@ -161,12 +161,15 @@ _data = {
 "ui_idle_rot": SubResource("Animation_oajo2")
 }
 
-[node name="Driving_scene_import" type="Node3D" node_paths=PackedStringArray("stage_object")]
-script = ExtResource("1_vgcbq")
-stage_object = NodePath("Stage")
-difficult = ExtResource("2_64env")
+[node name="Driving_scene_import" type="Node3D"]
 
-[node name="Obstacles" type="Node3D" parent="."]
+[node name="UI" parent="." instance=ExtResource("14_3dijy")]
+
+[node name="Driving_Stage_Manager" parent="." node_paths=PackedStringArray("stage_object_holder", "player_node", "ui_controller") instance=ExtResource("3_eat8x")]
+stage_object_holder = NodePath("../Stage")
+current_stage_difficult = ExtResource("2_64env")
+player_node = NodePath("../Entities/player_car")
+ui_controller = NodePath("../UI")
 
 [node name="StartEnviroment" type="Node3D" parent="."]
 
@@ -195,14 +198,14 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="StartEnviroment"]
 environment = ExtResource("3_dnire")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StartEnviroment" node_paths=PackedStringArray("player_node")]
+[node name="Grass" type="MeshInstance3D" parent="StartEnviroment" node_paths=PackedStringArray("player_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51745, 0)
 material_override = SubResource("StandardMaterial3D_6wf40")
 mesh = SubResource("PlaneMesh_cujyj")
 script = ExtResource("4_50ffv")
 player_node = NodePath("../../Entities/player_car")
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="StartEnviroment/MeshInstance3D"]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="StartEnviroment/Grass"]
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 4.46874, 0)
 transparency = 0.5
 cast_shadow = 0
@@ -297,7 +300,3 @@ transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -252, 
 
 [node name="Driving_Module_08" parent="Stage" instance=ExtResource("6_0f2w5")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -288, 0, 0)
-
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="UI" parent="." instance=ExtResource("14_3dijy")]

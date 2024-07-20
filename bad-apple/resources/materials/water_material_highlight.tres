@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://g2eof4q2o416"]
+
+[ext_resource type="Texture2D" uid="uid://3s07rhut1nxg" path="res://assets/images/driving_apple/water_texture_02_L.png" id="2_pv8fw"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("2_pv8fw")
+rim_enabled = true
+detail_enabled = true
+detail_mask = ExtResource("2_pv8fw")
+texture_filter = 0

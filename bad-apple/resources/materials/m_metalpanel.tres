@@ -1,0 +1,12 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://bo5o3wu5d2qn6"]
+
+[ext_resource type="Texture2D" uid="uid://cgjkoxidge655" path="res://assets/images/fps/level/metalpanel_albedo.png" id="1_aoqv7"]
+[ext_resource type="Texture2D" uid="uid://fkwisynuiktn" path="res://assets/images/fps/level/metalpanel_ORM.png" id="2_5figl"]
+[ext_resource type="Texture2D" uid="uid://bbabx4klxyhjt" path="res://assets/images/fps/level/metalpanel_normal.png" id="3_pfl47"]
+
+[resource]
+albedo_texture = ExtResource("1_aoqv7")
+orm_texture = ExtResource("2_5figl")
+normal_enabled = true
+normal_texture = ExtResource("3_pfl47")
+rim_texture = ExtResource("3_pfl47")
