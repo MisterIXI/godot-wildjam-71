@@ -38,24 +38,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 transform = Transform3D(0.574999, 0, 0, 0, 0.575, 0, 0, 0, 0.574999, 0, 0, 0)
 visible = false
 
-[node name="Center" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.801144, 0, 0, 0, 0.75926, 0, 0, 0, 1, 0.00129219, 1.91993, -28.3564)
+[node name="TopCenter" type="MeshInstance3D" parent="Camera3D/Targets"]
+transform = Transform3D(0.801144, 0, 0, 0, 0.568572, 0, 0, 0, 1, 0.001, 2.49457, -28.356)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="TopLeft" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.801144, 0, 0, 0, 0.759258, 0, 0, 0, 0.999998, -0.793156, 2.68603, -28.3564)
+transform = Transform3D(0.801144, 0, 0, 0, 0.568571, 0, 0, 0, 0.999998, -0.793156, 2.49459, -28.3564)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="TopRight" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.801144, 0, 0, 0, 0.759258, 0, 0, 0, 0.999998, 0.819286, 2.67231, -28.3564)
+transform = Transform3D(0.801144, 0, 0, 0, 0.568571, 0, 0, 0, 0.999998, 0.819286, 2.48432, -28.3564)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="BotLeft" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.801144, 0, 0, 0, 0.759258, 0, 0, 0, 0.999998, -0.802576, 1.16618, -28.3564)
+transform = Transform3D(0.801144, 0, 0, 0, 0.568571, 0, 0, 0, 0.999998, -0.802576, 1.35645, -28.3564)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="BotRight" type="MeshInstance3D" parent="Camera3D/Targets"]
-transform = Transform3D(0.801144, 0, 0, 0, 0.759256, 0, 0, 0, 0.999997, 0.807645, 1.16618, -28.3567)
+transform = Transform3D(0.801144, 0, 0, 0, 0.568569, 0, 0, 0, 0.999997, 0.807645, 1.35645, -28.3567)
+mesh = SubResource("BoxMesh_co8ru")
+
+[node name="BotCenter" type="MeshInstance3D" parent="Camera3D/Targets"]
+transform = Transform3D(0.801144, 0, 0, 0, 0.568572, 0, 0, 0, 1, 0.001, 1.35632, -28.356)
 mesh = SubResource("BoxMesh_co8ru")
 
 [node name="FpsShotgun" parent="Camera3D" node_paths=PackedStringArray("camera", "targets") instance=ExtResource("2_te26y")]

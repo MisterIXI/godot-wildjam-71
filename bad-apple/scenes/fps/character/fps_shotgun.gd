@@ -54,19 +54,16 @@ func _shoot() -> void:
 
 	for ray in _rays:
 		if ray.is_colliding():
-			print("Hit: " + ray.name)
 			var _object = ray.get_collider()
 			var _position = ray.get_collision_point()
 
 			var _bullet = bullet.instantiate() as FpsBullet
 			_bullet.set_deferred("global_position", _position)
-			_bullet.set_deferred("start_position", camera.global_position)
 			_bullet.set_deferred("object" , _object)
 			get_tree().root.get_child(-1).add_child(_bullet)
 		else:
 			var _bullet = bullet.instantiate() as FpsBullet
 			_bullet.set_deferred("global_position", ray.to_global(ray.target_position))
-			_bullet.set_deferred("start_position", camera.global_position)
 			_bullet.set_deferred("object" , null)
 			get_tree().root.get_child(-1).add_child(_bullet)
 	
