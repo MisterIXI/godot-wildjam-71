@@ -26,4 +26,5 @@ func _on_btn_credits_pressed():
 
 
 func _on_btn_quit_pressed():
-	pass # Replace with function body.
+	print("Quit")
+	get_tree().quit()

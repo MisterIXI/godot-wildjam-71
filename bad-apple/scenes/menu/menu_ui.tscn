@@ -1,19 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://d32d7obf2eilp"]
+[gd_scene load_steps=10 format=3 uid="uid://d32d7obf2eilp"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu_manager.gd" id="1_v4tkr"]
 [ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
 [ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="2_w8b4v"]
+[ext_resource type="Script" path="res://scenes/menu/settings.gd" id="4_2kr1n"]
 
-[node name="Menu_UI" type="Control" node_paths=PackedStringArray("MainMenu", "PauseMenu")]
+[sub_resource type="Gradient" id="Gradient_pyhm6"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pxexj"]
+gradient = SubResource("Gradient_pyhm6")
+width = 1024
+height = 940
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlplk"]
+bg_color = Color(0.227451, 0.258824, 0.305882, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="SystemFont" id="SystemFont_yi31t"]
+
+[sub_resource type="Theme" id="Theme_frpq4"]
+Label/fonts/font = SubResource("SystemFont_yi31t")
+
+[node name="Menu_UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_c0msn")
 script = ExtResource("1_v4tkr")
-MainMenu = NodePath("MainMenu")
-PauseMenu = NodePath("PauseMenu")
 
 [node name="MainMenu" type="Control" parent="."]
 layout_mode = 1
@@ -45,7 +73,7 @@ theme_override_constants/margin_left = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MenuButtons/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="BTNStartGame" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
@@ -81,13 +109,139 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Settings" type="Control" parent="."]
+[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("GradientTexture2D_pxexj")
+
+[node name="Settings" type="Control" parent="." node_paths=PackedStringArray("hseperator", "mouse_grid")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_2kr1n")
+hseperator = NodePath("PanelContainer/VBoxContainer/HSeparator")
+mouse_grid = NodePath("PanelContainer/VBoxContainer/MouseSensGrid")
+
+[node name="PanelContainer" type="Panel" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -169.0
+offset_right = 300.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_c0msn")
+
+[node name="Header" type="Label" parent="Settings/PanelContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.0
+offset_top = 19.0
+offset_right = 58.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/PanelContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 96.865
+offset_right = 250.0
+offset_bottom = 446.865
+grow_horizontal = 2
+theme_override_constants/separation = 15
+
+[node name="VolumeGrid" type="GridContainer" parent="Settings/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="MasterV" type="Label" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVSlider" type="HSlider" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+
+[node name="SFXV" type="Label" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXVSlider" type="HSlider" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+
+[node name="MusicV" type="Label" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVSlider" type="HSlider" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+
+[node name="HSeparator" type="HSeparator" parent="Settings/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MouseSensGrid" type="GridContainer" parent="Settings/PanelContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Settings/PanelContainer/VBoxContainer/MouseSensGrid"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="Settings/PanelContainer/VBoxContainer/MouseSensGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+value = 50.0
+
+[node name="Button" type="Button" parent="Settings/PanelContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -83.0
+offset_top = 29.0
+offset_right = -26.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
+text = "back"
 
 [node name="Credits" type="Control" parent="."]
 layout_mode = 1
@@ -97,7 +251,95 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Panel" type="Panel" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -307.0
+offset_top = -192.5
+offset_right = 307.0
+offset_bottom = 192.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Label" parent="Credits/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.0
+offset_top = 19.0
+offset_right = 58.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Credits/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 91.5
+offset_right = 243.0
+offset_bottom = 334.5
+grow_horizontal = 2
+theme = SubResource("Theme_frpq4")
+columns = 2
+
+[node name="CreditOli" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "OliPohl"
+
+[node name="CreditOli2" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 15
+text = "Programming / 3D Modelling"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="CreditPhil" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Sazzles - 3D Art / Animation / Texturing"
+
+[node name="HSeparator2" type="HSeparator" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="CreditRobert" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Chocobo - Programming / 3D Art"
+
+[node name="HSeparator3" type="HSeparator" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="CreditYannik" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "MisterIXI - Programming / 2D Art"
+
+[node name="HSeparator4" type="HSeparator" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="CreditJessy" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Jessy - 2D Art"
+
 [node name="PauseEffect" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
