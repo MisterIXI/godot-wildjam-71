@@ -1,9 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmtx8663nw0bf"]
+[gd_scene load_steps=6 format=3 uid="uid://bmtx8663nw0bf"]
 
 [ext_resource type="PackedScene" uid="uid://cqybkj1mgxyrl" path="res://assets/models/driving/karton.glb" id="1_q7kvi"]
 [ext_resource type="Material" uid="uid://itwu7ivcdu3l" path="res://scenes/game_mode_2_driving/objects/karton.tres" id="2_eod3k"]
+[ext_resource type="Shader" path="res://resources/driving_materials/Material_Curved.gdshader" id="2_qh3o4"]
+[ext_resource type="Texture2D" uid="uid://c3l2ke2b246lg" path="res://assets/images/driving_apple/karton_texture.png" id="3_3qiho"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1o0qf"]
+render_priority = 0
+shader = ExtResource("2_qh3o4")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 50.0
+shader_parameter/BASE_TEX = ExtResource("3_3qiho")
 
 [node name="karton" instance=ExtResource("1_q7kvi")]
 
 [node name="Cube" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_1o0qf")
 surface_material_override/0 = ExtResource("2_eod3k")

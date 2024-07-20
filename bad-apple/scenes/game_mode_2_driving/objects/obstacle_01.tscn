@@ -1,12 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://w2os1uitncyn"]
+[gd_scene load_steps=15 format=3 uid="uid://w2os1uitncyn"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/objects/obstacle_01.gd" id="1_qnsd4"]
+[ext_resource type="Shader" path="res://resources/driving_materials/Material_Curved.gdshader" id="2_6epxx"]
 [ext_resource type="PackedScene" uid="uid://bmtx8663nw0bf" path="res://scenes/game_mode_2_driving/objects/karton.tscn" id="2_togj2"]
+[ext_resource type="Texture2D" uid="uid://c3l2ke2b246lg" path="res://assets/images/driving_apple/karton_texture.png" id="3_ybpoy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xe6am"]
 friction = 0.41
 bounce = 1.0
 absorbent = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jd81f"]
+render_priority = 1
+shader = ExtResource("2_6epxx")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 50.0
+shader_parameter/BASE_TEX = ExtResource("3_ybpoy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ndew5"]
 size = Vector3(0.759827, 0.83374, 1)
@@ -203,6 +213,7 @@ script = ExtResource("1_qnsd4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-3.61999e-06, -1, 0, 1, -3.61999e-06, 0, 0, 0, 1, 0, 0.95, 0)
+material_override = SubResource("ShaderMaterial_jd81f")
 
 [node name="karton" parent="MeshInstance3D" instance=ExtResource("2_togj2")]
 transform = Transform3D(-1.81e-06, 0.5, 0, -0.5, -1.81e-06, 0, 0, 0, 0.5, -0.95, 3.43899e-06, 0)

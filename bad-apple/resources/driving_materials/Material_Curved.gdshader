@@ -38,7 +38,7 @@ void fragment() {
 	if(tex.a < 0.3) {
 		discard;
 	}
-	
+	vec3 text = textureLod(BASE_TEX, SCREEN_UV, 0.0).rgb;
 	ALBEDO = tex.rgb;
 	ALPHA = tex.a;
 }

@@ -1,8 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8kqj1wd8gp20"]
+[gd_scene load_steps=18 format=3 uid="uid://c8kqj1wd8gp20"]
 
 [ext_resource type="PackedScene" uid="uid://c3ioelbfpkjyn" path="res://assets/models/driving/sea_plane.glb" id="1_i7err"]
 [ext_resource type="Material" uid="uid://2yp4wrpyh377" path="res://resources/materials/water_material.tres" id="1_vhqhh"]
+[ext_resource type="Shader" path="res://resources/driving_materials/Material_Curved.gdshader" id="2_e74hw"]
+[ext_resource type="Texture2D" uid="uid://bva5o3oc6tbu1" path="res://assets/images/driving_apple/water_texture_01_L.png" id="3_f8r47"]
 [ext_resource type="Material" uid="uid://g2eof4q2o416" path="res://resources/materials/water_material_highlight.tres" id="3_omgd2"]
+[ext_resource type="Texture2D" uid="uid://3s07rhut1nxg" path="res://assets/images/driving_apple/water_texture_02_L.png" id="6_s1cpf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sctak"]
+render_priority = 0
+shader = ExtResource("2_e74hw")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 50.0
+shader_parameter/BASE_TEX = ExtResource("3_f8r47")
 
 [sub_resource type="SphereMesh" id="SphereMesh_6wnnf"]
 material = ExtResource("3_omgd2")
@@ -12,6 +23,14 @@ _data = [Vector2(0, 1), 0.0, -0.10601, 0, 0, Vector2(0.997462, 0.00729573), -3.4
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_yoep6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sssts"]
+render_priority = 0
+shader = ExtResource("2_e74hw")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 50.0
+shader_parameter/BASE_TEX = ExtResource("6_s1cpf")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1flx"]
 resource_name = "sea_mat"
@@ -50,6 +69,33 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_iawv5")
 
+[sub_resource type="Animation" id="Animation_6k2ff"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sea_highlight:surface_material_override/0:uv1_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sea:surface_material_override/0:uv1_offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qytci"]
 resource_name = "water_anim"
 length = 10.0
@@ -79,33 +125,6 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(2, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_6k2ff"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sea_highlight:surface_material_override/0:uv1_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sea:surface_material_override/0:uv1_offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3wwhp"]
 _data = {
 "RESET": SubResource("Animation_6k2ff"),
@@ -115,6 +134,7 @@ _data = {
 [node name="sea_plane" instance=ExtResource("1_i7err")]
 
 [node name="sea" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_sctak")
 surface_material_override/0 = ExtResource("1_vhqhh")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="." index="1"]
@@ -145,6 +165,7 @@ color_ramp = SubResource("Gradient_yoep6")
 
 [node name="sea_highlight" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0254679, 0)
+material_override = SubResource("ShaderMaterial_sssts")
 mesh = SubResource("ArrayMesh_2y3lc")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_omgd2")

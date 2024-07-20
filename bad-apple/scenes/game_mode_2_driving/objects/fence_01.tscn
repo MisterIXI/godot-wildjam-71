@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch7dtk8jw4b7x"]
+[gd_scene load_steps=6 format=3 uid="uid://ch7dtk8jw4b7x"]
 
 [ext_resource type="PackedScene" uid="uid://c11r5mk5easay" path="res://assets/models/driving/fence_01.glb" id="1_q8vab"]
+[ext_resource type="Shader" path="res://resources/driving_materials/Material_Curved.gdshader" id="2_eevrn"]
 [ext_resource type="Material" uid="uid://bxbsrmmkl1x6s" path="res://scenes/game_mode_2_driving/objects/fence_mat_01.tres" id="2_je87t"]
+[ext_resource type="Texture2D" uid="uid://ccrisgnuojwdt" path="res://assets/images/driving_apple/metal_fence_texture.png" id="3_5aw8d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_me88w"]
+render_priority = 0
+shader = ExtResource("2_eevrn")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 50.0
+shader_parameter/BASE_TEX = ExtResource("3_5aw8d")
 
 [node name="fence_01" instance=ExtResource("1_q8vab")]
 
 [node name="Cube" parent="." index="0"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_me88w")
 surface_material_override/0 = ExtResource("2_je87t")

@@ -1,11 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://qn56wjj58bny"]
+[gd_scene load_steps=7 format=3 uid="uid://qn56wjj58bny"]
 
 [ext_resource type="PackedScene" uid="uid://coq50i54pbmhm" path="res://assets/models/driving/tree_03.glb" id="1_g5mav"]
+[ext_resource type="Shader" path="res://resources/driving_materials/Material_Curved.gdshader" id="2_dnmbf"]
 [ext_resource type="Material" uid="uid://2lvlx7ciass6" path="res://scenes/game_mode_2_driving/objects/tree_mat_01.tres" id="2_tsxnb"]
+[ext_resource type="Texture2D" uid="uid://dbu24xahslaqx" path="res://assets/images/driving_apple/tree_texture.png" id="3_0i0cc"]
 [ext_resource type="Material" uid="uid://ccro0rkh8xrd6" path="res://scenes/game_mode_2_driving/objects/tree_mat_02.tres" id="3_kve66"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ws62v"]
+render_priority = 0
+shader = ExtResource("2_dnmbf")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 50.0
+shader_parameter/BASE_TEX = ExtResource("3_0i0cc")
 
 [node name="tree_03" instance=ExtResource("1_g5mav")]
 
 [node name="Tree_01" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_ws62v")
 surface_material_override/0 = ExtResource("2_tsxnb")
 surface_material_override/1 = ExtResource("3_kve66")

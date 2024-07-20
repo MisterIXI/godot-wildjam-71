@@ -1,12 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://blxj8hxxych20"]
+[gd_scene load_steps=7 format=3 uid="uid://blxj8hxxych20"]
 
 [ext_resource type="PackedScene" uid="uid://cwmtsy1iv1v3c" path="res://assets/models/driving/house.glb" id="1_od2u2"]
 [ext_resource type="Material" uid="uid://djmq6bva5ly5i" path="res://scenes/game_mode_2_driving/objects/house_mat_01.tres" id="2_7uweo"]
+[ext_resource type="Shader" path="res://resources/driving_materials/Material_Curved.gdshader" id="2_jxo5y"]
+[ext_resource type="Texture2D" uid="uid://ca76dman0wrgx" path="res://assets/images/driving_apple/house_texture_01.png" id="3_3toc1"]
 [ext_resource type="Material" uid="uid://di6ubw8cdtmje" path="res://scenes/game_mode_2_driving/objects/house_mat_02.tres" id="3_ptsbg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y85c1"]
+render_priority = 0
+shader = ExtResource("2_jxo5y")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 50.0
+shader_parameter/BASE_TEX = ExtResource("3_3toc1")
 
 [node name="house2" instance=ExtResource("1_od2u2")]
 
 [node name="house" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_y85c1")
 surface_material_override/0 = ExtResource("2_7uweo")
 surface_material_override/1 = ExtResource("3_ptsbg")

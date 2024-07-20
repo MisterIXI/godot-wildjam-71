@@ -1,30 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cep5jlh66351w"]
+[gd_scene load_steps=3 format=3 uid="uid://cep5jlh66351w"]
 
-[ext_resource type="Material" uid="uid://b3h8kw6s7gc78" path="res://resources/driving_materials/road_mat.tres" id="1_daydt"]
+[ext_resource type="PackedScene" uid="uid://bajenmnfq7brt" path="res://scenes/game_mode_2_driving/objects/base_module_street_fence.tscn" id="1_r75ap"]
 [ext_resource type="PackedScene" uid="uid://c8kqj1wd8gp20" path="res://scenes/game_mode_2_driving/objects/water_object.tscn" id="2_ihnr3"]
-[ext_resource type="PackedScene" uid="uid://ch7dtk8jw4b7x" path="res://scenes/game_mode_2_driving/objects/fence_01.tscn" id="3_xiwf4"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_mioha"]
-lightmap_size_hint = Vector2i(32, 32)
-size = Vector2(6, 6)
 
 [node name="Driving_Module_02" type="Node3D"]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
 
-[node name="Road_Mid" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.37114e-08, 0, -3)
-mesh = SubResource("PlaneMesh_mioha")
-surface_material_override/0 = ExtResource("1_daydt")
-
-[node name="Road_Mid2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0598e-07, 0, -9)
-mesh = SubResource("PlaneMesh_mioha")
-surface_material_override/0 = ExtResource("1_daydt")
-
-[node name="Road_Mid3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.68248e-07, 0, -15)
-mesh = SubResource("PlaneMesh_mioha")
-surface_material_override/0 = ExtResource("1_daydt")
+[node name="Base" parent="." instance=ExtResource("1_r75ap")]
 
 [node name="Node3D_Water" type="Node3D" parent="."]
 
@@ -33,43 +15,3 @@ transform = Transform3D(3.46, 0, 0, 0, 3.46, 0, 0, 0, 3.46, -16.1365, -0.0332713
 
 [node name="Water_left2" parent="Node3D_Water" instance=ExtResource("2_ihnr3")]
 transform = Transform3D(-1.51241e-07, 0, -3.46, 0, 3.46, 0, 3.46, 0, -1.51241e-07, 15.5043, 0.102393, -12.4762)
-
-[node name="side_left" type="Node3D" parent="."]
-
-[node name="fence_01" parent="side_left" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -3)
-
-[node name="fence_02" parent="side_left" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -6)
-
-[node name="fence_03" parent="side_left" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -9)
-
-[node name="fence_04" parent="side_left" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -12)
-
-[node name="fence_05" parent="side_left" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -15)
-
-[node name="fence_06" parent="side_left" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, -17.8458)
-
-[node name="side_right" type="Node3D" parent="."]
-
-[node name="fence_01" parent="side_right" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.5, 0, -14.9536)
-
-[node name="fence_02" parent="side_right" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.5, 0, -11.9536)
-
-[node name="fence_03" parent="side_right" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.5, 0, -8.95356)
-
-[node name="fence_04" parent="side_right" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.5, 0, -5.95356)
-
-[node name="fence_05" parent="side_right" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.5, 0, -2.95356)
-
-[node name="fence_06" parent="side_right" instance=ExtResource("3_xiwf4")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3.5, 0, -0.107775)

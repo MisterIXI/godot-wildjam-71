@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=32 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Resource" uid="uid://ctfulgtls581h" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
@@ -22,20 +22,6 @@ friction = 0.0
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_y6pu4"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5eiuj"]
-
-[sub_resource type="Gradient" id="Gradient_83iro"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ieq5f"]
-gradient = SubResource("Gradient_83iro")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wf40"]
-albedo_color = Color(0.184596, 0.424994, 0.0421159, 1)
-roughness = 0.0
-rim_enabled = true
-rim_texture = SubResource("GradientTexture1D_ieq5f")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_cujyj"]
-size = Vector2(1000, 1000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fh2o1"]
 transparency = 1
@@ -200,8 +186,6 @@ environment = ExtResource("3_dnire")
 
 [node name="Grass" type="MeshInstance3D" parent="StartEnviroment" node_paths=PackedStringArray("player_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51745, 0)
-material_override = SubResource("StandardMaterial3D_6wf40")
-mesh = SubResource("PlaneMesh_cujyj")
 script = ExtResource("4_50ffv")
 player_node = NodePath("../../Entities/player_car")
 
@@ -225,9 +209,10 @@ color_ramp = SubResource("Gradient_jgdgo")
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Camera" parent="Entities" node_paths=PackedStringArray("car") instance=ExtResource("3_rmupy")]
-transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -181.899, 1.86468, 0)
+transform = Transform3D(-2.98023e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, -4.02642e-09, -3.67374e-08, -181.899, 1.86468, -0.355715)
 current = true
 car = NodePath("../player_car")
+target_height = 1.885
 
 [node name="mirror" type="Node3D" parent="Entities/Camera"]
 transform = Transform3D(-4.95676e-08, 2.18557e-08, -1, -0.5, 0.866025, 4.37114e-08, 0.866025, 0.5, -3.19989e-08, -0.015, 1.759, -5.256)

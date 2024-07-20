@@ -1,5 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6qe3ynt4kfem"]
+[gd_scene load_steps=6 format=3 uid="uid://c6qe3ynt4kfem"]
 
 [ext_resource type="PackedScene" uid="uid://c3w0fgdf2shlt" path="res://assets/models/driving/collectable.glb" id="1_so0uq"]
+[ext_resource type="Shader" path="res://resources/driving_materials/Material_Curved.gdshader" id="2_8gl5u"]
+
+[sub_resource type="Gradient" id="Gradient_g3tny"]
+offsets = PackedFloat32Array(0, 0.997041)
+colors = PackedColorArray(1, 1, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_scv5s"]
+gradient = SubResource("Gradient_g3tny")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7ina"]
+render_priority = 1
+shader = ExtResource("2_8gl5u")
+shader_parameter/CURVATURE = 5.0
+shader_parameter/CURVATURE_ACTIVE = 1.0
+shader_parameter/CURVATURE_DISTANCE = 50.0
+shader_parameter/BASE_TEX = SubResource("GradientTexture1D_scv5s")
 
 [node name="collectable" instance=ExtResource("1_so0uq")]
+
+[node name="Torus" parent="." index="0"]
+material_override = SubResource("ShaderMaterial_g7ina")

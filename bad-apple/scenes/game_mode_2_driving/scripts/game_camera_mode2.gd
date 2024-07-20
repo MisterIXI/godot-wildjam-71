@@ -2,7 +2,7 @@ extends Camera3D
 
 @export var car : VehicleBody3D  = null
 @export var target_distance : float = 4.2
-@export var target_height : float = 1.4
+@export var target_height : float = 1.4 ### default 1.4
 
 # CAMERA LERP SPEED
 var camera_lerp_speed : float = 20.0
