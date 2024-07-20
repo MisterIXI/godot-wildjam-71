@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://g70laiv2q5cs"]
+
+[ext_resource type="Texture2D" uid="uid://n5fpvnvvl81w" path="res://assets/images/fps/level/floortiles_normal.png" id="1_w4mst"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gkbr"]
+load_path = "res://.godot/imported/floortiles_albedo.png-76fd8861cc900541c5c0bfc78ae2b469.ctex"
+
+[resource]
+albedo_texture = SubResource("CompressedTexture2D_2gkbr")
+roughness = 0.8
+normal_enabled = true
+normal_texture = ExtResource("1_w4mst")

@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bckyam86cqws4"]
+
+[ext_resource type="Texture2D" uid="uid://cpk6vldijwo4" path="res://assets/images/fps/level/concrete_albedo.png" id="1_medl1"]
+[ext_resource type="Texture2D" uid="uid://seva5ub3534g" path="res://assets/images/fps/level/concrete_normal.png" id="2_jlvk1"]
+
+[resource]
+albedo_color = Color(0.816462, 0.746546, 0.665012, 1)
+albedo_texture = ExtResource("1_medl1")
+roughness = 0.7
+normal_enabled = true
+normal_texture = ExtResource("2_jlvk1")
