@@ -70,6 +70,7 @@ func _input(_event):
 
 	if _event.is_action_released("shift"):
 		is_handbrake = false
+		
 
 
 

@@ -1,6 +1,13 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://0utl87tp654j"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://0utl87tp654j"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yherv"]
 
 [resource]
-albedo_color = Color(0, 1, 1, 1)
-metallic = 0.56
-rim_enabled = true
+albedo_color = Color(1, 0.721569, 0, 1)
+metallic = 1.0
+roughness = 0.2
+emission = Color(1, 0.545098, 0, 1)
+emission_energy_multiplier = 7.25
+clearcoat = 0.21
+backlight = Color(1, 1, 1, 1)
+refraction_texture = SubResource("NoiseTexture2D_yherv")

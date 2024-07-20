@@ -4,15 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://bmtx8663nw0bf" path="res://scenes/game_mode_2_driving/objects/karton.tscn" id="2_togj2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xe6am"]
-friction = 0.41
-bounce = 1.0
+friction = 0.8
+rough = true
 absorbent = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ndew5"]
 size = Vector3(0.759827, 0.83374, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cxajj"]
-size = Vector3(2, 2, 2)
+size = Vector3(0.789917, 2.36127, 0.864319)
 
 [sub_resource type="Animation" id="Animation_tacqx"]
 length = 0.001
@@ -197,7 +197,7 @@ point_count = 3
 
 [node name="Obstacle_01" type="RigidBody3D"]
 collision_layer = 17
-mass = 20.0
+mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_xe6am")
 script = ExtResource("1_qnsd4")
 
@@ -216,7 +216,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.0123779, 1.49325, -0.00340574)
 shape = SubResource("BoxShape3D_cxajj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
