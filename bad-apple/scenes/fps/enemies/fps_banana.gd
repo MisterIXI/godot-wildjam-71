@@ -13,6 +13,8 @@ enum BANANA_STATE {
 @export var walk_area : Area3D = null
 @export var walk_directions : int = 4
 @export var anim_player : AnimationPlayer = null
+@export var particles : CPUParticles3D = null
+@export var model : Node3D = null
 
 var player : Node3D = null
 var state : BANANA_STATE = BANANA_STATE.IDLE
@@ -119,6 +121,9 @@ func damage() -> void:
 
 
 func die() -> void:
+	model.visible = false
+	particles.emitting = true
+	await particles.finished
 	queue_free()
 
 
@@ -160,7 +165,7 @@ func start_reposition() -> void:
 			goal_pos = ray.global_position + ray.target_position - Vector3(0.5,0,0.5)
 			state = BANANA_STATE.REPOSITION
 			return
-	await get_tree().create_timer(2, false).timeout
+	await get_tree().create_timer(1, false).timeout
 	if player_is_in_shoot_area:
 		state = BANANA_STATE.SHOOT
 	elif player_is_in_walk_area:

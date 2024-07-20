@@ -60,8 +60,8 @@ enum WEAPOND_TYPE {SHOTGUN, KNIFE}
 @export var bullet_damage : int = 10
 
 @export var banana_damage : int = 20
-@export var banana_speed : float = 1
-@export var banana_reposition_distance : float = 4
+@export var banana_speed : float = 2
+@export var banana_reposition_distance : float = 3
 
 @onready var _start_weapon : WEAPOND_TYPE = weapon
 @onready var _start_ammo : int = ammo

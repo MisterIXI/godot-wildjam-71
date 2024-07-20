@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/fps/character/fps_bullet.gd" id="1_ugdoq"]
 [ext_resource type="Material" uid="uid://cd6o4oi3236f1" path="res://resources/fps/fps_gunshot_material.tres" id="2_qmple"]
-[ext_resource type="Material" uid="uid://bj3kngyvtairp" path="res://resources/fps/fps_gunshot_miss_material.tres" id="3_bdm1w"]
+[ext_resource type="Material" uid="uid://cyeesif3yy3f0" path="res://resources/fps/fps_gunshot_miss_material.tres" id="3_bdm1w"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jg8vw"]
 size = Vector3(0.1, 0.1, 0.1)
