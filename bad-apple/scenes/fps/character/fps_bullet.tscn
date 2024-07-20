@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://j3koh7kvyrcs"]
+[gd_scene load_steps=7 format=3 uid="uid://j3koh7kvyrcs"]
 
 [ext_resource type="Script" path="res://scenes/fps/character/fps_bullet.gd" id="1_ugdoq"]
 [ext_resource type="Material" uid="uid://cd6o4oi3236f1" path="res://resources/fps/fps_gunshot_material.tres" id="2_qmple"]
+[ext_resource type="Material" uid="uid://bj3kngyvtairp" path="res://resources/fps/fps_gunshot_miss_material.tres" id="3_bdm1w"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jg8vw"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_v3bdy"]
-material = ExtResource("2_qmple")
+[sub_resource type="QuadMesh" id="QuadMesh_ggwyn"]
+material = ExtResource("3_bdm1w")
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="Curve" id="Curve_0wnfd"]
@@ -16,6 +17,7 @@ point_count = 3
 
 [node name="FpsBullet" type="Node3D" groups=["PlayerBullet"]]
 script = ExtResource("1_ugdoq")
+damage_material = ExtResource("2_qmple")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -28,7 +30,7 @@ amount = 50
 one_shot = true
 explosiveness = 1.0
 lifetime_randomness = 1.0
-mesh = SubResource("QuadMesh_v3bdy")
+mesh = SubResource("QuadMesh_ggwyn")
 emission_shape = 2
 emission_sphere_radius = 0.2
 direction = Vector3(0, 0, 1)

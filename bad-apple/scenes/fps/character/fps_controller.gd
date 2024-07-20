@@ -26,6 +26,9 @@ func _ready():
 func _physics_process(delta):
 	_handle_movement(delta)
 
+	if position.y < -20:
+		FpsResourceManagerInstance.health -= 100
+
 
 func _handle_movement(delta : float) -> void:
 	if not is_on_floor():
@@ -38,7 +41,7 @@ func _handle_movement(delta : float) -> void:
 
 	var max_speed = movement_speed
 	if Input.is_action_pressed("shift"):
-		max_speed /= 2
+		max_speed /= 2	
 
 	if input.x:
 		vel_x = move_toward(vel_x, input.x * max_speed, movement_runon)
