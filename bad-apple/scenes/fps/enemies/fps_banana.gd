@@ -47,7 +47,8 @@ func _ready() -> void:
 		var ray = RayCast3D.new()
 		add_child(ray)
 		ray.position = Vector3(0, 1, 0)
-		ray.target_position = Vector3.RIGHT.rotated(Vector3.UP, deg_to_rad(i * 360.0 / walk_directions)) * FpsResourceManagerInstance.banana_reposition_distance + Vector3 (0.5,0,0.5)
+		
+		ray.target_position = Vector3.RIGHT.rotated(Vector3.UP, deg_to_rad(i * 360.0 / walk_directions)) * FpsResourceManagerInstance.banana_reposition_distance 
 		ray.name = "walk_ray_" + str(i * 360.0 / walk_directions)
 		ray.enabled = true
 		walk_rays.append(ray)
@@ -167,7 +168,7 @@ func start_reposition() -> void:
 			dummy_node.get_parent().remove_child(dummy_node)
 			ray.add_child(dummy_node)
 			dummy_node.position = ray.target_position
-			goal_pos = dummy_node.global_position - Vector3(0.5,0,0.5)
+			goal_pos = dummy_node.global_position + (ray.global_position - dummy_node.global_position).normalized() * 0.5
 			state = BANANA_STATE.REPOSITION
 			return
 	await get_tree().create_timer(1, false).timeout
