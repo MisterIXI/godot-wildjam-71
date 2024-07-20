@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bxi1544e86cpd"
-path="res://.godot/imported/banana.glb-3da1ce6ed05c4c65b1a79811bc5eb764.scn"
+uid="uid://b5l67r1q6qt6g"
+path="res://.godot/imported/fps_banana_old.glb-bd3a67b10afd6f660669b6715ee3ee06.scn"
 
 [deps]
 
-source_file="res://assets/models/fps/banana.glb"
-dest_files=["res://.godot/imported/banana.glb-3da1ce6ed05c4c65b1a79811bc5eb764.scn"]
+source_file="res://assets/models/fps/fps_banana_old.glb"
+dest_files=["res://.godot/imported/fps_banana_old.glb-bd3a67b10afd6f660669b6715ee3ee06.scn"]
 
 [params]
 

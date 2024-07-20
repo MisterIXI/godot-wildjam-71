@@ -55,7 +55,7 @@ func _physics_process(delta):
 				look_at(player.global_position, Vector3.UP)
 				if anim_player:
 					anim_player.play("shoot")
-					await anim_player.finished
+					await anim_player.animation_finished
 				if player_is_in_shoot_area:
 					start_reposition()
 				elif player_is_in_walk_area:
@@ -160,7 +160,7 @@ func start_reposition() -> void:
 			goal_pos = ray.global_position + ray.target_position - Vector3(0.5,0,0.5)
 			state = BANANA_STATE.REPOSITION
 			return
-	await get_tree().create_timer(2, false).finished
+	await get_tree().create_timer(2, false).timeout
 	if player_is_in_shoot_area:
 		state = BANANA_STATE.SHOOT
 	elif player_is_in_walk_area:
