@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3a8ulxx0j6sy"]
+[gd_scene load_steps=27 format=3 uid="uid://c3a8ulxx0j6sy"]
 
 [ext_resource type="Texture2D" uid="uid://ht358scd52px" path="res://assets/images/fps/fps_hud.png" id="1_iwxiq"]
 [ext_resource type="PackedScene" uid="uid://cef5pbbagysxt" path="res://scenes/fps/hud/effects/damage_effect.tscn" id="1_jslm2"]
@@ -18,6 +18,11 @@
 [ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="13_plsmq"]
 [ext_resource type="Texture2D" uid="uid://dqueujuv7t3ut" path="res://assets/images/fps/keyIcon.png" id="17_jcynt"]
 [ext_resource type="FontFile" uid="uid://cl1aof26374xu" path="res://assets/fonts/metal-mania/MetalMania-Regular.ttf" id="18_ylyjh"]
+[ext_resource type="Texture2D" uid="uid://c3xmh1peixfho" path="res://assets/images/fps/apple/apple_smile.png" id="19_xj34p"]
+[ext_resource type="Script" path="res://scenes/fps/hud/doom_face.gd" id="20_3gom2"]
+[ext_resource type="Texture2D" uid="uid://bduixghjnnoui" path="res://assets/images/fps/apple/apple_sad.png" id="21_ntm33"]
+[ext_resource type="Texture2D" uid="uid://do04av3anttlg" path="res://assets/images/fps/apple/apple_wink_left.png" id="22_3lsyy"]
+[ext_resource type="Texture2D" uid="uid://f8tpik55mbpd" path="res://assets/images/fps/apple/apple_wink_right.png" id="23_0assb"]
 
 [sub_resource type="Gradient" id="Gradient_0n64p"]
 colors = PackedColorArray(0, 0, 0, 0, 1.97336e-06, 0.586754, 0.0408179, 0.294118)
@@ -482,3 +487,19 @@ vertical_alignment = 1
 script = ExtResource("9_drjrd")
 animation_duration = 1.0
 hide_when_finished = true
+
+[node name="DoomFace" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.111
+anchor_bottom = 0.209
+offset_left = 582.0
+offset_top = 823.0
+offset_right = 559.92
+offset_bottom = 757.36
+texture = ExtResource("19_xj34p")
+script = ExtResource("20_3gom2")
+texture_smile = ExtResource("19_xj34p")
+texture_sad = ExtResource("21_ntm33")
+texture_wink_left = ExtResource("22_3lsyy")
+texture_wink_right = ExtResource("23_0assb")
