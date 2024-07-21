@@ -1,5 +1,5 @@
 extends Path3D
-class_name  SnakeBossPathMaker
+class_name SnakeBossPathMaker
 
 const MIN_X = -8.3
 const MAX_X = 7.5
@@ -10,7 +10,7 @@ const DOWN_RIGHT = Vector3(MAX_X, 0, MAX_Z)
 const UP_RIGHT = Vector3(MAX_X, 0, MIN_Z)
 const UP_LEFT = Vector3(MIN_X, 0, MIN_Z)
 
-enum STATE{
+enum STATE {
 	HUNT,
 	ATTACK,
 	RESET_1,
@@ -19,8 +19,10 @@ enum STATE{
 var phase: int = 1
 var state: STATE = STATE.HUNT
 var old_state: STATE = STATE.HUNT
-@export var player: CharacterBody3D
+@export var player: TDCharacter
 @export var snake_head: SnakePathFollower
+
+@export var hud: TDHUD
 
 @export var snake_part_kill_particle: CPUParticles3D
 
@@ -34,6 +36,7 @@ func _ready():
 	curve.set_point_position(3, DOWN_RIGHT)
 	curve.set_point_position(4, UP_RIGHT)
 	snake_head.snake_hurt_by_bullet.connect(_on_snake_hurt_box_area_entered)
+	snake_head.player_was_eaten.connect(_on_player_was_eaten)
 
 func _physics_process(_delta):
 	if state != old_state:
@@ -57,7 +60,7 @@ func _phase_1_step():
 			if _is_at_next_point():
 				curve.set_point_position(2, DOWN_LEFT)
 				state = STATE.ATTACK
-			elif  abs(player.global_position.x - snake_head.global_position.x) < 0.5:
+			elif abs(player.global_position.x - snake_head.global_position.x) < 0.5:
 				print("GOTCHA")
 				var new_up = snake_head.position + Vector3.LEFT * 0.3
 				var new_down = new_up
@@ -112,18 +115,23 @@ func _is_at_next_point():
 			return snake_head.position.distance_to(curve.get_point_position(4)) < eps
 
 func _took_damage(snake_part: PathSnakePart):
+	hud.snake_damaged.emit((100 * (3 - phase) + part_hp) / 3)
 	# TODO: Add damage visual feedback
 	pass
-
-func _on_snake_hurt_box_area_entered(area:Area3D):
+func _on_player_was_eaten():
+	hud.death_label.visible = true
+	player.kill_player()
+	pass
+func _on_snake_hurt_box_area_entered(area: Area3D):
 	if area.is_in_group("Bullet"):
 		area.queue_free()
-		part_hp -= DMG_PER_BULLET
-		_took_damage(snake_head.snake_parts[-1].snake_part)
+		part_hp = clamp(part_hp - DMG_PER_BULLET, 0, HP_PER_PART)
+		_took_damage(snake_head.snake_parts[ - 1].snake_part)
+
 		if part_hp <= 0:
 			snake_head.is_follower = true
 			snake_head.snake_part.play_animation("hurt")
-			snake_part_kill_particle.global_position = snake_head.snake_parts[-1].global_position
+			snake_part_kill_particle.global_position = snake_head.snake_parts[- 1].global_position
 			snake_part_kill_particle.visible = true
 			snake_part_kill_particle.emitting = true
 			snake_head.delete_last_part()
@@ -132,5 +140,3 @@ func _on_snake_hurt_box_area_entered(area:Area3D):
 			snake_head.is_follower = false
 			phase += 1
 			part_hp = HP_PER_PART
-
-			

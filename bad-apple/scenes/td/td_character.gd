@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name TDCharacter
 @export var camera: Camera3D
 @export var model: Node3D
 

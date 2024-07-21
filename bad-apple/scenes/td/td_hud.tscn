@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://oxxqjunihd2e"]
+[gd_scene load_steps=17 format=3 uid="uid://by71h18csviof"]
 
 [ext_resource type="Script" path="res://scenes/td/td_hud.gd" id="1_1dw0s"]
 [ext_resource type="FontFile" uid="uid://ctq7052q287q7" path="res://assets/fonts/anton-sc/AntonSC-Regular.ttf" id="1_2hvws"]
@@ -42,7 +42,7 @@ font = ExtResource("1_2hvws")
 font_size = 29
 font_color = Color(0.173697, 0.810186, 1, 1)
 
-[node name="TdHud" type="Control" node_paths=PackedStringArray("shaker", "foreground_bar")]
+[node name="TdHud" type="Control" node_paths=PackedStringArray("shaker", "foreground_bar", "death_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +55,7 @@ mouse_filter = 1
 script = ExtResource("1_1dw0s")
 shaker = NodePath("Shaker")
 foreground_bar = NodePath("Shaker/SnakeHealth/Bar/Foreground")
+death_label = NodePath("RestartMenu/Labels")
 
 [node name="Shaker" type="Control" parent="."]
 layout_mode = 1
