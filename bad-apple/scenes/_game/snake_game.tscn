@@ -381,106 +381,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ilm4g")
 
 [sub_resource type="Animation" id="Animation_8xipq"]
-length = 16.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("car/apple/Apple/Sunglasses:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(3.4, 5.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("car/apple/Apple:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(3.4, 5.1, 7.4, 8, 10.2, 10.6),
-"transitions": PackedFloat32Array(1, 1, 0.5, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, -3.14159, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("car/apple/Apple/Sunglasses:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(5.1, 6.2),
-"transitions": PackedFloat32Array(1, 0.535886),
-"update": 0,
-"values": [Vector3(0.087, 3, 0.239), Vector3(0.087, 0.356, 0.239)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("car/apple/Apple/Sunglasses:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(5.1, 5.6),
-"transitions": PackedFloat32Array(1, 0.392292),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Camera3D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(1.4, 3.2, 6.9, 8.6),
-"transitions": PackedFloat32Array(0.517632, 1, 0.366021, 1),
-"update": 0,
-"values": [Vector3(0, 15.89, 7.062), Vector3(7.609, 0.411, -5.981), Vector3(7.609, 0.411, -5.981), Vector3(10.295, 4.812, -4.192)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Camera3D:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(1.4, 3.2, 6.9, 8.6),
-"transitions": PackedFloat32Array(0.517632, 1, 0.366021, 1),
-"update": 0,
-"values": [Vector3(-1.20428, 0, 0), Vector3(-0.488692, 0.010472, 0), Vector3(-0.488692, 0.010472, 0), Vector3(-1.08905, -0.0367037, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("car/apple/Apple:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(8.3, 9.8, 10.1, 10.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-3.59328, 0, 1.30785), Vector3(-4.2015, 0.552284, 1.52922), Vector3(-4.7786, 0.679429, 1.73927)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("car:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 12.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(5.07488, 0, 0), Vector3(5.075, -0.01, 0), Vector3(5.075, 0.01, 0), Vector3(5.075, -0.01, 0), Vector3(5.075, 0.01, 0), Vector3(5.075, -0.01, 0), Vector3(5.075, 0.01, 0), Vector3(5.075, 0.01, 10)]
-}
-
-[sub_resource type="Animation" id="Animation_epyc5"]
-resource_name = "apple_runner"
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -492,6 +393,237 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("car/apple/Apple:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("car/apple/Apple/Sunglasses:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.087, 3, 0.239)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("car/apple/Apple/Sunglasses:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Camera3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 15.89, 7.062)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Camera3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.20428, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("car/apple/Apple:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("car:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5.07488, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("car/Car:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("car/apple/Apple/Sunglasses:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.349066, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_epyc5"]
+length = 13.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car/apple/Apple/Sunglasses:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.4, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("car/apple/Apple:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.4, 5.1, 6.6, 7.7, 10.2, 10.7),
+"transitions": PackedFloat32Array(1, 1, 1, 0.5, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0, -1.5708, 0), Vector3(0, -1.5708, 0), Vector3(0, -3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("car/apple/Apple/Sunglasses:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.1, 6.2),
+"transitions": PackedFloat32Array(1, 1, 0.535886),
+"update": 0,
+"values": [Vector3(0.087, 3, 0.239), Vector3(0.087, 3, 0.239), Vector3(0.087, 0.356, 0.239)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("car/apple/Apple/Sunglasses:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.1, 5.6),
+"transitions": PackedFloat32Array(1, 1, 0.392292),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Camera3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.4, 3.2, 6.9, 8.6),
+"transitions": PackedFloat32Array(1, 0.517632, 1, 0.366021, 1),
+"update": 0,
+"values": [Vector3(0, 15.89, 7.062), Vector3(0, 15.89, 7.062), Vector3(7.609, 0.7, -5.981), Vector3(7.609, 0.7, -5.981), Vector3(11.145, 4.812, -4.647)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Camera3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.4, 3.2, 6.9, 8.6),
+"transitions": PackedFloat32Array(1, 0.517632, 1, 0.366021, 1),
+"update": 0,
+"values": [Vector3(-1.20428, 0, 0), Vector3(-1.20428, 0, 0), Vector3(-0.488692, 0.010472, 0), Vector3(-0.488692, 0.010472, 0), Vector3(-1.08905, -0.0367037, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("car/apple/Apple:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 7.2, 9.8, 10.1, 10.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-3.59328, 0, 1.30785), Vector3(-4.2015, 0.552284, 1.52922), Vector3(-4.7786, 0.679429, 1.73927)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("car:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 12.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(5.07488, 0, 0), Vector3(5.07488, 0, 0), Vector3(5.075, -0.01, 0), Vector3(5.075, 0.01, 0), Vector3(5.075, -0.01, 0), Vector3(5.075, 0.01, 0), Vector3(5.075, -0.01, 0), Vector3(5.075, 0.01, 0), Vector3(5.075, 0.01, 10)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("car/Car:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 6.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("car/apple/Apple/Sunglasses:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.349066, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hj6ur"]
@@ -533,7 +665,7 @@ shadow_offset = Vector2(2, 2)
 [node name="SnakeGame" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 15.89, 7.062)
+transform = Transform3D(1, 0, 0, 0, 0.358365, 0.933581, 0, -0.933581, 0.358365, 0, 15.89, 7.062)
 fov = 50.0
 
 [node name="GridRoot" type="Node3D" parent="."]
@@ -631,11 +763,12 @@ script = ExtResource("4_s7ck1")
 grid_root = NodePath("../GridRoot")
 settings = ExtResource("6_np8b1")
 
-[node name="SnakeAppleSpawner" type="Node" parent="." node_paths=PackedStringArray("apple_label")]
+[node name="SnakeAppleSpawner" type="Node" parent="." node_paths=PackedStringArray("apple_label", "transition_animator")]
 unique_name_in_owner = true
 script = ExtResource("6_sam1o")
 apple_model = ExtResource("7_0t6h5")
 apple_label = NodePath("../HUD/GridContainer/ScoreLabel")
+transition_animator = NodePath("../TransitionAnimator")
 
 [node name="Lighting" type="Node3D" parent="."]
 transform = Transform3D(0.858593, 0.346009, -0.378279, 0, 0.737879, 0.674933, 0.512657, -0.579493, 0.633538, 0, 7.79272, 4.14236)
@@ -664,7 +797,8 @@ visible = false
 light_color = Color(0.641934, 0.641934, 0.641934, 1)
 
 [node name="TransitionAnimator" type="Node3D" parent="." node_paths=PackedStringArray("animation_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50854, -0.372175, -7.4434)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.354, -0.372, -7.443)
+visible = false
 script = ExtResource("9_vj5oa")
 animation_player = NodePath("AnimationPlayer")
 
@@ -672,6 +806,8 @@ animation_player = NodePath("AnimationPlayer")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07488, 0, 0)
 
 [node name="Car" type="MeshInstance3D" parent="TransitionAnimator/car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.075, 0, 0)
+visible = false
 material_override = ExtResource("9_6kcsh")
 mesh = SubResource("ArrayMesh_uphr2")
 skeleton = NodePath("")
@@ -715,22 +851,21 @@ mesh = SubResource("ArrayMesh_1bkp1")
 skeleton = NodePath("")
 
 [node name="apple" type="Node3D" parent="TransitionAnimator/car"]
-transform = Transform3D(-0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939693, -5.07488, 0, 0)
+transform = Transform3D(-0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939693, 0, 0, 0)
 
 [node name="Apple" type="MeshInstance3D" parent="TransitionAnimator/car/apple"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("9_uud6r")
 mesh = SubResource("ArrayMesh_nfsdn")
 skeleton = NodePath("")
 
 [node name="Mouth" type="MeshInstance3D" parent="TransitionAnimator/car/apple/Apple"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00850725, 0, 0.0233755)
 material_override = ExtResource("9_uud6r")
 mesh = SubResource("ArrayMesh_oxaeg")
 skeleton = NodePath("")
 
 [node name="Sunglasses" type="MeshInstance3D" parent="TransitionAnimator/car/apple/Apple"]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0.087, 3, 0.239)
+visible = false
 material_override = ExtResource("9_uud6r")
 mesh = SubResource("ArrayMesh_n13pg")
 skeleton = NodePath("")
