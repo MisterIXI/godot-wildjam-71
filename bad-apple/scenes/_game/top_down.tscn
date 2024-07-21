@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://vgp7b4nu2lhx"]
+[gd_scene load_steps=55 format=3 uid="uid://vgp7b4nu2lhx"]
 
 [ext_resource type="Material" uid="uid://c25h2p7ijdyl4" path="res://resources/materials/m_floortiles.tres" id="1_s3nju"]
 [ext_resource type="Material" path="res://resources/materials/m_concrete.tres" id="2_b7d3b"]
@@ -8,11 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://b7mr56snnbefm" path="res://assets/images/bad_apple.png" id="5_0wkrj"]
 [ext_resource type="Script" path="res://scenes/td/td_character.gd" id="5_txwsy"]
 [ext_resource type="Material" uid="uid://di3yjb611daya" path="res://resources/materials/m_apple.tres" id="6_6soql"]
-[ext_resource type="Material" uid="uid://pue23mepdx67" path="res://resources/materials/m_pumpgun.tres" id="7_yl3iy"]
+[ext_resource type="Material" path="res://resources/materials/m_pumpgun.tres" id="7_yl3iy"]
 [ext_resource type="Script" path="res://scenes/td/snake_boss_path_maker.gd" id="10_ngjgr"]
 [ext_resource type="PackedScene" uid="uid://dx3cjryuqdaw7" path="res://components/snake/path_snake/snake_path_follower.tscn" id="10_yj130"]
-[ext_resource type="PackedScene" uid="uid://dysh2s243jo7f" path="res://scenes/_game/end_screen.tscn" id="11_d84ft"]
+[ext_resource type="PackedScene" uid="uid://vdd4se8c5mq1" path="res://scenes/_game/end_screen.tscn" id="11_d84ft"]
 [ext_resource type="PackedScene" uid="uid://by71h18csviof" path="res://scenes/td/td_hud.tscn" id="12_kpt28"]
+[ext_resource type="AudioStream" uid="uid://bvrj3vjkibfjh" path="res://assets/sounds/music/attack_of_the_killer_snek.ogg" id="14_cebne"]
+[ext_resource type="Script" path="res://components/general/loop_music.gd" id="15_biyyw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_taa08"]
 
@@ -566,3 +568,11 @@ progress = 11.81
 spawn_with_parts = 8
 
 [node name="TdHud" parent="." instance=ExtResource("12_kpt28")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("14_cebne")
+volume_db = -3.514
+autoplay = true
+bus = &"Music"
+script = ExtResource("15_biyyw")

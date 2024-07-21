@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://dx3cjryuqdaw7"]
+[gd_scene load_steps=25 format=3 uid="uid://dx3cjryuqdaw7"]
 
 [ext_resource type="Script" path="res://scenes/_debug/yannik/snake/snake_charmer.gd" id="1_cpbb8"]
 [ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake/snake_settings.tres" id="2_a5h5a"]
 [ext_resource type="Script" path="res://components/snake/path_snake/PathSnakePart.gd" id="2_ic7m7"]
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="3_2f6np"]
+[ext_resource type="PackedScene" uid="uid://co3liyk8m85ug" path="res://components/snake/path_snake/snake_path_follower_duplicated.tscn" id="3_55fhy"]
+[ext_resource type="Texture2D" uid="uid://cyxm6wjeg30o6" path="res://assets/images/snekeyetail.png" id="5_xddnc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_isqvh"]
 radius = 0.7
@@ -46,6 +48,16 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3oynj")
+
+[sub_resource type="Gradient" id="Gradient_p53ls"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h410w"]
+gradient = SubResource("Gradient_p53ls")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vldk"]
+albedo_texture = ExtResource("5_xddnc")
+rim_texture = SubResource("GradientTexture1D_h410w")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2vrkb"]
 _surfaces = [{
@@ -303,6 +315,7 @@ _data = {
 script = ExtResource("1_cpbb8")
 settings = ExtResource("2_a5h5a")
 snake_part = NodePath("SnakePart")
+self_scene = ExtResource("3_55fhy")
 
 [node name="SnakePart" type="Area3D" parent="." node_paths=PackedStringArray("Head", "Body", "Tail", "animation_player") groups=["SnakePart"]]
 script = ExtResource("2_ic7m7")
@@ -330,13 +343,13 @@ mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
 
 [node name="Body2" type="MeshInstance3D" parent="SnakePart/snek"]
-visible = false
-material_override = ExtResource("3_2f6np")
+material_override = SubResource("StandardMaterial3D_1vldk")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
 
 [node name="Armature" type="Node3D" parent="SnakePart/snek"]
 transform = Transform3D(0.378653, 0, 0, 0, 0.378653, 0, 0, 0, 0.378653, 0, 0, -0.30243)
+visible = false
 
 [node name="Skeleton3D" type="Skeleton3D" parent="SnakePart/snek/Armature"]
 bones/0/name = "UPPER_JAW"

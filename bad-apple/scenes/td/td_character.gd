@@ -12,7 +12,7 @@ const ACCELERATION = 125.0
 const JUMP_VELOCITY = 4.5
 var last_mouse_pos = Vector2(0, 0)
 var mouse_position_3D = Vector3(0, 0, 0)
-const SHOT_CD = 0.03
+const SHOT_CD = 0.1
 var shot_cd_left: float = 0.0
 var is_dead = false
 

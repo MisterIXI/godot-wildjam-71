@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d32d7obf2eilp"]
+[gd_scene load_steps=14 format=3 uid="uid://d32d7obf2eilp"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu_manager.gd" id="1_v4tkr"]
 [ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b7hkjjrglhcy4" path="res://scenes/_game/main_driving.tscn" id="4_gs363"]
 [ext_resource type="Script" path="res://scenes/menu/menu_pause.gd" id="4_pvm7y"]
 [ext_resource type="Script" path="res://scenes/menu/menu_settings.gd" id="5_mkigw"]
+[ext_resource type="PackedScene" uid="uid://vgp7b4nu2lhx" path="res://scenes/_game/top_down.tscn" id="6_grs6y"]
 [ext_resource type="Script" path="res://scenes/menu/menu_credits.gd" id="6_k4foh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlplk"]
@@ -46,6 +47,7 @@ SettingsMenuNode = NodePath("Settings")
 SnakeScene = ExtResource("3_lbd0q")
 DrivingScene = ExtResource("4_gs363")
 ShootingScene = ExtResource("3_isg2g")
+TopDownShooterScene = ExtResource("6_grs6y")
 
 [node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("BTNStartGame", "BTNOptions", "BTNCredits", "BTNQuit")]
 visible = false
@@ -209,7 +211,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
 text = "Quit"
 
-[node name="Settings" type="Control" parent="." node_paths=PackedStringArray("slider_master_volume", "slider_music_volume", "slider_sfx_volume", "slider_mouse_sense", "h_seperator")]
+[node name="Settings" type="Control" parent="." node_paths=PackedStringArray("slider_master_volume", "slider_music_volume", "slider_sfx_volume", "slider_mouse_sense", "mouse_sense_grid", "h_seperator")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -222,6 +224,7 @@ slider_master_volume = NodePath("PanelContainer/VBoxContainer/VolumeGrid/MasterV
 slider_music_volume = NodePath("PanelContainer/VBoxContainer/VolumeGrid/MusicVSlider")
 slider_sfx_volume = NodePath("PanelContainer/VBoxContainer/VolumeGrid/SFXVSlider")
 slider_mouse_sense = NodePath("PanelContainer/VBoxContainer/MouseSensGrid/HSlider")
+mouse_sense_grid = NodePath("PanelContainer/VBoxContainer/MouseSensGrid")
 h_seperator = NodePath("PanelContainer/VBoxContainer/HSeparator")
 
 [node name="PanelContainer" type="Panel" parent="Settings"]

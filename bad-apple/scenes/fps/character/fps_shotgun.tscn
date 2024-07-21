@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/fps/character/fps_shotgun.gd" id="1_lg2fp"]
 [ext_resource type="PackedScene" uid="uid://j3koh7kvyrcs" path="res://scenes/fps/character/fps_bullet.tscn" id="2_ggacl"]
-[ext_resource type="Material" uid="uid://pue23mepdx67" path="res://resources/materials/m_pumpgun.tres" id="3_k0ct0"]
+[ext_resource type="Material" path="res://resources/materials/m_pumpgun.tres" id="3_k0ct0"]
 [ext_resource type="AudioStream" uid="uid://bhmcnqsmr3kkc" path="res://assets/sounds/shotgun_reload.wav" id="4_h0r62"]
 [ext_resource type="AudioStream" uid="uid://78ysc6gr0h3b" path="res://assets/sounds/shot3.wav" id="5_jt20i"]
 [ext_resource type="AudioStream" uid="uid://ba7ulhdgmhk6w" path="res://assets/sounds/shotgun_select.wav" id="6_5hr1y"]

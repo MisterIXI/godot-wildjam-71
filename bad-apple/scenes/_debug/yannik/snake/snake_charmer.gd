@@ -10,6 +10,7 @@ var back_part: SnakePathFollower = null
 var is_follower = false
 var snake_parts: Array[SnakePathFollower] = []
 var baked_length: float = 0
+var next_body_part: SnakePathFollower = null
 func _ready():
 	if is_follower:
 		return
@@ -18,16 +19,23 @@ func _ready():
 	# TODO: why is snake_part here the second part of the snake? Why is the else part here the head of the snake????
 	snake_part.switch_to_body()
 	snake_part.play_animation("idle")
+	snake_part.switch_to_head()
 	var i = spawn_with_parts - 1
+	var prev_part: SnakePathFollower = null
 	while i > 0:
 		i -= 1
-		# var dup = self_scene.instantiate()
-		var dup = duplicate(DUPLICATE_USE_INSTANTIATION)
+		var dup = self_scene.instantiate()
+		# var dup = duplicate()
 		assert(dup != self)
 		dup.is_follower = true
 		parent_curve.add_child.call_deferred(dup)
 		dup.progress = i * settings.grid_tile_size
 		snake_parts.append(dup)
+		if i == spawn_with_parts - 2:
+			next_body_part = dup
+		else:
+			prev_part.next_body_part = dup
+		prev_part = dup
 		if i > 0:
 			dup.snake_part.switch_to_body()
 			# dup.snake_part.switch_to_head()
@@ -73,6 +81,7 @@ func delete_last_part():
 	if snake_parts.size() > 0:
 		snake_parts[-1].queue_free()
 		snake_parts.pop_back()
+		snake_parts[-1].next_body_part = null
 		
 signal snake_hurt_by_bullet(area3d)
 signal player_was_eaten()
