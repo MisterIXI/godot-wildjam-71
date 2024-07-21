@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=38 format=3 uid="uid://nx5xk6dj6en0"]
 
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
 [ext_resource type="Resource" uid="uid://ddjhpqrveekfd" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
@@ -51,6 +51,21 @@ _data = [Vector2(0.00761421, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.000972748), 0.0, 0
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_jgdgo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ywbg"]
+transparency = 1
+albedo_color = Color(0.691357, 0.691357, 0.691357, 1)
+roughness = 0.0
+rim_enabled = true
+disable_receive_shadows = true
+grow_amount = 1.161
+
+[sub_resource type="SphereMesh" id="SphereMesh_yhaon"]
+material = SubResource("StandardMaterial3D_6ywbg")
+radius = 5.919
+height = 5.719
+radial_segments = 16
+rings = 16
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cgj32"]
 resource_name = "Mirror"
@@ -199,7 +214,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 environment = ExtResource("3_dnire")
 
 [node name="Grass" type="MeshInstance3D" parent="StartEnviroment" node_paths=PackedStringArray("player_node")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.51745, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -177.743, -1.51745, 0)
 material_override = SubResource("StandardMaterial3D_6wf40")
 mesh = SubResource("PlaneMesh_cujyj")
 script = ExtResource("4_50ffv")
@@ -221,6 +236,20 @@ damping_min = 0.01
 damping_max = 0.02
 scale_amount_curve = SubResource("Curve_v141y")
 color_ramp = SubResource("Gradient_jgdgo")
+
+[node name="CPUParticles_Clouds" type="CPUParticles3D" parent="StartEnviroment/Grass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.069, 33.1578, 0)
+transparency = 0.29
+amount = 16
+lifetime = 20.0
+randomness = 1.0
+mesh = SubResource("SphereMesh_yhaon")
+emission_shape = 2
+emission_sphere_radius = 20.79
+spread = 180.0
+gravity = Vector3(-1, 0, 0)
+initial_velocity_max = 0.5
+angle_max = 720.0
 
 [node name="Entities" type="Node3D" parent="."]
 

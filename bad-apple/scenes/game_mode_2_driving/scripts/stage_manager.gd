@@ -37,7 +37,7 @@ signal get_collectable
 
 func _ready():
     next_chunk.connect(on_next_chunk)
-    # driving_gamemode_start.connect(on_gamemode_start)
+    
     ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
     is_gamemode_running = true
     current_snake_speed = current_stage_difficult.snakeSpeed
@@ -85,14 +85,6 @@ func on_next_chunk():
 
     spawn_modules()
 
-# func on_gamemode_start(stage, difficult):
-#     print ("game started")
-#     # DEFINE NEW STAGE OBJECT HOLDER AND START GAMEMODE
-#     stage_object_holder = stage
-#     current_stage_difficult = difficult
-#     current_snake_speed = current_stage_difficult.snakeSpeed
-#     is_gamemode_running = true
-    
 func on_restart():
     # RESET ALL VARIABLES AND POSITIONS
     offset = 0
@@ -122,8 +114,8 @@ func get_rnd_weighted_object(type: int):
 
 func on_collected_coin():
     current_checkpoints += 1
-    ## ADD coins
-    ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables - current_checkpoints))
+    var _text :String = " %d / %d" %[current_checkpoints,current_stage_difficult.win_condition_collectables]
+    ui_controller.update_collectable(_text)
     
     if current_checkpoints >= current_stage_difficult.win_condition_collectables:
         print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
