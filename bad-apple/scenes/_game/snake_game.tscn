@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bm8ksngrfkg4b"]
+[gd_scene load_steps=64 format=3 uid="uid://bm8ksngrfkg4b"]
 
 [ext_resource type="Material" uid="uid://doymm0qnxghcv" path="res://resources/snake/gras_mat.tres" id="1_filr2"]
 [ext_resource type="Script" path="res://components/snake/snake_spawner.gd" id="2_2emdo"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://components/general/loop_music.gd" id="19_245cn"]
 [ext_resource type="AudioStream" uid="uid://bsf5kdjvbks2y" path="res://assets/sounds/nom.wav" id="20_642us"]
 [ext_resource type="AudioStream" uid="uid://c8fgi8vnga5dk" path="res://assets/sounds/not_today.wav" id="21_lv1qn"]
+[ext_resource type="AudioStream" uid="uid://ddg5f4dn4j7og" path="res://assets/sounds/rex_intro.wav" id="22_gvnxl"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6q0il"]
 size = Vector2(16, 16)
@@ -518,6 +519,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../AudioSFX_Intro:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_epyc5"]
 length = 13.5
@@ -649,6 +662,18 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../AudioSFX_Intro:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -1056,4 +1081,10 @@ bus = &"SFX"
 process_mode = 3
 stream = ExtResource("21_lv1qn")
 volume_db = 16.163
+bus = &"SFX"
+
+[node name="AudioSFX_Intro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_gvnxl")
+volume_db = -5.0
+pitch_scale = 1.2
 bus = &"SFX"

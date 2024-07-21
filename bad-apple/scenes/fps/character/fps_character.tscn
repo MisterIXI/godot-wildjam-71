@@ -68,6 +68,9 @@ targets = NodePath("../Targets")
 
 [node name="FpsKnife" parent="Camera3D" instance=ExtResource("3_h6rbh")]
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
+current = true
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CylinderShape3D_d8jo4")

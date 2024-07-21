@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://caj8kwp55vmku"]
 
 [ext_resource type="Material" uid="uid://b3h8kw6s7gc78" path="res://resources/driving_materials/road_mat.tres" id="2_tnlrw"]
-[ext_resource type="PackedScene" uid="uid://bipt16majnpyw" path="res://scenes/game_mode_2_driving/objects/tree_02.tscn" id="4_byd5y"]
-[ext_resource type="PackedScene" uid="uid://ch7dtk8jw4b7x" path="res://scenes/game_mode_2_driving/objects/fence_01.tscn" id="5_m165g"]
-[ext_resource type="PackedScene" uid="uid://cyspb3fq8fyn2" path="res://scenes/game_mode_2_driving/objects/tree_04.tscn" id="6_730se"]
-[ext_resource type="PackedScene" uid="uid://qn56wjj58bny" path="res://scenes/game_mode_2_driving/objects/tree_03.tscn" id="7_4t3tu"]
-[ext_resource type="PackedScene" uid="uid://dpu1oqx3btgck" path="res://scenes/game_mode_2_driving/objects/tree_01.tscn" id="8_q2dlj"]
-[ext_resource type="PackedScene" uid="uid://blxj8hxxych20" path="res://scenes/game_mode_2_driving/objects/house_1.tscn" id="8_trwdf"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/tree_02.tscn" id="4_byd5y"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/fence_01.tscn" id="5_m165g"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/tree_04.tscn" id="6_730se"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/tree_03.tscn" id="7_4t3tu"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/tree_01.tscn" id="8_q2dlj"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/house_1.tscn" id="8_trwdf"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mioha"]
 lightmap_size_hint = Vector2i(32, 32)
