@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://vdd4se8c5mq1"]
+[gd_scene load_steps=53 format=3 uid="uid://vdd4se8c5mq1"]
 
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="1_3b05g"]
 [ext_resource type="Script" path="res://components/Menu/end_screen.gd" id="1_b6wmr"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://ctq7052q287q7" path="res://assets/fonts/anton-sc/AntonSC-Regular.ttf" id="4_ft0eu"]
 [ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="5_e45dn"]
 [ext_resource type="Texture2D" uid="uid://xnkagqi66q8l" path="res://assets/images/driving_game_cover_texture.png" id="5_int4t"]
+[ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="5_rimis"]
 [ext_resource type="Texture2D" uid="uid://dqfkecyer44w7" path="res://assets/images/snake_game_cover_texture.png" id="5_u7ste"]
 [ext_resource type="Texture2D" uid="uid://yernyrmc2xes" path="res://assets/images/fps_game_cover_texture.png" id="7_kv8tv"]
 [ext_resource type="Texture2D" uid="uid://chivy0cixbfgn" path="res://assets/images/topdown_game_cover_texture.png" id="8_q3yvd"]
@@ -509,17 +510,6 @@ _data = {
 "apple_rounding": SubResource("Animation_efbek")
 }
 
-[sub_resource type="Gradient" id="Gradient_5lkc5"]
-colors = PackedColorArray(0, 0, 0, 1, 0.698039, 0.768627, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hk21s"]
-gradient = SubResource("Gradient_5lkc5")
-fill_from = Vector2(0.440171, 0.294872)
-fill_to = Vector2(0.264957, 0.589744)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sipb"]
-albedo_texture = SubResource("GradientTexture2D_hk21s")
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_t2do8"]
 size = Vector2(100, 100)
 
@@ -968,7 +958,7 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.226)
-material_override = SubResource("StandardMaterial3D_5sipb")
+material_override = ExtResource("5_rimis")
 mesh = SubResource("PlaneMesh_t2do8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
