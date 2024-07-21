@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://0xckiqqspste"]
+[gd_scene load_steps=13 format=3 uid="uid://0xckiqqspste"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/UI/ui.gd" id="1_rygih"]
 [ext_resource type="Texture2D" uid="uid://cliwayvnqlm8k" path="res://assets/images/driving_apple/tacho.png" id="1_yt3r0"]
@@ -8,6 +8,16 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l81tc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gf7ig"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdmt2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ftph"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x4agx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3jd0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7t8n5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbpoq"]
 
@@ -92,76 +102,81 @@ theme_override_constants/margin_top = 55
 
 [node name="life_icon_01" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mdmt2")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_01"]
 top_level = true
 layout_mode = 0
 offset_left = 67.0
 offset_top = 59.0
-offset_right = 131.0
-offset_bottom = 123.0
+offset_right = 99.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_02" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3ftph")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_02"]
 top_level = true
 layout_mode = 0
-offset_left = 131.0
+offset_left = 99.0
 offset_top = 59.0
-offset_right = 195.0
-offset_bottom = 123.0
+offset_right = 131.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_03" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x4agx")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_03"]
 top_level = true
 layout_mode = 0
-offset_left = 195.0
+offset_left = 131.0
 offset_top = 59.0
-offset_right = 259.0
-offset_bottom = 123.0
+offset_right = 163.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_04" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e3jd0")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_04"]
 top_level = true
 layout_mode = 0
-offset_left = 259.0
+offset_left = 163.0
 offset_top = 59.0
-offset_right = 323.0
-offset_bottom = 123.0
+offset_right = 195.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_05" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7t8n5")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_05"]
 top_level = true
 layout_mode = 0
-offset_left = 323.0
+offset_left = 195.0
 offset_top = 59.0
-offset_right = 387.0
-offset_bottom = 123.0
+offset_right = 227.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="Background" type="Panel" parent="HUD"]
-custom_minimum_size = Vector2(350, 80)
+custom_minimum_size = Vector2(180, 40)
 layout_mode = 2
 offset_left = 55.0
 offset_top = 55.0
-offset_right = 405.0
-offset_bottom = 135.0
+offset_right = 235.0
+offset_bottom = 95.0
 
 [node name="Player_coin_progress" type="MarginContainer" parent="HUD"]
 custom_minimum_size = Vector2(64, 64)
