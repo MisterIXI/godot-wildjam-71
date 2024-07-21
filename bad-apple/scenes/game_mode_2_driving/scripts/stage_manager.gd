@@ -29,7 +29,7 @@ var current_health  = 5
 @export var player_node : Node3D
 # VARIABLE UI_CONTROLLER
 @export var ui_controller : UI_Controller
-@export var win_garage_object : Node3D
+@export var win_garage_object : PackedScene
 
 ################################################## SIGNALS ##################################
 signal next_chunk

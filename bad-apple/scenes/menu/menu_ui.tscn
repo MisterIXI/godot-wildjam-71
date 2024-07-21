@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
 [ext_resource type="Script" path="res://scenes/menu/menu_main.gd" id="2_w8b4v"]
 [ext_resource type="PackedScene" uid="uid://c7biupk03mn6v" path="res://scenes/_game/fps.tscn" id="3_isg2g"]
-[ext_resource type="PackedScene" uid="uid://bm8ksngrfkg4b" path="res://scenes/_game/snake_game.tscn" id="3_lbd0q"]
+[ext_resource type="PackedScene" path="res://scenes/_game/snake_game.tscn" id="3_lbd0q"]
 [ext_resource type="Script" path="res://scenes/menu/menu_pause.gd" id="4_pvm7y"]
 [ext_resource type="Script" path="res://scenes/menu/menu_settings.gd" id="5_mkigw"]
 [ext_resource type="Script" path="res://scenes/menu/menu_credits.gd" id="6_k4foh"]
