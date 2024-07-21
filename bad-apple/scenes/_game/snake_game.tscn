@@ -791,13 +791,14 @@ script = ExtResource("4_s7ck1")
 grid_root = NodePath("../GridRoot")
 settings = ExtResource("6_np8b1")
 
-[node name="SnakeAppleSpawner" type="Node" parent="." node_paths=PackedStringArray("apple_label", "transition_animator", "sound_player_nom")]
+[node name="SnakeAppleSpawner" type="Node" parent="." node_paths=PackedStringArray("apple_label", "transition_animator", "sound_player_nom", "music_player")]
 unique_name_in_owner = true
 script = ExtResource("6_sam1o")
 apple_model = ExtResource("7_0t6h5")
 apple_label = NodePath("../HUD/GridContainer/ScoreLabel")
 transition_animator = NodePath("../TransitionAnimator")
 sound_player_nom = NodePath("../AudioSFX_Nom")
+music_player = NodePath("../Music")
 
 [node name="Lighting" type="Node3D" parent="."]
 transform = Transform3D(0.858593, 0.346009, -0.378279, 0, 0.737879, 0.674933, 0.512657, -0.579493, 0.633538, 0, 7.79272, 4.14236)
