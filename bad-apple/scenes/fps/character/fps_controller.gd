@@ -23,6 +23,9 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+	GlobMenu.mouse_sense_slider_changed.connect(_on_mouse_sense_slider_changed)
+	mouse_sensitivity = GlobMenu.mouse_sense
+
 func _physics_process(delta):
 	_handle_movement(delta)
 
@@ -65,3 +68,7 @@ func _unhandled_input(event) -> void:
 		rotate_y(mouse_delta.x * (mouse_sensitivity / 13000))
 		_camera.rotate_x(mouse_delta.y * (mouse_sensitivity / 13000))
 		_camera.rotation.x = clamp(_camera.rotation.x, deg_to_rad(clamp_angle.x), deg_to_rad(clamp_angle.y))
+
+
+func _on_mouse_sense_slider_changed(value : float) -> void:
+	mouse_sensitivity = value

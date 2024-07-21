@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c3a8ulxx0j6sy" path="res://scenes/fps/hud/fps_hud.tscn" id="7_xomd4"]
 [ext_resource type="Script" path="res://scenes/fps/fps_exit.gd" id="8_5fauh"]
 [ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="8_duyy2"]
-[ext_resource type="Script" path="res://components/general/block_inputs_on_visible.gd" id="9_cmwga"]
+[ext_resource type="Script" path="res://scenes/menu/mouse_sense_activator.gd" id="8_hb3vh"]
 [ext_resource type="PackedScene" uid="uid://vgp7b4nu2lhx" path="res://scenes/_game/top_down.tscn" id="9_kkw6h"]
 [ext_resource type="Script" path="res://components/general/hide_node_on_visible.gd" id="10_14goc"]
 [ext_resource type="Script" path="res://components/general/movie_on_visible.gd" id="11_pimxa"]
@@ -896,9 +896,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.042, 0.022, -0.024)
 movement_speed = 6.0
 movement_runon = 3.5
 
-[node name="Camera3D" parent="FpsCharacter" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-
 [node name="FpsShotgun" parent="FpsCharacter/Camera3D" index="1"]
 visible = false
 
@@ -908,6 +905,7 @@ visible = false
 [node name="FpsHud" parent="." instance=ExtResource("7_xomd4")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("7_hn8es")
 autoplay = true
 bus = &"Music"
@@ -917,6 +915,9 @@ script = ExtResource("8_duyy2")
 time_scale = true
 reset_windows = true
 windows_to_close = [NodePath("../Exit/Make Visible")]
+
+[node name="MouseSenseActivator" type="Node" parent="."]
+script = ExtResource("8_hb3vh")
 
 [node name="Exit" type="Area3D" parent="." node_paths=PackedStringArray("make_visible", "animation_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1789, 0, -30.3098)
@@ -931,9 +932,6 @@ shape = SubResource("BoxShape3D_3adqc")
 
 [node name="Make Visible" type="Node3D" parent="Exit"]
 visible = false
-
-[node name="BlockInputsOnVisible" type="Node" parent="Exit/Make Visible"]
-script = ExtResource("9_cmwga")
 
 [node name="HideNodeOnVisible" type="Node" parent="Exit/Make Visible" node_paths=PackedStringArray("node")]
 script = ExtResource("10_14goc")
@@ -1017,7 +1015,7 @@ bones/7/rotation = Quaternion(-0.0497562, 8.73331e-08, 7.11775e-08, 0.998761)
 bones/7/scale = Vector3(1, 1, 1)
 
 [node name="eyes" type="BoneAttachment3D" parent="Exit/SnakePart/snek/Armature/Skeleton3D"]
-transform = Transform3D(-0.265642, 0.661088, 0.70171, 0.584276, 0.689356, -0.428263, -0.766848, 0.296228, -0.56938, 0.735173, 1.18966, 0.339852)
+transform = Transform3D(-0.265642, 0.661088, 0.70171, 0.584276, 0.689356, -0.428263, -0.766848, 0.296227, -0.56938, 0.735173, 1.18966, 0.339852)
 bone_name = "eyes"
 bone_idx = 2
 
@@ -1027,7 +1025,7 @@ mesh = SubResource("ArrayMesh_0j1r7")
 skeleton = NodePath("")
 
 [node name="eyes_001" type="BoneAttachment3D" parent="Exit/SnakePart/snek/Armature/Skeleton3D"]
-transform = Transform3D(0.826666, 0.55734, 0.0774359, -0.530921, 0.818156, -0.22078, -0.186404, 0.141399, 0.972245, -0.726191, 1.20185, 0.328456)
+transform = Transform3D(0.826666, 0.55734, 0.0774359, -0.530921, 0.818156, -0.22078, -0.186404, 0.141398, 0.972245, -0.726191, 1.20185, 0.328456)
 bone_name = "eyes.001"
 bone_idx = 4
 

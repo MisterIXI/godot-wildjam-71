@@ -18,6 +18,7 @@ enum BANANA_STATE {
 @export var bullet : PackedScene = null
 @export var barrel: Node3D = null
 @export var ammonition : PackedScene = null
+@export var collision : CollisionShape3D = null
 
 var player : Node3D = null
 var state : BANANA_STATE = BANANA_STATE.IDLE
@@ -61,8 +62,8 @@ func _physics_process(delta):
 	match state:
 		BANANA_STATE.SHOOT:
 			if can_see_player():
-				look_at(player.global_position, Vector3.UP)
-				if anim_player and anim_player.current_animation != "shoot":
+				look_at(player.global_position * Vector3(1,0,1) + global_position * Vector3.UP, Vector3.UP)
+				if anim_player and is_instance_valid(anim_player) and anim_player.current_animation != "shoot":
 					anim_player.play("shoot")
 					await anim_player.animation_finished
 				else:
@@ -80,12 +81,12 @@ func _physics_process(delta):
 			if can_see_player():
 				if player_is_in_shoot_area:
 					state = BANANA_STATE.SHOOT
-				if anim_player:
+				if anim_player and is_instance_valid(anim_player):
 					anim_player.play("walk")
-				look_at(player.global_position, Vector3.UP)
+				look_at(player.global_position * Vector3(1,0,1) + global_position * Vector3.UP, Vector3.UP)
 				velocity = ((player.global_position - global_position) * Vector3(1,0,1)).normalized() * FpsResourceManagerInstance.banana_speed
 			else:
-				if anim_player:
+				if anim_player and is_instance_valid(anim_player):
 					anim_player.play("idle")
 				velocity = Vector3.ZERO
 		BANANA_STATE.REPOSITION:
@@ -93,8 +94,8 @@ func _physics_process(delta):
 				if global_position.distance_to(goal_pos) <= 1.2:
 					state = BANANA_STATE.SHOOT
 					return
-				look_at(player.global_position, Vector3.UP)
-				if anim_player:
+				look_at(player.global_position * Vector3(1,0,1) + global_position * Vector3.UP, Vector3.UP)
+				if anim_player and is_instance_valid(anim_player):
 					anim_player.play("walk")
 				velocity = ((goal_pos - global_position) * Vector3(1,0,1)).normalized() * FpsResourceManagerInstance.banana_speed
 			else:
@@ -103,7 +104,7 @@ func _physics_process(delta):
 				else:
 					state = BANANA_STATE.IDLE
 		_:
-			if anim_player:
+			if anim_player and is_instance_valid(anim_player):
 				anim_player.play("idle")
 			velocity = Vector3.ZERO
 	if not is_on_floor():
@@ -138,10 +139,11 @@ func knife() -> void:
 
 
 func die() -> void:
-	model.visible = false
+	model.queue_free()
+	collision.queue_free()
 	var ammo = ammonition.instantiate()
 	ammo.set_deferred("global_position", global_position)
-	get_tree().root.get_child(-1).add_child(ammo)
+	get_tree().root.get_node("Fps").add_child(ammo)
 	particles.emitting = true
 	await particles.finished
 	queue_free()
