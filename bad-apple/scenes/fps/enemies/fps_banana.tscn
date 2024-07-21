@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://58psich1bu8v"]
+[gd_scene load_steps=24 format=3 uid="uid://58psich1bu8v"]
 
 [ext_resource type="Script" path="res://scenes/fps/enemies/fps_banana.gd" id="1_ujalv"]
 [ext_resource type="PackedScene" uid="uid://eo5gqp1wjkth" path="res://scenes/fps/enemies/fps_banana_bullet.tscn" id="2_d1jv3"]
 [ext_resource type="Material" uid="uid://jhrq6e2wmmwa" path="res://resources/materials/m_banana.tres" id="2_w2c0s"]
+[ext_resource type="PackedScene" uid="uid://6j0oi5goapoo" path="res://scenes/fps/consumables/ammo.tscn" id="3_22ie4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sno5o"]
 resource_name = "Material.001"
@@ -454,11 +455,11 @@ radius = 0.4
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iqe0r"]
 height = 2.2
-radius = 7.0
+radius = 9.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_b2qfd"]
 height = 2.2
-radius = 10.0
+radius = 13.0
 
 [sub_resource type="Gradient" id="Gradient_aq01f"]
 offsets = PackedFloat32Array(0, 0.592233, 1)
@@ -498,6 +499,7 @@ particles = NodePath("CPUParticles3D2")
 model = NodePath("model")
 bullet = ExtResource("2_d1jv3")
 barrel = NodePath("model/Armature/Skeleton3D/BoneAttachment3D")
+ammonition = ExtResource("3_22ie4")
 
 [node name="model" type="Node3D" parent="."]
 transform = Transform3D(-0.15, 0, -1.31134e-08, 0, 0.15, 0, 1.31134e-08, 0, -0.15, 0, 0, 0)

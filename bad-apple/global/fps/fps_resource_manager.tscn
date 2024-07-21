@@ -4,3 +4,4 @@
 
 [node name="FpsResourceManager" type="Node"]
 script = ExtResource("1_g5dqh")
+ammo_value = 6

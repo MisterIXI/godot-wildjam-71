@@ -17,6 +17,7 @@ enum BANANA_STATE {
 @export var model : Node3D = null
 @export var bullet : PackedScene = null
 @export var barrel: Node3D = null
+@export var ammonition : PackedScene = null
 
 var player : Node3D = null
 var state : BANANA_STATE = BANANA_STATE.IDLE
@@ -118,7 +119,7 @@ func can_see_player() -> bool:
 
 	if player_ray.is_colliding():
 		var _object = player_ray.get_collider()
-		if _object.is_in_group("PlayerHitbox") or _object.is_in_group("Player"):
+		if _object and (_object.is_in_group("PlayerHitbox") or _object.is_in_group("Player")):
 			return true
 	return false
 
@@ -132,6 +133,9 @@ func damage() -> void:
 
 func die() -> void:
 	model.visible = false
+	var ammo = ammonition.instantiate()
+	ammo.set_deferred("global_position", global_position)
+	get_tree().root.get_child(-1).add_child(ammo)
 	particles.emitting = true
 	await particles.finished
 	queue_free()
