@@ -72,9 +72,13 @@ func delete_last_part():
 		snake_parts.pop_back()
 		
 signal snake_hurt_by_bullet(area3d)
+signal player_was_eaten()
 
 func _on_part_hurtbox_entered(area: Area3D, id: int):
 	if is_follower:
+		return
+	if area.is_in_group("Player"):
+		player_was_eaten.emit()
 		return
 	if area.is_in_group("Bullet"):
 		if id + 1 == snake_parts.size():

@@ -1,13 +1,14 @@
 extends Control
-
+class_name TDHUD
 @export var health : int = 100
 @export var shaker : Control = null
 @export var foreground_bar : Control = null
+@export var death_label: Control = null
 
 var start_pos: float = 0
 
 # THIS SIGNAL SHOULD BE OUTSIDE THE SCRIPT
-signal snake_damaged(health : int)
+signal snake_damaged(health : float)
 
 func _ready():
 	start_pos = foreground_bar.size.x
