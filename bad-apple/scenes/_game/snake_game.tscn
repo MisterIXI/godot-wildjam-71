@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bm8ksngrfkg4b"]
+[gd_scene load_steps=63 format=3 uid="uid://bm8ksngrfkg4b"]
 
 [ext_resource type="Material" uid="uid://doymm0qnxghcv" path="res://resources/snake/gras_mat.tres" id="1_filr2"]
 [ext_resource type="Script" path="res://components/snake/snake_spawner.gd" id="2_2emdo"]
@@ -17,6 +17,10 @@
 [ext_resource type="Script" path="res://components/general/movie_on_visible.gd" id="10_t07uu"]
 [ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="11_46q8x"]
 [ext_resource type="FontFile" uid="uid://ctq7052q287q7" path="res://assets/fonts/anton-sc/AntonSC-Regular.ttf" id="13_5h0s7"]
+[ext_resource type="AudioStream" uid="uid://bgj2xgesv61hv" path="res://assets/sounds/music/apple_eater.ogg" id="18_4v0ep"]
+[ext_resource type="Script" path="res://components/general/loop_music.gd" id="19_245cn"]
+[ext_resource type="AudioStream" uid="uid://bsf5kdjvbks2y" path="res://assets/sounds/nom.wav" id="20_642us"]
+[ext_resource type="AudioStream" uid="uid://c8fgi8vnga5dk" path="res://assets/sounds/not_today.wav" id="21_lv1qn"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6q0il"]
 size = Vector2(16, 16)
@@ -502,6 +506,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector3(0, 0.349066, 0)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../AudioSFX_Not_Today:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_epyc5"]
 length = 13.5
@@ -624,6 +640,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0.349066, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../AudioSFX_Not_Today:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hj6ur"]
@@ -763,12 +791,13 @@ script = ExtResource("4_s7ck1")
 grid_root = NodePath("../GridRoot")
 settings = ExtResource("6_np8b1")
 
-[node name="SnakeAppleSpawner" type="Node" parent="." node_paths=PackedStringArray("apple_label", "transition_animator")]
+[node name="SnakeAppleSpawner" type="Node" parent="." node_paths=PackedStringArray("apple_label", "transition_animator", "sound_player_nom")]
 unique_name_in_owner = true
 script = ExtResource("6_sam1o")
 apple_model = ExtResource("7_0t6h5")
 apple_label = NodePath("../HUD/GridContainer/ScoreLabel")
 transition_animator = NodePath("../TransitionAnimator")
+sound_player_nom = NodePath("../AudioSFX_Nom")
 
 [node name="Lighting" type="Node3D" parent="."]
 transform = Transform3D(0.858593, 0.346009, -0.378279, 0, 0.737879, 0.674933, 0.512657, -0.579493, 0.633538, 0, 7.79272, 4.14236)
@@ -1009,3 +1038,21 @@ text = "3"
 label_settings = SubResource("LabelSettings_o8vyd")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("18_4v0ep")
+autoplay = true
+bus = &"Music"
+script = ExtResource("19_245cn")
+
+[node name="AudioSFX_Nom" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("20_642us")
+bus = &"SFX"
+
+[node name="AudioSFX_Not_Today" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("21_lv1qn")
+volume_db = 16.163
+bus = &"SFX"

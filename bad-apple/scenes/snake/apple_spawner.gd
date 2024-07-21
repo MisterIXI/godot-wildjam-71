@@ -6,10 +6,14 @@ class_name SnakeAppleSpawner
 @onready var spawner: SnakeSpawner = %SnakeSpawner
 @export var apple_label: Label
 @export var transition_animator: SnakeTransitionAnimator
-@export var total_apple_count: int = 13
+@export var total_apple_count: int = 3
 var apple_count: int = 0
 
+@export var sound_player_nom: AudioStreamPlayer
+
 func spawn_apple():
+	if apple_count > 0:
+		sound_player_nom.play()
 	apple_count += 1
 	if apple_count == total_apple_count:
 		spawner.spawned_snakes[0].is_controlled_externally = true
