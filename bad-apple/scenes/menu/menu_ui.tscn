@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d32d7obf2eilp"]
+[gd_scene load_steps=12 format=3 uid="uid://d32d7obf2eilp"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu_manager.gd" id="1_v4tkr"]
 [ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
 [ext_resource type="Script" path="res://scenes/menu/menu_main.gd" id="2_w8b4v"]
-[ext_resource type="PackedScene" uid="uid://bm8ksngrfkg4b" path="res://scenes/_game/snake_game.tscn" id="3_grqht"]
+[ext_resource type="PackedScene" uid="uid://c7biupk03mn6v" path="res://scenes/_game/fps.tscn" id="3_isg2g"]
+[ext_resource type="PackedScene" uid="uid://bm8ksngrfkg4b" path="res://scenes/_game/snake_game.tscn" id="3_lbd0q"]
 [ext_resource type="Script" path="res://scenes/menu/menu_pause.gd" id="4_pvm7y"]
 [ext_resource type="Script" path="res://scenes/menu/menu_settings.gd" id="5_mkigw"]
 [ext_resource type="Script" path="res://scenes/menu/menu_credits.gd" id="6_k4foh"]
@@ -41,9 +42,10 @@ MainMenuNode = NodePath("MainMenu")
 PauseMenuNode = NodePath("PauseMenu")
 CreditsMenuNode = NodePath("Credits")
 SettingsMenuNode = NodePath("Settings")
-SnakeScene = ExtResource("3_grqht")
+SnakeScene = ExtResource("3_lbd0q")
+ShootingScene = ExtResource("3_isg2g")
 
-[node name="MainMenu" type="Control" parent="."]
+[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("BTNStartGame", "BTNOptions", "BTNCredits", "BTNQuit")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -52,6 +54,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_w8b4v")
+BTNStartGame = NodePath("MenuButtons/MarginContainer/VBoxContainer/BTNStartGame")
+BTNOptions = NodePath("MenuButtons/MarginContainer/VBoxContainer/BTNOptions")
+BTNCredits = NodePath("MenuButtons/MarginContainer/VBoxContainer/BTNCredits")
+BTNQuit = NodePath("MenuButtons/MarginContainer/VBoxContainer/BTNQuit")
 
 [node name="MenuButtons" type="Control" parent="MainMenu"]
 layout_mode = 1
@@ -79,6 +85,7 @@ alignment = 1
 
 [node name="BTNStartGame" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_c0msn")
 theme_override_font_sizes/font_size = 51
 text = "Start Game"
@@ -86,23 +93,26 @@ alignment = 0
 
 [node name="BTNOptions" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_c0msn")
 text = "Options"
 alignment = 0
 
 [node name="BTNCredits" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_c0msn")
 text = "Credits"
 alignment = 0
 
 [node name="BTNQuit" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_c0msn")
 text = "Quit Game"
 alignment = 0
 
-[node name="PauseMenu" type="Control" parent="."]
+[node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("BTNQuit")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -111,6 +121,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_pvm7y")
+BTNQuit = NodePath("Panel/VBoxContainer/QuitButton")
 
 [node name="Panel" type="Panel" parent="PauseMenu"]
 layout_mode = 1
@@ -143,6 +154,7 @@ theme_override_constants/separation = 10
 
 [node name="ResumeButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
@@ -153,6 +165,7 @@ text = "Resume"
 
 [node name="RestartButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
@@ -163,6 +176,7 @@ text = "Restart"
 
 [node name="SettingsButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
@@ -173,6 +187,7 @@ text = "Settings"
 
 [node name="CreditsButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
@@ -183,6 +198,7 @@ text = "Credits"
 
 [node name="QuitButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
@@ -310,6 +326,7 @@ offset_top = 29.0
 offset_right = -26.0
 offset_bottom = 66.0
 grow_horizontal = 0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
@@ -455,6 +472,7 @@ offset_top = 29.0
 offset_right = -26.0
 offset_bottom = 66.0
 grow_horizontal = 0
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
