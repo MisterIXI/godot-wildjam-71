@@ -385,9 +385,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -243.0
-offset_top = 91.5
+offset_top = 117.0
 offset_right = 243.0
-offset_bottom = 334.5
+offset_bottom = 335.0
 grow_horizontal = 2
 theme = SubResource("Theme_frpq4")
 columns = 2
@@ -452,17 +452,21 @@ size_flags_horizontal = 2
 text = "Programming"
 
 [node name="HSeparator4" type="HSeparator" parent="Credits/Panel/GridContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HSeparator8" type="HSeparator" parent="Credits/Panel/GridContainer"]
+visible = false
 layout_mode = 2
 
 [node name="CreditJessy" type="Label" parent="Credits/Panel/GridContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 2
 text = "Jessy"
 
 [node name="CreditJessy2" type="Label" parent="Credits/Panel/GridContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 2
 text = "2D Art"
