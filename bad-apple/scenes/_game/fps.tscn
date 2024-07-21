@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://c7biupk03mn6v"]
+[gd_scene load_steps=30 format=3 uid="uid://c7biupk03mn6v"]
 
 [ext_resource type="PackedScene" uid="uid://b6axxwl6xohjc" path="res://assets/models/fps/fps_map.tscn" id="1_m84rv"]
 [ext_resource type="Material" path="res://resources/materials/m_car.tres" id="3_kulxi"]
 [ext_resource type="PackedScene" uid="uid://5rw8e76sa14y" path="res://scenes/fps/character/fps_character.tscn" id="6_klxwe"]
 [ext_resource type="PackedScene" uid="uid://58psich1bu8v" path="res://scenes/fps/enemies/fps_banana.tscn" id="6_rr171"]
+[ext_resource type="AudioStream" uid="uid://c7jyfvwpoegho" path="res://assets/sounds/music/attack_of_the_killer_bananas.ogg" id="7_hn8es"]
 [ext_resource type="PackedScene" uid="uid://c3a8ulxx0j6sy" path="res://scenes/fps/hud/fps_hud.tscn" id="7_xomd4"]
 [ext_resource type="Script" path="res://components/general/reset_on_visible.gd" id="8_duyy2"]
 
@@ -13,10 +14,10 @@
 sky_material = SubResource("ProceduralSkyMaterial_lu53u")
 
 [sub_resource type="Environment" id="Environment_c235n"]
-background_mode = 2
+background_color = Color(1, 1, 1, 1)
 sky = SubResource("Sky_qd7m6")
 ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(0.466181, 0.466181, 0.466181, 1)
 tonemap_mode = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ppsj"]
@@ -272,7 +273,20 @@ orientation = 2
 environment = SubResource("Environment_c235n")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(0.985343, 0.15096, 0.079444, 0, -0.465707, 0.884939, 0.170588, -0.871968, -0.458881, 0, 2.381, 0)
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 3, 0)
+light_color = Color(0.643137, 0.643137, 0.643137, 1)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, -0.525472, 0.850811, 0, -0.850811, -0.525472, 0, 3, 0)
+light_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.707144, -3.0907e-08, 0.70707, -0.70707, -3.09102e-08, 0.707144, 0, -1, -4.37114e-08, 0, 3, 0)
+light_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.904693, 1.86238e-08, -0.426064, 0.426064, -3.95454e-08, 0.904693, 0, -1, -4.37114e-08, 0, 3, 0)
+light_color = Color(0.641934, 0.641934, 0.641934, 1)
 
 [node name="map" parent="." instance=ExtResource("1_m84rv")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -11.5153, 0, 7.53409)
@@ -426,6 +440,11 @@ movement_speed = 6.0
 movement_runon = 3.5
 
 [node name="FpsHud" parent="." instance=ExtResource("7_xomd4")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hn8es")
+autoplay = true
+bus = &"Music"
 
 [node name="ResetOnVisible" type="Node" parent="."]
 script = ExtResource("8_duyy2")
