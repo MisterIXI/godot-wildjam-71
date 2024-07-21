@@ -12,7 +12,6 @@ background_mode = 2
 background_color = Color(0.650128, 0.650128, 0.650128, 1)
 sky = SubResource("Sky_f65lf")
 ambient_light_color = Color(0, 0.568627, 1, 1)
-fog_enabled = true
 fog_density = 0.0188
 volumetric_fog_density = 0.0058
 volumetric_fog_emission = Color(0.303079, 0.602044, 0.797231, 1)

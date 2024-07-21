@@ -17,8 +17,8 @@
 [ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="13_0rxsu"]
 [ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="14_4vhjm"]
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="15_q7iaf"]
-[ext_resource type="AudioStream" uid="uid://tli62q3hyhc6" path="res://assets/sounds/music/drive.ogg" id="18_c5y5n"]
-[ext_resource type="Script" path="res://components/general/loop_music.gd" id="19_jgihr"]
+[ext_resource type="AudioStream" uid="uid://tli62q3hyhc6" path="res://assets/sounds/music/drive.ogg" id="18_b42v4"]
+[ext_resource type="Script" path="res://components/general/loop_music.gd" id="19_m5rkk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vhwtj"]
 friction = 0.0
@@ -41,13 +41,13 @@ rim_texture = SubResource("GradientTexture1D_ieq5f")
 [sub_resource type="PlaneMesh" id="PlaneMesh_cujyj"]
 size = Vector2(1000, 1000)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fh2o1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0fso7"]
 transparency = 1
 albedo_texture = ExtResource("6_xdkc4")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fgd7k"]
 lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("StandardMaterial3D_fh2o1")
+material = SubResource("StandardMaterial3D_0fso7")
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="Curve" id="Curve_v141y"]
@@ -56,7 +56,7 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_jgdgo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ywbg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odanm"]
 transparency = 1
 albedo_color = Color(0.691357, 0.691357, 0.691357, 1)
 roughness = 0.0
@@ -65,7 +65,7 @@ disable_receive_shadows = true
 grow_amount = 1.161
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhaon"]
-material = SubResource("StandardMaterial3D_6ywbg")
+material = SubResource("StandardMaterial3D_odanm")
 radius = 5.919
 height = 5.719
 radial_segments = 16
@@ -349,9 +349,11 @@ transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -252, 
 [node name="Driving_Module_08" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -288, 0, 0)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Audio" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
 process_mode = 3
-stream = ExtResource("18_c5y5n")
+stream = ExtResource("18_b42v4")
 autoplay = true
 bus = &"Music"
-script = ExtResource("19_jgihr")
+script = ExtResource("19_m5rkk")
