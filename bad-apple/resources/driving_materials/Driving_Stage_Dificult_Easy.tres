@@ -22,5 +22,5 @@ obstacle = ExtResource("3_rsvks")
 collectable = ExtResource("1_wova3")
 snakeSpeed = 1.0
 win_condition_collectables = 50
-max_health = 5
+max_health = 3
 difficult_string = "NORMAL MODE"

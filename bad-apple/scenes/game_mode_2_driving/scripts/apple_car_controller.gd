@@ -88,7 +88,7 @@ func _process(_delta : float):
 
 func _physics_process(_delta):
 	current_speed_mps = (global_position- last_pos).length() / _delta
-	$AudioStreamPlayer3D.pitch_scale = current_speed_mps * 0.07
+	$AudioStreamPlayer3D.pitch_scale = max(0.01,current_speed_mps * 0.07)
 	# DIABLE VEHICLE CONTROL CHECK
 	if !current_driving:
 		return

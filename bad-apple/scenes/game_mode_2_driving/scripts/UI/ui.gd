@@ -34,7 +34,7 @@ func update_collectable(_text : String):
 
 func update_life(value : int):
 	print ("get damage value:", value)
-	for x in range(0,5):
+	for x in range(0,life_array.size()):
 		if value -1>= x:
 			# life_array[x].visible = true
 			life_array[x].texture = full_apple_texture

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0xckiqqspste"]
+[gd_scene load_steps=23 format=3 uid="uid://0xckiqqspste"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/UI/ui.gd" id="1_rygih"]
 [ext_resource type="Texture2D" uid="uid://cliwayvnqlm8k" path="res://assets/images/driving_apple/tacho.png" id="1_yt3r0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://csx6sb2xnkuc6" path="res://assets/images/apple_icon_28x32.png" id="2_kh4s1"]
 [ext_resource type="Texture2D" uid="uid://d1q6xm2k1refg" path="res://assets/images/apple_icon_28x32_gray.png" id="3_rp7m5"]
 [ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="4_3no2s"]
+[ext_resource type="FontFile" uid="uid://ctq7052q287q7" path="res://assets/fonts/anton-sc/AntonSC-Regular.ttf" id="7_48val"]
 [ext_resource type="Script" path="res://scenes/fps/fps_restart_menu.gd" id="7_70cmv"]
 [ext_resource type="PackedScene" uid="uid://cef5pbbagysxt" path="res://scenes/fps/hud/effects/damage_effect.tscn" id="8_mob0c"]
 [ext_resource type="LabelSettings" uid="uid://cwc5q3642qmqo" path="res://resources/fps/fps_hud_numbers.tres" id="9_e5dr4"]
@@ -38,7 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rygih")
-life_array = [NodePath("HUD/Player_Container/life_icon_01/TextureRect"), NodePath("HUD/Player_Container/life_icon_02/TextureRect"), NodePath("HUD/Player_Container/life_icon_03/TextureRect"), NodePath("HUD/Player_Container/life_icon_04/TextureRect"), NodePath("HUD/Player_Container/life_icon_05/TextureRect")]
+life_array = [NodePath("HUD/Player_Container/life_icon_01/TextureRect"), NodePath("HUD/Player_Container/life_icon_02/TextureRect"), NodePath("HUD/Player_Container/life_icon_03/TextureRect")]
 full_apple_texture = ExtResource("2_kh4s1")
 emtpy_apple_texture = ExtResource("3_rp7m5")
 
@@ -163,6 +164,7 @@ texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_04" type="Panel" parent="HUD/Player_Container"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_e3jd0")
 
@@ -177,6 +179,7 @@ texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_05" type="Panel" parent="HUD/Player_Container"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7t8n5")
 
@@ -191,11 +194,11 @@ texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="Background" type="Panel" parent="HUD"]
-custom_minimum_size = Vector2(180, 40)
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 offset_left = 55.0
 offset_top = 55.0
-offset_right = 235.0
+offset_right = 175.0
 offset_bottom = 95.0
 
 [node name="Player_coin_progress" type="MarginContainer" parent="HUD"]
@@ -224,6 +227,23 @@ theme_override_font_sizes/font_size = 33
 text = "x / 50"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -82.0
+offset_right = 246.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="HUD/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_48val")
+theme_override_font_sizes/font_size = 25
+text = "Control: W,A,S,D to Move
+				Shift : Handbrake
+				Space: Jump"
 
 [node name="RestartMenu" type="Control" parent="."]
 process_mode = 3
