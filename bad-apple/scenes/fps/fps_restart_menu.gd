@@ -20,4 +20,6 @@ func _on_health_changed(health : int) -> void:
 func _input(_event):
 	if _labels.visible and Input.is_action_just_pressed("r"):
 		FpsResourceManagerInstance.reset()
+		get_tree().paused = false
 		get_tree().reload_current_scene()
+		
