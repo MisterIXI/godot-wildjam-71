@@ -63,7 +63,6 @@ transform = Transform3D(2.7705, 0, 0, 0, 0.462, 0, 0, 0, 2.0775, 0, 0, 0)
 layers = 2
 material_override = ExtResource("1_jvl3c")
 mesh = SubResource("PlaneMesh_l1rp8")
-skeleton = NodePath("../Snake_Path")
 
 [node name="B_1" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.22436, 1, -2.07512)
