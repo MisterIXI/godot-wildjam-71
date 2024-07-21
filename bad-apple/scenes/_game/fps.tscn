@@ -1019,7 +1019,7 @@ bones/7/rotation = Quaternion(-0.0497562, 8.73331e-08, 7.11775e-08, 0.998761)
 bones/7/scale = Vector3(1, 1, 1)
 
 [node name="eyes" type="BoneAttachment3D" parent="Exit/SnakePart/snek/Armature/Skeleton3D"]
-transform = Transform3D(-0.265642, 0.661088, 0.70171, 0.584276, 0.689356, -0.428263, -0.766848, 0.296227, -0.56938, 0.735173, 1.18966, 0.339852)
+transform = Transform3D(-0.265642, 0.661088, 0.70171, 0.584276, 0.689356, -0.428263, -0.766848, 0.296228, -0.56938, 0.735173, 1.18966, 0.339852)
 bone_name = "eyes"
 bone_idx = 2
 
@@ -1029,7 +1029,7 @@ mesh = SubResource("ArrayMesh_0j1r7")
 skeleton = NodePath("")
 
 [node name="eyes_001" type="BoneAttachment3D" parent="Exit/SnakePart/snek/Armature/Skeleton3D"]
-transform = Transform3D(0.826666, 0.55734, 0.0774359, -0.530921, 0.818156, -0.22078, -0.186404, 0.141398, 0.972245, -0.726191, 1.20185, 0.328456)
+transform = Transform3D(0.826666, 0.55734, 0.0774359, -0.530921, 0.818156, -0.22078, -0.186404, 0.141399, 0.972245, -0.726191, 1.20185, 0.328456)
 bone_name = "eyes.001"
 bone_idx = 4
 

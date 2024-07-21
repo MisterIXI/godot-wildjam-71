@@ -488,8 +488,9 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="map/_ Exit Celing/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_s5otf")
 
-[node name="Td_character" type="CharacterBody3D" parent="."]
+[node name="Td_character" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("5_txwsy")
+camera = NodePath("../Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Td_character"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815662, 0)

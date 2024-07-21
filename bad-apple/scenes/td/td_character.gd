@@ -6,8 +6,17 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
+
 func _physics_process(_delta):
-	# look_at_mouse_position()
+	_handle_rotation()
+	_handle_movement()
+	
+
+
+func _handle_movement():
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -20,15 +29,13 @@ func _physics_process(_delta):
 	move_and_slide()
 
 
-# func look_at_mouse_position():
-# 	var mouse_position = get_viewport().get_mouse_position()
-# 	var ray_start = camera.project_ray_origin(mouse_position)
-# 	var ray_end = ray_start + camera.project_ray_normal(mouse_position) * 1000
-# 	var space_state = get_world_3d().direct_space_state
-# 	var result = space_state.intersect_ray(ray_start, ray_end)
-# 	if result:
-# 		var target_position = result.position
-# 		var direction = (target_position - global_transform.origin).normalized()
-# 		direction.y = 0 # Keep the character upright
-# 		if direction.length() > 0:
-# 			look_at(global_transform.origin + direction, Vector3.UP)
+func _handle_rotation():
+	pass
+
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		print(event.position)
+		look_at(camera.project_position(event.position, 1))
+		rotation.x = 0
+		rotation.z = 0
