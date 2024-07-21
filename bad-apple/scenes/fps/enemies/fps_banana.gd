@@ -31,6 +31,8 @@ var player_ray : RayCast3D = null
 var player_is_in_walk_area : bool = false
 var walk_rays = []
 
+var is_dead : bool = false
+
 func _ready() -> void:
 	shoot_area.area_entered.connect(_on_shoot_area_entered)
 	shoot_area.area_exited.connect(_on_shoot_area_exited)
@@ -127,18 +129,19 @@ func can_see_player() -> bool:
 func damage() -> void:
 	_health -= FpsResourceManagerInstance.bullet_damage
 
-	if _health <= 0:
+	if not is_dead and _health <= 0:
 		die()
 
 
 func knife() -> void:
 	_health -= FpsResourceManagerInstance.knife_damage
 
-	if _health <= 0:
+	if not is_dead and _health <= 0:
 		die()
 
 
 func die() -> void:
+	is_dead = true
 	model.queue_free()
 	collision.queue_free()
 	var ammo = ammonition.instantiate()
