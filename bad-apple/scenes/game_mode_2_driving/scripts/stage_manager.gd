@@ -29,6 +29,8 @@ var current_health  = 5
 @export var player_node : Node3D
 # VARIABLE UI_CONTROLLER
 @export var ui_controller : UI_Controller
+@export var win_garage_object : Node3D
+
 ################################################## SIGNALS ##################################
 signal next_chunk
 signal driving_gamemode_start(stage : Node3D, difficult : DrivingStage)
@@ -119,6 +121,13 @@ func on_collected_coin():
     current_checkpoints += 1
     var _text :String = " %d / %d" %[current_checkpoints,current_stage_difficult.win_condition_collectables]
     ui_controller.update_collectable(_text)
-    
+    ### IF GAME FINISHED
     if current_checkpoints >= current_stage_difficult.win_condition_collectables:
-        print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
+        #print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
+        var _instance = win_garage_object.instantiate()
+        _instance.position.x  = BASE_MODULE_SIZE * offset
+        stage_object_holder.add_child(_instance)
+        spawn_queue.push_back(_instance)
+        is_gamemode_running = false
+        # player_node.disable()
+        # player_node.gameEnding()
