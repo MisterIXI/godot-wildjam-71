@@ -25,6 +25,7 @@ var old_state: STATE = STATE.HUNT
 @export var hud: TDHUD
 
 @export var snake_part_kill_particle: CPUParticles3D
+@export var final_scene: PackedScene
 
 const HP_PER_PART: float = 100
 const DMG_PER_BULLET: float = 5
@@ -37,6 +38,7 @@ func _ready():
 	curve.set_point_position(4, UP_RIGHT)
 	snake_head.snake_hurt_by_bullet.connect(_on_snake_hurt_box_area_entered)
 	snake_head.player_was_eaten.connect(_on_player_was_eaten)
+	snake_head.settings.base_speed = 8
 
 func _physics_process(_delta):
 	if state != old_state:
@@ -67,12 +69,14 @@ func _phase_1_step():
 				new_down.z = MAX_Z
 				curve.set_point_position(1, new_up)
 				curve.set_point_position(2, new_down)
+				snake_head.update_follower_progress()
 				state = STATE.ATTACK
 			pass
 		STATE.ATTACK:
 			# move down until at point, next down right corner
 			if _is_at_next_point():
 				curve.set_point_position(3, DOWN_RIGHT)
+				snake_head.update_follower_progress()
 				state = STATE.RESET_1
 			pass
 		STATE.RESET_1:
@@ -97,10 +101,103 @@ func _phase_1_step():
 	pass
 
 func _phase_2_step():
+	match state:
+		STATE.HUNT:
+			# move until you see player and set next point at player x and move down
+			# fallback when missing player
+			if snake_head.global_position.x > MAX_X - 1:
+				return
+			if _is_at_next_point():
+				curve.set_point_position(2, DOWN_LEFT)
+				state = STATE.ATTACK
+			elif abs(player.global_position.x - snake_head.global_position.x) < 0.5:
+				print("GOTCHA")
+				var new_up = snake_head.position + Vector3.LEFT * 0.3
+				var new_down = new_up
+				new_down.z = MAX_Z
+				curve.set_point_position(1, new_up)
+				curve.set_point_position(2, new_down)
+				snake_head.update_follower_progress()
+				state = STATE.ATTACK
+			pass
+		STATE.ATTACK:
+			# move down until at point, next down right corner
+			if _is_at_next_point():
+				curve.set_point_position(3, DOWN_RIGHT)
+				snake_head.update_follower_progress()
+				state = STATE.RESET_1
+			pass
+		STATE.RESET_1:
+			# move to down right corner, next to up right corner
+			if _is_at_next_point():
+				var pos = snake_head.position
+				curve.set_point_position(4, UP_RIGHT)
+				curve.set_point_position(0, UP_RIGHT)
+				snake_head.progress = curve.get_closest_offset(pos)
+				snake_head.update_follower_progress()
+				state = STATE.RESET_2
+			pass
+		STATE.RESET_2:
+			# move to up right corner, next set to up left corner for attack
+			if _is_at_next_point():
+				var pos = snake_head.position
+				curve.set_point_position(1, UP_LEFT)
+				snake_head.progress = curve.get_closest_offset(pos)
+				snake_head.update_follower_progress()
+				state = STATE.HUNT
+			pass
 	pass
 
 func _phase_3_step():
+	match state:
+		STATE.HUNT:
+			# move until you see player and set next point at player x and move down
+			# fallback when missing player
+			if snake_head.global_position.x > MAX_X - 1:
+				return
+			if _is_at_next_point():
+				curve.set_point_position(2, DOWN_LEFT)
+				state = STATE.ATTACK
+			elif abs(player.global_position.x - snake_head.global_position.x) < 0.5:
+				print("GOTCHA")
+				var new_up = snake_head.position + Vector3.LEFT * 0.3
+				var new_down = new_up
+				new_down.z = MAX_Z
+				curve.set_point_position(1, new_up)
+				curve.set_point_position(2, new_down)
+				snake_head.update_follower_progress()
+				state = STATE.ATTACK
+			pass
+		STATE.ATTACK:
+			# move down until at point, next down right corner
+			if _is_at_next_point():
+				curve.set_point_position(3, DOWN_RIGHT)
+				snake_head.update_follower_progress()
+				state = STATE.RESET_1
+			pass
+		STATE.RESET_1:
+			# move to down right corner, next to up right corner
+			if _is_at_next_point():
+				var pos = snake_head.position
+				curve.set_point_position(4, UP_RIGHT)
+				curve.set_point_position(0, UP_RIGHT)
+				snake_head.progress = curve.get_closest_offset(pos)
+				snake_head.update_follower_progress()
+				state = STATE.RESET_2
+			pass
+		STATE.RESET_2:
+			# move to up right corner, next set to up left corner for attack
+			if _is_at_next_point():
+				var pos = snake_head.position
+				curve.set_point_position(1, UP_LEFT)
+				snake_head.progress = curve.get_closest_offset(pos)
+				snake_head.update_follower_progress()
+				state = STATE.HUNT
+			pass
 	pass
+
+func _relative_player_pos() -> Vector3:
+	return player.global_position * 0.5 + global_position
 
 func _is_at_next_point():
 	var eps = 0.2
@@ -143,8 +240,17 @@ func _on_snake_hurt_box_area_entered(area: Area3D):
 			snake_part_kill_particle.visible = true
 			snake_part_kill_particle.emitting = true
 			snake_head.delete_last_part()
+			phase += 1
+			if phase == 4:
+				await get_tree().create_timer(1).timeout
+				get_tree().change_scene_to_packed(final_scene)
+				return
 			await get_tree().create_timer(1.5).timeout
+			snake_head.snake_part.play_animation("idle")
+			if phase == 2:
+				snake_head.settings.base_speed = 13
+			if phase == 3:
+				snake_head.settings.base_speed = 18
 			snake_part_kill_particle.emitting = false
 			snake_head.is_follower = false
-			phase += 1
 			part_hp = HP_PER_PART

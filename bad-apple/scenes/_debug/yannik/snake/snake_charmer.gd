@@ -58,7 +58,10 @@ func _physics_process(delta):
 
 func update_follower_progress():
 	for i in range(snake_parts.size()):
-		snake_parts[i].progress = progress - (i + 1) * settings.grid_tile_size
+		
+		# snake_parts[i].progress = parent_curve.curve.get_closest_offset(snake_parts[i].global_position)
+		snake_parts[i].progress = progress - (i + 1) 
+		
 
 func _connect_spawned_hurtbox_parts():
 	if is_follower:
