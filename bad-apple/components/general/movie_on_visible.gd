@@ -1,5 +1,5 @@
-class_name MovieOnVisible
 extends Control
+class_name MovieOnVisible
 
 
 var parent

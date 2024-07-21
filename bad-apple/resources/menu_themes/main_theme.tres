@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://4lkxwf22lm5g"]
 
 [ext_resource type="FontFile" uid="uid://ctq7052q287q7" path="res://assets/fonts/anton-sc/AntonSC-Regular.ttf" id="1_tnrdy"]
-[ext_resource type="Texture2D" uid="uid://dxav0im0gjxht" path="res://assets/images/apple_icon_20x23.png" id="2_w4t55"]
-[ext_resource type="Texture2D" uid="uid://bpmeaxlrl36o5" path="res://assets/images/apple_icon_20x23_dark.png" id="3_44iox"]
-[ext_resource type="Texture2D" uid="uid://dsyg3wokbhagd" path="res://assets/images/apple_icon_20x23_light.png" id="4_whvl5"]
+[ext_resource type="Texture2D" path="res://assets/images/apple_icon_20x23.png" id="2_w4t55"]
+[ext_resource type="Texture2D" path="res://assets/images/apple_icon_20x23_dark.png" id="3_44iox"]
+[ext_resource type="Texture2D" path="res://assets/images/apple_icon_20x23_light.png" id="4_whvl5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ekl4"]
 

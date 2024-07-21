@@ -1,19 +1,40 @@
-[gd_scene load_steps=8 format=3 uid="uid://0xckiqqspste"]
+[gd_scene load_steps=22 format=3 uid="uid://0xckiqqspste"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/UI/ui.gd" id="1_rygih"]
 [ext_resource type="Texture2D" uid="uid://cliwayvnqlm8k" path="res://assets/images/driving_apple/tacho.png" id="1_yt3r0"]
 [ext_resource type="Texture2D" uid="uid://8bw6h6w3a0hb" path="res://assets/images/driving_apple/tacho_needle.png" id="2_e5kt7"]
+[ext_resource type="Texture2D" uid="uid://csx6sb2xnkuc6" path="res://assets/images/apple_icon_28x32.png" id="2_kh4s1"]
+[ext_resource type="Texture2D" uid="uid://d1q6xm2k1refg" path="res://assets/images/apple_icon_28x32_gray.png" id="3_rp7m5"]
 [ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="4_3no2s"]
+[ext_resource type="Script" path="res://scenes/fps/fps_restart_menu.gd" id="7_70cmv"]
+[ext_resource type="PackedScene" uid="uid://cef5pbbagysxt" path="res://scenes/fps/hud/effects/damage_effect.tscn" id="8_mob0c"]
+[ext_resource type="LabelSettings" uid="uid://cwc5q3642qmqo" path="res://resources/fps/fps_hud_numbers.tres" id="9_e5dr4"]
+[ext_resource type="LabelSettings" uid="uid://bk2irodcggxa8" path="res://resources/fps/fps_arms_active.tres" id="10_bh0hq"]
+[ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="11_ffc26"]
+[ext_resource type="Script" path="res://components/general/pause_on_visible.gd" id="12_0ffn2"]
+[ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="13_gv71m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l81tc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gf7ig"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdmt2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ftph"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x4agx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3jd0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7t8n5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbpoq"]
 
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("life_array")]
 script = ExtResource("1_rygih")
 life_array = [NodePath("HUD/Player_Container/life_icon_01/TextureRect"), NodePath("HUD/Player_Container/life_icon_02/TextureRect"), NodePath("HUD/Player_Container/life_icon_03/TextureRect"), NodePath("HUD/Player_Container/life_icon_04/TextureRect"), NodePath("HUD/Player_Container/life_icon_05/TextureRect")]
+full_apple_texture = ExtResource("2_kh4s1")
+emtpy_apple_texture = ExtResource("3_rp7m5")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -92,76 +113,81 @@ theme_override_constants/margin_top = 55
 
 [node name="life_icon_01" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mdmt2")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_01"]
 top_level = true
 layout_mode = 0
 offset_left = 67.0
 offset_top = 59.0
-offset_right = 131.0
-offset_bottom = 123.0
+offset_right = 99.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_02" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3ftph")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_02"]
 top_level = true
 layout_mode = 0
-offset_left = 131.0
+offset_left = 99.0
 offset_top = 59.0
-offset_right = 195.0
-offset_bottom = 123.0
+offset_right = 131.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_03" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x4agx")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_03"]
 top_level = true
 layout_mode = 0
-offset_left = 195.0
+offset_left = 131.0
 offset_top = 59.0
-offset_right = 259.0
-offset_bottom = 123.0
+offset_right = 163.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_04" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e3jd0")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_04"]
 top_level = true
 layout_mode = 0
-offset_left = 259.0
+offset_left = 163.0
 offset_top = 59.0
-offset_right = 323.0
-offset_bottom = 123.0
+offset_right = 195.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="life_icon_05" type="Panel" parent="HUD/Player_Container"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7t8n5")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/Player_Container/life_icon_05"]
 top_level = true
 layout_mode = 0
-offset_left = 323.0
+offset_left = 195.0
 offset_top = 59.0
-offset_right = 387.0
-offset_bottom = 123.0
+offset_right = 227.0
+offset_bottom = 91.0
 texture = ExtResource("4_3no2s")
 expand_mode = 1
 
 [node name="Background" type="Panel" parent="HUD"]
-custom_minimum_size = Vector2(350, 80)
+custom_minimum_size = Vector2(180, 40)
 layout_mode = 2
 offset_left = 55.0
 offset_top = 55.0
-offset_right = 405.0
-offset_bottom = 135.0
+offset_right = 235.0
+offset_bottom = 95.0
 
 [node name="Player_coin_progress" type="MarginContainer" parent="HUD"]
 custom_minimum_size = Vector2(64, 64)
@@ -189,3 +215,99 @@ theme_override_font_sizes/font_size = 33
 text = "x / 50"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="RestartMenu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_70cmv")
+
+[node name="Labels" type="Control" parent="RestartMenu"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DamageEffect" parent="RestartMenu/Labels" instance=ExtResource("8_mob0c")]
+process_mode = 3
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -620.0
+offset_top = -460.0
+offset_right = 660.0
+offset_bottom = 506.0
+grow_horizontal = 1
+grow_vertical = 1
+expand_mode = 2
+
+[node name="Text" type="Control" parent="RestartMenu/Labels"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="HeadingLabel" type="Label" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -305.0
+offset_top = -63.0
+offset_right = 343.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Were Eaten"
+label_settings = ExtResource("9_e5dr4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryLabel" type="Label" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_right = 216.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"R\" to Retry"
+label_settings = ExtResource("10_bh0hq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResizeOnVisible" type="Node" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+script = ExtResource("11_ffc26")
+
+[node name="PauseOnVisible" type="Node" parent="RestartMenu/Labels"]
+script = ExtResource("12_0ffn2")
+
+[node name="ModulateOnVisible" type="Node" parent="RestartMenu/Labels"]
+script = ExtResource("13_gv71m")
+animation_duration = 0.3
