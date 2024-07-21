@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://0xckiqqspste"]
+[gd_scene load_steps=15 format=3 uid="uid://0xckiqqspste"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/UI/ui.gd" id="1_rygih"]
 [ext_resource type="Texture2D" uid="uid://cliwayvnqlm8k" path="res://assets/images/driving_apple/tacho.png" id="1_yt3r0"]
 [ext_resource type="Texture2D" uid="uid://8bw6h6w3a0hb" path="res://assets/images/driving_apple/tacho_needle.png" id="2_e5kt7"]
+[ext_resource type="Texture2D" uid="uid://csx6sb2xnkuc6" path="res://assets/images/apple_icon_28x32.png" id="2_kh4s1"]
+[ext_resource type="Texture2D" uid="uid://d1q6xm2k1refg" path="res://assets/images/apple_icon_28x32_gray.png" id="3_rp7m5"]
 [ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="4_3no2s"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l81tc"]
@@ -24,6 +26,8 @@
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("life_array")]
 script = ExtResource("1_rygih")
 life_array = [NodePath("HUD/Player_Container/life_icon_01/TextureRect"), NodePath("HUD/Player_Container/life_icon_02/TextureRect"), NodePath("HUD/Player_Container/life_icon_03/TextureRect"), NodePath("HUD/Player_Container/life_icon_04/TextureRect"), NodePath("HUD/Player_Container/life_icon_05/TextureRect")]
+full_apple_texture = ExtResource("2_kh4s1")
+emtpy_apple_texture = ExtResource("3_rp7m5")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3

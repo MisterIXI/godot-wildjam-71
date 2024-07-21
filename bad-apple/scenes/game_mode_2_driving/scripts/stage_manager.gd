@@ -30,6 +30,7 @@ var current_health  = 5
 # VARIABLE UI_CONTROLLER
 @export var ui_controller : UI_Controller
 @export var win_garage_object : PackedScene
+@export var win_garage_transition_effect: Node3D
 
 ################################################## SIGNALS ##################################
 signal next_chunk
@@ -128,6 +129,9 @@ func on_collected_coin():
         _instance.position.x  = BASE_MODULE_SIZE * offset
         stage_object_holder.add_child(_instance)
         spawn_queue.push_back(_instance)
+        end_driving_game()
+
+func end_driving_game():
         is_gamemode_running = false
-        # player_node.disable()
-        # player_node.gameEnding()
+        ui_controller.visible = false
+        win_garage_transition_effect.visible = true

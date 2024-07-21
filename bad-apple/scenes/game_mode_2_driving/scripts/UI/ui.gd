@@ -10,6 +10,9 @@ const MAX_ROTATION : float = 111
 # collectable value
 @onready var collectable_value : Label = $HUD/Player_coin_progress/coin_value/Label
 @export var life_array : Array[TextureRect]  = []
+### Variable texture fullApple
+@export var full_apple_texture: Texture2D
+@export var emtpy_apple_texture: Texture2D
 
 func set_tacho (x : float):
 
@@ -29,6 +32,8 @@ func update_life(value : int):
 	print ("get damage value:", value)
 	for x in range(0,5):
 		if value -1>= x:
-			life_array[x].visible = true
+			# life_array[x].visible = true
+			life_array[x].texture = full_apple_texture
 		else:
-			life_array[x].visible = false
+			# life_array[x].visible = false
+			life_array[x].texture = emtpy_apple_texture

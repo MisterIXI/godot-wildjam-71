@@ -481,7 +481,7 @@ data = PackedVector3Array(8.3906, -0.5, 7.7527, 1.3906, -0.5, 10.7527, 8.3906, -
 size = Vector3(27.2537, 11.285, 4.725)
 
 [node name="map" type="Node3D"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -7.6088, 0, 0.388702)
+transform = Transform3D(-3.27835e-08, 0, -0.75, 0, 0.75, 0, 0.75, 0, -3.27835e-08, -7.6088, 0, -7.6113)
 
 [node name="Garage Walls" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 3.18182, -9.55682)

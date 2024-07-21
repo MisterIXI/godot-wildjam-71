@@ -1,10 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://b7hkjjrglhcy4"]
+[gd_scene load_steps=40 format=3 uid="uid://b7hkjjrglhcy4"]
 
 [ext_resource type="PackedScene" uid="uid://0xckiqqspste" path="res://scenes/game_mode_2_driving/UI/ui.tscn" id="1_qqf8x"]
 [ext_resource type="PackedScene" uid="uid://bdax7v06sg23g" path="res://scenes/game_mode_2_driving/stage_manager.tscn" id="2_h14jp"]
 [ext_resource type="Resource" uid="uid://ddjhpqrveekfd" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="3_a6gtl"]
 [ext_resource type="Environment" uid="uid://bw0c1xbiy5pxb" path="res://resources/driving_materials/driving_environment_webGL.tres" id="4_4cl8s"]
 [ext_resource type="PackedScene" uid="uid://cay1kap0now5g" path="res://assets/models/fps/fps_map_car_version2.tscn" id="4_mt4ij"]
+[ext_resource type="Script" path="res://components/general/movie_on_visible.gd" id="5_q06rf"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/ground_follow.gd" id="5_s17vt"]
 [ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="6_xdkc4"]
 [ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="7_rw643"]
@@ -181,12 +182,23 @@ _data = {
 
 [node name="UI" parent="." instance=ExtResource("1_qqf8x")]
 
-[node name="Driving_Stage_Manager" parent="." node_paths=PackedStringArray("stage_object_holder", "player_node", "ui_controller") instance=ExtResource("2_h14jp")]
+[node name="Driving_Stage_Manager" parent="." node_paths=PackedStringArray("stage_object_holder", "player_node", "ui_controller", "win_garage_transition_effect") instance=ExtResource("2_h14jp")]
 stage_object_holder = NodePath("../Stage")
 current_stage_difficult = ExtResource("3_a6gtl")
 player_node = NodePath("../Entities/player_car")
 ui_controller = NodePath("../UI")
 win_garage_object = ExtResource("4_mt4ij")
+win_garage_transition_effect = NodePath("Node3D")
+
+[node name="Node3D" type="Node3D" parent="Driving_Stage_Manager"]
+visible = false
+
+[node name="MovieOnVisible" type="Control" parent="Driving_Stage_Manager/Node3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_q06rf")
 
 [node name="StartEnviroment" type="Node3D" parent="."]
 
