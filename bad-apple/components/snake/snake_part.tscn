@@ -1,13 +1,17 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqbt3m4m4fbn7"]
+[gd_scene load_steps=21 format=3 uid="uid://cqbt3m4m4fbn7"]
 
 [ext_resource type="Script" path="res://components/snake/snake_part.gd" id="1_uldcs"]
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="2_5y28i"]
+[ext_resource type="Texture2D" uid="uid://cyxm6wjeg30o6" path="res://assets/images/snekeyetail.png" id="2_7qu5e"]
 [ext_resource type="Material" uid="uid://c620wqe3a8g5" path="res://resources/driving_materials/snek_enemy_angry_material.tres" id="3_i2fw1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_isqvh"]
 radius = 0.4
 
 [sub_resource type="PrismMesh" id="PrismMesh_7pf7q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5hch"]
+albedo_texture = ExtResource("2_7qu5e")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnxks"]
 resource_name = "Material.001"
@@ -317,8 +321,8 @@ mesh = SubResource("PrismMesh_7pf7q")
 skeleton = NodePath("../..")
 
 [node name="Body" type="MeshInstance3D" parent="snek"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.52202)
-material_override = ExtResource("2_5y28i")
+visible = false
+material_override = SubResource("StandardMaterial3D_d5hch")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
 

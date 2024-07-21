@@ -120,6 +120,11 @@ func _took_damage(snake_part: PathSnakePart):
 	snake_part.Body.material_override.emission_enabled = true
 	tween_body.tween_property(snake_part.Body.material_override, "emission", Color(1, 0, 0), 0.1)
 	tween_body.tween_property(snake_part.Body.material_override, "emission", Color(0, 0, 0), 0.1)
+
+	var tween_tail = create_tween()
+	snake_part.Tail.material_override.emission_enabled = true
+	tween_tail.tween_property(snake_part.Tail.material_override, "emission", Color(1, 0, 0), 0.1)
+	tween_tail.tween_property(snake_part.Tail.material_override, "emission", Color(0, 0, 0), 0.1)
 	pass
 func _on_player_was_eaten():
 	hud.death_label.visible = true
