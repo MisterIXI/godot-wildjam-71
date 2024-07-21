@@ -23,4 +23,4 @@ collectable = ExtResource("1_wova3")
 snakeSpeed = 1.0
 win_condition_collectables = 50
 max_health = 5
-difficult_string = "EASY MODE"
+difficult_string = "NORMAL MODE"

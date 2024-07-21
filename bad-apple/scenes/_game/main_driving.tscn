@@ -1,20 +1,20 @@
-[gd_scene load_steps=38 format=3 uid="uid://nx5xk6dj6en0"]
+[gd_scene load_steps=38 format=3 uid="uid://b7hkjjrglhcy4"]
 
-[ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="1_g6064"]
-[ext_resource type="Resource" uid="uid://ddjhpqrveekfd" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="2_64env"]
-[ext_resource type="Environment" uid="uid://bw0c1xbiy5pxb" path="res://resources/driving_materials/driving_environment_webGL.tres" id="3_dnire"]
-[ext_resource type="PackedScene" uid="uid://bdax7v06sg23g" path="res://scenes/game_mode_2_driving/stage_manager.tscn" id="3_eat8x"]
-[ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="3_rmupy"]
-[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/ground_follow.gd" id="4_50ffv"]
-[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/MirrorCamera.gd" id="4_dghpx"]
-[ext_resource type="Texture2D" uid="uid://c1oac24juddkn" path="res://resources/driving_materials/car_mirror_viewport_texture.tres" id="5_5jef8"]
-[ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="5_023yl"]
-[ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="5_k11nj"]
-[ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="6_0f2w5"]
-[ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="6_lup2t"]
-[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/viewport_hotfix.gd" id="9_1lhy2"]
-[ext_resource type="PackedScene" uid="uid://c6qe3ynt4kfem" path="res://scenes/game_mode_2_driving/objects/Collectable_base.tscn" id="10_62doa"]
-[ext_resource type="PackedScene" uid="uid://0xckiqqspste" path="res://scenes/game_mode_2_driving/UI/ui.tscn" id="14_3dijy"]
+[ext_resource type="PackedScene" uid="uid://0xckiqqspste" path="res://scenes/game_mode_2_driving/UI/ui.tscn" id="1_qqf8x"]
+[ext_resource type="PackedScene" uid="uid://bdax7v06sg23g" path="res://scenes/game_mode_2_driving/stage_manager.tscn" id="2_h14jp"]
+[ext_resource type="Resource" uid="uid://ddjhpqrveekfd" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="3_a6gtl"]
+[ext_resource type="Environment" uid="uid://bw0c1xbiy5pxb" path="res://resources/driving_materials/driving_environment_webGL.tres" id="4_4cl8s"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/ground_follow.gd" id="5_s17vt"]
+[ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="6_xdkc4"]
+[ext_resource type="PackedScene" uid="uid://c3dxb20lo83uj" path="res://scenes/game_mode_2_driving/game_camera_mode2.tscn" id="7_rw643"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/MirrorCamera.gd" id="8_wwwt2"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/viewport_hotfix.gd" id="9_txod3"]
+[ext_resource type="Texture2D" uid="uid://c1oac24juddkn" path="res://resources/driving_materials/car_mirror_viewport_texture.tres" id="10_vfpgd"]
+[ext_resource type="PackedScene" uid="uid://c6qe3ynt4kfem" path="res://scenes/game_mode_2_driving/objects/Collectable_base.tscn" id="11_1nxc1"]
+[ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="12_6ori4"]
+[ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="13_0rxsu"]
+[ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="14_4vhjm"]
+[ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="15_q7iaf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vhwtj"]
 friction = 0.0
@@ -39,7 +39,7 @@ size = Vector2(1000, 1000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fh2o1"]
 transparency = 1
-albedo_texture = ExtResource("5_k11nj")
+albedo_texture = ExtResource("6_xdkc4")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fgd7k"]
 lightmap_size_hint = Vector2i(12, 12)
@@ -178,11 +178,11 @@ _data = {
 
 [node name="Driving_scene_import" type="Node3D"]
 
-[node name="UI" parent="." instance=ExtResource("14_3dijy")]
+[node name="UI" parent="." instance=ExtResource("1_qqf8x")]
 
-[node name="Driving_Stage_Manager" parent="." node_paths=PackedStringArray("stage_object_holder", "player_node", "ui_controller") instance=ExtResource("3_eat8x")]
+[node name="Driving_Stage_Manager" parent="." node_paths=PackedStringArray("stage_object_holder", "player_node", "ui_controller") instance=ExtResource("2_h14jp")]
 stage_object_holder = NodePath("../Stage")
-current_stage_difficult = ExtResource("2_64env")
+current_stage_difficult = ExtResource("3_a6gtl")
 player_node = NodePath("../Entities/player_car")
 ui_controller = NodePath("../UI")
 
@@ -211,13 +211,13 @@ sky_mode = 1
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="StartEnviroment"]
-environment = ExtResource("3_dnire")
+environment = ExtResource("4_4cl8s")
 
 [node name="Grass" type="MeshInstance3D" parent="StartEnviroment" node_paths=PackedStringArray("player_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -177.743, -1.51745, 0)
 material_override = SubResource("StandardMaterial3D_6wf40")
 mesh = SubResource("PlaneMesh_cujyj")
-script = ExtResource("4_50ffv")
+script = ExtResource("5_s17vt")
 player_node = NodePath("../../Entities/player_car")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="StartEnviroment/Grass"]
@@ -253,7 +253,7 @@ angle_max = 720.0
 
 [node name="Entities" type="Node3D" parent="."]
 
-[node name="Camera" parent="Entities" node_paths=PackedStringArray("car") instance=ExtResource("3_rmupy")]
+[node name="Camera" parent="Entities" node_paths=PackedStringArray("car") instance=ExtResource("7_rw643")]
 transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -181.899, 1.86468, 0)
 current = true
 car = NodePath("../player_car")
@@ -270,7 +270,7 @@ size = Vector2i(1920, 1080)
 [node name="MirrorCamera" type="Camera3D" parent="Entities/Camera/mirror/Mirror/SubViewport" node_paths=PackedStringArray("epic_player")]
 transform = Transform3D(-4.37112e-08, 0, 1, 0, 1, 0, -1, 0, -4.37112e-08, -181.412, 1.85108, 0)
 current = true
-script = ExtResource("4_dghpx")
+script = ExtResource("8_wwwt2")
 epic_player = NodePath("../../../..")
 
 [node name="mirror" type="Node3D" parent="Entities/Camera/mirror/Mirror"]
@@ -281,10 +281,10 @@ mesh = SubResource("ArrayMesh_xgi06")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_qic6x")
 surface_material_override/1 = SubResource("StandardMaterial3D_uo1pm")
-script = ExtResource("9_1lhy2")
-viewport_texture = ExtResource("5_5jef8")
+script = ExtResource("9_txod3")
+viewport_texture = ExtResource("10_vfpgd")
 
-[node name="collectable" parent="Entities/Camera/mirror/Mirror/mirror" instance=ExtResource("10_62doa")]
+[node name="collectable" parent="Entities/Camera/mirror/Mirror/mirror" instance=ExtResource("11_1nxc1")]
 transform = Transform3D(0.135, 0, 0, 0, 0.135, 0, 0, 0, 0.135, 0, 1.10201, -3.31294)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Entities/Camera/mirror/Mirror/mirror"]
@@ -294,38 +294,38 @@ libraries = {
 autoplay = "ui_idle_rot"
 speed_scale = 0.2
 
-[node name="player_car" parent="Entities" node_paths=PackedStringArray("ui_controller") instance=ExtResource("1_g6064")]
+[node name="player_car" parent="Entities" node_paths=PackedStringArray("ui_controller") instance=ExtResource("12_6ori4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -176.574, 0.381, 0)
 collision_mask = 25
-car_settings = ExtResource("6_lup2t")
+car_settings = ExtResource("13_0rxsu")
 ui_controller = NodePath("../../UI")
 
-[node name="BigSnake" parent="Entities" node_paths=PackedStringArray("player_node") instance=ExtResource("5_023yl")]
+[node name="BigSnake" parent="Entities" node_paths=PackedStringArray("player_node") instance=ExtResource("14_4vhjm")]
 transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, -249.829, 0, 0)
 player_node = NodePath("../player_car")
 
 [node name="Stage" type="Node3D" parent="."]
 
-[node name="Driving_Module_01" parent="Stage" instance=ExtResource("6_0f2w5")]
+[node name="Driving_Module_01" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -36, 0, 0)
 
-[node name="Driving_Module_02" parent="Stage" instance=ExtResource("6_0f2w5")]
+[node name="Driving_Module_02" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -72, 0, 0)
 
-[node name="Driving_Module_03" parent="Stage" instance=ExtResource("6_0f2w5")]
+[node name="Driving_Module_03" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -108, 0, 0)
 
-[node name="Driving_Module_04" parent="Stage" instance=ExtResource("6_0f2w5")]
+[node name="Driving_Module_04" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -144, 0, 0)
 
-[node name="Driving_Module_05" parent="Stage" instance=ExtResource("6_0f2w5")]
+[node name="Driving_Module_05" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -180, 0, 0)
 
-[node name="Driving_Module_06" parent="Stage" instance=ExtResource("6_0f2w5")]
+[node name="Driving_Module_06" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -216, 0, 0)
 
-[node name="Driving_Module_07" parent="Stage" instance=ExtResource("6_0f2w5")]
+[node name="Driving_Module_07" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -252, 0, 0)
 
-[node name="Driving_Module_08" parent="Stage" instance=ExtResource("6_0f2w5")]
+[node name="Driving_Module_08" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -288, 0, 0)
