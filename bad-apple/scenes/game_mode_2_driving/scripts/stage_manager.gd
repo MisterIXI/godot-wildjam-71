@@ -43,7 +43,8 @@ func _ready():
     on_restart()
     next_chunk.connect(on_next_chunk)
     
-    ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
+    var _text :String = " %d / %d" %[current_checkpoints,current_stage_difficult.win_condition_collectables]
+    ui_controller.update_collectable(_text)
     ui_controller.update_life(current_health)
     is_gamemode_running = true
     current_snake_speed = current_stage_difficult.snakeSpeed
@@ -83,6 +84,8 @@ func on_player_get_hit():
     ui_controller.update_life(current_health)
     if current_health <= 0:
         print ("GAME OVER")
+        #### GAME OVER ####
+        ui_controller.on_player_died()
     player_hit.emit()
 ### SIGNAL CREATE NEW CHUNK
 func on_next_chunk():
@@ -97,7 +100,7 @@ func on_restart():
     current_health = current_stage_difficult.max_health
     current_checkpoints = 0
     # PlayerPosition reset 0
-    
+    get_tree().paused = false
     for x in spawn_queue:
         x.queue_free()
 
