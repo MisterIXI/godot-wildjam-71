@@ -1,9 +1,423 @@
-[gd_scene format=3 uid="uid://c4bgxcj53td7i"]
+[gd_scene load_steps=13 format=3 uid="uid://c4bgxcj53td7i"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_jvl3c"]
+[ext_resource type="PackedScene" uid="uid://dx3cjryuqdaw7" path="res://components/snake/path_snake/snake_path_follower.tscn" id="2_0tgtb"]
+[ext_resource type="Resource" uid="uid://nswarqmkt6a1" path="res://resources/menu_snake_settings.tres" id="3_qk574"]
+[ext_resource type="Script" path="res://components/Menu/apple_spawner.gd" id="4_wiehf"]
+[ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="5_lktar"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l1rp8"]
+size = Vector2(16, 16)
+
+[sub_resource type="Curve3D" id="Curve3D_a8m2v"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -48.08, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_0kmi0"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -42.085, 0, 0, -2.0191, 0, 0.237979, 0.679, 0, -0.093, -0.494189, 0, 0.299368, -0.366, 0, 2.346, 0.366, 0, -1.771, 3.42, 0, -1.791, 0, 0, 0.7, 0, 0, -1.07, -0.447, 0, -3.833, 0, 0, 1.755, 0, 0, -1.385, 2.726, 0, -6.013, 0, 0, 0, 0, 0, 0, -0.466, 0, -7.831),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="Curve3D" id="Curve3D_2vwhc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 5.94892, -3.57628e-05, -26.0226, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_f3f07"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -9.04, 0, -33.275, 0, 0, 0, 0.53, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_37oh5"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -36.7, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_cnt23"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -9.725, 0, -16.18, -7.12843, -3.57628e-05, 34.835, -2.71, 0, 0.28, 0, 0, 0, -9.41076, 0, 8.09761, 0, 0, 0, 5.425, 0, 0, 0, 0, 7.59, 4.66, 0, 0, 5.955, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="SnakeMenuWriting" type="Node3D" parent="."]
+
+[node name="3D Stuff Node" type="Node3D" parent="SnakeMenuWriting"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SnakeMenuWriting/3D Stuff Node"]
+transform = Transform3D(1.847, 0, 0, 0, 0.462, 0, 0, 0, 1.385, 0, 0, 0)
+layers = 2
+material_override = ExtResource("1_jvl3c")
+mesh = SubResource("PlaneMesh_l1rp8")
+skeleton = NodePath("../Snake_Path")
+
+[node name="B_1" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.22436, 1, -2.07512)
+curve = SubResource("Curve3D_a8m2v")
+
+[node name="SnakePathFollower" parent="SnakeMenuWriting/3D Stuff Node/B_1" instance=ExtResource("2_0tgtb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -48.08)
+loop = false
+settings = ExtResource("3_qk574")
+spawn_with_parts = 8
+
+[node name="B_2" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9199, 1, -1.92841)
+curve = SubResource("Curve3D_0kmi0")
+
+[node name="SnakePathFollower" parent="SnakeMenuWriting/3D Stuff Node/B_2" instance=ExtResource("2_0tgtb")]
+transform = Transform3D(-0.00719772, 0, -0.999974, 0, 1, 0, 0.999974, 0, -0.00719772, -42.085, 0, 0)
+loop = false
+settings = ExtResource("3_qk574")
+spawn_with_parts = 19
+
+[node name="A_1" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98277, 1, -1.98724)
+curve = SubResource("Curve3D_2vwhc")
+
+[node name="SnakePathFollower" parent="SnakeMenuWriting/3D Stuff Node/A_1" instance=ExtResource("2_0tgtb")]
+transform = Transform3D(-0.974851, 2.98569e-07, 0.222857, 4.26326e-14, 1, -1.33974e-06, -0.222857, -1.30604e-06, -0.974851, 5.94892, -3.57628e-05, -26.0226)
+loop = false
+settings = ExtResource("3_qk574")
+spawn_with_parts = 6
+
+[node name="A_2" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98277, 1, -2.06957)
+curve = SubResource("Curve3D_f3f07")
+
+[node name="SnakePathFollower" parent="SnakeMenuWriting/3D Stuff Node/A_2" instance=ExtResource("2_0tgtb")]
+transform = Transform3D(-0.965021, 0, -0.262172, 0, 1, 0, 0.262172, 0, -0.965021, -9.04, 0, -33.275)
+loop = false
+settings = ExtResource("3_qk574")
+spawn_with_parts = 7
+
+[node name="D_1" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9647, 1, -2.41956)
+curve = SubResource("Curve3D_37oh5")
+
+[node name="SnakePathFollower" parent="SnakeMenuWriting/3D Stuff Node/D_1" instance=ExtResource("2_0tgtb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -36.7)
+loop = false
+settings = ExtResource("3_qk574")
+spawn_with_parts = 7
+
+[node name="D_2" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.62065, 1, -9.31431)
+curve = SubResource("Curve3D_cnt23")
+
+[node name="SnakePathFollower" parent="SnakeMenuWriting/3D Stuff Node/D_2" instance=ExtResource("2_0tgtb")]
+transform = Transform3D(0.857095, 0, 0.515158, 0, 1, 0, -0.515158, 0, 0.857095, -7.12843, -3.57628e-05, 34.835)
+loop = false
+settings = ExtResource("3_qk574")
+spawn_with_parts = 13
+
+[node name="Camera3D" type="Camera3D" parent="SnakeMenuWriting"]
+transform = Transform3D(1, 0, 0, 0, 0.140901, 0.990024, 0, -0.990024, 0.140901, 0.685, 16.571, 3.316)
+fov = 68.5
+size = 22.479
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SnakeMenuWriting"]
+transform = Transform3D(0.89175, 0.225942, -0.392086, 0, 0.866435, 0.499289, 0.452528, -0.445241, 0.772644, -0.95922, 4.61926, 2.09094)
+
+[node name="Apple_spawner" type="Node3D" parent="SnakeMenuWriting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05931, 0, 4.01156)
+script = ExtResource("4_wiehf")
+start_delay = 11.5
+
+[node name="RandomSpawns" type="Node3D" parent="SnakeMenuWriting/Apple_spawner"]
+
+[node name="A" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns"]
+
+[node name="AppleSpawn" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.18963, 0, 2.7678)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn2" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.82841, 0, 1.70994)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn2" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn3" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.38978, 0, 0.471474)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn3" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn4" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82215, 0, -0.637988)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn4" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn5" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46093, 0, -1.85066)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn5" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn6" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9449, 0, -2.49569)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn6" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn7" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09346, 0, -1.54104)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn7" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn8" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.57743, 0, -0.663789)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn8" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn9" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98399, 0, 0.316666)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn9" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn10" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.46796, 0, 1.24552)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn10" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn11" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97774, 0, 2.43238)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn11" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn12" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.57743, 0, 0.600482)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn12" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn13" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.58368, 0, 0.523077)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn13" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn14" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53833, 0, 0.574681)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/A/AppleSpawn14" instance=ExtResource("5_lktar")]
+
+[node name="P1" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30064, 0, 5.86398)
+
+[node name="AppleSpawn15" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn15" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn16" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0516024, 0, -1.13526)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn16" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn17" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.077404, 0, -2.08992)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn17" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn18" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.077404, 0, -2.96716)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn18" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn19" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103206, 0, -3.89602)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn19" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn20" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18061, 0, -4.87647)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn20" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn21" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.980453, 0, -5.21189)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn21" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn22" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8319, 0, -4.77327)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn22" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn23" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16732, 0, -3.74121)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn23" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn24" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7287, 0, -2.96717)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn24" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn25" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.877251, 0, -2.68335)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P1/AppleSpawn25" instance=ExtResource("5_lktar")]
+
+[node name="P2" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91713, 0, 3.18063)
+
+[node name="AppleSpawn26" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.399159, 0, 2.78656)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn26" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn27" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.270153, 0, 1.67709)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn27" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn28" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.295955, 0, 0.54183)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn28" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn29" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.192748, 0, -0.464427)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn29" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn30" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.192748, 0, -1.46443)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn30" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn31" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0637407, 0, -2.23847)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn31" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn32" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.581294, 0, -2.57389)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn32" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn33" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56175, 0, -2.18687)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn33" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn34" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81976, 0, -1.23221)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn34" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn35" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38114, 0, -0.535575)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn35" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn36" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.710303, 0, -0.174354)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/P2/AppleSpawn36" instance=ExtResource("5_lktar")]
+
+[node name="L2" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.10896, 0, 2.73542)
+
+[node name="AppleSpawn37" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03831, 0, -4.66127)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2/AppleSpawn37" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn38" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03831, 0, -3.59053)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2/AppleSpawn38" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn39" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11572, 0, -2.62304)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2/AppleSpawn39" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn40" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08992, 0, -1.72865)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2/AppleSpawn40" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn41" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99104, 0, -0.786922)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2/AppleSpawn41" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn42" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.51136, 0, -0.0903234)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2/AppleSpawn42" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn43" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30683, 0, 0.00858974)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/L2/AppleSpawn43" instance=ExtResource("5_lktar")]
+
+[node name="E" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.72361, 0, 2.44306)
+
+[node name="AppleSpawn44" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98671, 0, -0.928463)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn44" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn45" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.83533, 0, -0.983971)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn45" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn46" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66098, 0, -1.06138)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn46" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn47" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.71258, 0, -1.75801)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn47" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn48" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.06754, 0, -2.48045)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn48" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn49" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.37091, 0, -2.45465)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn49" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn50" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90648, 0, -1.70641)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn50" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn51" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16732, 0, -0.22832)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn51" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn52" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86396, 0, 0.309618)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn52" instance=ExtResource("5_lktar")]
+
+[node name="AppleSpawn53" type="Node3D" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99922, 0, 0.361222)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/RandomSpawns/E/AppleSpawn53" instance=ExtResource("5_lktar")]
+
+[node name="LastSpawn" type="Node3D" parent="SnakeMenuWriting/Apple_spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.060318, 9.53674e-07, -9.21837)
+
+[node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/LastSpawn" instance=ExtResource("5_lktar")]
