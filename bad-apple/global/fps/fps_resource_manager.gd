@@ -52,12 +52,13 @@ enum WEAPOND_TYPE {SHOTGUN, KNIFE}
 			key_found.emit()
 
 @export var medkit_value : int = 20
-@export var ammo_value : int = 10
+@export var ammo_value : int = 5
 @export var armor_heal_delay : float = 10.0
 @export var armor_heal_time : float = 0.04
 
 @export var shotgut_cooldown : float = 1
 @export var bullet_damage : int = 10
+@export var knife_damage : int = 70
 
 @export var banana_damage : int = 20
 @export var banana_speed : float = 2

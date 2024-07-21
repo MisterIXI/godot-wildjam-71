@@ -3,6 +3,9 @@ extends Node3D
 var _attackbox : Area3D
 var _anim : AnimationPlayer
 
+var _particles : CPUParticles3D
+@export var damage_material : Material = null
+
 var _enemies = []
 
 func _ready():
@@ -11,20 +14,23 @@ func _ready():
 			_anim = child
 		elif child is Area3D:
 			_attackbox = child
+		elif child is CPUParticles3D:
+			_particles = child
 
-	_attackbox.area_entered.connect(_on_area_entered)
-	_attackbox.area_exited.connect(_on_area_exited)
+	_attackbox.body_entered.connect(_on_body_entered)
+	_attackbox.body_exited.connect(_on_body_exited)
 	visibility_changed.connect(_on_visibility_changed)
 
 
-func _on_area_entered(area: Area3D) -> void:
+func _on_body_entered(area) -> void:
 	if area.is_in_group("Enemy"):
 		_enemies.append(area)
 
 
-func _on_area_exited(area: Area3D) -> void:
+func _on_body_exited(area) -> void:
 	if area.is_in_group("Enemy"):
-		_enemies.erase(area)
+		if area in _enemies:
+			_enemies.erase(area)
 
 func _on_visibility_changed() -> void:
 	if visible and _anim != null:
@@ -40,5 +46,10 @@ func attack() -> void:
 	if _anim != null:
 		_anim.play("attack")
 
+
+func damage() -> void:
 	for enemy in _enemies:
-		pass
+		if enemy and enemy is FpsBanana:
+			enemy.knife()
+			_particles.emitting = true
+	

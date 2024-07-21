@@ -106,9 +106,8 @@ func _physics_process(delta):
 			if anim_player:
 				anim_player.play("idle")
 			velocity = Vector3.ZERO
-
 	if not is_on_floor():
-		velocity.y -= 15 * delta
+		velocity.y -= 1000 * delta
 	move_and_slide()
 
 
@@ -126,6 +125,13 @@ func can_see_player() -> bool:
 
 func damage() -> void:
 	_health -= FpsResourceManagerInstance.bullet_damage
+
+	if _health <= 0:
+		die()
+
+
+func knife() -> void:
+	_health -= FpsResourceManagerInstance.knife_damage
 
 	if _health <= 0:
 		die()

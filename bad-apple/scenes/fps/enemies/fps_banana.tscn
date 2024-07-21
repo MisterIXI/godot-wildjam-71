@@ -487,7 +487,7 @@ size = Vector2(0.1, 0.1)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.390756, 0.984694), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="FpsBanana" type="CharacterBody3D" node_paths=PackedStringArray("shoot_area", "walk_area", "anim_player", "particles", "model", "barrel")]
+[node name="FpsBanana" type="CharacterBody3D" node_paths=PackedStringArray("shoot_area", "walk_area", "anim_player", "particles", "model", "barrel") groups=["Enemy"]]
 floor_constant_speed = true
 floor_max_angle = 1.39626
 platform_on_leave = 2
@@ -634,7 +634,7 @@ libraries = {
 "": SubResource("AnimationLibrary_lcxqh")
 }
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00792789, 1.14144, 0.019598)
 shape = SubResource("CylinderShape3D_g2scw")
 

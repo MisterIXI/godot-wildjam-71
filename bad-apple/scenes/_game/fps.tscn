@@ -266,9 +266,6 @@ orientation = 2
 
 [node name="Fps" type="Node3D"]
 
-[node name="map" parent="." instance=ExtResource("1_m84rv")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -11.5153, 0, 7.53409)
-
 [node name="Lighting" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
@@ -277,77 +274,80 @@ environment = SubResource("Environment_c235n")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
 transform = Transform3D(0.985343, 0.15096, 0.079444, 0, -0.465707, 0.884939, 0.170588, -0.871968, -0.458881, 0, 2.381, 0)
 
-[node name="player_car" type="Node3D" parent="."]
-transform = Transform3D(-0.961209, 0, -0.275822, 0, 1, 0, 0.275822, 0, -0.961209, -2.18953, 0.284998, 0.0352933)
+[node name="map" parent="." instance=ExtResource("1_m84rv")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -11.5153, 0, 7.53409)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="player_car"]
+[node name="car" type="Node3D" parent="map"]
+transform = Transform3D(-1.28161, 0, -0.367763, 0, 1.33333, 0, 0.367763, 0, -1.28161, 12.4344, 0.379997, -9.99839)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player_car/StaticBody3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="map/car"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/car/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0169525, 0.389202, -0.106552)
 shape = SubResource("BoxShape3D_7ppsj")
 
-[node name="Ground" type="Node3D" parent="player_car"]
+[node name="Ground" type="Node3D" parent="map/car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.478816, 0)
 
-[node name="wheel1" type="MeshInstance3D" parent="player_car"]
+[node name="wheel1" type="MeshInstance3D" parent="map/car"]
 transform = Transform3D(0.285415, 0, 0, 0, 0.285414, 0, 0, 0, 0.285414, 0.696399, 0.0453673, 0.73698)
 material_override = ExtResource("3_kulxi")
 mesh = SubResource("ArrayMesh_8mwir")
 skeleton = NodePath("")
 
-[node name="wheel2" type="MeshInstance3D" parent="player_car"]
+[node name="wheel2" type="MeshInstance3D" parent="map/car"]
 transform = Transform3D(0.285415, 0, 0, 0, 0.285414, 0, 0, 0, 0.285414, -0.761959, 0.0453673, 0.73698)
 material_override = ExtResource("3_kulxi")
 mesh = SubResource("ArrayMesh_1hb3f")
 skeleton = NodePath("")
 
-[node name="wheel3" type="MeshInstance3D" parent="player_car"]
+[node name="wheel3" type="MeshInstance3D" parent="map/car"]
 transform = Transform3D(0.285415, 0, 0, 0, 0.285414, 0, 0, 0, 0.285414, 0.696399, 0.0453672, -1.10187)
 material_override = ExtResource("3_kulxi")
 mesh = SubResource("ArrayMesh_8t0ss")
 skeleton = NodePath("")
 
-[node name="wheel4" type="MeshInstance3D" parent="player_car"]
+[node name="wheel4" type="MeshInstance3D" parent="map/car"]
 transform = Transform3D(0.285415, 0, 0, 0, 0.285414, 0, 0, 0, 0.285414, -0.761959, 0.0453673, -1.10186)
 material_override = ExtResource("3_kulxi")
 mesh = SubResource("ArrayMesh_pq783")
 skeleton = NodePath("")
 
-[node name="OmniLight_Left" type="OmniLight3D" parent="player_car"]
+[node name="OmniLight_Left" type="OmniLight3D" parent="map/car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.669933, 0.611433, -1.26648)
 light_color = Color(1, 0.505882, 0, 1)
 light_energy = 0.5
 omni_range = 0.5
 
-[node name="OmniLight_Right" type="OmniLight3D" parent="player_car"]
+[node name="OmniLight_Right" type="OmniLight3D" parent="map/car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.738115, 0.609083, -1.26715)
 light_color = Color(1, 0.505882, 0, 1)
 light_energy = 0.5
 omni_range = 0.5
 
-[node name="CarModel" type="Node3D" parent="player_car"]
+[node name="CarModel" type="Node3D" parent="map/car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0979958, 0)
 
-[node name="car" type="Node3D" parent="player_car/CarModel"]
+[node name="car" type="Node3D" parent="map/car/CarModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0327799, 0, -0.186833)
 
-[node name="Car" type="MeshInstance3D" parent="player_car/CarModel/car"]
+[node name="Car" type="MeshInstance3D" parent="map/car/CarModel/car"]
 mesh = SubResource("ArrayMesh_xmiff")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_kulxi")
 
-[node name="Steering" type="MeshInstance3D" parent="player_car/CarModel/car/Car"]
+[node name="Steering" type="MeshInstance3D" parent="map/car/CarModel/car/Car"]
 transform = Transform3D(0.285414, 0, 0, 0, 0.0495618, 0.281078, 0, -0.281078, 0.0495618, 0, 0.823154, 0.271706)
 material_override = ExtResource("3_kulxi")
 mesh = SubResource("ArrayMesh_307wr")
 skeleton = NodePath("")
 
-[node name="Windshield" type="MeshInstance3D" parent="player_car/CarModel/car/Car"]
+[node name="Windshield" type="MeshInstance3D" parent="map/car/CarModel/car/Car"]
 transform = Transform3D(0.285414, 0, 0, 0, 0.285414, 0, 0, 0, 0.285414, 0, 0.142566, -0.915028)
 mesh = SubResource("ArrayMesh_bqsbr")
 skeleton = NodePath("")
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="player_car"]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="map/car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0834396, 0.787879, 0.738762)
 amount = 20
 lifetime = 5.0
@@ -361,17 +361,8 @@ spread = 0.0
 gravity = Vector3(0, 1, 0)
 color = Color(0.336608, 0.336608, 0.336608, 1)
 
-[node name="FpsCharacter" parent="." instance=ExtResource("6_klxwe")]
-movement_speed = 6.0
-movement_runon = 3.5
-
-[node name="FpsHud" parent="." instance=ExtResource("7_xomd4")]
-
-[node name="ResetOnVisible" type="Node" parent="."]
-script = ExtResource("8_duyy2")
-time_scale = true
-
 [node name="Enemies" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.76837e-07)
 
 [node name="FpsBanana" parent="Enemies" instance=ExtResource("6_rr171")]
 transform = Transform3D(-0.994482, 0, -0.10491, 0, 1, 0, 0.10491, 0, -0.994482, -0.453215, -1.78814e-07, -14.4933)
@@ -426,3 +417,16 @@ transform = Transform3D(-0.996055, 0, -0.0887378, 0, 1, 0, 0.0887378, 0, -0.9960
 
 [node name="FpsBanana18" parent="Enemies" instance=ExtResource("6_rr171")]
 transform = Transform3D(0.133917, 0, 0.990993, 0, 1, 0, -0.990993, 0, 0.133917, -12.2124, 4.5, -52.9721)
+
+[node name="FpsBanana19" parent="Enemies" instance=ExtResource("6_rr171")]
+transform = Transform3D(-0.239279, 0, 0.970951, 0, 1, 0, -0.970951, 0, -0.239279, -1.11257, 4.5, -39.0671)
+
+[node name="FpsCharacter" parent="." instance=ExtResource("6_klxwe")]
+movement_speed = 6.0
+movement_runon = 3.5
+
+[node name="FpsHud" parent="." instance=ExtResource("7_xomd4")]
+
+[node name="ResetOnVisible" type="Node" parent="."]
+script = ExtResource("8_duyy2")
+time_scale = true
