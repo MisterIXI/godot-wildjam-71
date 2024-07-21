@@ -29,7 +29,8 @@ var current_health  = 5
 @export var player_node : Node3D
 # VARIABLE UI_CONTROLLER
 @export var ui_controller : UI_Controller
-@export var win_garage_object : Node3D
+@export var win_garage_object : PackedScene
+@export var win_garage_transition_effect: Node3D
 
 ################################################## SIGNALS ##################################
 signal next_chunk
@@ -42,7 +43,8 @@ func _ready():
     on_restart()
     next_chunk.connect(on_next_chunk)
     
-    ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
+    var _text :String = " %d / %d" %[current_checkpoints,current_stage_difficult.win_condition_collectables]
+    ui_controller.update_collectable(_text)
     ui_controller.update_life(current_health)
     is_gamemode_running = true
     current_snake_speed = current_stage_difficult.snakeSpeed
@@ -82,6 +84,8 @@ func on_player_get_hit():
     ui_controller.update_life(current_health)
     if current_health <= 0:
         print ("GAME OVER")
+        #### GAME OVER ####
+        ui_controller.on_player_died()
     player_hit.emit()
 ### SIGNAL CREATE NEW CHUNK
 func on_next_chunk():
@@ -96,7 +100,7 @@ func on_restart():
     current_health = current_stage_difficult.max_health
     current_checkpoints = 0
     # PlayerPosition reset 0
-    
+    get_tree().paused = false
     for x in spawn_queue:
         x.queue_free()
 
@@ -128,6 +132,9 @@ func on_collected_coin():
         _instance.position.x  = BASE_MODULE_SIZE * offset
         stage_object_holder.add_child(_instance)
         spawn_queue.push_back(_instance)
+        end_driving_game()
+
+func end_driving_game():
         is_gamemode_running = false
-        # player_node.disable()
-        # player_node.gameEnding()
+        ui_controller.visible = false
+        win_garage_transition_effect.visible = true
