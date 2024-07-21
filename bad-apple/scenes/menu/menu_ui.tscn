@@ -279,16 +279,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 50.0
 
-[node name="SFXV" type="Label" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
-layout_mode = 2
-text = "SFX Volume"
-
-[node name="SFXVSlider" type="HSlider" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-value = 50.0
-
 [node name="MusicV" type="Label" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
 layout_mode = 2
 text = "Music Volume"
@@ -299,10 +289,22 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 50.0
 
+[node name="SFXV" type="Label" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXVSlider" type="HSlider" parent="Settings/PanelContainer/VBoxContainer/VolumeGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+
 [node name="HSeparator" type="HSeparator" parent="Settings/PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MouseSensGrid" type="GridContainer" parent="Settings/PanelContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 columns = 2
 
