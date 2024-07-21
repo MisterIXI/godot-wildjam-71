@@ -36,6 +36,7 @@ signal player_hit
 signal get_collectable
 
 func _ready():
+    #print("START DIFFICULT : ",current_stage_difficult.difficult_string)
     on_restart()
     next_chunk.connect(on_next_chunk)
     

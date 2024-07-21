@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c1oac24juddkn" path="res://resources/driving_materials/car_mirror_viewport_texture.tres" id="10_vfpgd"]
 [ext_resource type="PackedScene" uid="uid://c6qe3ynt4kfem" path="res://scenes/game_mode_2_driving/objects/Collectable_base.tscn" id="11_1nxc1"]
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="12_6ori4"]
-[ext_resource type="Resource" uid="uid://csdc6le4omr14" path="res://resources/driving_materials/car_settings_hardcore.tres" id="13_elee2"]
+[ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="13_0rxsu"]
 [ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="14_4vhjm"]
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="15_q7iaf"]
 
@@ -297,7 +297,7 @@ speed_scale = 0.2
 [node name="player_car" parent="Entities" node_paths=PackedStringArray("ui_controller") instance=ExtResource("12_6ori4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -176.574, 0.381, 0)
 collision_mask = 25
-car_settings = ExtResource("13_elee2")
+car_settings = ExtResource("13_0rxsu")
 ui_controller = NodePath("../../UI")
 
 [node name="BigSnake" parent="Entities" node_paths=PackedStringArray("player_node") instance=ExtResource("14_4vhjm")]
