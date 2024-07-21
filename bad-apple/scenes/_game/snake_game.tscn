@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bm8ksngrfkg4b"]
+[gd_scene load_steps=29 format=3 uid="uid://bm8ksngrfkg4b"]
 
 [ext_resource type="Material" uid="uid://doymm0qnxghcv" path="res://resources/snake/gras_mat.tres" id="1_filr2"]
 [ext_resource type="Script" path="res://components/snake/snake_spawner.gd" id="2_2emdo"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="9_3ekyy"]
 [ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="10_ahgyv"]
 [ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="11_46q8x"]
+[ext_resource type="FontFile" uid="uid://ctq7052q287q7" path="res://assets/fonts/anton-sc/AntonSC-Regular.ttf" id="13_5h0s7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6q0il"]
 size = Vector2(16, 16)
@@ -32,8 +33,20 @@ plane = Plane(0, 0, 1, -8)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7e1qs"]
 plane = Plane(0, 0, -1, -8)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m3a31"]
+
+[sub_resource type="Sky" id="Sky_qd7m6"]
+sky_material = SubResource("ProceduralSkyMaterial_m3a31")
+
+[sub_resource type="Environment" id="Environment_2w217"]
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_qd7m6")
+ambient_light_source = 2
+ambient_light_color = Color(0.466181, 0.466181, 0.466181, 1)
+tonemap_mode = 3
+
 [sub_resource type="LabelSettings" id="LabelSettings_m2jo0"]
-font_size = 50
+font_size = 60
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 10
@@ -55,10 +68,17 @@ font_size = 50
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_o8vyd"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.584314)
+shadow_offset = Vector2(2, 2)
+
 [node name="SnakeGame" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 14.3054, 7.06165)
+transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 15.89, 7.062)
 fov = 50.0
 
 [node name="GridRoot" type="Node3D" parent="."]
@@ -144,10 +164,11 @@ shape = SubResource("WorldBoundaryShape3D_gkqev")
 [node name="bottom" type="CollisionShape3D" parent="GridRoot/Walls"]
 shape = SubResource("WorldBoundaryShape3D_7e1qs")
 
-[node name="SnakeSpawner" type="Node" parent="."]
+[node name="SnakeSpawner" type="Node" parent="." node_paths=PackedStringArray("hud")]
 unique_name_in_owner = true
 script = ExtResource("2_2emdo")
 snake_part_model = ExtResource("3_vx1ci")
+hud = NodePath("../HUD")
 
 [node name="SnakeGridManager" type="Node" parent="." node_paths=PackedStringArray("grid_root")]
 unique_name_in_owner = true
@@ -161,22 +182,33 @@ script = ExtResource("6_sam1o")
 apple_model = ExtResource("7_0t6h5")
 apple_label = NodePath("../HUD/GridContainer/ScoreLabel")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.79272, 0)
-layers = 3
-light_cull_mask = 4294967294
-shadow_enabled = true
-shadow_opacity = 0.62
-shadow_blur = 2.923
+[node name="Lighting" type="Node3D" parent="."]
+transform = Transform3D(0.858593, 0.346009, -0.378279, 0, 0.737879, 0.674933, 0.512657, -0.579493, 0.633538, 0, 7.79272, 4.14236)
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.858593, 0.34601, -0.378279, 0, 0.737879, 0.674933, 0.512657, -0.579493, 0.633538, 0, 7.79272, 4.14236)
-light_cull_mask = 4294967293
-shadow_enabled = true
-shadow_opacity = 0.62
-shadow_blur = 2.923
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_2w217")
 
-[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("score_label", "died_label", "died_effect")]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 3, 0)
+light_color = Color(0.643137, 0.643137, 0.643137, 1)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, -0.525472, 0.850811, 0, -0.850811, -0.525472, 0, 3, 0)
+visible = false
+light_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.707144, -3.0907e-08, 0.70707, -0.70707, -3.09102e-08, 0.707144, 0, -1, -4.37114e-08, 0, 3, 0)
+visible = false
+light_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.904693, 1.86238e-08, -0.426064, 0.426064, -3.95454e-08, 0.904693, 0, -1, -4.37114e-08, 0, 3, 0)
+visible = false
+light_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("score_label", "died_label", "died_effect", "countdown_label")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -184,10 +216,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_bjvkp")
 score_label = NodePath("GridContainer/ScoreLabel")
 died_label = NodePath("Control")
 died_effect = NodePath("DamageEffect")
+countdown_label = NodePath("Countdown/Countdownlabel")
 
 [node name="GridContainer" type="GridContainer" parent="HUD"]
 layout_mode = 0
@@ -207,7 +241,8 @@ expand_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 70
-text = "0"
+text = "0
+"
 label_settings = SubResource("LabelSettings_m2jo0")
 vertical_alignment = 1
 
@@ -240,6 +275,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="DiedLabel" type="Label" parent="HUD/Control"]
 layout_mode = 1
@@ -263,3 +299,39 @@ vertical_alignment = 1
 [node name="ResizeOnVisible" type="Node" parent="HUD/Control"]
 process_mode = 3
 script = ExtResource("11_46q8x")
+
+[node name="Countdown" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Countdownlabel" type="Label" parent="HUD/Countdown"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -80.0
+offset_right = 26.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(26, 80)
+theme_override_fonts/font = ExtResource("13_5h0s7")
+theme_override_font_sizes/font_size = 811
+text = "3"
+label_settings = SubResource("LabelSettings_o8vyd")
+horizontal_alignment = 1
+vertical_alignment = 1

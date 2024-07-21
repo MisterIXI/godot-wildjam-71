@@ -4,6 +4,7 @@ class_name SnakeSpawner
 @export var snake_part_model: PackedScene
 @onready var grid: SnakeGridManager = %SnakeGridManager
 
+@export var hud: SnakeHud
 var spawned_snakes: Array[SnakePart] = []
 
 ## first and last positions are head and tail directions and will not spawn a body part
@@ -76,5 +77,19 @@ func spawn_part(prev_part: SnakePart):
 	spawned_snakes.append(snake_part)
 
 func _ready():
+	print("I AM READYS")
 	spawn_snake()
 	%SnakeAppleSpawner.spawn_apple.call_deferred()
+	spawned_snakes[0].is_controlled_externally = true
+	var loops = 3
+	var decrement_callback = func(val):
+		hud.countdown_label.text = str(loops - val)
+	var tween = hud.countdown_label.create_tween()
+	tween.set_loops(loops)
+	tween.tween_property(hud.countdown_label.label_settings, "font_size", 500, 0) 
+	tween.tween_property(hud.countdown_label.label_settings, "font_size", 1, 1)
+	tween.loop_finished.connect(decrement_callback.bind())
+	tween.play()
+	await tween.finished
+	hud.countdown_label.hide()
+	spawned_snakes[0].is_controlled_externally = false
