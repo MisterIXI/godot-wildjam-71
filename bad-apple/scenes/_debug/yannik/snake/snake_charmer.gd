@@ -54,3 +54,7 @@ func _physics_process(delta):
 	else:
 		for snake in snake_parts:
 			snake.progress += change
+
+func update_follower_progress():
+	for i in range(snake_parts.size()):
+		snake_parts[i].progress = progress - (i + 1) * settings.grid_tile_size

@@ -1,35 +1,36 @@
 extends CharacterBody3D
 
 @export var camera: Camera3D
+@export var model: Node3D
 
-const SPEED = 5.0
+@export var bullet: PackedScene
+
+const CAMERA_VERT_OFFSET = 3.0
+const CAMERA_CAGE_SIZE = 3
+const SPEED = 10.0
+const ACCELERATION = 125.0
 const JUMP_VELOCITY = 4.5
-var last_mouse_pos = Vector2(0,0)
-var mouse_position_3D = Vector3(0,0,0)
-
+var last_mouse_pos = Vector2(0, 0)
+var mouse_position_3D = Vector3(0, 0, 0)
+const SHOT_CD = 0.3
+var shot_cd_left: float = 0.0
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-
-func _physics_process(_delta):
+func _physics_process(delta):
 	_handle_rotation()
-	_handle_movement()
+	_handle_movement(delta)
+	_move_camera(delta)
+	_check_for_shooting(delta)
+
+func _handle_movement(delta: float):
+	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()
+	input_dir *= SPEED
+	var input_3d = Vector3(input_dir.x, 0, input_dir.y)
+	velocity = velocity.move_toward(input_3d, ACCELERATION * delta)
 	
-
-
-func _handle_movement():
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
 	move_and_slide()
-
 
 func _handle_rotation():
 	var viewport := get_viewport()
@@ -44,14 +45,48 @@ func _handle_rotation():
 	var result := space_state.intersect_ray(query)
 	if not result.is_empty():
 		mouse_position_3D = result["position"]
-	print(mouse_position_3D)
+		mouse_position_3D.y = 0
+		model.look_at(mouse_position_3D, Vector3.UP)
 
+func _move_camera(delta):
+	var target = Vector3(
+			clamp(
+				camera.global_position.x,
+				model.global_position.x - CAMERA_CAGE_SIZE,
+				model.global_position.x + CAMERA_CAGE_SIZE
+			),
+			16,
+			clamp(
+				camera.global_position.z,
+				model.global_position.z - CAMERA_CAGE_SIZE + CAMERA_VERT_OFFSET,
+				model.global_position.z + CAMERA_CAGE_SIZE + CAMERA_VERT_OFFSET
+			)
+	)
+	target.z = clamp(target.z, -20, -2)
+	target.x = clamp(target.x, -4, 4)
+	camera.global_position = camera.global_position.move_toward(
+		target,
+		camera.global_position.distance_to(target) * 4 * delta
+	)
+	pass
 
-	look_at(mouse_position_3D, Vector3.UP)
-	rotation.x = 0
-	rotation.z = 0
-
-
+func _check_for_shooting(delta: float):
+	# check if lmb is down
+	shot_cd_left = clamp(shot_cd_left - delta, 0, SHOT_CD)
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if shot_cd_left == 0:
+			shot_cd_left = SHOT_CD
+			# shoot
+			var new_bullet = bullet.instantiate() as Node3D
+			get_parent().add_child(new_bullet)
+			new_bullet.global_position = model.global_position - model.global_transform.basis.z * 1
+			new_bullet.global_position += model.global_transform.basis.x * 0.27
+			new_bullet.global_position.y = 0.9
+			new_bullet.global_transform.basis = model.global_transform.basis
+			new_bullet.is_flying = true
+			new_bullet.speed = 20
+			pass
+	pass
 func _input(event):
 	if event is InputEventMouseMotion:
 		last_mouse_pos = event.position
