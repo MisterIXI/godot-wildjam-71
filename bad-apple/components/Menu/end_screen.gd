@@ -3,23 +3,23 @@ extends Node3D
 @export var buttons :Array[Button]
 
 func _ready():
-	buttons[0].mouse_entered.connect(_on_mouse_entered)
-	buttons[1].mouse_entered.connect(_on_mouse_entered)
-	buttons[2].mouse_entered.connect(_on_mouse_entered)
-	buttons[3].mouse_entered.connect(_on_mouse_entered)
+	buttons[0].mouse_entered.connect(_on_mouse_entered.bind(0))
+	buttons[1].mouse_entered.connect(_on_mouse_entered.bind(1))
+	buttons[2].mouse_entered.connect(_on_mouse_entered.bind(2))
+	buttons[3].mouse_entered.connect(_on_mouse_entered.bind(3))
 
-	buttons[0].mouse_exited.connect(_on_mouse_exited)
-	buttons[1].mouse_exited.connect(_on_mouse_exited)
-	buttons[2].mouse_exited.connect(_on_mouse_exited)
-	buttons[3].mouse_exited.connect(_on_mouse_exited)
+	buttons[0].mouse_exited.connect(_on_mouse_exited.bind(0))
+	buttons[1].mouse_exited.connect(_on_mouse_exited.bind(1))
+	buttons[2].mouse_exited.connect(_on_mouse_exited.bind(2))
+	buttons[3].mouse_exited.connect(_on_mouse_exited.bind(3))
 
-func _on_mouse_entered():
-	pass
-	#scale = Vector3(1.1,1.1,1.1)
+func _on_mouse_entered(index: int):
 
-func _on_mouse_exited():
-	pass
-	#scale = Vector3.ONE
+	buttons[index].scale = Vector2(0.33,0.33)
+
+func _on_mouse_exited(index : int):
+
+	buttons[index].scale = Vector2(0.29,0.29)
 
 func _on_topdowngame_pressed():
 	get_tree().change_scene_to_packed.call_deferred(GlobMenu.TopDownShooterScene)

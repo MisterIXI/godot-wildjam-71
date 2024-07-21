@@ -296,6 +296,21 @@ _data = {
 "idle": SubResource("Animation_tlv6p")
 }
 
+[sub_resource type="Animation" id="Animation_w4kbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("snek:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_lc2h0"]
 resource_name = "snake_anim"
 loop_mode = 1
@@ -310,21 +325,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1.93187, 1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.98, 0.98, 0.98), Vector3(1.042, 1.042, 1.042), Vector3(1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_w4kbs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("snek:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2hnyl"]
@@ -438,6 +438,33 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7nm7v")
 
+[sub_resource type="Animation" id="Animation_54xuh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Apple:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Apple:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_efbek"]
 resource_name = "apple_rounding"
 loop_mode = 1
@@ -464,33 +491,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1.41421, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.95, 0.95, 0.95), Vector3(1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_54xuh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Apple:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Apple:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e2atx"]
@@ -799,7 +799,7 @@ bones/7/rotation = Quaternion(-0.11809, 8.69019e-08, 1.7038e-07, 0.993003)
 bones/7/scale = Vector3(1, 1, 1)
 
 [node name="eyes" type="BoneAttachment3D" parent="SnakePart/snek/Armature/Skeleton3D"]
-transform = Transform3D(-0.250005, 0.671854, 0.697215, 0.934253, 0.356508, -0.00853917, -0.2543, 0.649241, -0.716811, 0.7549, 0.726586, 0.986645)
+transform = Transform3D(-0.250005, 0.671854, 0.697215, 0.934253, 0.356508, -0.00853914, -0.2543, 0.649241, -0.716811, 0.7549, 0.726586, 0.986645)
 bone_name = "eyes"
 bone_idx = 2
 
@@ -809,7 +809,7 @@ mesh = SubResource("ArrayMesh_0j1r7")
 skeleton = NodePath("")
 
 [node name="eyes_001" type="BoneAttachment3D" parent="SnakePart/snek/Armature/Skeleton3D"]
-transform = Transform3D(0.817859, 0.571473, 0.0672708, -0.32456, 0.554678, -0.766155, -0.475151, 0.604773, 0.639125, -0.705889, 0.770203, 0.99408)
+transform = Transform3D(0.817859, 0.571473, 0.0672708, -0.324559, 0.554678, -0.766155, -0.475151, 0.604773, 0.639125, -0.705889, 0.770203, 0.99408)
 bone_name = "eyes.001"
 bone_idx = 4
 
