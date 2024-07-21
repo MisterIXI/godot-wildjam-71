@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4bgxcj53td7i"]
+[gd_scene load_steps=14 format=3 uid="uid://c4bgxcj53td7i"]
 
 [ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_jvl3c"]
 [ext_resource type="PackedScene" uid="uid://dx3cjryuqdaw7" path="res://components/snake/path_snake/snake_path_follower.tscn" id="2_0tgtb"]
-[ext_resource type="Resource" uid="uid://nswarqmkt6a1" path="res://resources/menu_snake_settings.tres" id="3_qk574"]
+[ext_resource type="Resource" uid="uid://nswarqmkt6a1" path="res://resources/snake/menu_snake_settings.tres" id="3_qk574"]
 [ext_resource type="Script" path="res://components/Menu/apple_spawner.gd" id="4_wiehf"]
 [ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="5_lktar"]
+[ext_resource type="Script" path="res://scenes/menu/main_menu_activator.gd" id="6_rvjei"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l1rp8"]
 size = Vector2(16, 16)
@@ -58,7 +59,7 @@ point_count = 4
 [node name="3D Stuff Node" type="Node3D" parent="SnakeMenuWriting"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SnakeMenuWriting/3D Stuff Node"]
-transform = Transform3D(1.847, 0, 0, 0, 0.462, 0, 0, 0, 1.385, 0, 0, 0)
+transform = Transform3D(2.7705, 0, 0, 0, 0.462, 0, 0, 0, 2.0775, 0, 0, 0)
 layers = 2
 material_override = ExtResource("1_jvl3c")
 mesh = SubResource("PlaneMesh_l1rp8")
@@ -132,10 +133,12 @@ size = 22.479
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SnakeMenuWriting"]
 transform = Transform3D(0.89175, 0.225942, -0.392086, 0, 0.866435, 0.499289, 0.452528, -0.445241, 0.772644, -0.95922, 4.61926, 2.09094)
 
-[node name="Apple_spawner" type="Node3D" parent="SnakeMenuWriting"]
+[node name="Apple_spawner" type="Node3D" parent="SnakeMenuWriting" node_paths=PackedStringArray("random_spawns", "late_apple")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05931, 0, 4.01156)
 script = ExtResource("4_wiehf")
 start_delay = 11.5
+random_spawns = NodePath("RandomSpawns")
+late_apple = NodePath("LastSpawn/EatableApple")
 
 [node name="RandomSpawns" type="Node3D" parent="SnakeMenuWriting/Apple_spawner"]
 
@@ -421,3 +424,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.99922, 0, 0.361222)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.060318, 9.53674e-07, -9.21837)
 
 [node name="EatableApple" parent="SnakeMenuWriting/Apple_spawner/LastSpawn" instance=ExtResource("5_lktar")]
+
+[node name="MainMenuActivator" type="Node" parent="."]
+script = ExtResource("6_rvjei")

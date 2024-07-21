@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_pytr3"]
 [ext_resource type="PackedScene" uid="uid://dx3cjryuqdaw7" path="res://components/snake/path_snake/snake_path_follower.tscn" id="2_vnqaf"]
-[ext_resource type="Resource" uid="uid://nswarqmkt6a1" path="res://resources/menu_snake_settings.tres" id="3_4otoo"]
+[ext_resource type="Resource" uid="uid://nswarqmkt6a1" path="res://resources/snake/menu_snake_settings.tres" id="3_4otoo"]
 [ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="3_hwuva"]
 [ext_resource type="Script" path="res://components/Menu/apple_spawner.gd" id="5_muaau"]
 

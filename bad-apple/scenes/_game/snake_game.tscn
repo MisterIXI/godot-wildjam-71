@@ -1,0 +1,265 @@
+[gd_scene load_steps=24 format=3 uid="uid://bm8ksngrfkg4b"]
+
+[ext_resource type="Material" uid="uid://doymm0qnxghcv" path="res://resources/snake/gras_mat.tres" id="1_filr2"]
+[ext_resource type="Script" path="res://components/snake/snake_spawner.gd" id="2_2emdo"]
+[ext_resource type="Material" uid="uid://bhhpbr7dl6tvg" path="res://resources/snake/dark_gras_mat.tres" id="2_uf5do"]
+[ext_resource type="PackedScene" uid="uid://cqbt3m4m4fbn7" path="res://components/snake/snake_part.tscn" id="3_vx1ci"]
+[ext_resource type="Script" path="res://components/snake/snake_grid_manager.gd" id="4_s7ck1"]
+[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake/snake_settings.tres" id="6_np8b1"]
+[ext_resource type="Script" path="res://scenes/snake/apple_spawner.gd" id="6_sam1o"]
+[ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="7_0t6h5"]
+[ext_resource type="Script" path="res://components/snake/snake_hud_animator.gd" id="8_bjvkp"]
+[ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="9_3ekyy"]
+[ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="10_ahgyv"]
+[ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="11_46q8x"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6q0il"]
+size = Vector2(16, 16)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_awk5u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a86m3"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j1im3"]
+plane = Plane(-1, 0, 0, -8)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kvv8t"]
+plane = Plane(1, 0, 0, -8)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gkqev"]
+plane = Plane(0, 0, 1, -8)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7e1qs"]
+plane = Plane(0, 0, -1, -8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m2jo0"]
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.584314)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Gradient" id="Gradient_0n64p"]
+colors = PackedColorArray(0, 0, 0, 0, 0.196078, 0, 0, 0.294118)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jih0m"]
+gradient = SubResource("Gradient_0n64p")
+width = 1280
+height = 820
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_setcp"]
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SnakeGame" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.358368, 0.93358, 0, -0.93358, 0.358368, 0, 14.3054, 7.06165)
+fov = 50.0
+
+[node name="GridRoot" type="Node3D" parent="."]
+
+[node name="PlaceholderGround" type="Node3D" parent="GridRoot"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridRoot/PlaceholderGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+layers = 2
+material_override = ExtResource("1_filr2")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+layers = 2
+material_override = ExtResource("2_uf5do")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -16)
+layers = 2
+material_override = ExtResource("2_uf5do")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+layers = 2
+material_override = ExtResource("2_uf5do")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 16)
+layers = 2
+material_override = ExtResource("2_uf5do")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+layers = 2
+material_override = ExtResource("2_uf5do")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 16)
+layers = 2
+material_override = ExtResource("2_uf5do")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+layers = 2
+material_override = ExtResource("2_uf5do")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -16)
+layers = 2
+material_override = ExtResource("2_uf5do")
+mesh = SubResource("PlaneMesh_6q0il")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridRoot/PlaceholderGround/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_awk5u")
+disabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridRoot/PlaceholderGround"]
+transform = Transform3D(0.880866, 0, -0.473366, 0, 1, 0, 0.473366, 0, 0.880866, 0.506135, 0.560279, 0.44813)
+visible = false
+mesh = SubResource("BoxMesh_a86m3")
+
+[node name="Walls" type="Area3D" parent="GridRoot" groups=["DeathWall"]]
+
+[node name="right" type="CollisionShape3D" parent="GridRoot/Walls"]
+shape = SubResource("WorldBoundaryShape3D_j1im3")
+
+[node name="left" type="CollisionShape3D" parent="GridRoot/Walls"]
+shape = SubResource("WorldBoundaryShape3D_kvv8t")
+
+[node name="top" type="CollisionShape3D" parent="GridRoot/Walls"]
+shape = SubResource("WorldBoundaryShape3D_gkqev")
+
+[node name="bottom" type="CollisionShape3D" parent="GridRoot/Walls"]
+shape = SubResource("WorldBoundaryShape3D_7e1qs")
+
+[node name="SnakeSpawner" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_2emdo")
+snake_part_model = ExtResource("3_vx1ci")
+
+[node name="SnakeGridManager" type="Node" parent="." node_paths=PackedStringArray("grid_root")]
+unique_name_in_owner = true
+script = ExtResource("4_s7ck1")
+grid_root = NodePath("../GridRoot")
+settings = ExtResource("6_np8b1")
+
+[node name="SnakeAppleSpawner" type="Node" parent="." node_paths=PackedStringArray("apple_label")]
+unique_name_in_owner = true
+script = ExtResource("6_sam1o")
+apple_model = ExtResource("7_0t6h5")
+apple_label = NodePath("../HUD/GridContainer/ScoreLabel")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.79272, 0)
+layers = 3
+light_cull_mask = 4294967294
+shadow_enabled = true
+shadow_opacity = 0.62
+shadow_blur = 2.923
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.858593, 0.34601, -0.378279, 0, 0.737879, 0.674933, 0.512657, -0.579493, 0.633538, 0, 7.79272, 4.14236)
+light_cull_mask = 4294967293
+shadow_enabled = true
+shadow_opacity = 0.62
+shadow_blur = 2.923
+
+[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("score_label", "died_label", "died_effect")]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_bjvkp")
+score_label = NodePath("GridContainer/ScoreLabel")
+died_label = NodePath("Control")
+died_effect = NodePath("DamageEffect")
+
+[node name="GridContainer" type="GridContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 178.0
+offset_bottom = 146.0
+theme_override_constants/h_separation = 25
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_3ekyy")
+expand_mode = 3
+
+[node name="ScoreLabel" type="Label" parent="HUD/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 70
+text = "0"
+label_settings = SubResource("LabelSettings_m2jo0")
+vertical_alignment = 1
+
+[node name="DamageEffect" type="TextureRect" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_jih0m")
+
+[node name="ModulateOnVisible" type="Node" parent="HUD/DamageEffect"]
+script = ExtResource("10_ahgyv")
+animation_duration = 0.3
+
+[node name="Control" type="Control" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DiedLabel" type="Label" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -70.5
+offset_right = 260.0
+offset_bottom = 70.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU DIED
+PRESS R TO RESPAWN"
+label_settings = SubResource("LabelSettings_setcp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResizeOnVisible" type="Node" parent="HUD/Control"]
+process_mode = 3
+script = ExtResource("11_46q8x")

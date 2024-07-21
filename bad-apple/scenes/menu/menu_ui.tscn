@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d32d7obf2eilp"]
+[gd_scene load_steps=11 format=3 uid="uid://d32d7obf2eilp"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu_manager.gd" id="1_v4tkr"]
 [ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
 [ext_resource type="Script" path="res://scenes/menu/menu_main.gd" id="2_w8b4v"]
+[ext_resource type="PackedScene" uid="uid://bm8ksngrfkg4b" path="res://scenes/_game/snake_game.tscn" id="3_grqht"]
 [ext_resource type="Script" path="res://scenes/menu/menu_pause.gd" id="4_pvm7y"]
 [ext_resource type="Script" path="res://scenes/menu/menu_settings.gd" id="5_mkigw"]
 [ext_resource type="Script" path="res://scenes/menu/menu_credits.gd" id="6_k4foh"]
@@ -26,18 +27,21 @@ expand_margin_right = 5.0
 Label/fonts/font = SubResource("SystemFont_yi31t")
 
 [node name="Menu_UI" type="Control" node_paths=PackedStringArray("MainMenuNode", "PauseMenuNode", "CreditsMenuNode", "SettingsMenuNode")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("2_c0msn")
 script = ExtResource("1_v4tkr")
 MainMenuNode = NodePath("MainMenu")
 PauseMenuNode = NodePath("PauseMenu")
 CreditsMenuNode = NodePath("Credits")
 SettingsMenuNode = NodePath("Settings")
+SnakeScene = ExtResource("3_grqht")
 
 [node name="MainMenu" type="Control" parent="."]
 visible = false

@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://cabu8cd38fjpj"]
 
-[ext_resource type="Material" uid="uid://c3vamurpkxp8o" path="res://resources/materials/m_grass.tres" id="1_qvfow"]
+[ext_resource type="Material" path="res://resources/materials/m_grass.tres" id="1_qvfow"]
 [ext_resource type="Script" path="res://components/snake/snake_grid_manager.gd" id="2_nytcp"]
-[ext_resource type="Resource" path="res://resources/snake_settings.tres" id="3_aht7h"]
+[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake/snake_settings.tres" id="3_aht7h"]
 [ext_resource type="Script" path="res://components/snake/snake_spawner.gd" id="3_rxman"]
 [ext_resource type="PackedScene" uid="uid://cqbt3m4m4fbn7" path="res://components/snake/snake_part.tscn" id="4_gso3v"]
 [ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="6_hgxca"]
@@ -54,7 +54,7 @@ font_size = 50
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[node name="SnakeGame" type="Node3D"]
+[node name="SnakeGame2" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.403785, 0.914854, 0, -0.914854, 0.403785, 0, 14.805, 7.80794)

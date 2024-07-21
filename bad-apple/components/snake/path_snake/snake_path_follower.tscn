@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dx3cjryuqdaw7"]
 
 [ext_resource type="Script" path="res://scenes/_debug/yannik/snake/snake_charmer.gd" id="1_cpbb8"]
-[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake_settings.tres" id="2_a5h5a"]
+[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake/snake_settings.tres" id="2_a5h5a"]
 [ext_resource type="Script" path="res://components/snake/path_snake/PathSnakePart.gd" id="2_ic7m7"]
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="3_2f6np"]
 
