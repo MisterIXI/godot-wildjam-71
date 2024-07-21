@@ -148,6 +148,7 @@ func die() -> void:
 	ammo.set_deferred("global_position", global_position)
 	get_tree().root.get_node("Fps").add_child(ammo)
 	particles.emitting = true
+	$CPUParticles3D2/DeathSFX.play()
 	await particles.finished
 	queue_free()
 

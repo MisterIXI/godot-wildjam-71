@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://eo5gqp1wjkth"]
+[gd_scene load_steps=9 format=3 uid="uid://eo5gqp1wjkth"]
 
 [ext_resource type="Script" path="res://scenes/fps/enemies/fps_banana_bullet.gd" id="1_se0cb"]
 [ext_resource type="Texture2D" uid="uid://d1urwtef2wkr6" path="res://assets/images/fps/AmmoTexture.png" id="2_wc3cd"]
+[ext_resource type="AudioStream" uid="uid://blqnyi0wb4ree" path="res://assets/sounds/shot1.wav" id="3_ucm0f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vr034"]
 albedo_texture = ExtResource("2_wc3cd")
@@ -61,3 +62,10 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.0058236, 0.0202175)
 shape = SubResource("BoxShape3D_xvr8n")
+
+[node name="BulletSFX" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ucm0f")
+volume_db = -20.0
+unit_size = 50.0
+autoplay = true
+bus = &"SFX"

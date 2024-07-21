@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://bc7bjqqkcanme"]
 
 [ext_resource type="Material" uid="uid://b3h8kw6s7gc78" path="res://resources/driving_materials/road_mat.tres" id="1_atpby"]
-[ext_resource type="PackedScene" uid="uid://bipt16majnpyw" path="res://scenes/game_mode_2_driving/objects/tree_02.tscn" id="4_www1a"]
-[ext_resource type="PackedScene" uid="uid://ch7dtk8jw4b7x" path="res://scenes/game_mode_2_driving/objects/fence_01.tscn" id="5_e7cd1"]
-[ext_resource type="PackedScene" uid="uid://cyspb3fq8fyn2" path="res://scenes/game_mode_2_driving/objects/tree_04.tscn" id="6_vodwl"]
-[ext_resource type="PackedScene" uid="uid://qn56wjj58bny" path="res://scenes/game_mode_2_driving/objects/tree_03.tscn" id="7_ghbab"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/tree_02.tscn" id="4_www1a"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/fence_01.tscn" id="5_e7cd1"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/tree_04.tscn" id="6_vodwl"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/tree_03.tscn" id="7_ghbab"]
 [ext_resource type="PackedScene" uid="uid://q4ylsu546cjx" path="res://scenes/game_mode_2_driving/modules/obstacle_spawner.tscn" id="8_b28v1"]
-[ext_resource type="PackedScene" uid="uid://dpu1oqx3btgck" path="res://scenes/game_mode_2_driving/objects/tree_01.tscn" id="8_n4ggu"]
+[ext_resource type="PackedScene" path="res://scenes/game_mode_2_driving/objects/tree_01.tscn" id="8_n4ggu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mioha"]
 lightmap_size_hint = Vector2i(32, 32)
@@ -175,4 +175,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0783, 0, -10.6606)
 
 [node name="Obstacle_Spawner" parent="." instance=ExtResource("8_b28v1")]
 obstacles_spawing_chance = 5
-collectable_spawning_chance = 5
+collectable_spawning_chance = 3

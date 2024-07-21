@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://58psich1bu8v"]
+[gd_scene load_steps=25 format=3 uid="uid://58psich1bu8v"]
 
 [ext_resource type="Script" path="res://scenes/fps/enemies/fps_banana.gd" id="1_ujalv"]
 [ext_resource type="PackedScene" uid="uid://eo5gqp1wjkth" path="res://scenes/fps/enemies/fps_banana_bullet.tscn" id="2_d1jv3"]
-[ext_resource type="Material" uid="uid://jhrq6e2wmmwa" path="res://resources/materials/m_banana.tres" id="2_w2c0s"]
+[ext_resource type="Material" path="res://resources/materials/m_banana.tres" id="2_w2c0s"]
 [ext_resource type="PackedScene" uid="uid://6j0oi5goapoo" path="res://scenes/fps/consumables/ammo.tscn" id="3_22ie4"]
+[ext_resource type="AudioStream" uid="uid://b003we47dqqg0" path="res://assets/sounds/banana_death.wav" id="5_vu4qr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sno5o"]
 resource_name = "Material.001"
@@ -601,7 +602,7 @@ bones/12/rotation = Quaternion(0.000105541, -3.60369e-05, 0.779379, 0.626552)
 bones/12/scale = Vector3(1, 1, 1)
 
 [node name="Ak" type="BoneAttachment3D" parent="model/Armature/Skeleton3D"]
-transform = Transform3D(0.999999, 1.49012e-07, 8.028e-07, -4.47035e-08, 0.999996, -0.00237086, -7.48783e-07, 0.00237074, 0.999997, -5.96046e-07, 0.137822, -4.64916e-06)
+transform = Transform3D(0.999999, 1.49012e-08, 6.37025e-07, 4.47035e-08, 0.999996, -0.00237104, -7.07805e-07, 0.00237102, 0.999997, 4.76837e-07, 0.13782, -7.15256e-06)
 bone_name = "Ak"
 bone_idx = 6
 
@@ -626,7 +627,7 @@ skin = SubResource("Skin_26qeg")
 surface_material_override/0 = ExtResource("2_w2c0s")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="model/Armature/Skeleton3D"]
-transform = Transform3D(7.83238e-07, 2.30719e-07, -0.999999, -0.105119, 0.994459, 4.47035e-08, 0.99446, 0.105119, 7.48783e-07, -0.699881, 11.4556, 6.17492)
+transform = Transform3D(6.32121e-07, 8.02834e-08, -0.999999, -0.105119, 0.994459, -4.47035e-08, 0.99446, 0.105119, 7.07805e-07, -0.699883, 11.4556, 6.17493)
 bone_name = "Bulletspawn"
 bone_idx = 7
 
@@ -673,3 +674,9 @@ scale_amount_min = 0.7
 scale_amount_max = 1.3
 scale_amount_curve = SubResource("Curve_sujhx")
 hue_variation_max = 0.41
+
+[node name="DeathSFX" type="AudioStreamPlayer3D" parent="CPUParticles3D2"]
+stream = ExtResource("5_vu4qr")
+volume_db = 6.0
+unit_size = 50.0
+bus = &"SFX"

@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://cpgd32j54ifbi"]
+[gd_scene load_steps=25 format=3 uid="uid://cpgd32j54ifbi"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/apple_car_controller.gd" id="1_ntpbr"]
-[ext_resource type="Material" path="res://resources/materials/m_car.tres" id="2_d13w4"]
+[ext_resource type="Material" uid="uid://2gko4t31k8xl" path="res://resources/materials/m_car.tres" id="2_d13w4"]
 [ext_resource type="PackedScene" uid="uid://dthade8y78j41" path="res://scenes/game_mode_2_driving/apple_car_driver.tscn" id="2_f668w"]
 [ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="4_f24qo"]
+[ext_resource type="AudioStream" uid="uid://bjlqygh02rquv" path="res://assets/sounds/engine.wav" id="5_aykp5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ppsj"]
 size = Vector3(1, 0.511597, 2.02954)
@@ -413,3 +414,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_aykp5")
+volume_db = -18.0
+autoplay = true
