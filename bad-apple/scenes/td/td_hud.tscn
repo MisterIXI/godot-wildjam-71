@@ -1,0 +1,268 @@
+[gd_scene load_steps=17 format=3 uid="uid://oxxqjunihd2e"]
+
+[ext_resource type="Script" path="res://scenes/td/td_hud.gd" id="1_1dw0s"]
+[ext_resource type="FontFile" uid="uid://ctq7052q287q7" path="res://assets/fonts/anton-sc/AntonSC-Regular.ttf" id="1_2hvws"]
+[ext_resource type="Texture2D" uid="uid://dj6gndqrj3ef1" path="res://resources/td/background gradient.tres" id="2_yl7mh"]
+[ext_resource type="Texture2D" uid="uid://cgfy032i6fgif" path="res://resources/td/foreground_gradient.tres" id="3_rxdmt"]
+[ext_resource type="Texture2D" uid="uid://b0uac2bnaykup" path="res://assets/images/td/gun_hud.png" id="4_ply0f"]
+[ext_resource type="Texture2D" uid="uid://c3rl3m35a0mfn" path="res://assets/images/td/hud_background.png" id="5_wj3e6"]
+[ext_resource type="Script" path="res://scenes/fps/fps_restart_menu.gd" id="6_py3x2"]
+[ext_resource type="Script" path="res://components/general/resize_on_visible.gd" id="7_mlv8x"]
+[ext_resource type="Script" path="res://components/general/pause_on_visible.gd" id="8_1njmq"]
+[ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="9_gm50h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e3r28"]
+font = ExtResource("1_2hvws")
+font_size = 32
+font_color = Color(0, 1, 0.654902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mr77a"]
+font = ExtResource("1_2hvws")
+font_size = 24
+font_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_u5lei"]
+offsets = PackedFloat32Array(0, 0.767033)
+colors = PackedColorArray(0, 0, 0, 0, 0.90866, 0.000131686, 0.746736, 0.294118)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mmiwd"]
+gradient = SubResource("Gradient_u5lei")
+width = 1280
+height = 820
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r8h41"]
+font = ExtResource("1_2hvws")
+font_size = 52
+font_color = Color(0, 1, 0.654902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0oa3e"]
+font = ExtResource("1_2hvws")
+font_size = 29
+font_color = Color(0.173697, 0.810186, 1, 1)
+
+[node name="TdHud" type="Control" node_paths=PackedStringArray("shaker", "foreground_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("1_1dw0s")
+shaker = NodePath("Shaker")
+foreground_bar = NodePath("Shaker/SnakeHealth/Bar/Foreground")
+
+[node name="Shaker" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="SnakeHealth" type="Control" parent="Shaker"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.5
+offset_top = 52.0
+offset_right = 296.5
+offset_bottom = 135.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Shaker/SnakeHealth"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Evil Snake"
+label_settings = SubResource("LabelSettings_e3r28")
+
+[node name="Bar" type="Control" parent="Shaker/SnakeHealth"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -228.5
+offset_top = -29.0
+offset_right = 228.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Background" type="TextureRect" parent="Shaker/SnakeHealth/Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_yl7mh")
+expand_mode = 1
+
+[node name="Foreground" type="TextureRect" parent="Shaker/SnakeHealth/Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rxdmt")
+expand_mode = 1
+
+[node name="Design" type="Control" parent="Shaker"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="Shaker/Design"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -77.0
+offset_right = -27.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_ply0f")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Shaker/Design"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -115.0
+offset_right = -48.0
+offset_bottom = -82.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Shotgun"
+label_settings = SubResource("LabelSettings_mr77a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Shaker/Design"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_wj3e6")
+
+[node name="RestartMenu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_py3x2")
+
+[node name="Labels" type="Control" parent="RestartMenu"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DamageEffect" type="TextureRect" parent="RestartMenu/Labels"]
+process_mode = 3
+layout_mode = 0
+offset_left = -620.0
+offset_top = -460.0
+offset_right = 660.0
+offset_bottom = 503.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_mmiwd")
+
+[node name="Text" type="Control" parent="RestartMenu/Labels"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="HeadingLabel" type="Label" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -107.5
+offset_right = 324.0
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Have Died"
+label_settings = SubResource("LabelSettings_r8h41")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryLabel" type="Label" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -44.5
+offset_right = 197.0
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"R\" to Retry"
+label_settings = SubResource("LabelSettings_0oa3e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResizeOnVisible" type="Node" parent="RestartMenu/Labels/Text"]
+process_mode = 3
+script = ExtResource("7_mlv8x")
+
+[node name="PauseOnVisible" type="Node" parent="RestartMenu/Labels"]
+script = ExtResource("8_1njmq")
+
+[node name="ModulateOnVisible" type="Node" parent="RestartMenu/Labels"]
+script = ExtResource("9_gm50h")
+animation_duration = 0.3
