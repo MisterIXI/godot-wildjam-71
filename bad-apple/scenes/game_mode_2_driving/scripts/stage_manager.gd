@@ -36,9 +36,11 @@ signal player_hit
 signal get_collectable
 
 func _ready():
+    on_restart()
     next_chunk.connect(on_next_chunk)
     
     ui_controller.update_collectable(str(current_stage_difficult.win_condition_collectables))
+    ui_controller.update_life(current_health)
     is_gamemode_running = true
     current_snake_speed = current_stage_difficult.snakeSpeed
     get_collectable.connect(on_collected_coin)
@@ -59,7 +61,7 @@ func _process(_delta):
 func spawn_modules():
     if !is_gamemode_running:
         return
-    rng.randomize()    
+    rng.randomize()
     var instance_Mother = current_stage_difficult.modules_array[rng.randi_range(0, current_stage_difficult.modules_array.size()-1)].instantiate()
     instance_Mother.position.x  = BASE_MODULE_SIZE * offset
     stage_object_holder.add_child(instance_Mother)

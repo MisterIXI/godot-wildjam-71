@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DrivingStage" load_steps=15 format=3 uid="uid://wml3bn77xeh"]
+
+[ext_resource type="PackedScene" uid="uid://bsdycoqjw8xqo" path="res://scenes/game_mode_2_driving/objects/Collectable.tscn" id="1_bwfr6"]
+[ext_resource type="PackedScene" uid="uid://br64u28r0ciq8" path="res://scenes/game_mode_2_driving/modules/driving_module_01.tscn" id="2_4id4v"]
+[ext_resource type="PackedScene" uid="uid://ktwd4dbmg8xk" path="res://scenes/game_mode_2_driving/modules/driving_module_01_B.tscn" id="3_d76q0"]
+[ext_resource type="PackedScene" uid="uid://dv50cgp7316to" path="res://scenes/game_mode_2_driving/modules/driving_module_01_C.tscn" id="4_kli2o"]
+[ext_resource type="PackedScene" uid="uid://baqjh7yhwfpll" path="res://scenes/game_mode_2_driving/modules/driving_module_01_D.tscn" id="5_k3140"]
+[ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="6_4u58h"]
+[ext_resource type="PackedScene" uid="uid://caj8kwp55vmku" path="res://scenes/game_mode_2_driving/modules/driving_module_03_House_01.tscn" id="7_6cssq"]
+[ext_resource type="PackedScene" uid="uid://cjtocbx3u7518" path="res://scenes/game_mode_2_driving/modules/driving_module_04_House_Max.tscn" id="8_km0pv"]
+[ext_resource type="PackedScene" uid="uid://771ywelnuxwq" path="res://scenes/game_mode_2_driving/modules/driving_module_05_House_1Side.tscn" id="9_lfa0v"]
+[ext_resource type="PackedScene" uid="uid://j5qiy7lb2ifo" path="res://scenes/game_mode_2_driving/modules/driving_module_05_House_1SideR.tscn" id="10_roa2k"]
+[ext_resource type="PackedScene" uid="uid://ckmjodux3rm11" path="res://scenes/game_mode_2_driving/modules/driving_module_06_House_BIG.tscn" id="11_tvhw4"]
+[ext_resource type="PackedScene" uid="uid://cep5jlh66351w" path="res://scenes/game_mode_2_driving/modules/driving_module_07_water.tscn" id="12_rs0bf"]
+[ext_resource type="PackedScene" uid="uid://w2os1uitncyn" path="res://scenes/game_mode_2_driving/objects/obstacle_01.tscn" id="13_vt721"]
+[ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/driving_stage.gd" id="14_ikpwq"]
+
+[resource]
+script = ExtResource("14_ikpwq")
+modules_array = Array[PackedScene]([ExtResource("2_4id4v"), ExtResource("2_4id4v"), ExtResource("3_d76q0"), ExtResource("4_kli2o"), ExtResource("5_k3140"), ExtResource("6_4u58h"), ExtResource("7_6cssq"), ExtResource("8_km0pv"), ExtResource("9_lfa0v"), ExtResource("10_roa2k"), ExtResource("11_tvhw4"), ExtResource("12_rs0bf"), ExtResource("2_4id4v"), ExtResource("3_d76q0"), ExtResource("8_km0pv"), ExtResource("9_lfa0v"), ExtResource("10_roa2k"), ExtResource("11_tvhw4"), ExtResource("2_4id4v"), ExtResource("2_4id4v"), ExtResource("3_d76q0")])
+obstacle = ExtResource("13_vt721")
+collectable = ExtResource("1_bwfr6")
+snakeSpeed = 4.0
+win_condition_collectables = 50
+max_health = 1
+difficult_string = "HARDCORE MODE"
