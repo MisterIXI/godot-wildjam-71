@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4bgxcj53td7i"]
+[gd_scene load_steps=17 format=3 uid="uid://c4bgxcj53td7i"]
 
 [ext_resource type="Material" uid="uid://rux728k8kmw6" path="res://scenes/_debug/yannik/test_grid.tres" id="1_jvl3c"]
 [ext_resource type="PackedScene" uid="uid://dx3cjryuqdaw7" path="res://components/snake/path_snake/snake_path_follower.tscn" id="2_0tgtb"]
@@ -51,6 +51,18 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8u3um"]
+
+[sub_resource type="Sky" id="Sky_3uab5"]
+sky_material = SubResource("ProceduralSkyMaterial_8u3um")
+
+[sub_resource type="Environment" id="Environment_l5cfl"]
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_3uab5")
+ambient_light_source = 2
+ambient_light_color = Color(0.466181, 0.466181, 0.466181, 1)
+tonemap_mode = 3
 
 [node name="MainMenu" type="Node3D"]
 
@@ -128,9 +140,6 @@ spawn_with_parts = 13
 transform = Transform3D(1, 0, 0, 0, 0.140901, 0.990024, 0, -0.990024, 0.140901, 0.685, 16.571, 3.316)
 fov = 68.5
 size = 22.479
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SnakeMenuWriting"]
-transform = Transform3D(0.89175, 0.225942, -0.392086, 0, 0.866435, 0.499289, 0.452528, -0.445241, 0.772644, -0.95922, 4.61926, 2.09094)
 
 [node name="Apple_spawner" type="Node3D" parent="SnakeMenuWriting" node_paths=PackedStringArray("random_spawns", "late_apple")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05931, 0, 4.01156)
@@ -426,3 +435,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.060318, 9.53674e-07, -9.21
 
 [node name="MainMenuActivator" type="Node" parent="."]
 script = ExtResource("6_rvjei")
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_l5cfl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 3, 0)
+light_color = Color(0.643137, 0.643137, 0.643137, 1)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, -0.525472, 0.850811, 0, -0.850811, -0.525472, 0, 3, 0)
+visible = false
+light_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.707144, -3.0907e-08, 0.70707, -0.70707, -3.09102e-08, 0.707144, 0, -1, -4.37114e-08, 0, 3, 0)
+visible = false
+light_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.904693, 1.86238e-08, -0.426064, 0.426064, -3.95454e-08, 0.904693, 0, -1, -4.37114e-08, 0, 3, 0)
+visible = false
+light_color = Color(0.641934, 0.641934, 0.641934, 1)

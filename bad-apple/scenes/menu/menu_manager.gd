@@ -96,6 +96,7 @@ func restart_game():
 	get_tree().reload_current_scene()
 	current_open_menu = null
 	previous_menu = null
+	resume_game()
 	_hide_all()
 	
 
@@ -123,7 +124,8 @@ func pause_game():
 
 func resume_game():
 	get_tree().paused = false
-	current_open_menu.hide()
+	if current_open_menu != null:
+		current_open_menu.hide()
 	current_open_menu = null
 	previous_menu = null
 	Input.set_mouse_mode(mouse_mode)

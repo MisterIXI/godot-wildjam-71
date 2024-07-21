@@ -171,7 +171,7 @@ func die():
 	# Engine.time_scale = 0
 	get_tree().paused = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	var animator = get_tree().root.get_child( - 1).get_node("%HUD")
+	var animator = get_parent().get_parent().get_node("%HUD")
 	animator.died_effect.visible = true
 	animator.died_label.visible = true
 
