@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqbt3m4m4fbn7"]
+[gd_scene load_steps=19 format=3 uid="uid://cqbt3m4m4fbn7"]
 
 [ext_resource type="Script" path="res://components/snake/snake_part.gd" id="1_uldcs"]
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="2_5y28i"]
+[ext_resource type="Material" uid="uid://c620wqe3a8g5" path="res://resources/driving_materials/snek_enemy_angry_material.tres" id="3_i2fw1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_isqvh"]
 radius = 0.4
@@ -316,14 +317,14 @@ mesh = SubResource("PrismMesh_7pf7q")
 skeleton = NodePath("../..")
 
 [node name="Body" type="MeshInstance3D" parent="snek"]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.52202)
 material_override = ExtResource("2_5y28i")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
 
 [node name="Body2" type="MeshInstance3D" parent="snek"]
 visible = false
-material_override = ExtResource("2_5y28i")
+material_override = ExtResource("3_i2fw1")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
 
@@ -389,7 +390,7 @@ bones/7/rotation = Quaternion(-0.112858, 8.69509e-08, 1.62812e-07, 0.993611)
 bones/7/scale = Vector3(1, 1, 1)
 
 [node name="eyes" type="BoneAttachment3D" parent="snek/Armature/Skeleton3D"]
-transform = Transform3D(-0.233943, 0.682724, 0.692213, 0.936671, 0.34911, -0.0277629, -0.260613, 0.64188, -0.72116, 0.774969, 0.720353, 0.975594)
+transform = Transform3D(-0.233943, 0.682724, 0.692213, 0.936671, 0.349109, -0.0277622, -0.260612, 0.64188, -0.72116, 0.774969, 0.720352, 0.975595)
 bone_name = "eyes"
 bone_idx = 2
 
@@ -399,7 +400,7 @@ mesh = SubResource("ArrayMesh_0j1r7")
 skeleton = NodePath("")
 
 [node name="eyes_001" type="BoneAttachment3D" parent="snek/Armature/Skeleton3D"]
-transform = Transform3D(0.808437, 0.585821, 0.0569508, -0.343984, 0.54877, -0.761923, -0.477604, 0.596376, 0.645159, -0.684653, 0.791746, 0.992006)
+transform = Transform3D(0.808437, 0.585822, 0.0569507, -0.343984, 0.54877, -0.761923, -0.477604, 0.596377, 0.645159, -0.684653, 0.791745, 0.992007)
 bone_name = "eyes.001"
 bone_idx = 4
 
