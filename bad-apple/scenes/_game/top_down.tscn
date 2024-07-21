@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://vgp7b4nu2lhx"]
+[gd_scene load_steps=50 format=3 uid="uid://vgp7b4nu2lhx"]
 
 [ext_resource type="Material" uid="uid://c25h2p7ijdyl4" path="res://resources/materials/m_floortiles.tres" id="1_s3nju"]
 [ext_resource type="Material" path="res://resources/materials/m_concrete.tres" id="2_b7d3b"]
@@ -385,6 +385,18 @@ shadow_mesh = SubResource("ArrayMesh_3rm0s")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gchjb"]
 data = PackedVector3Array(-0.2, -3, 2.2499, -0.2, 3, -2.25, -0.2, 3, 2.2499, -0.2, -3, 2.2499, -0.2, -3, -2.25, -0.2, 3, -2.25, -0.2, -3, -2.25, 0.2, 3, -2.25, -0.2, 3, -2.25, -0.2, -3, -2.25, 0.2, -3, -2.25, 0.2, 3, -2.25, 0.2, -3, -2.25, 0.2, 3, 2.2499, 0.2, 3, -2.25, 0.2, -3, -2.25, 0.2, -3, 2.2499, 0.2, 3, 2.2499, 0.2, -3, 2.2499, -0.2, 3, 2.2499, 0.2, 3, 2.2499, 0.2, -3, 2.2499, -0.2, -3, 2.2499, -0.2, 3, 2.2499, -0.2, -3, -2.25, 0.2, -3, 2.2499, 0.2, -3, -2.25, -0.2, -3, -2.25, -0.2, -3, 2.2499, 0.2, -3, 2.2499, 0.2, 3, -2.25, -0.2, 3, 2.2499, -0.2, 3, -2.25, 0.2, 3, -2.25, 0.2, 3, 2.2499, -0.2, 3, 2.2499)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vavxi"]
+albedo_color = Color(0, 0.486275, 0.713726, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0ppwg"]
+material = SubResource("StandardMaterial3D_vavxi")
+
+[sub_resource type="Curve" id="Curve_eb4kc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.59127, 0.352159), -3.26512, -3.26512, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_gnt5q"]
+
 [sub_resource type="Curve3D" id="Curve3D_23jhe"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12.3368, 0.12572, -7.55268, 0, 0, 0, 0, 0, 0, -8.385, 0, -7.465, 0, 0, 0, 0, 0, 0, -1.045, 0, 8.26, 0, 0, 0, 0, 0, 0, 6.72, 0, 7.715, 0, 0, 0, 0, 0, 0, 7.45, 0, 0),
@@ -514,13 +526,29 @@ shape = SubResource("ConcavePolygonShape3D_gchjb")
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.9991, -28.966)
 
-[node name="Path3D" type="Path3D" parent="." node_paths=PackedStringArray("player", "snake_head")]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.917641, -7.69717)
+emitting = false
+amount = 20
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.78
+mesh = SubResource("SphereMesh_0ppwg")
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+scale_amount_curve = SubResource("Curve_eb4kc")
+color_ramp = SubResource("Gradient_gnt5q")
+
+[node name="Path3D" type="Path3D" parent="." node_paths=PackedStringArray("player", "snake_head", "snake_part_kill_particle")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.2253, -13.5)
 curve = SubResource("Curve3D_23jhe")
 script = ExtResource("10_ngjgr")
 player = NodePath("../Td_character")
 snake_head = NodePath("SnakePathFollower")
+snake_part_kill_particle = NodePath("../CPUParticles3D")
 
 [node name="SnakePathFollower" parent="Path3D" instance=ExtResource("10_yj130")]
 transform = Transform3D(-0.00423144, -0.00606681, 0.999965, -2.00466e-06, 0.999982, 0.00606681, -0.999984, 2.36671e-05, -0.00423137, 0.527135, 0.0540702, -7.50271)
 progress = 11.81
+spawn_with_parts = 8

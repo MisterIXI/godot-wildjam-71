@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="3_2f6np"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_isqvh"]
-radius = 0.4
+radius = 0.7
 
 [sub_resource type="PrismMesh" id="PrismMesh_7pf7q"]
 

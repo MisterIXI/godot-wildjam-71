@@ -36,6 +36,7 @@ func _ready():
 			# dup.snake_part.switch_to_tail()
 	baked_length = parent_curve.curve.get_baked_length()
 	# progress += 2
+	_connect_spawned_hurtbox_parts()
 	
 func finish_path():
 	snake_part.play_animation("hurt")
@@ -58,3 +59,25 @@ func _physics_process(delta):
 func update_follower_progress():
 	for i in range(snake_parts.size()):
 		snake_parts[i].progress = progress - (i + 1) * settings.grid_tile_size
+
+func _connect_spawned_hurtbox_parts():
+	if is_follower:
+		return
+	for i in range(snake_parts.size()):
+		snake_parts[i].get_child(0).area_entered.connect(_on_part_hurtbox_entered.bind(i))
+
+func delete_last_part():
+	if snake_parts.size() > 0:
+		snake_parts[-1].queue_free()
+		snake_parts.pop_back()
+		
+signal snake_hurt_by_bullet(area3d)
+
+func _on_part_hurtbox_entered(area: Area3D, id: int):
+	if is_follower:
+		return
+	if area.is_in_group("Bullet"):
+		if id + 1 == snake_parts.size():
+			snake_hurt_by_bullet.emit(area)
+		else:
+			area.queue_free()

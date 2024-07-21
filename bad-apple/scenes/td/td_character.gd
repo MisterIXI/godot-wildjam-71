@@ -14,11 +14,14 @@ var last_mouse_pos = Vector2(0, 0)
 var mouse_position_3D = Vector3(0, 0, 0)
 const SHOT_CD = 0.3
 var shot_cd_left: float = 0.0
+var is_dead = false
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _physics_process(delta):
+	if is_dead:
+		return
 	_handle_rotation()
 	_handle_movement(delta)
 	_move_camera(delta)
@@ -90,3 +93,10 @@ func _check_for_shooting(delta: float):
 func _input(event):
 	if event is InputEventMouseMotion:
 		last_mouse_pos = event.position
+
+func kill_player():
+	model.visible = false
+	is_dead = true
+	# TODO: add death particles
+
+	pass

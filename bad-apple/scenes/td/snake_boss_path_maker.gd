@@ -22,14 +22,18 @@ var old_state: STATE = STATE.HUNT
 @export var player: CharacterBody3D
 @export var snake_head: SnakePathFollower
 
-@export var snake_hurt_box: Area3D
 @export var snake_part_kill_particle: CPUParticles3D
+
+const HP_PER_PART: float = 100
+const DMG_PER_BULLET: float = 5
+var part_hp: float = HP_PER_PART
 
 func _ready():
 	curve.set_point_position(1, UP_LEFT)
 	curve.set_point_position(2, DOWN_LEFT)
 	curve.set_point_position(3, DOWN_RIGHT)
 	curve.set_point_position(4, UP_RIGHT)
+	snake_head.snake_hurt_by_bullet.connect(_on_snake_hurt_box_area_entered)
 
 func _physics_process(_delta):
 	if state != old_state:
@@ -106,3 +110,27 @@ func _is_at_next_point():
 			return snake_head.position.distance_to(curve.get_point_position(3)) < eps
 		STATE.RESET_2:
 			return snake_head.position.distance_to(curve.get_point_position(4)) < eps
+
+func _took_damage(snake_part: PathSnakePart):
+	# TODO: Add damage visual feedback
+	pass
+
+func _on_snake_hurt_box_area_entered(area:Area3D):
+	if area.is_in_group("Bullet"):
+		area.queue_free()
+		part_hp -= DMG_PER_BULLET
+		_took_damage(snake_head.snake_parts[-1].snake_part)
+		if part_hp <= 0:
+			snake_head.is_follower = true
+			snake_head.snake_part.play_animation("hurt")
+			snake_part_kill_particle.global_position = snake_head.snake_parts[-1].global_position
+			snake_part_kill_particle.visible = true
+			snake_part_kill_particle.emitting = true
+			snake_head.delete_last_part()
+			await get_tree().create_timer(1.5).timeout
+			snake_part_kill_particle.emitting = false
+			snake_head.is_follower = false
+			phase += 1
+			part_hp = HP_PER_PART
+
+			
