@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Driving_Stage_Manager="*res://scenes/game_mode_2_driving/scripts/stage_manager.gd"
 FpsResourceManagerInstance="*res://global/fps/fps_resource_manager.tscn"
+GlobMenu="*res://scenes/menu/menu_ui.tscn"
 
 [display]
 

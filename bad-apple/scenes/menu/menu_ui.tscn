@@ -2,18 +2,10 @@
 
 [ext_resource type="Script" path="res://scenes/menu/menu_manager.gd" id="1_v4tkr"]
 [ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
-[ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="2_w8b4v"]
-[ext_resource type="Script" path="res://scenes/menu/settings.gd" id="4_2kr1n"]
-
-[sub_resource type="Gradient" id="Gradient_pyhm6"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pxexj"]
-gradient = SubResource("Gradient_pyhm6")
-width = 1024
-height = 940
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Script" path="res://scenes/menu/menu_main.gd" id="2_w8b4v"]
+[ext_resource type="Script" path="res://scenes/menu/menu_pause.gd" id="4_pvm7y"]
+[ext_resource type="Script" path="res://scenes/menu/menu_settings.gd" id="5_mkigw"]
+[ext_resource type="Script" path="res://scenes/menu/menu_credits.gd" id="6_k4foh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlplk"]
 bg_color = Color(0.227451, 0.258824, 0.305882, 0)
@@ -33,7 +25,7 @@ expand_margin_right = 5.0
 [sub_resource type="Theme" id="Theme_frpq4"]
 Label/fonts/font = SubResource("SystemFont_yi31t")
 
-[node name="Menu_UI" type="Control"]
+[node name="Menu_UI" type="Control" node_paths=PackedStringArray("MainMenuNode", "PauseMenuNode", "CreditsMenuNode", "SettingsMenuNode")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,8 +34,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_c0msn")
 script = ExtResource("1_v4tkr")
+MainMenuNode = NodePath("MainMenu")
+PauseMenuNode = NodePath("PauseMenu")
+CreditsMenuNode = NodePath("Credits")
+SettingsMenuNode = NodePath("Settings")
 
 [node name="MainMenu" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,23 +99,6 @@ text = "Quit Game"
 alignment = 0
 
 [node name="PauseMenu" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_pxexj")
-
-[node name="Settings" type="Control" parent="." node_paths=PackedStringArray("hseperator", "mouse_grid")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -126,9 +106,100 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_2kr1n")
-hseperator = NodePath("PanelContainer/VBoxContainer/HSeparator")
-mouse_grid = NodePath("PanelContainer/VBoxContainer/MouseSensGrid")
+script = ExtResource("4_pvm7y")
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -168.0
+offset_right = 160.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = -112.5
+offset_right = 104.5
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
+text = "Restart"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
+text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
+text = "Quit"
+
+[node name="Settings" type="Control" parent="." node_paths=PackedStringArray("slider_master_volume", "slider_music_volume", "slider_sfx_volume", "slider_mouse_sense")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_mkigw")
+slider_master_volume = NodePath("PanelContainer/VBoxContainer/VolumeGrid/MasterVSlider")
+slider_music_volume = NodePath("PanelContainer/VBoxContainer/VolumeGrid/MusicVSlider")
+slider_sfx_volume = NodePath("PanelContainer/VBoxContainer/VolumeGrid/SFXVSlider")
+slider_mouse_sense = NodePath("PanelContainer/VBoxContainer/MouseSensGrid/HSlider")
 
 [node name="PanelContainer" type="Panel" parent="Settings"]
 layout_mode = 1
@@ -225,7 +296,7 @@ size_flags_vertical = 4
 min_value = 1.0
 value = 50.0
 
-[node name="Button" type="Button" parent="Settings/PanelContainer"]
+[node name="BackButton" type="Button" parent="Settings/PanelContainer"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -244,12 +315,14 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
 text = "back"
 
 [node name="Credits" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_k4foh")
 
 [node name="Panel" type="Panel" parent="Credits"]
 layout_mode = 1
@@ -300,43 +373,91 @@ text = "OliPohl"
 
 [node name="CreditOli2" type="Label" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
-theme_override_font_sizes/font_size = 15
-text = "Programming / 3D Modelling"
-horizontal_alignment = 1
+size_flags_horizontal = 0
+text = "Programming / 3D Art"
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
 
+[node name="HSeparator5" type="HSeparator" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+
 [node name="CreditPhil" type="Label" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Sazzles - 3D Art / Animation / Texturing"
+text = "Sazzles"
+
+[node name="CreditPhil2" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "3D Art / Sound / Texturing"
 
 [node name="HSeparator2" type="HSeparator" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="HSeparator6" type="HSeparator" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
 
 [node name="CreditRobert" type="Label" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Chocobo - Programming / 3D Art"
+text = "Chocobo"
+
+[node name="CreditRobert2" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Programming / 3D Art"
 
 [node name="HSeparator3" type="HSeparator" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="HSeparator7" type="HSeparator" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
 
 [node name="CreditYannik" type="Label" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "MisterIXI - Programming / 2D Art"
+text = "MisterIXI"
+
+[node name="CreditYannik2" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Programming"
 
 [node name="HSeparator4" type="HSeparator" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="HSeparator8" type="HSeparator" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
 
 [node name="CreditJessy" type="Label" parent="Credits/Panel/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-text = "Jessy - 2D Art"
+text = "Jessy"
+
+[node name="CreditJessy2" type="Label" parent="Credits/Panel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "2D Art"
+
+[node name="BackButton" type="Button" parent="Credits/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -83.0
+offset_top = 29.0
+offset_right = -26.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
+text = "back"
 
 [node name="PauseEffect" type="Control" parent="."]
 visible = false
@@ -347,7 +468,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNStartGame" to="MainMenu" method="_on_btn_start_game_pressed"]
-[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNOptions" to="MainMenu" method="_on_btn_options_pressed"]
-[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNCredits" to="MainMenu" method="_on_btn_credits_pressed"]
-[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNQuit" to="MainMenu" method="_on_btn_quit_pressed"]
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNStartGame" to="." method="start_game"]
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNOptions" to="." method="show_settings"]
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNCredits" to="." method="show_credits"]
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNQuit" to="." method="quit"]
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/ResumeButton" to="." method="resume_game"]
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/RestartButton" to="." method="restart_game"]
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/SettingsButton" to="." method="show_settings"]
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/CreditsButton" to="." method="show_credits"]
+[connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/QuitButton" to="." method="quit"]
+[connection signal="pressed" from="Settings/PanelContainer/BackButton" to="." method="go_back"]
+[connection signal="pressed" from="Credits/Panel/BackButton" to="." method="go_back"]
