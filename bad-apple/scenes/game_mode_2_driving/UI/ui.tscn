@@ -243,7 +243,8 @@ theme_override_fonts/font = ExtResource("7_48val")
 theme_override_font_sizes/font_size = 25
 text = "Control: W,A,S,D to Move
 				Shift : Handbrake
-				Space: Jump"
+				Space: Jump
+				Space : Flip Vehicle"
 
 [node name="RestartMenu" type="Control" parent="."]
 process_mode = 3

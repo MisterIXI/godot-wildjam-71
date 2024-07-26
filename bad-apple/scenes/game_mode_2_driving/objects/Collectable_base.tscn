@@ -6,4 +6,5 @@
 [node name="collectable" instance=ExtResource("1_so0uq")]
 
 [node name="Torus" parent="." index="0"]
+transform = Transform3D(-4.80825e-08, 1.1, 0, -1.1, -4.80825e-08, 0, 0, 0, 1.1, 0, 0, 0)
 surface_material_override/0 = ExtResource("2_r87nd")

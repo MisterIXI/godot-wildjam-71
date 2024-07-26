@@ -1,10 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://b7hkjjrglhcy4"]
+[gd_scene load_steps=46 format=3 uid="uid://b7hkjjrglhcy4"]
 
 [ext_resource type="PackedScene" uid="uid://0xckiqqspste" path="res://scenes/game_mode_2_driving/UI/ui.tscn" id="1_qqf8x"]
 [ext_resource type="PackedScene" uid="uid://bdax7v06sg23g" path="res://scenes/game_mode_2_driving/stage_manager.tscn" id="2_h14jp"]
-[ext_resource type="Resource" uid="uid://ddjhpqrveekfd" path="res://resources/driving_materials/Driving_Stage_Dificult_Easy.tres" id="3_a6gtl"]
 [ext_resource type="Environment" uid="uid://bw0c1xbiy5pxb" path="res://resources/driving_materials/driving_environment_webGL.tres" id="4_4cl8s"]
-[ext_resource type="PackedScene" uid="uid://cay1kap0now5g" path="res://assets/models/fps/fps_map_car_version2.tscn" id="4_mt4ij"]
 [ext_resource type="Script" path="res://components/general/movie_on_visible.gd" id="5_q06rf"]
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/ground_follow.gd" id="5_s17vt"]
 [ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="6_xdkc4"]
@@ -16,9 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://cpgd32j54ifbi" path="res://scenes/game_mode_2_driving/player_car.tscn" id="12_6ori4"]
 [ext_resource type="Resource" uid="uid://d1g5fc2sy4pb7" path="res://resources/driving_materials/car_settings_default.tres" id="13_0rxsu"]
 [ext_resource type="PackedScene" uid="uid://cqv4cjpg25i0w" path="res://scenes/game_mode_2_driving/Snake/snek_new.tscn" id="14_4vhjm"]
+[ext_resource type="PackedScene" uid="uid://ktwd4dbmg8xk" path="res://scenes/game_mode_2_driving/modules/driving_module_01_B.tscn" id="15_7gcbp"]
 [ext_resource type="PackedScene" uid="uid://bc7bjqqkcanme" path="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn" id="15_q7iaf"]
+[ext_resource type="PackedScene" uid="uid://dv50cgp7316to" path="res://scenes/game_mode_2_driving/modules/driving_module_01_C.tscn" id="16_isbdk"]
+[ext_resource type="PackedScene" uid="uid://baqjh7yhwfpll" path="res://scenes/game_mode_2_driving/modules/driving_module_01_D.tscn" id="17_8negf"]
+[ext_resource type="PackedScene" uid="uid://br64u28r0ciq8" path="res://scenes/game_mode_2_driving/modules/driving_module_01.tscn" id="18_0ax2o"]
 [ext_resource type="AudioStream" uid="uid://tli62q3hyhc6" path="res://assets/sounds/music/drive.ogg" id="18_b42v4"]
 [ext_resource type="Script" path="res://components/general/loop_music.gd" id="19_m5rkk"]
+[ext_resource type="PackedScene" uid="uid://ckmjodux3rm11" path="res://scenes/game_mode_2_driving/modules/driving_module_07.tscn" id="20_q6lxy"]
+[ext_resource type="PackedScene" uid="uid://771ywelnuxwq" path="res://scenes/game_mode_2_driving/modules/driving_module_05.tscn" id="21_ra00p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vhwtj"]
 friction = 0.0
@@ -186,10 +190,8 @@ _data = {
 
 [node name="Driving_Stage_Manager" parent="." node_paths=PackedStringArray("stage_object_holder", "player_node", "ui_controller", "win_garage_transition_effect") instance=ExtResource("2_h14jp")]
 stage_object_holder = NodePath("../Stage")
-current_stage_difficult = ExtResource("3_a6gtl")
 player_node = NodePath("../Entities/player_car")
 ui_controller = NodePath("../UI")
-win_garage_object = ExtResource("4_mt4ij")
 win_garage_transition_effect = NodePath("Node3D")
 
 [node name="Node3D" type="Node3D" parent="Driving_Stage_Manager"]
@@ -325,35 +327,31 @@ player_node = NodePath("../player_car")
 
 [node name="Stage" type="Node3D" parent="."]
 
-[node name="Driving_Module_01" parent="Stage" instance=ExtResource("15_q7iaf")]
+[node name="Driving_Module_01" parent="Stage" instance=ExtResource("15_7gcbp")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -36, 0, 0)
 
-[node name="Driving_Module_02" parent="Stage" instance=ExtResource("15_q7iaf")]
+[node name="Driving_Module_02" parent="Stage" instance=ExtResource("16_isbdk")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -72, 0, 0)
 
-[node name="Driving_Module_03" parent="Stage" instance=ExtResource("15_q7iaf")]
+[node name="Driving_Module_03" parent="Stage" instance=ExtResource("17_8negf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -108, 0, 0)
 
-[node name="Driving_Module_04" parent="Stage" instance=ExtResource("15_q7iaf")]
+[node name="Driving_Module_04" parent="Stage" instance=ExtResource("18_0ax2o")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -144, 0, 0)
 
 [node name="Driving_Module_05" parent="Stage" instance=ExtResource("15_q7iaf")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -180, 0, 0)
 
-[node name="Driving_Module_06" parent="Stage" instance=ExtResource("15_q7iaf")]
+[node name="Driving_Module_06" parent="Stage" instance=ExtResource("20_q6lxy")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -216, 0, 0)
 
-[node name="Driving_Module_07" parent="Stage" instance=ExtResource("15_q7iaf")]
+[node name="Driving_Module_07" parent="Stage" instance=ExtResource("21_ra00p")]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -252, 0, 0)
-
-[node name="Driving_Module_08" parent="Stage" instance=ExtResource("15_q7iaf")]
-transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -288, 0, 0)
 
 [node name="Audio" type="Node" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
 process_mode = 3
 stream = ExtResource("18_b42v4")
-autoplay = true
 bus = &"Music"
 script = ExtResource("19_m5rkk")

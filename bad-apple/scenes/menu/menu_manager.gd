@@ -19,7 +19,7 @@ signal mouse_sense_slider_changed(sense: float)
 @export var DrivingScene: PackedScene
 @export var ShootingScene: PackedScene
 @export var TopDownShooterScene: PackedScene
-
+@export var end_game_scene : PackedScene
 var current_open_menu: Control = null
 var previous_menu: Control = null
 var mouse_mode: int = Input.MOUSE_MODE_VISIBLE

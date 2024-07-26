@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="7_0t6h5"]
 [ext_resource type="Script" path="res://components/snake/snake_hud_animator.gd" id="8_bjvkp"]
 [ext_resource type="Texture2D" uid="uid://cbbytnnpyjnft" path="res://assets/images/apple_icon.svg" id="9_3ekyy"]
-[ext_resource type="Material" uid="uid://2gko4t31k8xl" path="res://resources/materials/m_car.tres" id="9_6kcsh"]
+[ext_resource type="Material" path="res://resources/materials/m_car.tres" id="9_6kcsh"]
 [ext_resource type="Material" uid="uid://di3yjb611daya" path="res://resources/materials/m_apple.tres" id="9_uud6r"]
 [ext_resource type="Script" path="res://scenes/snake/snake_transition_animator.gd" id="9_vj5oa"]
 [ext_resource type="Script" path="res://components/general/modulate_on_visible.gd" id="10_ahgyv"]
