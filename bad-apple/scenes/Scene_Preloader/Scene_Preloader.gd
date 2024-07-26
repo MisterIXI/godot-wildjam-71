@@ -1,61 +1,71 @@
 extends Node
-
 ##### VARIABLE PRELOAD SCENES
-var pre_driving_module_01 = load("res://scenes/game_mode_2_driving/modules/driving_module_01.tscn")
-var pre_driving_module_02 = load("res://scenes/game_mode_2_driving/modules/driving_module_01_B.tscn")
-var pre_driving_module_03 = load("res://scenes/game_mode_2_driving/modules/driving_module_01_C.tscn")
-var pre_driving_module_04 = load("res://scenes/game_mode_2_driving/modules/driving_module_01_D.tscn")
-var pre_driving_module_05 = load("res://scenes/game_mode_2_driving/modules/driving_module_02.tscn")
-var pre_driving_module_06 = load("res://scenes/game_mode_2_driving/modules/driving_module_03.tscn")
-var pre_driving_module_07 = load("res://scenes/game_mode_2_driving/modules/driving_module_04.tscn")
-var pre_driving_module_08 = load("res://scenes/game_mode_2_driving/modules/driving_module_05.tscn")
-var pre_driving_module_09 = load("res://scenes/game_mode_2_driving/modules/driving_module_06.tscn")
-var pre_driving_module_10 = load("res://scenes/game_mode_2_driving/modules/driving_module_07.tscn")
-var pre_driving_module_11 = load("res://scenes/game_mode_2_driving/modules/driving_module_08.tscn")
-
+const module_01 = "res://scenes/game_mode_2_driving/modules/driving_module_01.tscn"
+const module_02 = "res://scenes/game_mode_2_driving/modules/driving_module_01_B.tscn"
+const module_03= "res://scenes/game_mode_2_driving/modules/driving_module_01_C.tscn"
+const module_04= "res://scenes/game_mode_2_driving/modules/driving_module_01_D.tscn"
+const module_05="res://scenes/game_mode_2_driving/modules/driving_module_02.tscn"
+const module_06= "res://scenes/game_mode_2_driving/modules/driving_module_03.tscn"
+const module_07= "res://scenes/game_mode_2_driving/modules/driving_module_04.tscn"
+const module_08 = "res://scenes/game_mode_2_driving/modules/driving_module_05.tscn"
+const module_09 = "res://scenes/game_mode_2_driving/modules/driving_module_06.tscn"
+const module_10 = "res://scenes/game_mode_2_driving/modules/driving_module_07.tscn"
+const module_11 = "res://scenes/game_mode_2_driving/modules/driving_module_08.tscn"
+################ spawn_ instance ####################
+var spawn_module_01
+var spawn_module_02
+var spawn_module_03
+var spawn_module_04
+var spawn_module_05
+var spawn_module_06
+var spawn_module_07
+var spawn_module_08
+var spawn_module_09
+var spawn_module_10
+var spawn_module_11
 #### GARAGE
-var pre_driving_module_garage = load("res://scenes/game_mode_2_driving/garage/fps_map_car_version.tscn")
-# var win_garage_object = pre_driving_module_garage.instantiate()
+const module_garage ="res://assets/models/fps/fps_map_car_version2.tscn"
+var spawn_garage
 
+# var win_garage_object = pre_driving_module_garage.instantiate()
 var container_alive = []
 
 func _ready():
-	### Module 01
-	var _module_01 = pre_driving_module_01.instance()
-	container_alive.append(_module_01)
-### Module 02
-	var _module_02 = pre_driving_module_02.instance()
-	container_alive.append(_module_02)
-### Module 03
-	var _module_03 = pre_driving_module_03.instance()
-	container_alive.append(_module_03)
-### Module 04
-	var _module_04 = pre_driving_module_04.instance()
-	container_alive.append(_module_04)
-### Module 05
-	var module_05 = pre_driving_module_05.instance()
-	container_alive.append(module_05)
-### Module 06
-	var module_06 = pre_driving_module_06.instance()
-	container_alive.append(module_06)
-### Module 07
-	var module_07 = pre_driving_module_07.instance()
-	container_alive.append(module_07)
-### Module 08
-	var module_08 = pre_driving_module_08.instance()
-	container_alive.append(module_08)
-### Module 09
-	var module_09 = pre_driving_module_09.instance()
-	container_alive.append(module_09)
-### Module 10
-	var module_10 = pre_driving_module_10.instance()
-	container_alive.append(module_10)
-### Module 11
-	var module_11 = pre_driving_module_11.instance()
-	container_alive.append(module_11)
+	### LOAD SCENE IN EXTRA THREAD
+	ResourceLoader.load_threaded_request(module_01)
+	ResourceLoader.load_threaded_request(module_02)
+	ResourceLoader.load_threaded_request(module_03)
+	ResourceLoader.load_threaded_request(module_04)
+	ResourceLoader.load_threaded_request(module_05)
+	ResourceLoader.load_threaded_request(module_06)
+	ResourceLoader.load_threaded_request(module_07)
+	ResourceLoader.load_threaded_request(module_08)
+	ResourceLoader.load_threaded_request(module_09)
+	ResourceLoader.load_threaded_request(module_10)
+	ResourceLoader.load_threaded_request(module_11)
+	## LOAD GARAGE SCENE IN EXTRA THREAD
+	ResourceLoader.load_threaded_request(module_garage)
+	## DEFINE 
+	spawn_module_01 = ResourceLoader.load_threaded_get(module_01)
+	spawn_module_02 = ResourceLoader.load_threaded_get(module_02)
+	spawn_module_03 = ResourceLoader.load_threaded_get(module_03)
+	spawn_module_04 = ResourceLoader.load_threaded_get(module_04)
+	spawn_module_05 = ResourceLoader.load_threaded_get(module_05)
+	spawn_module_06 = ResourceLoader.load_threaded_get(module_06)
+	spawn_module_07 = ResourceLoader.load_threaded_get(module_07)
+	spawn_module_08 = ResourceLoader.load_threaded_get(module_08)
+	spawn_module_09 = ResourceLoader.load_threaded_get(module_09)
+	spawn_module_10 = ResourceLoader.load_threaded_get(module_10)
+	spawn_module_11 = ResourceLoader.load_threaded_get(module_11)
+
+	spawn_garage = ResourceLoader.load_threaded_get(module_garage)
+	### Random module container
+	container_alive = [spawn_module_01,spawn_module_02,spawn_module_03, spawn_module_04,spawn_module_01,spawn_module_02,spawn_module_03, spawn_module_04,
+	spawn_module_01,spawn_module_02,spawn_module_03, spawn_module_04,
+	spawn_module_01,spawn_module_02,spawn_module_03, spawn_module_04, spawn_module_05, spawn_module_06,
+	spawn_module_07, spawn_module_08, spawn_module_09, spawn_module_10, spawn_module_11]
 
 func get_random_module():
 	return container_alive.pick_random()
-
 func get_garage_object():
-	return pre_driving_module_garage.instance()
+	return spawn_garage

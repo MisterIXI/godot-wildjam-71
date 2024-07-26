@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://cpgd32j54ifbi"]
 
 [ext_resource type="Script" path="res://scenes/game_mode_2_driving/scripts/apple_car_controller.gd" id="1_ntpbr"]
-[ext_resource type="Material" uid="uid://2gko4t31k8xl" path="res://resources/materials/m_car.tres" id="2_d13w4"]
+[ext_resource type="Material" path="res://resources/materials/m_car.tres" id="2_d13w4"]
 [ext_resource type="PackedScene" uid="uid://dthade8y78j41" path="res://scenes/game_mode_2_driving/apple_car_driver.tscn" id="2_f668w"]
 [ext_resource type="Texture2D" uid="uid://boo440r8qrn7d" path="res://assets/images/driving_apple/dust_particle.png" id="4_f24qo"]
 [ext_resource type="AudioStream" uid="uid://bjlqygh02rquv" path="res://assets/sounds/engine.wav" id="5_aykp5"]
@@ -376,37 +376,41 @@ mesh = SubResource("ArrayMesh_bqsbr")
 skeleton = NodePath("")
 
 [node name="particle_boelkstoff" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 4.37114e-08, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, -0.594167, 0.728523, -1.36876)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.594167, 0.728523, -1.36876)
 transparency = 0.87
 cast_shadow = 0
 amount = 50
 lifetime = 0.1
 explosiveness = 0.19
 randomness = 1.0
+lifetime_randomness = 1.0
+local_coords = true
 draw_order = 1
 mesh = SubResource("PlaneMesh_voglo")
-direction = Vector3(-5, 0, 0)
-gravity = Vector3(-2, 0, 0)
+direction = Vector3(0, 10, 0)
+gravity = Vector3(0, 100, 0)
 linear_accel_min = 5.0
 linear_accel_max = 55.0
-scale_amount_min = 0.1
+angle_max = 360.0
 scale_amount_max = 2.0
 
 [node name="particle_boelkstoff2" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 4.37114e-08, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 4.37114e-08, -1, -4.37114e-08, 0.527883, 0.720844, -1.36876)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.527883, 0.720844, -1.36876)
 transparency = 0.87
 cast_shadow = 0
 amount = 50
 lifetime = 0.1
 explosiveness = 0.19
 randomness = 1.0
+lifetime_randomness = 1.0
+local_coords = true
 draw_order = 1
 mesh = SubResource("PlaneMesh_voglo")
-direction = Vector3(-5, 0, 0)
-gravity = Vector3(-2, 0, 0)
+direction = Vector3(0, 10, 0)
+gravity = Vector3(0, 100, 0)
 linear_accel_min = 5.0
 linear_accel_max = 55.0
-scale_amount_min = 0.1
+angle_max = 360.0
 scale_amount_max = 2.0
 
 [node name="Control" type="Control" parent="."]

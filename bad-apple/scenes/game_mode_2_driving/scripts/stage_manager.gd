@@ -6,7 +6,7 @@ static var instance : Stage_Manager = null
 var offset = 0
 # VARIABLE  CONST MODULE SIZE & SPAWNING TIME 
 const BASE_MODULE_SIZE : int = 36
-const BASE_DELETE_BUFFER : int  = 12
+const BASE_DELETE_BUFFER : int  = 24
 const BASE_SPAWNING_RAD : int  =36
 # VARIABLE IS GAME RUNNING
 var is_gamemode_running = false
@@ -21,6 +21,8 @@ var current_checkpoints = 0
 var player_node_offset : float =  -176.574
 # VARIABLE HEALTH
 var current_health  = 5
+## Variable mission coins need to win
+const player_collectable_needed : int = 50
 ### VARIABLE EXPORTS 
 @export var stage_object_holder : Node3D
 
@@ -41,7 +43,7 @@ func _ready():
     on_restart()
     next_chunk.connect(on_next_chunk)
     
-    var _text :String = " %d / %d" %[current_checkpoints,50]
+    var _text :String = " %d / %d" %[current_checkpoints, player_collectable_needed]
     ui_controller.update_collectable(_text)
     ui_controller.update_life(current_health)
     is_gamemode_running = true
@@ -51,6 +53,8 @@ func _ready():
         instance = self
     else:
         return
+    spawn_modules()
+    spawn_modules()
 
 ################### MAIN LOOP ####################
 func _process(_delta):
@@ -65,7 +69,7 @@ func spawn_modules():
         return
     # rng.randomize()
    
-    var instance_module = ScenePreloader.get_random_module().duplicate()
+    var instance_module = ScenePreloader.get_random_module().instantiate()
     instance_module.position.x  = BASE_MODULE_SIZE * offset
     stage_object_holder.add_child(instance_module)
     offset += 1
@@ -100,32 +104,14 @@ func on_restart():
     # PlayerPosition reset 0
     get_tree().paused = false
 
-
-# func get_rnd_weighted_object(type: int):
-#     rng.randomize()
-
-#     match type:
-#         0:#modules
-#             return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
-#         1:
-#         #obstacles
-#             return rng.randi_range(0, current_stage_difficult.obstacle_array.size()-1)
-#         2:
-#         #collectable
-#             return rng.randi_range(0, current_stage_difficult.collectable_array.size()-1)
-
-#         _: #default
-#             print("default")
-#             return rng.randi_range(0, current_stage_difficult.modules_array.size()-1)
-
 func on_collected_coin():
     current_checkpoints += 1
-    var _text :String = " %d / %d" %[current_checkpoints,50]
+    var _text :String = " %d / %d" %[current_checkpoints,player_collectable_needed]
     ui_controller.update_collectable(_text)
     ### IF GAME FINISHED
-    if current_checkpoints >= 50:
+    if current_checkpoints >= player_collectable_needed:
         #print(" YOU WON THE GAME IN " + current_stage_difficult.difficult_string)
-        var _instance = ScenePreloader.get_garage_object()
+        var _instance = ScenePreloader.get_garage_object().instantiate()
         _instance.position.x  = BASE_MODULE_SIZE * offset
         stage_object_holder.add_child(_instance)
         end_driving_game()

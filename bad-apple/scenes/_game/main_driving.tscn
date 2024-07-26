@@ -353,5 +353,6 @@ transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, -252, 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
 process_mode = 3
 stream = ExtResource("18_b42v4")
+autoplay = true
 bus = &"Music"
 script = ExtResource("19_m5rkk")

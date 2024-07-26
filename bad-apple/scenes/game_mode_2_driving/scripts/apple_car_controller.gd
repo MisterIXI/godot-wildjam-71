@@ -28,6 +28,8 @@ var last_pos : Vector3  = Vector3.ZERO
 var current_speed_mps : float = 0.0
 var start_rotation : Vector3  = Vector3.ZERO
 var is_handbrake : bool = false
+## Variable 
+var particles_lifetime = 0.01
 # EXPORT WHEELS
 @export var wheel_rear_left : VehicleWheel3D
 @export var wheel_rear_right : VehicleWheel3D
@@ -50,9 +52,11 @@ func _input(_event):
 	if move_direction.y > 0:
 		particles_left.lifetime = 0.12
 		particles_right.lifetime = 0.12
+
 	else:
 		particles_left.lifetime = 0.01
 		particles_right.lifetime = 0.01
+	
 	# SET JUMPING
 	if _event.is_action_pressed("space"):
 		if !is_grounded() && global_position.y < 1.6:
