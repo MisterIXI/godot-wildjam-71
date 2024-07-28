@@ -56,7 +56,6 @@ func _input(_event):
 	# SET JUMPING
 	if _event.is_action_pressed("space"):
 		if !is_grounded() && global_position.y < 1.6:
-			print ("Rotation_Length :", global_rotation.length())
 			global_rotation = start_rotation
 			return
 		if is_grounded():

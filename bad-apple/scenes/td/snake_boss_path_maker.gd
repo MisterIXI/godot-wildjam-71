@@ -242,8 +242,8 @@ func _on_snake_hurt_box_area_entered(area: Area3D):
 			snake_head.delete_last_part()
 			phase += 1
 			if phase == 4:
-				await get_tree().create_timer(1).timeout
-				get_tree().change_scene_to_packed(final_scene)
+				await get_tree().create_timer(5).timeout
+				get_tree().change_scene_to_packed.call_deferred(GlobMenu.end_game_scene)
 				return
 			await get_tree().create_timer(1.5).timeout
 			snake_head.snake_part.play_animation("idle")
