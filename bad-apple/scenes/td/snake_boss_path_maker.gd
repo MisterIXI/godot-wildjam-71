@@ -116,7 +116,7 @@ func _is_at_next_point():
 
 func _took_damage(snake_part: PathSnakePart):
 	hud.snake_damaged.emit((100 * (3 - phase) + part_hp) / 3)
-	# TODO: Add damage visual feedback
+	snake_part.set_damage_visual()
 	pass
 func _on_player_was_eaten():
 	hud.death_label.visible = true

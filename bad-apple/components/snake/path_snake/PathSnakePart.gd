@@ -23,3 +23,7 @@ func switch_to_tail():
 	Head.visible = false
 	Body.visible = false
 	Tail.visible = true
+
+
+func set_damage_visual():
+	Tail.get_damage()

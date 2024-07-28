@@ -2,9 +2,9 @@
 
 [ext_resource type="Material" uid="uid://c25h2p7ijdyl4" path="res://resources/materials/m_floortiles.tres" id="1_s3nju"]
 [ext_resource type="Material" path="res://resources/materials/m_concrete.tres" id="2_b7d3b"]
-[ext_resource type="PackedScene" uid="uid://bjjp6ln38of5" path="res://scenes/td/top_down_bullet.tscn" id="2_j5d21"]
+[ext_resource type="PackedScene" path="res://scenes/td/top_down_bullet.tscn" id="2_j5d21"]
 [ext_resource type="Material" path="res://resources/materials/m_metalpanel.tres" id="3_b8tyb"]
-[ext_resource type="Material" path="res://resources/materials/m_door.tres" id="4_8x8c1"]
+[ext_resource type="Material" uid="uid://bumyueo4f7yrw" path="res://resources/materials/m_door.tres" id="4_8x8c1"]
 [ext_resource type="Texture2D" uid="uid://b7mr56snnbefm" path="res://assets/images/bad_apple.png" id="5_0wkrj"]
 [ext_resource type="Script" path="res://scenes/td/td_character.gd" id="5_txwsy"]
 [ext_resource type="Material" uid="uid://di3yjb611daya" path="res://resources/materials/m_apple.tres" id="6_6soql"]

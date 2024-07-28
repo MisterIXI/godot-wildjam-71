@@ -1,9 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://dx3cjryuqdaw7"]
+[gd_scene load_steps=22 format=3 uid="uid://dx3cjryuqdaw7"]
 
 [ext_resource type="Script" path="res://scenes/_debug/yannik/snake/snake_charmer.gd" id="1_cpbb8"]
 [ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake/snake_settings.tres" id="2_a5h5a"]
 [ext_resource type="Script" path="res://components/snake/path_snake/PathSnakePart.gd" id="2_ic7m7"]
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="3_2f6np"]
+[ext_resource type="Script" path="res://components/snake/path_snake/tail_damage.gd" id="5_ax52x"]
+[ext_resource type="Material" uid="uid://c620wqe3a8g5" path="res://resources/driving_materials/snek_enemy_angry_material.tres" id="6_8ronp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_isqvh"]
 radius = 0.7
@@ -334,6 +336,13 @@ visible = false
 material_override = ExtResource("3_2f6np")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
+script = ExtResource("5_ax52x")
+material_main = ExtResource("3_2f6np")
+material_damaged = ExtResource("6_8ronp")
+
+[node name="Timer" type="Timer" parent="SnakePart/snek/Body2"]
+wait_time = 0.234
+one_shot = true
 
 [node name="Armature" type="Node3D" parent="SnakePart/snek"]
 transform = Transform3D(0.378653, 0, 0, 0, 0.378653, 0, 0, 0, 0.378653, 0, 0, -0.30243)
