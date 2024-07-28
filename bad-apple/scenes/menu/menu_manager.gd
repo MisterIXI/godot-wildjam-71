@@ -25,6 +25,7 @@ var previous_menu: Control = null
 var mouse_mode: int = Input.MOUSE_MODE_VISIBLE
 
 func _ready():
+	File_Manager.load_game()
 	_connect_settings_sliders()
 	_hide_all()
 	_set_slider_current_values()
@@ -48,7 +49,17 @@ func _on_master_volume_slider_changed(value: float): master_volume_slider_change
 func _on_music_volume_slider_changed(value: float): music_volume_slider_changed.emit(value)
 func _on_sfx_volume_slider_changed(value: float): sfx_volume_slider_changed.emit(value)
 
-func _on_mouse_sense_slider_changed(value: float): mouse_sense_slider_changed.emit(value)
+func _on_mouse_sense_slider_changed(value: float): 
+	mouse_sense_slider_changed.emit(value)
+	GlobalVariables.gv_Settings["setting_mouse_sensitivity"] = value
+	File_Manager.save_game()
+
+func load_settings():
+	### visuals
+	SettingsMenuNode.slider_master_volume.set_value_no_signal(GlobalVariables.gv_Settings["setting_volume_master"])
+	SettingsMenuNode.slider_music_volume.set_value_no_signal(GlobalVariables.gv_Settings["setting_volume_music"])
+	SettingsMenuNode.slider_sfx_volume.set_value_no_signal(GlobalVariables.gv_Settings["setting_volume_sound"])
+	SettingsMenuNode.slider_mouse_sense.set_value_no_signal(GlobalVariables.gv_Settings["setting_mouse_sensitivity"])
 
 var master_volume: float:
 	get: return SettingsMenuNode.slider_master_volume.value
@@ -70,6 +81,7 @@ func go_back():
 		current_open_menu = previous_menu
 
 func quit():
+	File_Manager.save_game()
 	get_tree().quit()
 
 func show_credits():
@@ -151,9 +163,15 @@ func _hide_all():
 
 func _change_master_volume(value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value/100))
+	GlobalVariables.gv_Settings["setting_volume_master"] = value
+	File_Manager.save_game()
 
 func _change_sfx_volume(value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value/100))
+	GlobalVariables.gv_Settings["setting_volume_sound"] = value
+	File_Manager.save_game()
 
 func _change_music_volume(value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value/100))
+	GlobalVariables.gv_Settings["setting_volume_music"] = value
+	File_Manager.save_game()

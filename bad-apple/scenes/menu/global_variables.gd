@@ -7,7 +7,7 @@ var gv_Settings = {
       "setting_volume_music" : 0.5,
       "setting_volume_sound" : 0.5,
       "setting_mouse_sensitivity":0.5,
-      "offline_modus" : 0,
+      "offline_modus" : 1,
       "player_name" : "Player_Default",
       "game_version" : "1.1",
       "player_movement_speed_level" : 150,

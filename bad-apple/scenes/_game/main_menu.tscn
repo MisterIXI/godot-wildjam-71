@@ -91,7 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9199, 1, -1.92841)
 curve = SubResource("Curve3D_0kmi0")
 
 [node name="SnakePathFollower" parent="SnakeMenuWriting/3D Stuff Node/B_2" instance=ExtResource("2_0tgtb")]
-transform = Transform3D(-0.00719772, 0, -0.999974, 0, 1, 0, 0.999974, 0, -0.00719772, -42.085, 0, 0)
+transform = Transform3D(-0.00719771, 0, -0.999973, 0, 1, 0, 0.999973, 0, -0.00719771, -42.085, 0, 0)
 loop = false
 settings = ExtResource("3_qk574")
 spawn_with_parts = 19

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d32d7obf2eilp"]
+[gd_scene load_steps=16 format=3 uid="uid://d32d7obf2eilp"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu_manager.gd" id="1_v4tkr"]
 [ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://vgp7b4nu2lhx" path="res://scenes/_game/top_down.tscn" id="6_dfb5l"]
 [ext_resource type="Script" path="res://scenes/menu/menu_credits.gd" id="6_k4foh"]
 [ext_resource type="PackedScene" uid="uid://vdd4se8c5mq1" path="res://scenes/_game/end_screen.tscn" id="7_acu20"]
+[ext_resource type="Material" uid="uid://ds7ddvnncadi0" path="res://resources/materials/shader_vignette_material.tres" id="9_hmjg1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlplk"]
 bg_color = Color(0.227451, 0.258824, 0.305882, 0)
@@ -64,6 +65,13 @@ BTNStartGame = NodePath("MenuButtons/MarginContainer/VBoxContainer/BTNStartGame"
 BTNOptions = NodePath("MenuButtons/MarginContainer/VBoxContainer/BTNOptions")
 BTNCredits = NodePath("MenuButtons/MarginContainer/VBoxContainer/BTNCredits")
 BTNQuit = NodePath("MenuButtons/MarginContainer/VBoxContainer/BTNQuit")
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu"]
+material = ExtResource("9_hmjg1")
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 960.0
+mouse_filter = 2
 
 [node name="MenuButtons" type="Control" parent="MainMenu"]
 layout_mode = 1
