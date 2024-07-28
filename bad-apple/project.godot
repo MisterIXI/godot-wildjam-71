@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 FpsResourceManagerInstance="*res://global/fps/fps_resource_manager.tscn"
 GlobMenu="*res://scenes/menu/menu_ui.tscn"
 ScenePreloader="*res://scenes/Scene_Preloader/scene_preloader.tscn"
+File_Manager="*res://scenes/menu/FileManager.tscn"
+GlobalVariables="*res://scenes/menu/global_variables.tscn"
 
 [display]
 
