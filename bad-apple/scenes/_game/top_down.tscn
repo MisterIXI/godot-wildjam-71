@@ -1,16 +1,18 @@
-[gd_scene load_steps=52 format=3 uid="uid://vgp7b4nu2lhx"]
+[gd_scene load_steps=53 format=3 uid="uid://vgp7b4nu2lhx"]
 
 [ext_resource type="Material" uid="uid://c25h2p7ijdyl4" path="res://resources/materials/m_floortiles.tres" id="1_s3nju"]
 [ext_resource type="Material" path="res://resources/materials/m_concrete.tres" id="2_b7d3b"]
 [ext_resource type="PackedScene" path="res://scenes/td/top_down_bullet.tscn" id="2_j5d21"]
 [ext_resource type="Material" path="res://resources/materials/m_metalpanel.tres" id="3_b8tyb"]
+[ext_resource type="Material" uid="uid://bsfbrob5ur22" path="res://resources/materials/m_door.tres" id="4_8x8c1"]
 [ext_resource type="Material" uid="uid://bumyueo4f7yrw" path="res://resources/materials/m_door.tres" id="4_8x8c1"]
 [ext_resource type="Texture2D" uid="uid://b7mr56snnbefm" path="res://assets/images/bad_apple.png" id="5_0wkrj"]
 [ext_resource type="Script" path="res://scenes/td/td_character.gd" id="5_txwsy"]
 [ext_resource type="Material" uid="uid://di3yjb611daya" path="res://resources/materials/m_apple.tres" id="6_6soql"]
-[ext_resource type="Material" path="res://resources/materials/m_pumpgun.tres" id="7_yl3iy"]
+[ext_resource type="Material" uid="uid://pue23mepdx67" path="res://resources/materials/m_pumpgun.tres" id="7_yl3iy"]
 [ext_resource type="Script" path="res://scenes/td/snake_boss_path_maker.gd" id="10_ngjgr"]
 [ext_resource type="PackedScene" uid="uid://dx3cjryuqdaw7" path="res://components/snake/path_snake/snake_path_follower.tscn" id="10_yj130"]
+[ext_resource type="PackedScene" uid="uid://dysh2s243jo7f" path="res://scenes/_game/end_screen.tscn" id="11_d84ft"]
 [ext_resource type="PackedScene" uid="uid://by71h18csviof" path="res://scenes/td/td_hud.tscn" id="12_kpt28"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_taa08"]
@@ -402,7 +404,7 @@ point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_23jhe"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12.3368, 0.12572, -7.55268, 0, 0, 0, 0, 0, 0, -8.385, 0, -7.465, 0, 0, 0, 0, 0, 0, -1.045, 0, 8.26, 0, 0, 0, 0, 0, 0, 6.72, 0, 7.715, 0, 0, 0, 0, 0, 0, 7.45, 0, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12.3368, 0.12572, -7.55268, 0, 0, 0, 0, 0, 0, -8.385, 0, -7.465, 0, 0, 0, 0, 0, 0, -1.045, 0, 8.26, 0, 0, 0, 0, 0, 0, 6.72, 0, 7.715, 0, 0, 0, 0, 0, 0, 7.58, 0, -6.885),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -557,6 +559,7 @@ player = NodePath("../Td_character")
 snake_head = NodePath("SnakePathFollower")
 hud = NodePath("../TdHud")
 snake_part_kill_particle = NodePath("../CPUParticles3D")
+final_scene = ExtResource("11_d84ft")
 
 [node name="SnakePathFollower" parent="Path3D" instance=ExtResource("10_yj130")]
 transform = Transform3D(-0.00423132, -0.00606683, 0.999965, -2.31921e-06, 0.999982, 0.00606683, -0.999984, 2.33519e-05, -0.00423126, 0.527122, 0.0540702, -7.50271)
