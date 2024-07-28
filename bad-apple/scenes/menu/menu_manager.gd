@@ -1,6 +1,8 @@
 extends Control
 class_name MenuManager
 
+@onready var version_text_panel : Panel = $MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNversion/Panel
+
 @export var MainMenuNode: MenuMain
 @export var PauseMenuNode: MenuPause
 @export var CreditsMenuNode: MenuCredits
@@ -24,6 +26,8 @@ var current_open_menu: Control = null
 var previous_menu: Control = null
 var mouse_mode: int = Input.MOUSE_MODE_VISIBLE
 
+
+var version_panel_visible: bool = false
 func _ready():
 	File_Manager.load_game()
 	_connect_settings_sliders()
@@ -175,3 +179,7 @@ func _change_music_volume(value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value/100))
 	GlobalVariables.gv_Settings["setting_volume_music"] = value
 	File_Manager.save_game()
+
+func _on_bt_nversion_pressed():
+	version_panel_visible = !version_panel_visible
+	version_text_panel.visible = version_panel_visible

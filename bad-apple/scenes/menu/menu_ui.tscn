@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d32d7obf2eilp"]
+[gd_scene load_steps=17 format=3 uid="uid://d32d7obf2eilp"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu_manager.gd" id="1_v4tkr"]
 [ext_resource type="Theme" uid="uid://4lkxwf22lm5g" path="res://resources/menu_themes/main_theme.tres" id="2_c0msn"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scenes/menu/menu_credits.gd" id="6_k4foh"]
 [ext_resource type="PackedScene" uid="uid://vdd4se8c5mq1" path="res://scenes/_game/end_screen.tscn" id="7_acu20"]
 [ext_resource type="Material" uid="uid://ds7ddvnncadi0" path="res://resources/materials/shader_vignette_material.tres" id="9_hmjg1"]
+[ext_resource type="Texture2D" uid="uid://csx6sb2xnkuc6" path="res://assets/images/apple_icon_28x32.png" id="13_dc2ql"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlplk"]
 bg_color = Color(0.227451, 0.258824, 0.305882, 0)
@@ -125,6 +126,37 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("2_c0msn")
 text = "Quit Game"
 alignment = 0
+
+[node name="BTNversion" type="Button" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_c0msn")
+theme_override_colors/font_color = Color(0.509286, 0.509286, 0.509286, 1)
+theme_override_font_sizes/font_size = 20
+text = "version  1.01"
+alignment = 0
+
+[node name="Panel" type="Panel" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNversion"]
+visible = false
+layout_mode = 0
+offset_left = 117.0
+offset_top = -10.0
+offset_right = 632.0
+offset_bottom = 288.0
+
+[node name="Label" type="Label" parent="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNversion/Panel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 10.0
+offset_right = 493.0
+offset_bottom = 280.0
+text = "- Preloading Scenes
+- Menu settings save over plays
+- Settings -> Mouse Sensitivity added
+- Driving Minigame -> Flip vehicle fix
+									-> Collectable recolored and resized
+- FPS Minigame -> sound added on pickup
+- Top-Down             -> add enemy tail damage visuals"
 
 [node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("BTNQuit")]
 visible = false
@@ -506,10 +538,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 328.0
-offset_top = -317.5
-offset_right = 385.0
-offset_bottom = -280.5
+offset_left = -339.0
+offset_top = 309.5
+offset_right = -282.0
+offset_bottom = 347.5
 grow_horizontal = 0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 20
@@ -518,7 +550,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_qlplk")
 theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
-text = "back"
+icon = ExtResource("13_dc2ql")
+flat = true
+icon_alignment = 1
 
 [node name="PauseEffect" type="Control" parent="."]
 visible = false
@@ -533,6 +567,7 @@ grow_vertical = 2
 [connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNOptions" to="." method="show_settings"]
 [connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNCredits" to="." method="show_credits"]
 [connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNQuit" to="." method="quit"]
+[connection signal="pressed" from="MainMenu/MenuButtons/MarginContainer/VBoxContainer/BTNversion" to="." method="_on_bt_nversion_pressed"]
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/ResumeButton" to="." method="resume_game"]
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/RestartButton" to="." method="restart_game"]
 [connection signal="pressed" from="PauseMenu/Panel/VBoxContainer/SettingsButton" to="." method="show_settings"]

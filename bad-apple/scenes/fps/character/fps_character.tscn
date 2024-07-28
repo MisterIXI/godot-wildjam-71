@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5rw8e76sa14y"]
+[gd_scene load_steps=13 format=3 uid="uid://5rw8e76sa14y"]
 
 [ext_resource type="Script" path="res://scenes/fps/character/fps_controller.gd" id="1_gfmvs"]
 [ext_resource type="PackedScene" uid="uid://d6ubx2ya0g72" path="res://assets/models/apple.glb" id="2_o7g7g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scenes/fps/character/fps_hitbox.gd" id="4_uegvb"]
 [ext_resource type="Script" path="res://components/fps/fps_armor_healer.gd" id="5_r4a3q"]
 [ext_resource type="Script" path="res://components/fps/fps_weapon_changer.gd" id="6_gcdmx"]
+[ext_resource type="AudioStream" uid="uid://4tqupmxwtxla" path="res://assets/sounds/pickupCoin.wav" id="8_dsjop"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yihme"]
 albedo_color = Color(1, 0, 1, 1)
@@ -84,6 +85,11 @@ script = ExtResource("4_uegvb")
 [node name="Hitbox" type="CollisionShape3D" parent="AreaHitbox" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CylinderShape3D_xrcv2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AreaHitbox"]
+stream = ExtResource("8_dsjop")
+pitch_scale = 0.6
+bus = &"SFX"
 
 [node name="FpsArmorHealer" type="Node" parent="."]
 script = ExtResource("5_r4a3q")
