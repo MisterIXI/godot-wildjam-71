@@ -9,4 +9,5 @@ load_path = "res://.godot/imported/floortiles_albedo.png-76fd8861cc900541c5c0bfc
 albedo_texture = SubResource("CompressedTexture2D_2gkbr")
 roughness = 0.8
 normal_enabled = true
+normal_scale = 4.45
 normal_texture = ExtResource("1_w4mst")

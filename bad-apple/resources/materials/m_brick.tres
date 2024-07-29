@@ -9,4 +9,5 @@ load_path = "res://.godot/imported/brickwall_albedo.png-2a48ef6cb5f3996bb5adbfb6
 albedo_texture = SubResource("CompressedTexture2D_vmfbt")
 roughness = 0.8
 normal_enabled = true
+normal_scale = 1.18
 normal_texture = ExtResource("1_5mr5k")
