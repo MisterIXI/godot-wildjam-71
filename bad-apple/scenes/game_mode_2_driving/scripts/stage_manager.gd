@@ -39,20 +39,15 @@ signal player_hit
 signal get_collectable
 
 func _ready():
-
+    instance = self
     on_restart()
     next_chunk.connect(on_next_chunk)
-    
     var _text :String = " %d / %d" %[current_checkpoints, player_collectable_needed]
     ui_controller.update_collectable(_text)
     ui_controller.update_life(current_health)
     is_gamemode_running = true
     current_snake_speed = 1
     get_collectable.connect(on_collected_coin)
-    if instance == null:
-        instance = self
-    else:
-        return
     spawn_modules()
     spawn_modules()
 
@@ -120,3 +115,8 @@ func end_driving_game():
         is_gamemode_running = false
         ui_controller.visible = false
         win_garage_transition_effect.visible = true
+
+func _exit_tree():
+    print("Leaving_tree!")
+    instance = null
+    queue_free()
