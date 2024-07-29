@@ -210,4 +210,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0783, 0, -10.6606)
 
 [node name="Obstacle_Spawner" parent="." instance=ExtResource("8_8si1x")]
 obstacles_spawing_chance = 5
-collectable_spawning_chance = 10
+collectable_spawning_chance = 3
