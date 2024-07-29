@@ -255,7 +255,6 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
 text = "Quit"
 
 [node name="Settings" type="Control" parent="." node_paths=PackedStringArray("slider_master_volume", "slider_music_volume", "slider_sfx_volume", "slider_mouse_sense", "mouse_sense_grid", "h_seperator")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -348,7 +347,6 @@ size_flags_vertical = 4
 value = 50.0
 
 [node name="HSeparator" type="HSeparator" parent="Settings/PanelContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MouseSensGrid" type="GridContainer" parent="Settings/PanelContainer/VBoxContainer"]
