@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://vgp7b4nu2lhx"]
+[gd_scene load_steps=55 format=3 uid="uid://vgp7b4nu2lhx"]
 
 [ext_resource type="Material" uid="uid://c25h2p7ijdyl4" path="res://resources/materials/m_floortiles.tres" id="1_s3nju"]
 [ext_resource type="Material" path="res://resources/materials/m_concrete.tres" id="2_b7d3b"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://scenes/td/snake_boss_path_maker.gd" id="10_ngjgr"]
 [ext_resource type="PackedScene" uid="uid://dx3cjryuqdaw7" path="res://components/snake/path_snake/snake_path_follower.tscn" id="10_yj130"]
 [ext_resource type="PackedScene" uid="uid://by71h18csviof" path="res://scenes/td/td_hud.tscn" id="12_kpt28"]
+[ext_resource type="AudioStream" uid="uid://bvrj3vjkibfjh" path="res://assets/sounds/music/attack_of_the_killer_snek.ogg" id="14_cebne"]
+[ext_resource type="Script" path="res://components/general/loop_music.gd" id="15_biyyw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_taa08"]
 
@@ -567,3 +569,11 @@ spawn_with_parts = 8
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.61265, -0.25)
 
 [node name="TdHud" parent="." instance=ExtResource("12_kpt28")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("14_cebne")
+volume_db = -3.514
+autoplay = true
+bus = &"Music"
+script = ExtResource("15_biyyw")

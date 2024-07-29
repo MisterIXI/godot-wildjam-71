@@ -39,6 +39,8 @@ func _ready():
 	snake_head.snake_hurt_by_bullet.connect(_on_snake_hurt_box_area_entered)
 	snake_head.player_was_eaten.connect(_on_player_was_eaten)
 	snake_head.settings.base_speed = 8
+	# snake_head.snake_parts[-1].get_child(0).switch_to_tail()
+	get_tree().create_timer(1).timeout.connect(_make_last_snake_part_tail)
 
 func _physics_process(_delta):
 	if state != old_state:
@@ -227,6 +229,14 @@ func _on_player_was_eaten():
 	hud.death_label.visible = true
 	player.kill_player()
 	pass
+
+func _make_last_snake_part_tail():
+	# var part: SnakePathFollower = snake_head
+	# while part.next_body_part != null:
+	# 	part = part.next_body_part
+	# part.snake_part.switch_to_tail()
+	snake_head.snake_parts[-1].snake_part.switch_to_tail()
+
 func _on_snake_hurt_box_area_entered(area: Area3D):
 	if area.is_in_group("Bullet"):
 		area.queue_free()
@@ -240,6 +250,7 @@ func _on_snake_hurt_box_area_entered(area: Area3D):
 			snake_part_kill_particle.visible = true
 			snake_part_kill_particle.emitting = true
 			snake_head.delete_last_part()
+			# snake_head.snake_parts[0].get_child(0).switch_to_tail()
 			phase += 1
 			if phase == 4:
 				var _wonobject = ScenePreloader.get_won_object().instantiate()
@@ -247,12 +258,15 @@ func _on_snake_hurt_box_area_entered(area: Area3D):
 				_wonobject.global_position = Vector3.ZERO
 				await get_tree().create_timer(5).timeout
 				get_tree().change_scene_to_packed.call_deferred(GlobMenu.end_game_scene)
+				snake_head.settings.base_speed = 5
 				GlobMenu.current_open_menu = GlobMenu.PauseMenuNode
 				GlobalVariables.gv_Settings["next_game_plus"]  =1
 				File_Manager.save_game()
+				
 
 				return
 			await get_tree().create_timer(1.5).timeout
+			_make_last_snake_part_tail()
 			snake_head.snake_part.play_animation("idle")
 			if phase == 2:
 				snake_head.settings.base_speed = 13

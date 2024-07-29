@@ -1,7 +1,7 @@
 [gd_scene load_steps=60 format=3 uid="uid://c7biupk03mn6v"]
 
 [ext_resource type="PackedScene" uid="uid://b6axxwl6xohjc" path="res://assets/models/fps/fps_map.tscn" id="1_m84rv"]
-[ext_resource type="Material" path="res://resources/materials/m_car.tres" id="3_kulxi"]
+[ext_resource type="Material" uid="uid://2gko4t31k8xl" path="res://resources/materials/m_car.tres" id="3_kulxi"]
 [ext_resource type="PackedScene" uid="uid://5rw8e76sa14y" path="res://scenes/fps/character/fps_character.tscn" id="6_klxwe"]
 [ext_resource type="PackedScene" uid="uid://58psich1bu8v" path="res://scenes/fps/enemies/fps_banana.tscn" id="6_rr171"]
 [ext_resource type="AudioStream" uid="uid://c7jyfvwpoegho" path="res://assets/sounds/music/attack_of_the_killer_bananas.ogg" id="7_hn8es"]
@@ -1109,6 +1109,9 @@ visible = false
 libraries = {
 "": SubResource("AnimationLibrary_adq3u")
 }
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("8_hb3vh")
 
 [editable path="map"]
 [editable path="FpsCharacter"]

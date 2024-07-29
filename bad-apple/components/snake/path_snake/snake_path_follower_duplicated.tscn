@@ -1,11 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://dx3cjryuqdaw7"]
+[gd_scene load_steps=24 format=3 uid="uid://co3liyk8m85ug"]
 
-[ext_resource type="Script" path="res://scenes/_debug/yannik/snake/snake_charmer.gd" id="1_cpbb8"]
-[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake/snake_settings.tres" id="2_a5h5a"]
-[ext_resource type="Script" path="res://components/snake/path_snake/PathSnakePart.gd" id="2_ic7m7"]
-[ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="3_2f6np"]
-[ext_resource type="PackedScene" uid="uid://co3liyk8m85ug" path="res://components/snake/path_snake/snake_path_follower_duplicated.tscn" id="3_55fhy"]
-[ext_resource type="Texture2D" uid="uid://cyxm6wjeg30o6" path="res://assets/images/snekeyetail.png" id="5_xddnc"]
+[ext_resource type="Script" path="res://scenes/_debug/yannik/snake/snake_charmer.gd" id="1_ra774"]
+[ext_resource type="Resource" uid="uid://duevnleycyhi8" path="res://resources/snake/snake_settings.tres" id="2_gjt6w"]
+[ext_resource type="Script" path="res://components/snake/path_snake/PathSnakePart.gd" id="3_ljeqp"]
+[ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="4_jxr2c"]
+[ext_resource type="Texture2D" uid="uid://cyxm6wjeg30o6" path="res://assets/images/snekeyetail.png" id="5_lrsje"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_isqvh"]
 radius = 0.7
@@ -56,7 +55,7 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_p53ls")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vldk"]
-albedo_texture = ExtResource("5_xddnc")
+albedo_texture = ExtResource("5_lrsje")
 rim_texture = SubResource("GradientTexture1D_h410w")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2vrkb"]
@@ -312,13 +311,12 @@ _data = {
 }
 
 [node name="SnakePathFollower" type="PathFollow3D" node_paths=PackedStringArray("snake_part")]
-script = ExtResource("1_cpbb8")
-settings = ExtResource("2_a5h5a")
+script = ExtResource("1_ra774")
+settings = ExtResource("2_gjt6w")
 snake_part = NodePath("SnakePart")
-self_scene = ExtResource("3_55fhy")
 
 [node name="SnakePart" type="Area3D" parent="." node_paths=PackedStringArray("Head", "Body", "Tail", "animation_player") groups=["SnakePart"]]
-script = ExtResource("2_ic7m7")
+script = ExtResource("3_ljeqp")
 Head = NodePath("snek/Armature")
 Body = NodePath("snek/Body")
 Tail = NodePath("snek/Body2")
@@ -338,7 +336,7 @@ skeleton = NodePath("../..")
 
 [node name="Body" type="MeshInstance3D" parent="SnakePart/snek"]
 visible = false
-material_override = ExtResource("3_2f6np")
+material_override = ExtResource("4_jxr2c")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
 
@@ -346,13 +344,6 @@ skeleton = NodePath("")
 material_override = SubResource("StandardMaterial3D_1vldk")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
-script = ExtResource("5_ax52x")
-material_main = ExtResource("3_2f6np")
-material_damaged = ExtResource("6_8ronp")
-
-[node name="Timer" type="Timer" parent="SnakePart/snek/Body2"]
-wait_time = 0.234
-one_shot = true
 
 [node name="Armature" type="Node3D" parent="SnakePart/snek"]
 transform = Transform3D(0.378653, 0, 0, 0, 0.378653, 0, 0, 0, 0.378653, 0, 0, -0.30243)
@@ -422,7 +413,7 @@ bone_name = "eyes"
 bone_idx = 2
 
 [node name="eyes" type="MeshInstance3D" parent="SnakePart/snek/Armature/Skeleton3D/eyes"]
-material_override = ExtResource("3_2f6np")
+material_override = ExtResource("4_jxr2c")
 mesh = SubResource("ArrayMesh_0j1r7")
 skeleton = NodePath("")
 
@@ -432,14 +423,14 @@ bone_name = "eyes.001"
 bone_idx = 4
 
 [node name="eyes_001" type="MeshInstance3D" parent="SnakePart/snek/Armature/Skeleton3D/eyes_001"]
-material_override = ExtResource("3_2f6np")
+material_override = ExtResource("4_jxr2c")
 mesh = SubResource("ArrayMesh_1xui0")
 skeleton = NodePath("")
 
 [node name="snakehead" type="MeshInstance3D" parent="SnakePart/snek/Armature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_evv7r")
 skin = SubResource("Skin_hc8tc")
-surface_material_override/0 = ExtResource("3_2f6np")
+surface_material_override/0 = ExtResource("4_jxr2c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SnakePart/snek"]
 process_mode = 3

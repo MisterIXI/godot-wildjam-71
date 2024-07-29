@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" path="res://components/snake/snake_part.gd" id="1_uldcs"]
 [ext_resource type="Material" uid="uid://dtk84ea1k5qdb" path="res://resources/materials/m_snek.tres" id="2_5y28i"]
-[ext_resource type="Texture2D" uid="uid://cyxm6wjeg30o6" path="res://assets/images/snekeyetail.png" id="2_7qu5e"]
-[ext_resource type="Material" uid="uid://c620wqe3a8g5" path="res://resources/driving_materials/snek_enemy_angry_material.tres" id="3_i2fw1"]
+[ext_resource type="Texture2D" uid="uid://dre6iynkpku5q" path="res://assets/images/snekeye1.png" id="2_7jh8l"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_isqvh"]
 radius = 0.4
 
 [sub_resource type="PrismMesh" id="PrismMesh_7pf7q"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5hch"]
-albedo_texture = ExtResource("2_7qu5e")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g46v5"]
+albedo_texture = ExtResource("2_7jh8l")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnxks"]
 resource_name = "Material.001"
@@ -49,6 +48,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3oynj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5xu3"]
+albedo_texture = ExtResource("2_7jh8l")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2vrkb"]
 _surfaces = [{
@@ -322,18 +324,19 @@ skeleton = NodePath("../..")
 
 [node name="Body" type="MeshInstance3D" parent="snek"]
 visible = false
-material_override = SubResource("StandardMaterial3D_d5hch")
+material_override = SubResource("StandardMaterial3D_g46v5")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
 
 [node name="Body2" type="MeshInstance3D" parent="snek"]
 visible = false
-material_override = ExtResource("3_i2fw1")
+material_override = SubResource("StandardMaterial3D_m5xu3")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
 
 [node name="Armature" type="Node3D" parent="snek"]
 transform = Transform3D(0.378653, 0, 0, 0, 0.378653, 0, 0, 0, 0.378653, 0, 0, -0.30243)
+visible = false
 
 [node name="Skeleton3D" type="Skeleton3D" parent="snek/Armature"]
 bones/0/name = "UPPER_JAW"
