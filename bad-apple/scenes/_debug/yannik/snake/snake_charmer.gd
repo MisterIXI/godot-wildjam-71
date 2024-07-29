@@ -6,6 +6,8 @@ class_name SnakePathFollower
 @export var snake_part: PathSnakePart
 @export var spawn_with_parts: int = 5
 @export var self_scene: PackedScene
+@export var is_menu_snake: bool = false
+
 var back_part: SnakePathFollower = null
 var is_follower = false
 var snake_parts: Array[SnakePathFollower] = []
@@ -45,6 +47,15 @@ func _ready():
 	baked_length = parent_curve.curve.get_baked_length()
 	# progress += 2
 	_connect_spawned_hurtbox_parts()
+	if not is_menu_snake:
+		var delay_tail = func():
+			get_parent().get_child(-1).get_child(0).switch_to_tail()
+		delay_tail.call_deferred()
+	else:
+		var delay_tail = func():
+			get_parent().get_child(-1).get_child(0).switch_to_body()
+		delay_tail.call_deferred()
+	
 	
 func finish_path():
 	snake_part.play_animation("hurt")

@@ -85,6 +85,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 loop = false
 settings = ExtResource("3_qk574")
 spawn_with_parts = 8
+is_menu_snake = true
 
 [node name="B_2" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9199, 1, -1.92841)
@@ -95,6 +96,7 @@ transform = Transform3D(-0.00719771, 0, -0.999973, 0, 1, 0, 0.999973, 0, -0.0071
 loop = false
 settings = ExtResource("3_qk574")
 spawn_with_parts = 19
+is_menu_snake = true
 
 [node name="A_1" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98277, 1, -1.98724)
@@ -105,6 +107,7 @@ transform = Transform3D(-0.974851, 2.98569e-07, 0.222857, 4.26326e-14, 1, -1.339
 loop = false
 settings = ExtResource("3_qk574")
 spawn_with_parts = 6
+is_menu_snake = true
 
 [node name="A_2" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98277, 1, -2.06957)
@@ -115,6 +118,7 @@ transform = Transform3D(-0.965021, 0, -0.262172, 0, 1, 0, 0.262172, 0, -0.965021
 loop = false
 settings = ExtResource("3_qk574")
 spawn_with_parts = 7
+is_menu_snake = true
 
 [node name="D_1" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9647, 1, -2.41956)
@@ -125,6 +129,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 loop = false
 settings = ExtResource("3_qk574")
 spawn_with_parts = 7
+is_menu_snake = true
 
 [node name="D_2" type="Path3D" parent="SnakeMenuWriting/3D Stuff Node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.62065, 1, -9.31431)
@@ -135,6 +140,7 @@ transform = Transform3D(0.857095, 0, 0.515158, 0, 1, 0, -0.515158, 0, 0.857095, 
 loop = false
 settings = ExtResource("3_qk574")
 spawn_with_parts = 13
+is_menu_snake = true
 
 [node name="Camera3D" type="Camera3D" parent="SnakeMenuWriting"]
 transform = Transform3D(1, 0, 0, 0, 0.140901, 0.990024, 0, -0.990024, 0.140901, 0.685, 16.571, 3.316)
