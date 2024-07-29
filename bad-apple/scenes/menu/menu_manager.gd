@@ -33,7 +33,8 @@ func _ready():
 	_connect_settings_sliders()
 	_hide_all()
 	_set_slider_current_values()
-	
+
+
 
 func _connect_settings_sliders():
 	SettingsMenuNode.slider_master_volume.value_changed.connect(_on_master_volume_slider_changed)
@@ -91,6 +92,8 @@ func quit():
 func show_credits():
 	previous_menu = current_open_menu
 	current_open_menu = CreditsMenuNode
+	if GlobalVariables.gv_Settings["next_game_plus"] == 1:
+		$Credits/Panel/secret_lvl_Button.visible = true
 	CreditsMenuNode.show()
 	# if previous_menu != null:
 	# 	previous_menu.hide()
@@ -117,6 +120,7 @@ func restart_game():
 	
 
 func pause_game():
+	show()
 	match current_open_menu:
 		MainMenuNode:
 			return
@@ -164,6 +168,7 @@ func _hide_all():
 	PauseMenuNode.hide()
 	CreditsMenuNode.hide()
 	SettingsMenuNode.hide()
+	hide()
 
 func _change_master_volume(value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value/100))

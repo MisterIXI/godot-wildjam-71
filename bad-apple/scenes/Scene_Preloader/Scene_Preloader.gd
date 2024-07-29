@@ -11,6 +11,8 @@ const module_08 = "res://scenes/game_mode_2_driving/modules/driving_module_05.ts
 const module_09 = "res://scenes/game_mode_2_driving/modules/driving_module_06.tscn"
 const module_10 = "res://scenes/game_mode_2_driving/modules/driving_module_07.tscn"
 const module_11 = "res://scenes/game_mode_2_driving/modules/driving_module_08.tscn"
+const won_module = "res://scenes/Scene_Preloader/won_apple_effect.tscn"
+
 ################ spawn_ instance ####################
 var spawn_module_01
 var spawn_module_02
@@ -23,6 +25,7 @@ var spawn_module_08
 var spawn_module_09
 var spawn_module_10
 var spawn_module_11
+var won_module_01
 #### GARAGE
 const module_garage ="res://assets/models/fps/fps_map_car_version2.tscn"
 var spawn_garage
@@ -45,6 +48,7 @@ func _ready():
 	ResourceLoader.load_threaded_request(module_11)
 	## LOAD GARAGE SCENE IN EXTRA THREAD
 	ResourceLoader.load_threaded_request(module_garage)
+	ResourceLoader.load_threaded_request(won_module)
 	## DEFINE 
 	spawn_module_01 = ResourceLoader.load_threaded_get(module_01)
 	spawn_module_02 = ResourceLoader.load_threaded_get(module_02)
@@ -59,13 +63,18 @@ func _ready():
 	spawn_module_11 = ResourceLoader.load_threaded_get(module_11)
 
 	spawn_garage = ResourceLoader.load_threaded_get(module_garage)
+	won_module_01 = ResourceLoader.load_threaded_get(won_module)
+
 	### Random module container
 	container_alive = [spawn_module_01,spawn_module_02,spawn_module_03, spawn_module_04,spawn_module_01,spawn_module_02,spawn_module_03, spawn_module_04,
 	spawn_module_01,spawn_module_02,spawn_module_03, spawn_module_04,
 	spawn_module_01,spawn_module_02,spawn_module_03, spawn_module_04, spawn_module_05, spawn_module_06,
 	spawn_module_07, spawn_module_08, spawn_module_09, spawn_module_10, spawn_module_11]
-
+	print("Scene_Preloader: all Scenes have been Loaded")
 func get_random_module():
 	return container_alive.pick_random()
 func get_garage_object():
 	return spawn_garage
+
+func get_won_object():
+	return won_module_01

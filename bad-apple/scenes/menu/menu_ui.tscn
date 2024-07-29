@@ -34,6 +34,7 @@ Label/fonts/font = SubResource("SystemFont_yi31t")
 
 [node name="Menu_UI" type="Control" node_paths=PackedStringArray("MainMenuNode", "PauseMenuNode", "CreditsMenuNode", "SettingsMenuNode")]
 process_mode = 3
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -534,6 +535,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_qlplk")
 text = "back"
 
 [node name="secret_lvl_Button" type="Button" parent="Credits/Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

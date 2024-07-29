@@ -244,6 +244,13 @@ func _on_snake_hurt_box_area_entered(area: Area3D):
 			if phase == 4:
 				await get_tree().create_timer(5).timeout
 				get_tree().change_scene_to_packed.call_deferred(GlobMenu.end_game_scene)
+				GlobMenu.current_open_menu = GlobMenu.PauseMenuNode
+				GlobalVariables.gv_Settings["next_game_plus"]  =1
+				File_Manager.save_game()
+				var _wonobject = ScenePreloader.get_won_object().instantiate()
+				$center.add_child(_wonobject)
+				_wonobject.global_position = Vector3.ZERO
+
 				return
 			await get_tree().create_timer(1.5).timeout
 			snake_head.snake_part.play_animation("idle")
