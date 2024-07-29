@@ -1,228 +1,196 @@
-[gd_scene load_steps=2 format=3 uid="uid://by3ed2hciddu8"]
+[gd_scene load_steps=3 format=3 uid="uid://by3ed2hciddu8"]
 
 [ext_resource type="PackedScene" uid="uid://uo5jjvmwwj8c" path="res://scenes/snake/eatable_apple.tscn" id="1_6xert"]
+[ext_resource type="Script" path="res://components/Menu/apple_spawner.gd" id="1_vq1uo"]
 
-[node name="Won" type="Node3D"]
+[node name="Won" type="Node3D" node_paths=PackedStringArray("random_spawns")]
+script = ExtResource("1_vq1uo")
+start_delay = 0.0
+random_spawns = NodePath(".")
 
 [node name="w" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59641, 0, 0)
 
 [node name="AppleSpawn" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.18963, 0, 2.7678)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0784, 0, -1.79284)
 
 [node name="EatableApple" parent="w/AppleSpawn" instance=ExtResource("1_6xert")]
 
 [node name="AppleSpawn2" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.82841, 0, 1.70994)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.01502, 0, 0.969579)
 
 [node name="EatableApple" parent="w/AppleSpawn2" instance=ExtResource("1_6xert")]
 
 [node name="AppleSpawn3" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.38978, 0, 0.471474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23474, 0, 1.90526)
 
 [node name="EatableApple" parent="w/AppleSpawn3" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.267347, 0, 0)
 
 [node name="AppleSpawn4" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82215, 0, -0.637988)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63605, 0, 0.951091)
 
 [node name="EatableApple" parent="w/AppleSpawn4" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.324975, 0, 2.29481)
 
 [node name="AppleSpawn5" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46093, 0, -1.85066)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.02636, 0, -0.0131075)
 
 [node name="EatableApple" parent="w/AppleSpawn5" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5653, 0, 4.5215)
 
 [node name="AppleSpawn7" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.09346, 0, -1.54104)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.65278, 0, -1.07009)
 
 [node name="EatableApple" parent="w/AppleSpawn7" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn8" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.57743, 0, -0.663789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.16781, 0, -2.11851)
 
 [node name="EatableApple" parent="w/AppleSpawn8" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37503, 0, 0)
 
 [node name="AppleSpawn9" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98399, 0, 0.316666)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99088, 0, -0.0509847)
 
 [node name="EatableApple" parent="w/AppleSpawn9" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0.000733038, 0, -0.000733038, 1, -1.13401, 0, 0.181305)
-
-[node name="AppleSpawn10" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.46796, 0, 1.24552)
-
-[node name="EatableApple" parent="w/AppleSpawn10" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97055, 0, 0.392018)
+transform = Transform3D(1, 0, 0, 0, 1, 0.000733038, 0, -0.000733038, 1, 0, 0, 0)
 
 [node name="AppleSpawn12" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7605, 0, -1.10621)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.60542, 0, -0.852678)
 
 [node name="EatableApple" parent="w/AppleSpawn12" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.919008, 0, -1.19629)
 
 [node name="AppleSpawn13" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2444, 0, -0.22896)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.0894, 0, 0.0245733)
 
 [node name="EatableApple" parent="w/AppleSpawn13" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.673226, 0, -0.640433)
 
 [node name="AppleSpawn14" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.651, 0, 0.751495)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.49595, 0, 1.00503)
 
 [node name="EatableApple" parent="w/AppleSpawn14" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.426071, 0, -0.397489)
 
 [node name="AppleSpawn15" type="Node3D" parent="w"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.135, 0, 1.68035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.97993, 0, 1.93388)
 
 [node name="EatableApple" parent="w/AppleSpawn15" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.308007, 0, -0.149066)
 
 [node name="o" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59641, 0, 0)
 
 [node name="AppleSpawn_o_01" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27724, 0, -1.54104)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27724, 0, -2.40856)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_01" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_02" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.10626, 0, -0.468403)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.10626, 0, -1.33592)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_02" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_03" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33456, 0, 0.863873)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33456, 0, -0.00364637)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_03" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_04" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.17475, 0, 2.20102)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.17475, 0, 1.3335)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_04" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_05" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56765, 0, 3.23939)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56765, 0, 2.37187)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_05" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_06" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40325, 0, 3.23939)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40325, 0, 2.37187)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_06" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_07" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.366599, 0, 2.20932)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.366599, 0, 1.3418)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_07" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_08" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024157, 0, 0.92654)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024157, 0, 0.0590205)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_08" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_09" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.366599, 0, -0.469347)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.366599, 0, -1.33687)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_09" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn_o_10" type="Node3D" parent="o"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07799, 0, -1.54363)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07799, 0, -2.41115)
 
 [node name="EatableApple" parent="o/AppleSpawn_o_10" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="n" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59641, 0, 0)
 
 [node name="AppleSpawn5" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40543, 0, -1.85066)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00313, 0, -2.27671)
 
 [node name="EatableApple" parent="n/AppleSpawn5" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.884838, 0, 4.5215)
 
 [node name="AppleSpawn7" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90604, 0, -1.11112)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24034, 0, -1.51055)
 
 [node name="EatableApple" parent="n/AppleSpawn7" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn8" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.28893, 0, -0.663789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27706, 0, -0.31762)
 
 [node name="EatableApple" parent="n/AppleSpawn8" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37503, 0, 0)
 
 [node name="AppleSpawn9" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88237, 0, 0.316666)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3113, 0, 1.83448)
 
 [node name="EatableApple" parent="n/AppleSpawn9" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0.000733038, 0, -0.000733038, 1, -1.13401, 0, 0.181305)
-
-[node name="AppleSpawn10" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3984, 0, 1.24552)
-
-[node name="EatableApple" parent="n/AppleSpawn10" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97055, 0, 0.392018)
+transform = Transform3D(1, 0, 0, 0, 1, 0.000733038, 0, -0.000733038, 1, 0, 0, 0)
 
 [node name="AppleSpawn6" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.27739, 0, -1.85066)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29502, 0, 0.785539)
 
 [node name="EatableApple" parent="n/AppleSpawn6" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5653, 0, 4.5215)
 
 [node name="AppleSpawn11" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37858, 0, -1.27476)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44946, 0, -1.11499)
 
 [node name="EatableApple" parent="n/AppleSpawn11" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310728, 0, -0.63963)
 
 [node name="AppleSpawn12" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.81472, 0, -0.663789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79746, 0, 0.0014925)
 
 [node name="EatableApple" parent="n/AppleSpawn12" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37503, 0, 0)
 
 [node name="AppleSpawn13" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35491, 0, 0.316666)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32866, 0, 1.24384)
 
 [node name="EatableApple" parent="n/AppleSpawn13" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0.000733038, 0, -0.000733038, 1, -1.13401, 0, 0.181305)
+transform = Transform3D(1, 0, 0, 0, 1, 0.000733038, 0, -0.000733038, 1, 0, 0, 0)
 
 [node name="AppleSpawn14" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0307, 0, 1.24552)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40392, 0, 1.89798)
 
 [node name="EatableApple" parent="n/AppleSpawn14" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97055, 0, 0.392018)
 
 [node name="AppleSpawn15" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02799, 0, 1.24552)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4882, 0, 0.731019)
 
 [node name="EatableApple" parent="n/AppleSpawn15" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97055, 0, 0.392018)
 
 [node name="AppleSpawn16" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62422, 0, 0.251627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.47043, 0, -0.382722)
 
 [node name="EatableApple" parent="n/AppleSpawn16" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97055, 0, 0.392018)
 
 [node name="AppleSpawn17" type="Node3D" parent="n"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.97198, 0, -0.773327)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52368, 0, -1.37214)
 
 [node name="EatableApple" parent="n/AppleSpawn17" instance=ExtResource("1_6xert")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97055, 0, 0.392018)
+
+[node name="AppleSpawn18" type="Node3D" parent="n"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52368, 0, -2.38402)
+
+[node name="EatableApple" parent="n/AppleSpawn18" instance=ExtResource("1_6xert")]

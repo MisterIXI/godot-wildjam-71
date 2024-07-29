@@ -9,7 +9,8 @@ func _ready():
 	_spawn_apples()
 
 func _spawn_apples():
-	late_apple.visible = false
+	if late_apple != null:
+		late_apple.visible = false
 	var apples: Array[Area3D] = []
 	for letter in random_spawns.get_children():
 		for child in letter.get_children():
@@ -41,10 +42,11 @@ func _spawn_apples():
 		await get_tree().create_timer(randf()* 0.1).timeout
 	await get_tree().create_timer(2).timeout
 	var apple = late_apple
-	apple.visible = true
-	apple.position = Vector3.UP * 20
-	# tween to let it fall from the sky
-	tween = apple.create_tween()
-	tween.tween_property(apple, "position", Vector3.ZERO, 1)
-	tween.play()
-	apple.rotation_degrees.y = randf() * 360
+	if apple != null:
+		apple.visible = true
+		apple.position = Vector3.UP * 20
+		# tween to let it fall from the sky
+		tween = apple.create_tween()
+		tween.tween_property(apple, "position", Vector3.ZERO, 1)
+		tween.play()
+		apple.rotation_degrees.y = randf() * 360

@@ -242,14 +242,14 @@ func _on_snake_hurt_box_area_entered(area: Area3D):
 			snake_head.delete_last_part()
 			phase += 1
 			if phase == 4:
+				var _wonobject = ScenePreloader.get_won_object().instantiate()
+				$center.add_child(_wonobject)
+				_wonobject.global_position = Vector3.ZERO
 				await get_tree().create_timer(5).timeout
 				get_tree().change_scene_to_packed.call_deferred(GlobMenu.end_game_scene)
 				GlobMenu.current_open_menu = GlobMenu.PauseMenuNode
 				GlobalVariables.gv_Settings["next_game_plus"]  =1
 				File_Manager.save_game()
-				var _wonobject = ScenePreloader.get_won_object().instantiate()
-				$center.add_child(_wonobject)
-				_wonobject.global_position = Vector3.ZERO
 
 				return
 			await get_tree().create_timer(1.5).timeout
