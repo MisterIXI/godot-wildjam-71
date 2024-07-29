@@ -346,9 +346,7 @@ skeleton = NodePath("")
 material_override = SubResource("StandardMaterial3D_1vldk")
 mesh = SubResource("ArrayMesh_a3b3n")
 skeleton = NodePath("")
-script = ExtResource("5_ax52x")
 material_main = ExtResource("3_2f6np")
-material_damaged = ExtResource("6_8ronp")
 
 [node name="Timer" type="Timer" parent="SnakePart/snek/Body2"]
 wait_time = 0.234
