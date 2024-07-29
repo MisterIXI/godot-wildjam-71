@@ -33,6 +33,7 @@ func _ready():
 	_connect_settings_sliders()
 	_hide_all()
 	_set_slider_current_values()
+	show()
 
 
 
